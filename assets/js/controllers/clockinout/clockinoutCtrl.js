@@ -116,7 +116,7 @@ function clockinoutCtrl($rootScope, $scope, Restangular, toaster, $window, $loca
             isSuccessed: false
         }
         // $http.post(NG_SETTING.apiServiceBaseUri + '/api/FingerPrint/startEnroll', data, {
-        $http.post('http://192.168.9.40:9065/api/FingerPrint/startEnroll', data, {
+            $http.post('http://185.169.53.183:9065/api/FingerPrint/startEnroll', data, {
             'Content-Type': 'application/json'
         }).success(function (response) {
             toaster.pop('success', $translate.instant('clockiout.Started'), $translate.instant('clockiout.FingerPrint'));

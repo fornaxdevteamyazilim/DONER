@@ -1,6 +1,6 @@
 ﻿app.factory("PaymentRestangular", function (Restangular) {
   return Restangular.withConfig(function (RestangularConfigurer) {
-    RestangularConfigurer.setBaseUrl("http://192.168.9.40:9065/api/");
+    RestangularConfigurer.setBaseUrl("http://185.169.53.183:9065/api/");
   });
 });
 
