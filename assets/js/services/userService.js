@@ -311,7 +311,11 @@ app.factory('userService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
                     { id: 300021512530, name: 'Fiyuu Driver', isActive: false , isDriver: false},//Bir tane de Fiyuu sürücü
                     { id: 300021694696, name: 'Sürücü', isActive: false , isDriver: true},
                     { id: 300156809299, name: 'REST. DRIVER (No Shift)', isActive: false, isDriver: true},
-                    
+                    { id: 700000021854, name: 'Restroan', isActive: false , isDriver: true},
+                    { id: 700000021856, name: 'Merkez ofis', isActive: false , isDriver: true},
+                    { id: 700000021855, name: 'Oprasyon', isActive: false , isDriver: true},
+                    { id: 700000021853, name: 'Admin', isActive: false , isDriver: true},
+                   
                 ];
             }
             if (MemberID == 106851154380) { // LC
