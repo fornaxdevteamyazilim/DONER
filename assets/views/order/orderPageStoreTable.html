@@ -39,9 +39,9 @@
     .hidedContent {
         display: inline-block;
         padding: 1px;
-        display:none;
+        display: none;
     }
-    
+
     .hideContentMaterial {
         display: none;
         padding: 1px;
@@ -539,7 +539,7 @@
                     <orderable ng-if="user.UserRole.MemberID == 300000000000" item='300000011286' order="{{OrderID}}"
                         class='col-lg-12 col-md-12 col-sm-12 col-xs-12'></orderable>
 
-                        <orderable ng-if="_order.OrderTypeID == 10" item='300000000000' order="{{OrderID}}"
+                    <orderable ng-if="_order.OrderTypeID == 10" item='300000000000' order="{{OrderID}}"
                         class='col-lg-12 col-md-12 col-sm-12 col-xs-12'></orderable>
                 </div>
             </div>
@@ -595,7 +595,7 @@
                     </label>
                     <input id="OrderNumber" type="text" min="0" class="form-control" ng-model="_order.OrderNumber"
                         readonly>
-                        
+
                 </div>
 
                 <div class="col-lg-12 col-md-4 col-sm-12 col-xs-12">
@@ -640,8 +640,7 @@
                      <button ng-if="user.UserRole.Name != 'CALLCENTER' && user.UserRole.Name != 'CCMANAGER'" ng-click="OrderPaymentDeteails(_order)" class="col-lg-4 col-md-4 col-sm-6 col-xs-6 btn btn-primary btn-o btn-lg fa fa-credit-card pull-right tooltips" tooltip="Ödeme" tooltip-placement="left"></button>
                     </span>-->
                     <span class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 pull-right margin-top-5">
-                        <button
-                            ng-if="user.UserRole.Name != 'CALLCENTER' && user.UserRole.Name != 'CCMANAGER'"
+                        <button ng-if="user.UserRole.Name != 'CALLCENTER' && user.UserRole.Name != 'CCMANAGER'"
                             ng-click="OrderPaymentDeteails(_order)"
                             class="col-lg-4 col-md-4 col-sm-6 col-xs-6 btn btn-primary btn-o btn-lg fa fa-credit-card pull-right tooltips"
                             tooltip="Ödeme" tooltip-placement="left"></button>
@@ -657,13 +656,15 @@
                             <label
                                 class='col-lg-10 col-md-10 col-sm-10 col-xs-10 text-bold text-extra-large text-uppercase'
                                 ng-class="{'strike': _order.Amount < proitem.Promotion.PromotionRequirementParameter , 'text-danger': _order.Amount < proitem.Promotion.PromotionRequirementParameter}"><strong>*
-                                    {{:: proitem.Promotion.name}}</strong> &nbsp :<label ng-repeat="items in OrderPromotion"> {{items.Amount| number : 2}} {{:: 'main.CURRENCY_SYMBOL' | translate}}</label> </label>
+                                    {{:: proitem.Promotion.name}}</strong> &nbsp :<label
+                                    ng-repeat="items in OrderPromotion"> {{items.Amount| number : 2}} {{::
+                                    'main.CURRENCY_SYMBOL' | translate}}</label> </label>
                             <label class='col-lg-2 col-md-2 col-sm-2 col-xs-2 ng pull-right text-extra-large'>
                                 <i ng-click="RemovePromotion(_order.id)" class='ti-close text-extra-large'></i>
                             </label>
                         </div>
                     </div>
-                  <!-- <div>
+                    <!-- <div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table ng-table" ng-repeat="item in OrderPromotion" style="border-bottom:1px solid;">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                             {{item.Amount}}
@@ -694,75 +695,87 @@
                 </span>
             </div> -->
             <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 inline margin-top-5 visible-lg visible-xs"
-            ng-if="PaymentButtonAktif == true">
-            <span>
-                <button
-                    class="btn btn-default btn-o btn-scroll btn-scroll-top fa-credit-card margin-bottom-5 fa fa-credit-card tooltips"
-                    style="color:black; overflow:hidden; width:85px; height:50px;"
-                    ng-click="OrderPaymentDeteails(_order, 'save')" ng-dblclick="BottonDblcilik()">
-                    <span translate="main.SAVE"></span>
-                </button>
-            </span>
+                ng-if="PaymentButtonAktif == true">
+                <span>
+                    <button
+                        class="btn btn-default btn-o btn-scroll btn-scroll-top fa-credit-card margin-bottom-5 fa fa-credit-card tooltips"
+                        style="color:black; overflow:hidden; width:85px; height:50px;"
+                        ng-click="OrderPaymentDeteails(_order, 'save')" ng-dblclick="BottonDblcilik()">
+                        <span translate="main.SAVE"></span>
+                    </button>
+                </span>
+            </div>
         </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 panel panel-white scrollbar visible-md visible-sm visible-xs"
-            ct-fullheight="window" data-ct-fullheight-exclusion="header" id="style-6" style="overflow:auto;">
-            <tabset class="tabbable col-lg-12 panel panel-white">
-                <tab class="col-lg-6 col-md-6 col-sm-6 col-xs-6 margin-top-10">
-                    <tab-heading>{{:: ordercontent}}</tab-heading>
-                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 margin-top-10">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-10">
-                            <span>
-                                <button type="button" ng-click="ChangeOrderState(_order)"
-                                    class="btn btn-danger ti-close pull-right tooltips text-uppercase"
-                                    tooltip="{{:: rejectorder}}" tooltip-placement="left"></button>
-                            </span>
-                        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 panel panel-white scrollbar visible-md visible-sm visible-xs"
+        ct-fullheight="window" data-ct-fullheight-exclusion="header" id="style-6" style="overflow:auto;">
+        <tabset class="tabbable col-lg-12 panel panel-white">
+            <tab class="col-lg-6 col-md-6 col-sm-6 col-xs-6 margin-top-10">
+                <tab-heading>{{:: ordercontent}}</tab-heading>
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 margin-top-10">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-10">
+                        <span>
+                            <button type="button" ng-click="ChangeOrderState(_order)"
+                                class="btn btn-danger ti-close pull-right tooltips text-uppercase"
+                                tooltip="{{:: rejectorder}}" tooltip-placement="left"></button>
+                        </span>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <br />
-                        <div id="personbuttons row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <span class="pull-left text-uppercase ng" ng-click="selectPerson()">{{
-                                    (_order.persons|filter:{id:CurrentPersonID})[0].Person||"(Unnamed)"}}<br /></span>
-                            </div> <br />
-                        </div>
-                        <br />
-                        <div class="panel col-lg-12 col-xs-12 col-md-12 col-sm-12 scrollbar" id="style-6"
-                            style="overflow:auto; min-height:200px;">
-                            <div><span bindonce='member'
-                                    ng-repeat='member in orderItems | orderBy:"+SplitIndex" track by member.id'>
-                                    <order-item member='member' persons='_order.persons' splits='_order.splits'>
-                                    </order-item>
-                                </span></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 margin-top-10">
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <br />
+                    <div id="personbuttons row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <span class="text-large text-bold pull-right" style="color:black;"> <span>{{:: grand}}
-                                </span><span> {{_order.Amount | number : 2}} {{:: 'main.CURRENCY_SYMBOL' |
-                                    translate}}</span></span>
+                            <span class="pull-left text-uppercase ng" ng-click="selectPerson()">{{
+                                (_order.persons|filter:{id:CurrentPersonID})[0].Person||"(Unnamed)"}}<br /></span>
+                        </div> <br />
+                    </div>
+                    <br />
+                    <div class="panel col-lg-12 col-xs-12 col-md-12 col-sm-12 scrollbar" id="style-6"
+                        style="overflow:auto; min-height:200px;">
+                        <div><span bindonce='member'
+                                ng-repeat='member in orderItems | orderBy:"+SplitIndex" track by member.id'>
+                                <order-item member='member' persons='_order.persons' splits='_order.splits'>
+                                </order-item>
+                            </span></div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 margin-top-10">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <span class="text-large text-bold pull-right" style="color:black;"> <span>{{:: grand}}
+                            </span><span> {{_order.Amount | number : 2}} {{:: 'main.CURRENCY_SYMBOL' |
+                                translate}}</span></span>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="_order.OrderTypeID != 4">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 pull-right margin-top-5">
+                        <button ng-click="SelectPromotions(_order)"
+                            class="col-lg-4 col-md-6 col-sm-6 col-xs-6 btn btn-o btn-primary btn-lg fa fa-minus-square pull-right tooltips"
+                            tooltip="İndirim" tooltip-placement="left"></button>
+                    </div>
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" bindonce='proitem'
+                        ng-repeat="proitem in Promotion track by proitem.id ">
+                        <label class='col-lg-10 col-md-10 col-sm-10 col-xs-10 text-bold text-extra-large text-uppercase'
+                            ng-class="{'strike': _order.Amount < proitem.Promotion.PromotionRequirementParameter , 'text-danger': _order.Amount < proitem.Promotion.PromotionRequirementParameter}"><strong>*
+                                {{:: proitem.Promotion.name}}</strong></label>
+                        <label class='col-lg-2 col-md-2 col-sm-2 col-xs-2 ng pull-right text-extra-large'>
+                            <i ng-click="RemovePromotion(_order.id)" class='ti-close text-extra-large'></i>
+                        </label>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12" ng-if="PaymentButtonAktif == true">
+                        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-3 pull-right margin-top-5">
+                            
+                                <button
+                                    class="btn btn-default btn-o btn-scroll btn-scroll-top fa-credit-card margin-bottom-5"
+                                    style="color:black; overflow:hidden; width:85px; height:50px;"
+                                    ng-click="OrderPaymentDeteails(_order)" ng-dblclick="BottonDblcilik()">
+                                    <span translate="main.SAVE"></span>
+                                </button>
+                         
                         </div>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="_order.OrderTypeID != 4">
-                        <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 pull-right margin-top-5">
-                            <button ng-click="SelectPromotions(_order)"
-                                class="col-lg-4 col-md-6 col-sm-6 col-xs-6 btn btn-o btn-primary btn-lg fa fa-minus-square pull-right tooltips"
-                                tooltip="İndirim" tooltip-placement="left"></button>
-                        </div>
-                        <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" bindonce='proitem'
-                            ng-repeat="proitem in Promotion track by proitem.id ">
-                            <label
-                                class='col-lg-10 col-md-10 col-sm-10 col-xs-10 text-bold text-extra-large text-uppercase'
-                                ng-class="{'strike': _order.Amount < proitem.Promotion.PromotionRequirementParameter , 'text-danger': _order.Amount < proitem.Promotion.PromotionRequirementParameter}"><strong>*
-                                    {{:: proitem.Promotion.name}}</strong></label>
-                            <label class='col-lg-2 col-md-2 col-sm-2 col-xs-2 ng pull-right text-extra-large'>
-                                <i ng-click="RemovePromotion(_order.id)" class='ti-close text-extra-large'></i>
-                            </label>
-                        </div>
-                    </div>
-                </tab>
-                <tab class="col-lg-6 col-md-6 col-sm-6 col-xs-6 margin-top-10">
+                </div>
+            </tab>
+            <!-- <tab class="col-lg-6 col-md-6 col-sm-6 col-xs-6 margin-top-10">
                     <tab-heading>Ödeme Bilgileri</tab-heading>
                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 margin-top-20" ng-if="_order.OrderTypeID != 4">
                         <span class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -788,6 +801,17 @@
                                 class="btn btn-o btn-primary btn-lg fa fa-minus-square pull-right tooltips"
                                 tooltip="İndirim" tooltip-placement="left"></button>
                         </div>
+                        <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 pull-right visible-md visible-sm visible-xs"
+                        ng-if="PaymentButtonAktif == true">
+                        <span>
+                            <button
+                                class="btn btn-default btn-o btn-scroll btn-scroll-top fa-credit-card margin-bottom-5"
+                                style="color:black; overflow:hidden; width:85px; height:50px;"
+                                ng-click="OrderPaymentDeteails(_order, 'save')" ng-dblclick="BottonDblcilik()">
+                                <span translate="main.SAVE"></span>
+                            </button>
+                        </span>
+                    </div>
                     </div>
                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 inline margin-top-5"
                         ng-if="PaymentButtonAktif == false">
@@ -808,6 +832,7 @@
                             </button>
                         </span>
                     </div>
-                </tab>
-            </tabset>
-        </div>
+                </tab> -->
+        </tabset>
+
+    </div>
