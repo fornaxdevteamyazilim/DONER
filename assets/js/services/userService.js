@@ -300,7 +300,7 @@ app.factory('userService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
         };
         var _getUserRoles = function (MemberID) {
 
-            if (MemberID == 300000000000) { // PH
+            if (MemberID == 700000000054) { // PH
                 var userroles = [
                     { id: 106732385859, name: 'REST. MANAGER', isActive: false , isDriver: false},
                     { id: 109474168055, name: 'REST. ASSIST. MANAGER', isActive: false , isDriver: false },
@@ -314,7 +314,7 @@ app.factory('userService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
                     { id: 700000021854, name: 'Restroan', isActive: false , isDriver: true},
                     { id: 700000021856, name: 'Merkez ofis', isActive: false , isDriver: true},
                     { id: 700000021855, name: 'Oprasyon', isActive: false , isDriver: true},
-                    { id: 700000021853, name: 'Admin', isActive: false , isDriver: true},
+                    { id: 700000021853, name: 'Admin', isActive: true , isDriver: true},
                    
                 ];
             }

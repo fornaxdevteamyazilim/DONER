@@ -155,6 +155,7 @@ color:red;
                     repeatorder}}</a>
                 <a href="#" ng-click="OrderChange(item)" ng-if="userRestrictions.changeorder=='Enable'">{{:: changetoorder}}</a>
                 <a href="#" ng-click="CheckCode(item,'CancelOrder')" ng-if="userRestrictions.cancelorder=='Enable'">{{:: canceltoorder}}</a>
+                <a href="#" ng-click="CheckCode(item,'CancelOrder24')" ng-if="userRestrictions.cancelorder24=='Enable'">{{:: canceltoorder}}</a>
                 <a href="#" ng-click="SelectPromotions(item)" ng-if="userRestrictions.addpromotion=='Enable'">{{:: addpromotion}}</a>
                 <a href="#" ng-click="RePrintOrder(item.id)" ng-if="userRestrictions.reprintorder=='Enable'">{{:: reprint}}</a>
                 <a href="#" ng-click="CheckCode(item,'OrderPaymentDeteails')" ng-if="userRestrictions.changeorderpayment=='Enable'">{{:: changetopaymenttype}}</a>
@@ -180,6 +181,7 @@ color:red;
                     repeatorder}}</a>
                 <a href="#" ng-click="OrderChange(item)" ng-if="userRestrictions.changeorder=='Enable'">{{:: changetoorder}}</a>
                 <a href="#" ng-click="CheckCode(item,'CancelOrder')" ng-if="userRestrictions.cancelorder=='Enable'">{{:: canceltoorder}}</a>
+                <a href="#" ng-click="CheckCode(item,'CancelOrder24')" ng-if="userRestrictions.cancelorder24=='Enable'">{{:: canceltoorder}}</a>
                 <a href="#" ng-click="SelectPromotions(item)" ng-if="userRestrictions.addpromotion=='Enable'">{{:: addpromotion}}</a>
                 <a href="#" ng-click="RePrintOrder(item.id)" ng-if="userRestrictions.reprintorder=='Enable'">{{:: reprint}}</a>
                 <a href="#" ng-click="CheckCode(item,'OrderPaymentDeteails')" ng-if="userRestrictions.changeorderpayment=='Enable'">{{:: changetopaymenttype}}</a>

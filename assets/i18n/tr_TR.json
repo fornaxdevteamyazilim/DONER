@@ -272,6 +272,7 @@
     "PRODUCTDISABLE": "{{appName}} - Ürün Açma-Kapama",
     "INVENTORYCONSUPTIONS": "{{appName}} - Kullanılan Malzeme Raporu",
     "DELETEDORDERITEMS": "{{appName}} - Silinen Sipariş Kalemleri",
+    "PRODUCTIMAGES": "{{appName}} - Ürün Resimleri",
     "GETDEMANDLIST": "{{appName}} - Malzeme Sevkiyat",
     "RETURNEDPRODUCTS": "{{appName}} - Return (İptal Adisyon) Ürün Listesi (Adet)",
     "YSENTEGRASYON": "{{appName}} - Yemek Sepeti Entegrasyonu",
@@ -2617,7 +2618,8 @@
         "PRODUCTDEFINITOIN": "Ürün Tanımları",
         "PRODUCTDISABLE": "Ürün Açma-Kapama",
         "PRODUCTRECOMENDEDPROMOTION": "Ürün/Promosyon İlişkilendirme",
-        "PRODUCTPRICELIST": "Ürün Fiyatı Düzenleme"
+        "PRODUCTPRICELIST": "Ürün Fiyatı Düzenleme",
+        "PRODUCTIMAGES":  "Ürün Resimleri"
       },
       "schedule": {
         "MAIN": "Zamanlama",
@@ -3463,8 +3465,8 @@
     "Seleccancellation": "İptal nedenini seçin",
     "OrderStatusUpdated": "Sipariş Durumu Güncellendi.",
     "OrderDenied": "Sipariş Reddedildi",
-    "yes": "Evet",
-    "no": "Hayır",
+    "Yes": "Evet",
+    "No": "Hayır",
     "StatusOrderChanged": "Siparişin Durumu Değişti!!",
     "Havewedeliveredorder": "Siparişi teslim ettik mi ?",
     "NoDepartment": "Bölüm Yok",

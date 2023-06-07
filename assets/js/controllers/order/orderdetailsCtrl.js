@@ -98,7 +98,7 @@ function orderdetailsCtrl($scope, $rootScope, $log, $translate, $http, $modal, $
         $scope.OperationDate = $translate.instant('main.OPERATIONDATE');
         $scope.LastStateDate = $translate.instant('main.LASTSTATEDATE');
         $scope.quantity = $translate.instant('main.QUANTITY');
-        
+
     };
     $scope.translate();
     var deregistration = $scope.$on('$translateChangeSuccess', function (event, data) {// ON LANGUAGE CHANGED
@@ -154,7 +154,7 @@ function orderdetailsCtrl($scope, $rootScope, $log, $translate, $http, $modal, $
                     states = $scope.item.states;
                     var statex = $('#gridContainerstate').dxDataGrid('instance');
                     statex.option("dataSource", states);
-                     $scope.orderdxget();
+                    $scope.orderdxget();
                     $scope.GetStore(restresult.StoreID)
                     for (var i = 0; i < restresult.states.length; i++) {
                         if (restresult.states[i].OrderStateID == 0)
@@ -192,13 +192,13 @@ function orderdetailsCtrl($scope, $rootScope, $log, $translate, $http, $modal, $
         search: "OrderID='" + $stateParams.id + "'"
     };
     $http.get(NG_SETTING.apiServiceBaseUri + "/api/orderitem", { params: params })
-    .then(function (result) {
-        $scope.orderItems = angular.copy(result);
-        var dataGrid = $("#treeViewContainer").dxTreeList("instance");
-        dataGrid.option("dataSource", result);
-    }, function (response) {
-        return $q.reject("Data Loading Error");
-    });
+        .then(function (result) {
+            $scope.orderItems = angular.copy(result);
+            var dataGrid = $("#treeViewContainer").dxTreeList("instance");
+            dataGrid.option("dataSource", result);
+        }, function (response) {
+            return $q.reject("Data Loading Error");
+        });
     $scope.dataGridOptionsorder = {
         dataSource: order,
         showRowLines: true,
@@ -217,31 +217,31 @@ function orderdetailsCtrl($scope, $rootScope, $log, $translate, $http, $modal, $
         //displayExpr: 'caption',
         parentIdExpr: 'ParentItemID',
         virtualModeEnabled: true,
-        autoExpandAll:true,   
+        autoExpandAll: true,
         columns: [
-            { name: "Product", dataField: "Product", caption: $scope.product,minWidth:200,
-            cellTemplate(container, options) {
-                const productname = options.data.Product;
-                const pnotes = options.data.Notes;
-                if (pnotes) {
-                  container
-                    .append($('<span>', { class: 'name', text: productname }))
-                    .append('<br>')
-                    .append($('<span>', { class: 'name', text: pnotes }).css("font-style", "italic"));
-                    //.append($('<span>', { class: 'name', text: pnotes }).css("color", "blue").css("font-style", "italic"));
+            {
+                name: "Product", dataField: "Product", caption: $scope.product, minWidth: 200,
+                cellTemplate(container, options) {
+                    const productname = options.data.Product;
+                    const pnotes = options.data.Notes;
+                    if (pnotes) {
+                        container
+                            .append($('<span>', { class: 'name', text: productname }))
+                            .append('<br>')
+                            .append($('<span>', { class: 'name', text: pnotes }).css("font-style", "italic"));
+                        //.append($('<span>', { class: 'name', text: pnotes }).css("color", "blue").css("font-style", "italic"));
+                    }
+                    else {
+                        container
+                            .append($('<span>', { class: 'name', text: productname }));
+                    }
                 }
-                else 
-                {
-                    container
-                    .append($('<span>', { class: 'name', text: productname }));
-                }
-        }
-    },
-            { name: "Quantity", dataField: "Quantity", caption: $scope.quantity,format: { type: "fixedPoint", precision: 2 } },
+            },
+            { name: "Quantity", dataField: "Quantity", caption: $scope.quantity, format: { type: "fixedPoint", precision: 2 } },
             // { name: "ProductOption", dataField: "ProductOption", caption: $scope.productOption },
-            { name: "ProductPrice", dataField: "ProductPrice",caption: $scope.productPrice,format: { type: "fixedPoint", precision: 2 }},
-            { name: "TotalAmount", dataField: "TotalAmount", caption:  $scope.totalAmount, summaryType: "count", format: "#,##0.00₺" },
-            { name: "AddDate", dataField: "AddDate", caption:  $scope.addDate ,dataType: "date", format: " HH:mm:ss" },            
+            { name: "ProductPrice", dataField: "ProductPrice", caption: $scope.productPrice, format: { type: "fixedPoint", precision: 2 } },
+            { name: "TotalAmount", dataField: "TotalAmount", caption: $scope.totalAmount, summaryType: "count", format: "#,##0.00₺" },
+            { name: "AddDate", dataField: "AddDate", caption: $scope.addDate, dataType: "date", format: " HH:mm:ss" },
         ],
         summary: {
             totalItems: [
@@ -282,13 +282,16 @@ function orderdetailsCtrl($scope, $rootScope, $log, $translate, $http, $modal, $
         colCount: 2,
         items: [{
             itemType: "group", items: [
-                { dataField: "StreetAddress", label: { text: $scope.address }, editorType: "dxTextArea", editorOptions: { height: 90 }},
-                { dataField: "Landmark", label: { text: $scope.landmark }, editorType: "dxTextArea", editorOptions: { height: 90}},
-            ]},
-        { itemType: "group", items: [
-                { dataField: "Notes", label: { text: $scope.addressnote }, editorType: "dxTextArea", editorOptions: { height: 90 }},
-                { dataField: "PaymentNote", label: { text: $scope.paymentnote }, editorType: "dxTextArea", editorOptions: { height: 90}},
-            ]}
+                { dataField: "StreetAddress", label: { text: $scope.address }, editorType: "dxTextArea", editorOptions: { height: 90 } },
+                { dataField: "Landmark", label: { text: $scope.landmark }, editorType: "dxTextArea", editorOptions: { height: 90 } },
+            ]
+        },
+        {
+            itemType: "group", items: [
+                { dataField: "Notes", label: { text: $scope.addressnote }, editorType: "dxTextArea", editorOptions: { height: 90 } },
+                { dataField: "PaymentNote", label: { text: $scope.paymentnote }, editorType: "dxTextArea", editorOptions: { height: 90 } },
+            ]
+        }
         ],
         readOnly: true,
         //disabled:true,
@@ -310,13 +313,13 @@ function orderdetailsCtrl($scope, $rootScope, $log, $translate, $http, $modal, $
         // headerFilter: { visible: true },
         // searchPanel: { visible: true },
         columns: [
-            { name: "OrderStateName", dataField: "OrderStateName", caption:  $scope.state},
-            { name: "OrderStateDate", dataField: "OrderStateDate", caption:  $scope.time, dataType: "date", format: " HH:mm:ss" },
-            { name: "Duration", dataField: "Duration", caption: $scope.duration,width:96},
+            { name: "OrderStateName", dataField: "OrderStateName", caption: $scope.state },
+            { name: "OrderStateDate", dataField: "OrderStateDate", caption: $scope.time, dataType: "date", format: " HH:mm:ss" },
+            { name: "Duration", dataField: "Duration", caption: $scope.duration, width: 96 },
             { name: "UpdateUserName", dataField: "UpdateUserName", caption: $scope.user },
             { name: "Driver", dataField: "Driver", caption: $scope.driver },
-            { name: "Reason", dataField: "OrderReason", caption:   $scope.reason },
-            { name: "Store", dataField: "Store", caption:   $scope.store },
+            { name: "Reason", dataField: "OrderReason", caption: $scope.reason },
+            { name: "Store", dataField: "Store", caption: $scope.store },
         ],
     };
     $scope.AwaitingCCAutorization = function (item) {
@@ -480,7 +483,15 @@ function orderdetailsCtrl($scope, $rootScope, $log, $translate, $http, $modal, $
             }
         });
     };
-    $scope.UpdateOrderStatus = function (item) {
+    $scope.UpdateOrderStatus = function (item, root) {
+        if (root == "CancelOrder24" && $rootScope.user && $rootScope.user.Store && $rootScope.user.Store.OperationDate) {
+            const operationDate = new Date($rootScope.user.Store.OperationDate).toDateString();
+            const orderDate = new Date(item.OrderDate).toDateString();
+            if (orderDate != operationDate) {
+                SweetAlert.swal("", $translate.instant("orderfile.OrderCannotBeCancelled"), "warning");
+                return;
+            }
+        }
         SweetAlert.swal({
             title: $translate.instant('yemeksepetifile.CANCELORDER'),
             text: $translate.instant('yemeksepetifile.Areyousureyouwantcanceltheorder'),
@@ -575,13 +586,22 @@ function orderdetailsCtrl($scope, $rootScope, $log, $translate, $http, $modal, $
         })
     };
     $scope.CheckCode = function (item, root) {
-        if (userService.userIsInRole("CALLCENTER") || userService.userIsInRole("CCBACKOFFICE") || userService.userIsInRole("CMRESTORANHATTI") || userService.userIsInRole("CCMANAGER")|| userService.userIsInRole("Rest.Manager(sifre)") || userService.userIsInRole("REST. MANAGER")|| userService.userIsInRole("REST. SHIFT MANAGER") || userService.userIsInRole("REST. ASSIST. MANAGER")) {
-            if (root == 'CancelOrder')
-                $scope.UpdateOrderStatus(item)
-                if (root == 'OrderPaymentDeteails')
-                $scope.OrderPaymentDeteails(item)
-                if (root == 'ChangeOrderPayment')
-                $scope.ChangeOrderPayment(item)
+        if (userService.userIsInRole("CALLCENTER") ||
+            userService.userIsInRole("CCBACKOFFICE") ||
+            userService.userIsInRole("CMRESTORANHATTI") ||
+            userService.userIsInRole("CCMANAGER") ||
+            userService.userIsInRole("Rest.Manager(sifre)") ||
+            userService.userIsInRole("REST. MANAGER") ||
+            userService.userIsInRole("REST. SHIFT MANAGER") ||
+            userService.userIsInRole("REST. ASSIST. MANAGER") ||
+            userService.userIsInRole("CCSIKAYET")
+        ) {
+            if (root == 'CancelOrder' || root == 'CancelOrder24')
+                $scope.UpdateOrderStatus(item, root);
+            else if (root == 'OrderPaymentDeteails')
+                $scope.OrderPaymentDeteails(item);
+            else if (root == 'ChangeOrderPayment')
+                $scope.ChangeOrderPayment(item);
         } else {
             if ($rootScope.user.restrictions.authorized == "Enable") {
                 var modalInstance = $modal.open({
@@ -595,13 +615,13 @@ function orderdetailsCtrl($scope, $rootScope, $log, $translate, $http, $modal, $
                         userService.cardLogin(password, true).then(function (response) {
                             userService.stopTimeout();
                             if (root == 'ChangeOrderDriver')
-                                $scope.ChangeOrderDriver(item)
-                            if (root == 'OrderPaymentDeteails')
-                                $scope.OrderPaymentDeteails(item)
-                            if (root == 'ChangeOrderPayment')
-                                $scope.ChangeOrderPayment(item)
-                            if (root == 'CancelOrder')
-                                $scope.UpdateOrderStatus(item)
+                                $scope.ChangeOrderDriver(item);
+                            else if (root == 'OrderPaymentDeteails')
+                                $scope.OrderPaymentDeteails(item);
+                            else if (root == 'ChangeOrderPayment')
+                                $scope.ChangeOrderPayment(item);
+                            else if (root == 'CancelOrder' || root == 'CancelOrder24')
+                                $scope.UpdateOrderStatus(item, root);
                         }, function (err) {
                             if (err) {
                                 toaster.pop('warrning', $translate.instant('yemeksepetifile.PasswordErroneous'), err.error_description);
@@ -613,7 +633,6 @@ function orderdetailsCtrl($scope, $rootScope, $log, $translate, $http, $modal, $
                                 return 'No'
                             }
                         });
-
                     }
                 })
             } else {
@@ -704,7 +723,7 @@ function orderdetailsCtrl($scope, $rootScope, $log, $translate, $http, $modal, $
             $scope.isSpinner = false;
         });
     };
-     $scope.DeleteYSMaping = function (OrderID) {
+    $scope.DeleteYSMaping = function (OrderID) {
         $scope.isSpinner = true;
         Restangular.one('aggregator/deletecustomermap').get({
             OrderID: OrderID,

@@ -307,6 +307,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
         }).state('app.product.product', {
             url: '/product',
             template: '<div ui-view class="fade-in-up"></div>'
+        }).state('app.product.product.images', {
+            url: '/images',
+            templateUrl: "assets/views/product/productimages.html",
+            resolve: loadSequence('underscore', 'xeditable', 'config-xeditable', 'ngTable', 'productimagesCtrl', 'TagModalCtrl', 'uploadimageCtrl'),
+            title: 'product',
+            authenticate: true,
+            ncyBreadcrumb: {
+                label: 'product Images'
+            }
         }).state('app.product.product.list', {
             url: '/list',
             templateUrl: "assets/views/product/productprototypelist.html",

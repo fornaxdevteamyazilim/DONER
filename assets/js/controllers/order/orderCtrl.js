@@ -1,11 +1,4 @@
-﻿app.factory('PaymentRestangular', function (Restangular) {
-    return Restangular.withConfig(function (RestangularConfigurer) {
-        RestangularConfigurer.setBaseUrl('http://185.169.53.183:9065/api/');
-    });
-});
-
-
-app.controller('orderCtrl', orderCtrl);
+﻿app.controller('orderCtrl', orderCtrl);
 function orderCtrl($scope, $log, $filter, $timeout, $translate, $modal, SweetAlert, Restangular, PaymentRestangular, ngTableParams, $document, toaster, $window, $stateParams, $rootScope, $location, $anchorScroll, $compile, callsService, userService, $element, ngnotifyService, $localStorage, localStorageService) {
     var or = this;
     $rootScope.uService.EnterController("orderCtrl");
@@ -1015,7 +1008,7 @@ function orderCtrl($scope, $log, $filter, $timeout, $translate, $modal, SweetAle
             $scope.Promotion = result;
             $scope.OrderPromotion = result;
             $scope.UpdateOrderTotal($scope.orderItems);
-            $scope.CalculateItemAmountWithsubItems();
+          
         }, function (response) {
             toaster.pop('error', $translate.instant('orderfile.OrderPromotionsFailedLoad'), response.data.ExceptionMessage);
         });

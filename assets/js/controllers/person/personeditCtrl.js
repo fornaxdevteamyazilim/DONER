@@ -402,8 +402,8 @@ function personeditCtrl($scope, $log, $filter, SweetAlert, Restangular, $modal, 
         }
     };
     $scope.SaveMarketingData=function (PersonID) {
-        if ($scope.MerketingData && ($scope.MerketingData.MarketingPermissionType == 0 || $scope.MerketingData.MarketingPermissionType == 1) && ($scope.MerketingData.Approved ==true || $scope.MerketingData.Approved == false)) {
-        Restangular.restangularizeElement('', $scope.MerketingData, 'MarketingPermission');
+        if ($scope.MerketingData && ($scope.MerketingData.MarketingPermissionType == 0 || $scope.MerketingData.MarketingPermissionType == 1 || $scope.MerketingData.MarketingPermissionType == 2) && ($scope.MerketingData.Approved ==true || $scope.MerketingData.Approved == false)) {
+            Restangular.restangularizeElement('', $scope.MerketingData, 'MarketingPermission');
         if ($scope.MerketingData.restangularized && $scope.MerketingData.id) {
             $scope.MerketingData.put().then(function (resp) {
                 toaster.pop('success', $translate.instant('orderfile.Updated'), $translate.instant('orderfile.Updated'));

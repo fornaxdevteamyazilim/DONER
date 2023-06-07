@@ -463,6 +463,7 @@
     <Content Include="assets\js\controllers\tableplan\tablePlanCtrl.js" />
     <Content Include="assets\js\controllers\product\productprototypelistCtrl.js" />
     <Content Include="assets\js\controllers\product\productprototypeeditCtrl.js" />
+    <Content Include="assets\js\controllers\product\productimagesCtrl.js" />
     <Content Include="assets\js\controllers\order\orderpromotionsCtrl.js" />
     <Content Include="assets\js\controllers\promotions\promotionscodevalidatorsCtrl.js" />
     <Content Include="assets\js\controllers\promotions\promotionsCtrl.js" />

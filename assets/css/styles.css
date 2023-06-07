@@ -11737,3 +11737,23 @@ border-bottom-color: transparent;
         background-image: -o-linear-gradient(top, #9E9E9E, #FFFFFF);
         background-image: linear-gradient(to bottom, #9E9E9E, #FFFFFF);
     }*/
+
+.btn-wides {
+      width: 124px;
+      border-radius: 15px;
+      background-color: white;
+      border-color: #9fe0ca;
+      height: 40px;
+      font-size: 20px;
+     
+}
+    /* .btn-wides:active {  color: #ffbf00;} */
+
+    .btn-wides:focus {
+          color:white;
+          background-color: #64bf5d;
+    }
+
+.backgr {
+  background-image: url('../images/CORS.png');  
+}

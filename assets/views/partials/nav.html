@@ -291,27 +291,33 @@
         </a>
         <ul class="sub-menu">
             <li ui-sref-active="active" ng-if="user.restrictions.productlist=='Enable'">
+                <a ui-sref="app.product.product.images">
+                    <i class="ti-view-list"></i> 
+                    <span class="title" translate="sidebar.nav.product.PRODUCTIMAGES"></span>
+                </a>
+            </li>
+            <li ui-sref-active="active" ng-if="user.restrictions.productlist=='Enable'">
                 <a ui-sref="app.product.product.list">
                     <i class="ti-view-list"></i> <span class="title"
-                        translate="sidebar.nav.product.PRODUCTDEFINITOIN"></span>
+                                                       translate="sidebar.nav.product.PRODUCTDEFINITOIN"></span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.productlist=='Enable'">
                 <a ui-sref="app.product.productdisable">
                     <i class="ti-view-list"></i> <span class="title"
-                        translate="sidebar.nav.product.PRODUCTDISABLE"></span>
+                                                       translate="sidebar.nav.product.PRODUCTDISABLE"></span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.productrecomendedpromotion=='Enable'">
                 <a ui-sref="app.product.productrecomendedpromotion">
                     <i class="ti-view-list"></i> <span class="title"
-                        translate="sidebar.nav.product.PRODUCTRECOMENDEDPROMOTION"></span>
+                                                       translate="sidebar.nav.product.PRODUCTRECOMENDEDPROMOTION"></span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.productpricelist=='Enable'">
                 <a ui-sref="app.product.product.productprice.list">
                     <i class="ti-view-list"></i> <span class="title"
-                        translate="sidebar.nav.product.PRODUCTPRICELIST"></span>
+                                                       translate="sidebar.nav.product.PRODUCTPRICELIST"></span>
                 </a>
             </li>
         </ul>
@@ -362,25 +368,25 @@
             <li ui-sref-active="active" ng-if="user.restrictions.inventorycounts=='Enable'">
                 <a ui-sref="app.inventory.inventorycount.list">
                     <i class="ti-write"></i> <span class="title"
-                        translate="sidebar.nav.inventory.INVENTORYCOUNT">Sayým</span>
+                        translate="sidebar.nav.inventory.INVENTORYCOUNT">Sayım</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.inventoryadjusts=='Enable'">
                 <a ui-sref="app.inventory.inventoryadjust.list">
                     <i class="ti-stats-down"></i> <span class="title"
-                        translate="sidebar.nav.inventory.INVENTORYADJUST">Envanter Sayým Farký</span>
+                        translate="sidebar.nav.inventory.INVENTORYADJUST">Envanter Sayım Farkı</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.productwaste=='Enable'">
                 <a ui-sref="app.inventory.productwaste.list">
                     <i class="ti-stats-down"></i> <span class="title"
-                        translate="sidebar.nav.inventory.PRODUCTWASTE">Atýk</span>
+                        translate="sidebar.nav.inventory.PRODUCTWASTE">Atık</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.inventorysales=='Enable'">
                 <a ui-sref="app.inventory.inventorysale.list">
                     <i class="ti-money"></i> <span class="title"
-                        translate="sidebar.nav.inventory.INVENTORYSALE">Envanter Satýþý</span>
+                        translate="sidebar.nav.inventory.INVENTORYSALE">Envanter Satışı</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.inventorydeliveries=='Enable'">
@@ -410,7 +416,7 @@
             <li ui-sref-active="active" ng-if="user.restrictions.inventorypurchases=='Enable'">
                 <a ui-sref="app.inventory.inventorypurchase.list">
                     <i class="ti-cloud-down"></i> <span class="title"
-                        translate="sidebar.nav.inventory.INVENTORYPURCHASE">Satýþ</span>
+                        translate="sidebar.nav.inventory.INVENTORYPURCHASE">Satış</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.inventorydemands=='Enable'">
@@ -469,7 +475,7 @@
             <li ui-sref-active="active" ng-if="user.restrictions.inventorysales=='Enable'">
                 <a ui-sref="app.accountingintegration.inventorysale.list">
                     <i class="ti-files"></i> <span class="title"
-                        translate="sidebar.nav.accountingintegration.INVENTORYSALE">Envanter Satýþý</span>
+                        translate="sidebar.nav.accountingintegration.INVENTORYSALE">Envanter Satışı</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.inventorydeliveries=='Enable'">
@@ -531,7 +537,7 @@
             <li ui-sref-active="active" ng-if="user.restrictions.scheduletypes=='Enable'">
                 <a ui-sref="app.schedule.scheduletypes.list">
                     <i class="ti-calendar"></i> <span class="title"
-                        translate="sidebar.nav.schedule.SCHEDULEDEFINITION">Zaman Tanýmlarý</span>
+                        translate="sidebar.nav.schedule.SCHEDULEDEFINITION">Zaman Tanımları</span>
                 </a>
             </li>
         </ul>
@@ -595,7 +601,7 @@
             <li ui-sref-active="active" ng-if="user.restrictions.users=='Enable'">
                 <a ui-sref="app.users.userlist">
                     <i class="ti-face-smile"></i><span class="title"
-                        translate="sidebar.nav.users.USERS">Kullanýcýlar</span>
+                        translate="sidebar.nav.users.USERS">Kullanıcılar</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.usertransfer=='Enable'">
@@ -607,19 +613,19 @@
             <li ui-sref-active="active" ng-if="user.restrictions.userstore=='Enable'">
                 <a ui-sref="app.users.userstore">
                     <i class="ti-face-smile"></i><span class="title"
-                        translate="sidebar.nav.users.USERSTORE">KullanýcýRestoranlarý</span>
+                        translate="sidebar.nav.users.USERSTORE">KullanıcıRestoranları</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.storegroup=='Enable'">
                 <a ui-sref="app.users.storegroup">
-                    <i class="ti-face-smile"></i><span class="title" translate="sidebar.nav.users.STOREGROUP">Kulanýcý
-                        Gruplarý</span>
+                    <i class="ti-face-smile"></i><span class="title" translate="sidebar.nav.users.STOREGROUP">Kulanıcı
+                        Grupları</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.userstoregroup=='Enable'">
                 <a ui-sref="app.users.userstoregroup">
                     <i class="ti-face-smile"></i><span class="title"
-                        translate="sidebar.nav.users.USERSTOREGROUP">Kulanýcý Gruplarý Eþleþtirme</span>
+                        translate="sidebar.nav.users.USERSTOREGROUP">Kulanıcı Grupları Eþleþtirme</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.userautomaticreport=='Enable'">
@@ -756,7 +762,7 @@
                         <a ui-sref="app.reports.stockandcostreports.consuptionreport"
                             ng-if="user.restrictions.consuptionsreport=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.METERIALUSAGEREPORT">Kullanýlan Malzeme Raporu</span>
+                                translate="sidebar.nav.reports.METERIALUSAGEREPORT">Kullanılan Malzeme Raporu</span>
                         </a>
                     </li>
                     <li ui-sref-active="active">
@@ -798,21 +804,21 @@
                         <a ui-sref="app.reports.stockandcostreports.inventorywasteconsuptions"
                             ng-if="user.restrictions.inventorywaste=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.INVENTORYWASTECONSUPTIONS">Envanter Atýk Raporu</span>
+                                translate="sidebar.nav.reports.INVENTORYWASTECONSUPTIONS">Envanter Atık Raporu</span>
                         </a>
                     </li>
                     <li ui-sref-active="active">
                         <a ui-sref="app.reports.stockandcostreports.wasteproduct"
                             ng-if="user.restrictions.productwastereport=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.PRODUCTWASTEREPORT">Ürün Atýk Raporu</span>
+                                translate="sidebar.nav.reports.PRODUCTWASTEREPORT">Ürün Atık Raporu</span>
                         </a>
                     </li>
                     <li ui-sref-active="active">
                         <a ui-sref="app.reports.stockandcostreports.awaitingsupplies"
                             ng-if="user.restrictions.awaitingsupplies=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.AWAITINGSUPPLIES">Malzeme Onaylarý</span>
+                                translate="sidebar.nav.reports.AWAITINGSUPPLIES">Malzeme Onayları</span>
                         </a>
                     </li>
                     <li ui-sref-active="active">
@@ -854,7 +860,7 @@
                         <a ui-sref="app.reports.stockandcostreports.inventoryusagedetail"
                             ng-if="user.restrictions.inventoryrecipesreport=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.INVENTORYUSAGEDETAIL">Envanter Kullaným Detaylarý</span>
+                                translate="sidebar.nav.reports.INVENTORYUSAGEDETAIL">Envanter Kullanım Detayları</span>
                         </a>
                     </li>
                     <li ui-sref-active="active">
@@ -938,7 +944,7 @@
                     <li ui-sref-active="active" ng-if="user.restrictions.recorddatareport=='Enable'">
                         <a ui-sref="app.reports.otherreports.recorddatareport">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.NEWPERSONRECORD">Yeni Kayýt Müþteriler</span>
+                                translate="sidebar.nav.reports.NEWPERSONRECORD">Yeni Kayıt Müþteriler</span>
                         </a>
                     </li>
                     <li ui-sref-active="active" ng-if="user.restrictions.newpersonrecord=='Enable'">
@@ -1048,14 +1054,14 @@
                         <a ui-sref="app.reports.ordersreports.performance"
                             ng-if="user.restrictions.performance=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.ORDERPERFORMANCE">Sipariþ Performanslarý</span>
+                                translate="sidebar.nav.reports.ORDERPERFORMANCE">Sipariþ Performansları</span>
                         </a>
                     </li>
                     <li ui-sref-active="active">
                         <a ui-sref="app.reports.ordersreports.kitchenperformance"
                             ng-if="user.restrictions.performance=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.KITCHENPERFORMANCE">Mutfak Performanslarý</span>
+                                translate="sidebar.nav.reports.KITCHENPERFORMANCE">Mutfak Performansları</span>
                         </a>
                     </li>
                 </ul>
@@ -1103,7 +1109,7 @@
                         <a ui-sref="app.reports.giroreports.giroanalysis"
                             ng-if="user.restrictions.giroanalysis=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.GIROANALYSIS">Günlere Göre Ürün Satýþ Daðýlýmý
+                                translate="sidebar.nav.reports.GIROANALYSIS">Günlere Göre Ürün Satış Daðılımı
                                 (Tutar)</span>
                         </a>
                     </li>
@@ -1148,7 +1154,7 @@
                             ng-if="user.restrictions.orderpaymentcomparepivot=='Enable'">
                             <i class="ti-files"></i> <span class="title"
                                 translate="sidebar.nav.reports.ORDERPAYMENTCOMPAREPIVOT">Sipariþ Ödemeleri
-                                Karþýlaþtýrma</span>
+                                Karþılaþtırma</span>
                         </a>
                     </li>
                     <li ui-sref-active="active">
@@ -1200,7 +1206,7 @@
                             <i class="ti-pencil-alt"></i>
                         </div>
                         <div class="item-inner">
-                            <span class="title" translate="sidebar.nav.reports.PRODUCTSALESREPORTS"> Ürün Satýþ
+                            <span class="title" translate="sidebar.nav.reports.PRODUCTSALESREPORTS"> Ürün Satış
                             </span><i class="icon-arrow"></i>
                         </div>
                     </div>
@@ -1210,14 +1216,14 @@
                         <a ui-sref="app.reports.productsalesreports.productusagecounts"
                             ng-if="user.restrictions.productusagecounts=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.DAILYPRODUCTSALELIST">Günlük Ürün Satýþ Listeleri</span>
+                                translate="sidebar.nav.reports.DAILYPRODUCTSALELIST">Günlük Ürün Satış Listeleri</span>
                         </a>
                     </li>
                     <li ui-sref-active="active">
                         <a ui-sref="app.reports.productsalesreports.storesalesstatistics"
                             ng-if="user.restrictions.storesalesstatistics=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.STORESALESSTATISTICS">Restoran Satýþ
+                                translate="sidebar.nav.reports.STORESALESSTATISTICS">Restoran Satış
                                 Ýstatistikleri</span>
                         </a>
                     </li>
@@ -1225,7 +1231,7 @@
                         <a ui-sref="app.reports.productsalesreports.productsalesstatistics"
                             ng-if="user.restrictions.productsalesstatistics=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.PRODUCTSALESSTATISTICS">Ürün Satýþ Ýstatistikleri
+                                translate="sidebar.nav.reports.PRODUCTSALESSTATISTICS">Ürün Satış Ýstatistikleri
                                 (Adet)</span>
                         </a>
                     </li>
@@ -1233,7 +1239,7 @@
                         <a ui-sref="app.reports.productsalesreports.productsalesstatistics"
                             ng-if="user.restrictions.productsalesstatistics=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.PRODUCTSALESSTATISTICSPIVOT">Ürün Satýþ Ýstatistikleri
+                                translate="sidebar.nav.reports.PRODUCTSALESSTATISTICSPIVOT">Ürün Satış Ýstatistikleri
                                 (Adet)- Pivot</span>
                         </a>
                     </li>
@@ -1241,7 +1247,7 @@
                         <a ui-sref="app.reports.productsalesreports.productsalesstatisticsamount"
                             ng-if="user.restrictions.productsalesstatisticsamount=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.PRODUCTSALESSTATISTICSAMOUNT">Ürün Satýþ Ýstatistikleri
+                                translate="sidebar.nav.reports.PRODUCTSALESSTATISTICSAMOUNT">Ürün Satış Ýstatistikleri
                                 (Tutar)</span>
                         </a>
                     </li>
@@ -1249,33 +1255,33 @@
                         <a ui-sref="app.reports.productsalesreports.productsalesbydays"
                             ng-if="user.restrictions.productsalesbydays=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.PRODUCTSALESBYDAYS">Günlere Göre Ürün Satýþ (Adet)</span>
+                                translate="sidebar.nav.reports.PRODUCTSALESBYDAYS">Günlere Göre Ürün Satış (Adet)</span>
                         </a>
                     </li>
                     <!--<li ui-sref-active="active">
         <a ui-sref="app.reports.productsalesreports.productsalesbyhours" ng-if="user.restrictions.productsalesbyhours=='Enable'">
-            <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.PRODUCTSALESBYHOURS">Saatlere Göre Ürün Satýþ (Adet)</span>
+            <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.PRODUCTSALESBYHOURS">Saatlere Göre Ürün Satış (Adet)</span>
         </a>
     </li>-->
                     <li ui-sref-active="active">
                         <a ui-sref="app.reports.productsalesreports.productwithrelations"
                             ng-if="user.restrictions.productwithrelations=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.PRODUCTWITHRELATIONS">Menü - Ürün Satýþ</span>
+                                translate="sidebar.nav.reports.PRODUCTWITHRELATIONS">Menü - Ürün Satış</span>
                         </a>
                     </li>
                     <li ui-sref-active="active">
                         <a ui-sref="app.reports.productsalesreports.promotionanaisys"
                             ng-if="user.restrictions.promotionanaisys=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.PROMOTIONANALISYS">Menü - Ürün Satýþ</span>
+                                translate="sidebar.nav.reports.PROMOTIONANALISYS">Menü - Ürün Satış</span>
                         </a>
                     </li>
                     <li ui-sref-active="active">
                         <a ui-sref="app.reports.productsalesreports.menuincom"
                             ng-if="user.restrictions.menuincom=='Enable'">
                             <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.MENUINCOM">Menü
-                                Satýþ Geliri</span>
+                                Satış Geliri</span>
                         </a>
                     </li>
                     <li ui-sref-active="active">
@@ -1296,7 +1302,7 @@
                         <a ui-sref="app.reports.ordersreports.userproductsales"
                             ng-if="user.restrictions.ProductSales=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.USERPRODUCTSALES">Kullanýcý Ürün Satýþ Listesi</span>
+                                translate="sidebar.nav.reports.USERPRODUCTSALES">Kullanıcı Ürün Satış Listesi</span>
                         </a>
                     </li>
                     <!--<li ui-sref-active="active">
@@ -1313,7 +1319,7 @@
                     </li>
                     <!--<li ui-sref-active="active">
                     <a ui-sref="app.reports.productsalesreports.productsalesbyweeks">
-                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.PRODUCTSALESBYWEEKS">Haftalýk Ürün Satýþý</span>
+                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.PRODUCTSALESBYWEEKS">Haftalık Ürün Satışı</span>
                     </a>
                       </li>-->
                     <li ui-sref-active="active">
@@ -1356,12 +1362,12 @@
             </li>
             <li ui-sref-active="active">
                 <a ui-sref="app.reports.consolidatedreports.paymentamount"  ng-if="user.restrictions.paymentamount=='Enable'">
-                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.PAYMENTAMOUNT">Ödeme Daðýlýmý (Tutar)</span>
+                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.PAYMENTAMOUNT">Ödeme Daðılımı (Tutar)</span>
                 </a>
             </li>
             <li ui-sref-active="active">
                 <a ui-sref="app.reports.consolidatedreports.paymentquantity"  ng-if="user.restrictions.paymentquantity=='Enable'">
-                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.PAYMENTQUANTITY">Ödeme Daðýlýmý (Adet)</span>
+                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.PAYMENTQUANTITY">Ödeme Daðılımı (Adet)</span>
                 </a>
             </li>
             <li ui-sref-active="active">
@@ -1376,27 +1382,27 @@
             </li>
             <li ui-sref-active="active">
                 <a ui-sref="app.reports.consolidatedreports.productsalesamount" ng-if="user.restrictions.productsalesamount=='Enable'" >
-                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.PRODUCTSALESAMOUNT">Ürün Satýþ (Tutar)</span>
+                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.PRODUCTSALESAMOUNT">Ürün Satış (Tutar)</span>
                 </a>
             </li>
             <li ui-sref-active="active">
                 <a ui-sref="app.reports.consolidatedreports.productsalesquantity" ng-if="user.restrictions.productsalesquantity=='Enable'" >
-                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.PRODUCTSALESQUANTITY">Ürün Satýþ (Adet)</span>
+                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.PRODUCTSALESQUANTITY">Ürün Satış (Adet)</span>
                 </a>
             </li>
             <li ui-sref-active="active">
                 <a ui-sref="app.reports.consolidatedreports.productsalesbytotalhours" ng-if="user.restrictions.productsalesbytotalhours=='Enable'" >
-                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.PRODUCTSALESBYTOTALHOURS">Toplam Saate Göre Ürün Satýþý</span>
+                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.PRODUCTSALESBYTOTALHOURS">Toplam Saate Göre Ürün Satışı</span>
                 </a>
             </li>
             <li ui-sref-active="active">
                 <a ui-sref="app.reports.consolidatedreports.productsalesbymounts" ng-if="user.restrictions.productsalesbymounts=='Enable'" >
-                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.PRODUCTSALESBYMOUNTS">Aylara Göre Ürün Satýþ</span>
+                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.PRODUCTSALESBYMOUNTS">Aylara Göre Ürün Satış</span>
                 </a>
             </li>
             <li ui-sref-active="active">
                 <a ui-sref="app.reports.consolidatedreports.productsalesbyweeks" ng-if="user.restrictions.productsalesbyweeks=='Enable'">
-                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.PRODUCTSALESBYWEEKSREPORT">Haftalara Göre Ürün Satýþ </span>
+                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.PRODUCTSALESBYWEEKSREPORT">Haftalara Göre Ürün Satış </span>
                 </a>
             </li>
         </ul>
@@ -1449,21 +1455,21 @@
                         <a ui-sref="app.reports.ordersreports.OrderTotalsBySourceType"
                             ng-if="user.restrictions.OrderTotalsBySourceType=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.ORDERTOTALSBYSOURCETYPE">Sipariþ Kaynaðýna Göre Sipariþ
-                                Toplamlarý</span>
+                                translate="sidebar.nav.reports.ORDERTOTALSBYSOURCETYPE">Sipariþ Kaynaðına Göre Sipariþ
+                                Toplamları</span>
                         </a>
                     </li>
                     <li ui-sref-active="active">
                         <a ui-sref="app.reports.ordersreports.OrderCountsBySourceType"
                             ng-if="user.restrictions.OrderCountsBySourceType=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.ORDERCOUNTSBYSOURCETYPE">Sipariþ Kaynaðýna Göre Sipariþ
+                                translate="sidebar.nav.reports.ORDERCOUNTSBYSOURCETYPE">Sipariþ Kaynaðına Göre Sipariþ
                                 Adetleri</span>
                         </a>
                     </li>
                     <!--<li ui-sref-active="active">
                 <a ui-sref="app.reports.ordersreports.ordertotalsbypaymenttypepivot" ng-if="user.restrictions.ordertotalsbypaymenttypepivot=='Enable'">
-                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.ORDERTOTALSBYPAYMENTTYPEPIVOT">Ödeme Tiplerine Göre Sipariþ Toplamlarý Pivot</span>
+                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.ORDERTOTALSBYPAYMENTTYPEPIVOT">Ödeme Tiplerine Göre Sipariþ Toplamları Pivot</span>
                 </a>
             </li>-->
                     <li ui-sref-active="active">
@@ -1483,14 +1489,14 @@
                         <a ui-sref="app.reports.ordersreports.ordertotals"
                             ng-if="user.restrictions.ordertotals=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.ORDERTOTALS">Sipariþ Toplamlarý</span>
+                                translate="sidebar.nav.reports.ORDERTOTALS">Sipariþ Toplamları</span>
                         </a>
                     </li>
                     <li ui-sref-active="active">
                         <a ui-sref="app.reports.ordersreports.orderlaststates"
                             ng-if="user.restrictions.orderlaststates=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.ORDERLASTATES">Sipariþ Durumlarý Toplamý</span>
+                                translate="sidebar.nav.reports.ORDERLASTATES">Sipariþ Durumları Toplamı</span>
                         </a>
                     </li>
                     <li ui-sref-active="active">
@@ -1603,7 +1609,7 @@
                             <i class="ti-pencil-alt"></i>
                         </div>
                         <div class="item-inner">
-                            <span class="title" translate="sidebar.nav.reports.CALLCENTERREPORTS"> Çaðrý
+                            <span class="title" translate="sidebar.nav.reports.CALLCENTERREPORTS"> Çaðrı
                                 Merkezi</span><i class="icon-arrow"></i>
                         </div>
                     </div>
@@ -1613,12 +1619,12 @@
                         <a ui-sref="app.reports.callcenterreports.agentorders"
                             ng-if="user.restrictions.agentorders=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.AGENTORDERS">Agent Satýþlarý</span>
+                                translate="sidebar.nav.reports.AGENTORDERS">Agent Satışları</span>
                         </a>
                     </li>
                     <!--<li ui-sref-active="active">
         <a ui-sref="app.reports.callcenterreports.ordertotals" ng-if="user.restrictions.ordertotals=='Enable'">
-            <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.ORDERTOTALS">Sipariþ Toplamlarý</span>
+            <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.ORDERTOTALS">Sipariþ Toplamları</span>
         </a>
     </li>-->
                     <li ui-sref-active="active">
@@ -1637,7 +1643,7 @@
                         <a ui-sref="app.reports.callcenterreports.agentsalesstatistics"
                             ng-if="user.restrictions.agentsalesstatistics=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.AGENTSALESSTATISTICS">Agent Satýþ Ýstatistikleri</span>
+                                translate="sidebar.nav.reports.AGENTSALESSTATISTICS">Agent Satış Ýstatistikleri</span>
                         </a>
                     </li>
                     <li ui-sref-active="active">
@@ -1685,24 +1691,24 @@
                     </li>
                     <!--<li ui-sref-active="active">
         <a ui-sref="app.reports.callcenterreports.storepayenttypes" ng-if="user.restrictions.storepayenttypes=='Enable'">
-            <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.STOREPAYMNETTYPES">Restoranlarýn Ödeme Daðýlýmlarý</span>
+            <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.STOREPAYMNETTYPES">Restoranların Ödeme Daðılımları</span>
         </a>
     </li>-->
                     <!--<li ui-sref-active="active">
         <a ui-sref="app.reports.callcenterreports.callreasonreport" ng-if="user.restrictions.callreasonreport=='Enable'">
-            <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.CALLREASONREPORT">Çaðrý Sebepleri Raporu</span>
+            <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.CALLREASONREPORT">Çaðrı Sebepleri Raporu</span>
         </a>
     </li>-->
                     <!--<li ui-sref-active="active">
         <a ui-sref="app.reports.callcenterreports.callreasonreportpivot" ng-if="user.restrictions.callreasonreport=='Enable'">
-            <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.CALLREASONREPORTPIVOT">Çaðrý Sebepleri - Pivot</span>
+            <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.CALLREASONREPORTPIVOT">Çaðrı Sebepleri - Pivot</span>
         </a>
     </li>-->
                     <li ui-sref-active="active">
                         <a ui-sref="app.reports.callcenterreports.personsurvey"
                             ng-if="user.restrictions.personsurvey=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.PERSONSURVEY">Anket Sonuçlarý</span>
+                                translate="sidebar.nav.reports.PERSONSURVEY">Anket Sonuçları</span>
                         </a>
                     </li>
                     <li ui-sref-active="active">
@@ -1847,7 +1853,7 @@
                     </li>
                     <!--<li ui-sref-active="active">
                 <a ui-sref="app.reports.storereports.storeperformances" ng-if="user.restrictions.storeperformance=='Enable'">
-                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.STOREPERFORMANCE">Restoran Performanslarý</span>
+                    <i class="ti-files"></i><span class="title" translate="sidebar.nav.reports.STOREPERFORMANCE">Restoran Performansları</span>
                 </a>
             </li>-->
                     <li ui-sref-active="active">
@@ -2214,7 +2220,7 @@
                     <i class="ti-layout-media-center-alt"></i>
                 </div>
                 <div class="item-inner">
-                    <span class="title" translate="sidebar.nav.kitchendisplay.MAIN">Mutfak Ekraný </span><i
+                    <span class="title" translate="sidebar.nav.kitchendisplay.MAIN">Mutfak Ekranı </span><i
                         class="icon-arrow"></i>
                 </div>
             </div>
@@ -2223,13 +2229,13 @@
             <li ui-sref-active="active" ng-if="user.restrictions.kitchendisplay1=='Enable'">
                 <a ui-sref="app.kitchendisplay.kitchendisplay">
                     <i class="ti-layout-media-center-alt"></i><span class="title"
-                        translate="sidebar.nav.kitchendisplay.KITCHENDISPLAY">Mutfak Ekraný</span>
+                        translate="sidebar.nav.kitchendisplay.KITCHENDISPLAY">Mutfak Ekranı</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.kitchendisplay2=='Enable'">
                 <a ui-sref="app.kitchendisplay.kitchendisplay2">
                     <i class="ti-layout-media-center"></i><span class="title"
-                        translate="sidebar.nav.kitchendisplay.KITCHENDISPLAY2">Mutfak Ekraný</span>
+                        translate="sidebar.nav.kitchendisplay.KITCHENDISPLAY2">Mutfak Ekranı</span>
                 </a>
             </li>
         </ul>
@@ -2354,7 +2360,7 @@
                     <i class="ti-money"></i>
                 </div>
                 <div class="item-inner">
-                    <span class="title" translate="sidebar.nav.staffpayments.MAIN">Personel Hesaplarý</span>
+                    <span class="title" translate="sidebar.nav.staffpayments.MAIN">Personel Hesapları</span>
                 </div>
             </div>
         </a>
@@ -2442,7 +2448,7 @@
             </li>-->
             <!--<li ui-sref-active="active" ng-if="user.restrictions.storestaffshift=='Enable'">
                 <a ui-sref="app.specialoperations.shiftplan">
-                    <i class="ti-back-right"></i> <span class="title" translate="sidebar.nav.specialoperations.SHIFTPLAN">Vardiya Planý</span>
+                    <i class="ti-back-right"></i> <span class="title" translate="sidebar.nav.specialoperations.SHIFTPLAN">Vardiya Planı</span>
                 </a>
             </li>-->
         </ul>
@@ -2464,7 +2470,7 @@
             <li ui-sref-active="active" ng-if="user.restrictions.storestaffshift=='Enable'">
                 <a ui-sref="app.specialoperations.shiftplan">
                     <i class="ti-back-right"></i> <span class="title"
-                        translate="sidebar.nav.staffshiftplan.SHIFTPLAN">Vardiya Planý</span>
+                        translate="sidebar.nav.staffshiftplan.SHIFTPLAN">Vardiya Planı</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.storestaffshifttwo=='Enable'">
@@ -2512,7 +2518,7 @@
             <li ui-sref-active="active" ng-if="user.restrictions.quitreason=='Enable'">
                 <a ui-sref="app.definitions.quitreason">
                     <i class="ti-user"></i> <span class="title"
-                        translate="sidebar.nav.staffshiftplan.QUITREASON">Personel Ayrýlma Sebebi</span>
+                        translate="sidebar.nav.staffshiftplan.QUITREASON">Personel Ayrılma Sebebi</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.positioncapacity=='Enable'">
@@ -2672,59 +2678,28 @@
                     <i class="ti-book"></i> <span class="title" translate="sidebar.nav.help.DOCUMENTS">Documents</span>
                 </a>
             </li>
-            <!--<li ui-sref-active="active">
-                <a ui-sref="app.help.updateLog" ng-if="user.restrictions.updateloglc=='Enable'">
-                    <i class="ti-bell"></i> <span class="title" translate="sidebar.nav.help.UPDATELOG">Update Log-LC</span>
-                </a>
-            </li>
-            <li ui-sref-active="active">
-                <a ui-sref="app.help.updateLogPL" ng-if="user.restrictions.updatelogpl=='Enable'">
-                    <i class="ti-bell"></i> <span class="title" translate="sidebar.nav.help.UPDATELOG">Update Log-PL</span>
-                </a>
-            </li>
-            <li ui-sref-active="active">
-                <a ui-sref="app.help.updateLogJB" ng-if="user.restrictions.updatelogjb=='Enable'">
-                    <i class="ti-bell"></i> <span class="title" translate="sidebar.nav.help.UPDATELOG">Update Log-JB</span>
-                </a>
-            </li>
-            <li ui-sref-active="active">
-                <a ui-sref="app.help.updateLogPS" ng-if="user.restrictions.updatelogps=='Enable'">
-                    <i class="ti-bell"></i> <span class="title" translate="sidebar.nav.help.UPDATELOG">Update Log-PS</span>
-                </a>
-            </li>-->
             <li ui-sref-active="active" ng-if="user.restrictions.endofdaychecklist=='Enable'">
-                <a ui-sref="app.help.GunSonuAlmaAdimlari">
+                <a ui-sref="app.help.document({ id: 'GunSonuAlmaAdimlari' })">
                     <i class="ti-check-box"></i> <span class="title" translate="sidebar.nav.help.ENDOFDAYCHECKLIST">Gün
-                        Sonu Alma Adýmlarý</span>
+                        Sonu Alma Adımları</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.restrictorderchangessystem=='Enable'">
-                <a ui-sref="app.help.Sistemdesiparisdegisikiğikisitlamalri">
+                <a ui-sref="app.help.document({ id: 'SiparisDegisikligiKisitlari' })">
                     <i class="ti-check-box"></i> <span class="title" translate="sidebar.nav.help.RESTRICTORDERCHANGESINTHESYSTEM">Sipariş Değişikliği Kisitlamalari</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.posinstallations=='Enable'">
-                <a ui-sref="app.help.Poskurumlari">
+                <a ui-sref="app.help.document({ id: 'Poskurumlari' })">
                     <i class="ti-check-box"></i> <span class="title" translate="sidebar.nav.help.POSINSTALLATIONS">Pos Kurumlari</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.ysentegrasyon=='Enable'">
-                <a ui-sref="app.help.YSSiparisleri">
+                <a ui-sref="app.help.document({ id: 'YSSiparisleri' })">
                     <i class="ti-layout-list-thumb-alt"></i> <span class="title"
                         translate="sidebar.nav.help.YSENTEGRASYON">Ys Entegrasyon</span>
                 </a>
             </li>
-            <!--<li ui-sref-active="active" ng-if="user.restrictions.helplistlc=='Enable'">
-                <a ui-sref="app.help.Listeler">
-                    <i class="ti-list"></i> <span class="title" translate="sidebar.nav.help.LISTS">LC - Listeler</span>
-                </a>
-            </li>
-            <li ui-sref-active="active" ng-if="user.restrictions.helplistpl=='Enable'">
-                <a ui-sref="app.help.Listeler">
-                    <i class="ti-list"></i> <span class="title" translate="sidebar.nav.help.LISTS">PL - Listeler</span>
-                </a>
-            </li>-->
-
         </ul>
     </li>
     <li ng-class="{'active open':$state.includes('app.billboard')}" ng-if="user.restrictions.billboarditem=='Enable'">
@@ -2747,36 +2722,6 @@
             </li>
         </ul>
     </li>
-    <!--<li ng-class="{'active open':$state.includes('app.help')}" ng-if="user.restrictions.helpPL=='Enable'">
-        <a href="javascript:void(0)">
-            <div class="item-content">
-                <div class="item-media">
-                    <i class="ti-help"></i>
-                </div>
-                <div class="item-inner">
-                    <span class="title" translate="sidebar.nav.help.MAIN">Help </span><i class="icon-arrow"></i>
-                </div>
-            </div>
-        </a>
-        <ul class="sub-menu">
-            <li ui-sref-active="active">
-                <a ui-sref="app.help.updateLogPL">
-                    <i class="ti-bell"></i> <span class="title" translate="sidebar.nav.help.UPDATELOG">Update Log-PL</span>
-                </a>
-            </li>
-            <li ui-sref-active="active">
-                <a ui-sref="app.help.YSSiparisleri">
-                    <i class="ti-layout-list-thumb-alt"></i> <span class="title" translate="sidebar.nav.help.YSENTEGRASYON">Ys Entegrasyon</span>
-                </a>
-            </li>
-            <li ui-sref-active="active" ng-if="user.restrictions.helplist=='Enable'">
-                <a ui-sref="app.help.Listeler">
-                    <i class="ti-list"></i> <span class="title" translate="sidebar.nav.help.LISTS">PL - Listeler</span>
-                </a>
-            </li>
-        </ul>
-    </li>-->
-
 </ul>
 <div print-remove class="navbar-title">
     <span></span>
@@ -3065,7 +3010,7 @@
             </li>
             <!--<li ui-sref-active="active" ng-if="user.restrictions.quitreason=='Enable'">
                 <a ui-sref="app.definitions.quitreason">
-                    <i class="ti-user"></i>  <span class="title" translate="sidebar.nav.definitions.QUITREASON">Personel Ayrýlma Sebebi</span>
+                    <i class="ti-user"></i>  <span class="title" translate="sidebar.nav.definitions.QUITREASON">Personel Ayrılma Sebebi</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.staffposition=='Enable'">

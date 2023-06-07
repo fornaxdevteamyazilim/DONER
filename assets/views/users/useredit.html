@@ -154,13 +154,12 @@
                                 <tr ng-repeat="item in $data"
                                     ng-keyup="FormKeyPress($event,rowform,$data[$index],$index)">
                                     <td data-title="trNumber" data-sortable="'Number'" style="width:80%" ng-click="rowform.$show()" class="ng">
-                                        <span editable-text="item.Number" e-name="Number" e-form="rowform" e-ng-model="item.Number">
-                                            {{ item.Number }}
+                                        <span editable-text="item.PhoneNumber" id="phone" e-type="number" e-name="PhoneNumber" e-maxlength="9" e-form="rowform" e-ng-model="item.PhoneNumber">
+                                            {{ item.PhoneNumber }}
                                         </span>
                                     </td>
                                     <td style="white-space: nowrap;grid-column-sizing:auto;" data-title="trCommands" width="5%">
-                                        <form editable-form name="rowform" onaftersave="saveData(item)" ng-show="rowform.$visible" class="form-buttons form-inline"
-                                              shown="inserted == item|| !item.id">
+                                        <form editable-form name="rowform" onaftersave="saveData(item)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == item|| !item.id">
                                             <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-transparent btn-sm tooltips ti-check"></button>
                                             <button type="button" ng-disabled="rowform.$waiting" ng-click="cancelForm(rowform)" class="btn btn-transparent btn-sm tooltips ti-close"></button>
                                         </form>

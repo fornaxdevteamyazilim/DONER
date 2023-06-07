@@ -24,24 +24,44 @@ body {
     width: 100vw;
     font-family:Verdana;
 }
-.page-idle {
+.page-idle-kfc {
     height: 100vh;
     width: 100vw;
-    background-image: url('../images/cdisplay.jpg');
+    background-image: url('../images/kfc/300000000000.jpg');
     /*background-size: cover;*/
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 }
-.page-active {
-    height: 100%;
-    background-image: url('../images/cdisplay_order.jpg');
+.page-idle-ph {
+    height: 100vh;
+    width: 100vw;
+    background-image: url('../images/ph/cdisplay.jpg');
+    /*background-size: cover;*/
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 }
-.hutla-katla {
+.page-idle-kk {
+    height: 100vh;
+    width: 100vw;
+    background-image: url('../images/kk/300000000000.jpg');
+    /*background-size: cover;*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.page-active-ph {
     height: 100%;
-    background-image: url('../images/cdisplay_PH_Hutlakatla.jpg');
+    background-image: url('../images/ph/cdisplay_order.jpg');
+    background-size: cover;
+    background-position: center center;
+}
+
+.hutla-katla-ph {
+    height: 100%;
+    background-image: url('../images/ph/cdisplay_PH_Hutlakatla.jpg');
     background-size: cover;
     background-position: center center;
 }
@@ -158,4 +178,5 @@ body {
 
 }
 }
+
 

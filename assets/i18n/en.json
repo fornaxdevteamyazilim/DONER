@@ -272,6 +272,7 @@
     "YSENTEGRASYON": "{{appName}} - Yemek Sepeti Integration",
     "ORDERLASTSTATE": "{{appName}} - Order Last States",
     "CUSTOMERCONSUPTIONREPORT": "{{appName}} - Customer Consuption Report",
+    "PRODUCTIMAGES": "{{appName}} - Product Images",
     "INVENTORYDEALS": "{{appName}} - Inventory Deals",
     "INVENTORYSUPPLIYER": "{{appName}} - Inventory Supplier Definitions",
     "INVENTORYDEALITEM": "{{appName}} - Inventory Deal Items",
@@ -2599,7 +2600,8 @@
         "PRODUCTDEFINITOIN": "Product Definitions",
         "PRODUCTRECOMENDEDPROMOTION": "Product Recomended Promotion",
         "PRODUCTPRICELIST": "Product Price List",
-        "PRODUCTDISABLE": "Product Disable"
+        "PRODUCTDISABLE": "Product Disable",
+        "PRODUCTIMAGES": "Product Images"
       },
       "schedule": {
         "MAIN": "Schedules",
