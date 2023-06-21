@@ -1,23 +1,23 @@
-﻿app.directive('orderable', orderable);
-function orderable($compile, $modal,$translate) {
+﻿var changedQuantity = null;
+app.directive('orderable', orderable);
+function orderable($compile, $modal, $translate) {
     var directive = {
         restrict: 'E',
         template:            
-            "<div class='row col-lg-12 col-md-12 col-sm-12 col-xs-12'>" +
-            "<input type='text' placeholder='Promosyon Kodu' class='col-lg-3 col-md-3 col-sm-6 col-xs-6 pull-right' ng-model='item.PromotionCode' ng-if='item.CodeRequired==true'>" +
-            "</div>" +
-            "<div class='row col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-right margin-bottom-5' ng-if='item.isOrderItem'> " +
-            "<button class='col-lg-2 col-md-2 col-sm-4 col-xs-6 btn-red btn-sm tooltips radius-3 pull-right' style='height:33px' ng-hide='!item.canSave' ng-click='SaveToOrder(item)'ng-disabled='ButtonActive == false'><label class='fa fa-spin fa-spinner' ng-if='ButtonActive == false'></label><span> {{:: 'main.SAVE' | translate}} </span></button>" +
-            "<span class='col-lg-2 col-md-2 col-sm-4 col-xs-6 pull-right'><input type='text' ng-model='item.Quantity' touchspin data-min='1' data-max='30' data-step='1'  data-stepinterval='50' data-maxboostedstep='10'/></span>" +
-            "<label class='col-lg-2 col-md-2 col-sm-4 col-xs-6 pull-right margin-top-5 text-bold text-dark' style='color:black;'>{{:: 'main.TOTALAMOUNT' | translate}}: {{itemAmount| number : 2}} {{:: 'main.CURRENCY_SYMBOL' | translate}}</label>" +
-            "<label class='col-lg-5 col-md-5 col-sm-4 col-xs-6 pull-left margin-top-5 text-bold text-dark' style='color:black;'>{{item.name}}</label>" +
-            "</div>" +
-            "<orderableoption class='fade-in' ng-if='option.OptionIndex>-2' bindonce ng-repeat='option in item.Options' option='option' order='OrderID'></orderableoption>" +
-            "<div class='no-margin fade-in' id='details'>" +
-            "<input type='text' placeholder='Ürün notu' class='col-lg-9 col-md-9 col-sm-9 col-xs-9' ng-model='item.Notes' ng-if='item.isOrderItem'>" +
-            "<button ng-if='item.isOrderItem' class='col-lg-3 col-md-3 col-sm-4 col-xs-6 btn-red btn-md tooltips radius-3 pull-right' style='height:33px' ng-hide='!item.canSave' ng-click='SaveToOrder(item)'ng-disabled='ButtonActive == false'><label class='fa fa-spin fa-spinner' ng-if='ButtonActive == false'></label><span> {{:: 'main.SAVE' | translate}} </span></button>",
-
-        controller: function ($scope, $element, $attrs, $transclude, $rootScope, $translate, $modal, Restangular, toaster) {
+        "<div class='row col-lg-12 col-md-12 col-sm-12 col-xs-12'>" +
+        "<input type='text' placeholder='Promosyon Kodu' class='col-lg-3 col-md-3 col-sm-6 col-xs-6 pull-right' ng-model='item.PromotionCode' ng-if='item.CodeRequired==true'>" +
+        "</div>" +
+        "<div class='row col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-right margin-bottom-5' ng-if='item.isOrderItem'> " +
+        "<button class='col-lg-2 col-md-2 col-sm-4 col-xs-6 btn-red btn-sm tooltips radius-3 pull-right' style='height:33px' ng-hide='!item.canSave' ng-click='SaveToOrder(item)'ng-disabled='ButtonActive == false'><label class='fa fa-spin fa-spinner' ng-if='ButtonActive == false'></label><span> {{:: 'main.SAVE' | translate}} </span></button>" +
+        "<span class='col-lg-2 col-md-2 col-sm-4 col-xs-6 pull-right'><input type='text' ng-model='item.Quantity' touchspin data-min='1' data-max='30' data-step='1'  data-stepinterval='50' data-maxboostedstep='10'/></span>" +
+        "<label class='col-lg-2 col-md-2 col-sm-4 col-xs-6 pull-right margin-top-5 text-bold text-dark' style='color:black;'>{{:: 'main.TOTALAMOUNT' | translate}}: {{itemAmount| number : 2}} {{:: 'main.CURRENCY_SYMBOL' | translate}}</label>" +
+        "<label class='col-lg-5 col-md-5 col-sm-4 col-xs-6 pull-left margin-top-5 text-bold text-dark' style='color:black;'>{{item.name}}</label>" +
+        "</div>" +
+        "<orderableoption class='fade-in' ng-if='option.OptionIndex>-2' bindonce ng-repeat='option in item.Options' option='option' order='OrderID'></orderableoption>" +
+        "<div class='no-margin fade-in' id='details'>" +
+        "<input type='text' placeholder='Ürün notu' class='col-lg-9 col-md-9 col-sm-9 col-xs-9' ng-model='item.Notes' ng-if='item.isOrderItem'>" +
+        "<button ng-if='item.isOrderItem' class='col-lg-3 col-md-3 col-sm-4 col-xs-6 btn-red btn-md tooltips radius-3 pull-right' style='height:33px' ng-hide='!item.canSave' ng-click='SaveToOrder(item)'ng-disabled='ButtonActive == false'><label class='fa fa-spin fa-spinner' ng-if='ButtonActive == false'></label><span> {{:: 'main.SAVE' | translate}} </span></button>",
+ controller: function ($q, $scope, $element, $attrs, $transclude, $rootScope, $translate, $modal, Restangular, toaster) {
             $scope.itemPrice = 0;
             $scope.itemAmount = 0;
             $scope.OrderableID = $attrs.item;
@@ -25,7 +25,7 @@ function orderable($compile, $modal,$translate) {
                 $scope.DisableWatch();
                 $element.remove();
             });
-            $scope.LoadItem = function (Order, Item) {
+            $scope.LoadItem = function () {
                 var oi = ($attrs.orderitem != undefined) ? $attrs.orderitem : '';
                 Restangular.all('OrderableItem').getList({
                     pageNo: 1,
@@ -96,7 +96,6 @@ function orderable($compile, $modal,$translate) {
                 if (!option || !option.SelectedItems) return 0;
                 return (option.SelectedItems.Price != null) ? option.SelectedItems.Price.Price : 0;
             }
-
             $scope.PriceModifierExists = function (modifiyer, inModifiyers) {
                 if (inModifiyers && inModifiyers.length)
                     for (var i = 0; i < inModifiyers.length; i++) {
@@ -112,7 +111,7 @@ function orderable($compile, $modal,$translate) {
                     if (item.Options != null)
                         for (var i = 0; i < item.Options.length; i++) {
                             if (!$scope.PriceModifierExists("None", item.Options[i].PriceModifiyers)) {
-                                if (item.Options[i].OptionType == 3) {
+                                if (item.Options[i].OptionType == 3 || item.Options[i].OptionType == 5) {
                                     var GroupData = [];
                                     var foundgroup = false;
                                     for (var a = 0; a < item.Options[i].Items.length; a++) {
@@ -146,8 +145,6 @@ function orderable($compile, $modal,$translate) {
                                                     * (item.Options[i].Items[a].Quantity - item.Options[i].Items[a].DefaultQuantity)) : 0;
                                         }
                                         else {
-
-
                                             if (item.Options[i].Items[a].Quantity > item.Options[i].Items[a].DefaultQuantity) {
                                                 var cgroup = null;
                                                 for (var g = 0; g < GroupData.length; g++) {
@@ -155,7 +152,7 @@ function orderable($compile, $modal,$translate) {
                                                         cgroup = GroupData[g];
                                                 }
                                                 if ((cgroup != null)) {
-                                                    var itemq =(item.Options[i].Items[a].Quantity - item.Options[i].Items[a].DefaultQuantity);
+                                                    var itemq = (item.Options[i].Items[a].Quantity - item.Options[i].Items[a].DefaultQuantity);
                                                     var freeItemsLimit = cgroup.name == "Default" ? (cgroup.freecount < 0 ? 0 : Math.abs(cgroup.freecount)) :
                                                         cgroup.decreased > Math.abs(cgroup.freecount) ?
                                                             Math.abs(cgroup.freecount) : cgroup.decreased;
@@ -185,26 +182,26 @@ function orderable($compile, $modal,$translate) {
                                 else {
                                     for (var a = 0; a < item.Options[i].Items.length; a++) {
                                         //if (item.Options[i].Items[a].Price != null) {
-                                            if (item.Options[i].SelectedItems) {
-                                                if (item.Options[i].Items[a].id == item.Options[i].SelectedItems.id) {
-                                                    var iPrice = (item.Options[i].Items[a].Price) ? item.Options[i].Items[a].Price.Price : 0;
-                                                    if ($scope.PriceModifierExists("MostExpesive", item.Options[i].PriceModifiyers)) {
-                                                        var relPrice = $scope.CalcRelatedOptionPrice($scope.FindRelatedOption(item.Options[i], item.Options));
-                                                        var cPrice = (relPrice >= iPrice) ? relPrice : iPrice;
-                                                        var cPrice = (relPrice = iPrice) ? (($scope.FindRelatedOption(item.Options[i], item.Options).OptionIndex > item.Options[i].OptionIndex) ? 0 : cPrice) : cPrice;
-                                                        price += cPrice;
-                                                        price += ($scope.PriceModifierExists("Changed", item.Options[i].PriceModifiyers) && item.Options[i].Items[a].DefaultQuantity == item.Options[i].Items[a].Quantity) ? 0 : $scope.CalculatePrice(item.Options[i].SelectedItems, false);
-                                                    }
-                                                    else {
-                                                        price += iPrice;
-                                                        price += ($scope.PriceModifierExists("Changed", item.Options[i].PriceModifiyers) && item.Options[i].Items[a].DefaultQuantity == item.Options[i].Items[a].Quantity) ? 0 : $scope.CalculatePrice(item.Options[i].SelectedItems, false);
+                                        if (item.Options[i].SelectedItems) {
+                                            if (item.Options[i].Items[a].id == item.Options[i].SelectedItems.id) {
+                                                var iPrice = (item.Options[i].Items[a].Price) ? item.Options[i].Items[a].Price.Price : 0;
+                                                if ($scope.PriceModifierExists("MostExpesive", item.Options[i].PriceModifiyers)) {
+                                                    var relPrice = $scope.CalcRelatedOptionPrice($scope.FindRelatedOption(item.Options[i], item.Options));
+                                                    var cPrice = (relPrice >= iPrice) ? relPrice : iPrice;
+                                                    var cPrice = (relPrice = iPrice) ? (($scope.FindRelatedOption(item.Options[i], item.Options).OptionIndex > item.Options[i].OptionIndex) ? 0 : cPrice) : cPrice;
+                                                    price += cPrice;
+                                                    price += ($scope.PriceModifierExists("Changed", item.Options[i].PriceModifiyers) && item.Options[i].Items[a].DefaultQuantity == item.Options[i].Items[a].Quantity) ? 0 : $scope.CalculatePrice(item.Options[i].SelectedItems, false);
+                                                }
+                                                else {
+                                                    price += iPrice;
+                                                    price += ($scope.PriceModifierExists("Changed", item.Options[i].PriceModifiyers) && item.Options[i].Items[a].DefaultQuantity == item.Options[i].Items[a].Quantity) ? 0 : $scope.CalculatePrice(item.Options[i].SelectedItems, false);
 
-                                                    }
                                                 }
                                             }
-                                            else {
-                                                price += ($scope.PriceModifierExists("Changed", item.Options[i].PriceModifiyers) && item.Options[i].Items[a].DefaultQuantity == item.Options[i].Items[a].Quantity) ? 0 : (item.Options[i].Items[a].Quantity > 0) ? $scope.CalculatePrice(item.Options[i].Items[a], true) : 0;
-                                            }
+                                        }
+                                        else {
+                                            price += ($scope.PriceModifierExists("Changed", item.Options[i].PriceModifiyers) && item.Options[i].Items[a].DefaultQuantity == item.Options[i].Items[a].Quantity) ? 0 : (item.Options[i].Items[a].Quantity > 0) ? $scope.CalculatePrice(item.Options[i].Items[a], true) : 0;
+                                        }
 
                                         //}
 
@@ -243,9 +240,12 @@ function orderable($compile, $modal,$translate) {
             $scope.LoadItem($scope.OrderID, $attrs.item);
             $scope.UpdateOrderableSelections = function (item) {
                 if (item.Options) {
+                    let groupArray = []; let groupItem = {};
                     for (var i = 0; i < item.Options.length; i++) {
                         for (var a = 0; a < item.Options[i].Items.length; a++) {
-                             //if (item.Options[i].OptionType == 1 || item.Options[i].OptionType == 3 || item.Options[i].OptionType == 4) {
+                            item.Options[i].Items[a].LittleImage = item.Options[i].Items[a].LittleImage == null ? '/assets/images/kk/no_image.png' : item.Options[i].Items[a].LittleImage;
+                            item.Options[i].Items[a].Image = item.Options[i].Items[a].Image == null ? '/assets/images/kk/no_image.png' : item.Options[i].Items[a].Image;
+                            //if (item.Options[i].OptionType == 1 || item.Options[i].OptionType == 3 || item.Options[i].OptionType == 4) {
                             if (item.Options[i].OptionType == 3) {
                                 item.Options[i].Items[a].name = (item.Options[i].Items[a].Price) ? item.Options[i].Items[a].name + ' ' + item.Options[i].Items[a].Price.Price : item.Options[i].Items[a].name;
                             }
@@ -255,10 +255,11 @@ function orderable($compile, $modal,$translate) {
                             if (item.Options[i].OptionType == 4 && item.Options[i].Items[a].Quantity > 0) {
                                 item.Options[i].SelectedItems = item.Options[i].Items[a];
                             }
+                           
                             $scope.UpdateOrderableSelections(item.Options[i].Items[a]);
                         }
                     }
-                }
+         }
                 return item;
             }
             $scope.UpdateSelections = function (item) {
@@ -284,7 +285,7 @@ function orderable($compile, $modal,$translate) {
                 }
                 return item;
             };
-            $scope.ControlOptions = function (item) {
+               $scope.ControlOptions = function (item) {
                 if (item.OptionsCount && item.OptionsCount > 1) {
                     $scope.$emit('EditItem', { ObjectID: item.id, OrderID: item.OrderID });
                 } else {
@@ -339,27 +340,30 @@ function orderable($compile, $modal,$translate) {
                                 toaster.pop("error", );
                         });
                 }
-                else {
-                    data.OrderID = $scope.OrderID;
-                    data.OrderPersonID = $scope.CurrentPersonID;
-                    data.OrderSplitID = $scope.CurrentSplitID;
-                    Restangular.restangularizeElement('', data, 'orderableitem');
-                    data.post().then(
-                        function (res) {
-                            toaster.pop("success",  $translate.instant('yemeksepetifile.OrderItemAdded '));
-                            $scope.$emit('LoadOrderItems', $translate.instant('orderfile.Updated'));
-                            if (res.id) {
-                                $scope.ok();
-                            }
-                        },
-                        function (res) {
-                            $scope.isActiveButton(true);
-                            if (res.data.ExceptionMessage)
-                                toaster.pop("error", res.data.ExceptionMessage);
-                            else
-                                toaster.pop("error",  $translate.instant('yemeksepetifile.UnableToAddOrderItem '));
-                        });
-                }
+                    else {
+                        data.OrderID = $scope.OrderID;
+                        data.OrderPersonID = $scope.CurrentPersonID;
+                        data.OrderSplitID = $scope.CurrentSplitID;
+                        Restangular.restangularizeElement('', data, 'orderableitem');
+                        data.post().then(
+                            function (res) {
+                                toaster.pop("success",  $translate.instant('yemeksepetifile.OrderItemAdded '));
+                                $scope.$emit('LoadOrderItems', $translate.instant('orderfile.Updated'));
+                                if (res.id) {
+                                    $scope.ok();
+                                }
+                            },
+                            function (res) {
+                                $scope.isActiveButton(true);
+                                if (res.data.ExceptionMessage)
+                                    toaster.pop("error", res.data.ExceptionMessage);
+                                else
+                                    toaster.pop("error",  $translate.instant('yemeksepetifile.UnableToAddOrderItem '));
+                            });
+                    }
+
+                
+
             };
             $scope.canSaveItem = function (item) {
                 if (!item) return false;
@@ -390,6 +394,10 @@ function orderable($compile, $modal,$translate) {
                 }
                 option.limit = selecteditems >= option.MaxCount;
             };
+            // $scope.isShownImage = $scope.BRAND === 'KK' ? true : false; // @ToDo: Images Only Shown KK Brand - Should be Generic
+            // $scope.$watch('isShownQuantity', function () {
+            //     $scope.isShownQuantity = changedQuantity;
+            // });
         }
     };
     return directive;
@@ -455,6 +463,47 @@ function ngCheckbox($rootScope) {
         }
     };
 }
+app.directive('ngPlusminus', ngPlusminus);
+function ngPlusminus() {
+    return {
+        restrict: 'E',
+        template: `
+            <div class="row" style="border: 1px solid #C82E29; border-radius: 5px; text-align: center;">
+                <div class="wrapper" style="margin: 8px 0;" ng-if="isShownImage">
+                    <img src="{{editorValue.LittleImage}}" style="width: 70%; height: 100px;" />
+                </div>
+                <div class="wrapper" style="font-size: 13px; letter-spacing: -0.5px; display: block; text-overflow: ellipsis; word-wrap: break-word; overflow: hidden; margin: 4px;">
+                    {{editorValue.name}}
+                </div>
+                <div class="wrapper" style="height: 30px; margin: 5px 0;">
+                    <button class="btn-light-red ti-plus radius-3" style="height: 30px; width: 30px;" ng-click='increase()' />
+                    <span style="height: 30px; width: 45px; text-align: center; margin: 0 4px;">{{editorValue.Quantity}}</span>
+                    <button class="btn-light-red ti-minus radius-3" style="height: 30px; width: 30px;" ng-click='decrease()' />
+                    <span class="btn radius-3" style="color: #000; background-color: floralwhite; height: 30px; border-color: #C82E29; border-left-color: #C82E29 !important; margin-bottom: 6px;">+{{:: editorValue.Price.Price| number:2}} {{:: 'main.CURRENCY_SYMBOL' | translate}}</span>
+                </div>
+            </div>`,
+        replace: true,
+        require: 'ngModel',
+        link: function (scope, element, attrs, model) {
+            model.$formatters.unshift(function (value) {
+                scope.editorValue = value;
+                return value;
+            });
+            scope.decrease = function () {
+                if (scope.editorValue.Quantity > parseInt(attrs['ngMincount'])) {
+                    --scope.editorValue.Quantity;
+                }
+                model.$setViewValue(scope.editorValue);
+            }
+            scope.increase = function () {
+                if (scope.editorValue.Quantity < parseInt(attrs['ngMaxcount'])) {
+                    ++scope.editorValue.Quantity;
+                }
+                model.$setViewValue(scope.editorValue);
+            }
+        }
+    };
+}
 app.directive('ngRadio', ngRadio);
 function ngRadio() {
     return {
@@ -486,6 +535,7 @@ function optionClick($compile, $log, $modal, $timeout) {
         restrict: 'A',
         link: function (scope, element, attr) {
             element.bind("click", function (e) {
+                changedQuantity = true;
                 if (!scope.item.isOrderItem) {
                     var container = $(element).closest("orderableoption").next("#details");
                 }
@@ -493,7 +543,7 @@ function optionClick($compile, $log, $modal, $timeout) {
                     scope.$emit('EditItem', { ObjectID: scope.item.id, OrderID: scope.item.OrderID });
                     return;
                 }
-                var template = '<orderable item="' + scope.item.id + '" order="' + $(element).attr("order") + '" parent="' + scope.Parent + '" style="display: none;"></orderable>'
+                var template = '<orderable item="' + scope.item.id + '" order="' + $(element).attr("order") + '" parent="' + scope.Parent + '" style="width: 100%; display: none;"></orderable>'
                 var childNode = $compile(template)(scope);
                 container.html(childNode);
                 childNode.show('fast');
@@ -541,10 +591,57 @@ function orderableoption() {
                 "<label class='col-lg-6 col-md-6 col-sm-6 col-xs-6 text-dark text-large' style='white-space: nowrap; overflow:hidden; text-overflow:clip;' ng-if='item.DefaultQuantity<1' ng-class=\"{'text-bold':item.DefaultQuantity>0}\" bindonce='item' ng-repeat='item in option.Items |orderBy:\"+name\"'><ng-Checkbox ng-class=\"{'text-bold':item.Quantity>=1}\" ng-change='CheckOptionsLimit(item,option)' ng-disabled='option.limit && item.Quantity<1' class='check-lg ' ng-true-value='1' ng-false-value='0' ng-model='item' ng-maxcount='{{option.MaxItemCount}}' ng-mincount='{{option.MinItemCount}}'>&nbsp;{{:: item.name}}&nbsp;&nbsp;&nbsp;&nbsp;</label>" +
                 "</div>" +
                 "</div>" +
-
-
                 "</div>" +
                 "<div class='col-lg-12 text-bold text-dark' style='color:black;' ng-if='option.OptionType==4'><optionitem-radio order='order'></optionitem-radio></div>" +   //Radio
+
+                //PlusMinusList
+                `<div ng-if='option.OptionType==5'>
+                    <h4 class='hideContentHeader col-xs-12 col-lg-12 col-md-12 col-sm-12 text-capitalize' content-click>
+                        {{::option.name}}
+                    </h4>
+                    <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 hideContentMaterial'>
+                        <div class='col-lg-4 col-md-4 col-sm-12 col-xs-12'>
+                            <label class='col-lg-12 col-md-12 col-sm-6 col-xs-6 text-bold text-dark text-large'
+                                style='white-space:nowrap; overflow:hidden; text-overflow:clip;' ng-if='item.DefaultQuantity>0'
+                                ng-class="{'text-bold':item.DefaultQuantity>0}" bindonce='item' ng-repeat='item in option.Items|orderBy:"-DefaultQuantity"'>
+                                <ng-Plusminus ng-class="{'strike':item.Quantity<=0}" ng-change='CheckOptionsLimit(item,option)'
+                                    ng-disabled='option.limit && item.Quantity<1' class='check-lg' ng-true-value='1' ng-false-value='0'
+                                    ng-model='item' ng-maxcount='{{option.MaxItemCount}}' ng-mincount='{{option.MinItemCount}}'>
+                                    <span>&nbsp;{{::item.name}}&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </label>
+                        </div>
+                        <div class='col-lg-8 col-md-8 col-sm-12 col-xs-12'>
+                            <label class='col-lg-4 col-md-4 col-sm-12 col-xs-12 text-dark text-large'
+                                style='white-space:nowrap; overflow:hidden; text-overflow:clip;' ng-if='item.DefaultQuantity<1'
+                                ng-class="{'text-bold':item.DefaultQuantity>0}" bindonce='item' ng-repeat='item in option.Items|orderBy:"+name"'>
+                                <ng-Plusminus ng-class="{'text-bold':item.Quantity>=1}" ng-change='CheckOptionsLimit(item,option)'
+                                    ng-disabled='option.limit && item.Quantity<1' class='check-lg' ng-true-value='1' ng-false-value='0'
+                                    ng-model='item' ng-maxcount='{{option.MaxItemCount}}' ng-mincount='{{option.MinItemCount}}'>
+                                    &nbsp;{{::item.name}}&nbsp;&nbsp;&nbsp;&nbsp;
+                            </label>
+                        </div>
+                    </div>
+                </div>` +
+
+                //GroupedList
+                `<div ng-if="option.OptionType==6">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 6px;">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="border: 1px solid #C82E29; border-radius: 5px;">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="isShownImage">
+                                <img src="{{groupedItem[0].LittleImage}}" style="padding: 3% 15%;">
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center; margin-top: 5px; font-weight: bold;">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    {{groupedItem[0].name}}
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-maxcount="{{option.MaxItemCount}}" ng-mincount="{{option.MinItemCount}}">
+                                    <span style="font-weight: normal;">{{'main.TOTALCOUNT' | translate}}: </span> {{groupedItem[0].Quantity}}
+                                </div>                    
+                            </div>
+                        </div>
+                    </div>
+                </div>` +
+
                 "</div>" +
                 "</div>";
             return result;
@@ -575,6 +672,7 @@ function optionitemCombo($compile) {
             "<div id='optdetail'></div>" +
             "</div>",
         link: function (scope, element, attr) {
+           // scope.isShownImage = scope.BRAND === 'KK' ? true : false;
             var container = $(element).children("#contentdetail").children("#optdetail");
             var newElement = angular.element("<orderableoption class='col-lg-12 col-md-12 col-sm-12 col-xs-12' bindonce='option'  ng-repeat='option in option.SelectedItems.Options' option='option' order='OrderID'></orderableoptiondetail>");
             container.html(newElement);
@@ -620,26 +718,34 @@ function optionitemImage() {
     var directive = {
         restrict: 'EA',
         require: '^orderableoption',
-        template:
-            "<div class='btn btn-wide btn-o  btn-warning col-lg-2 col-md-3 col-sm-8 col-xs-12 margin-top-5 margin-right-5' style='width:150px; height:90px;' ng-if='user.UserRole.MemberID == 106851154380'>" +
-            "<div class='col-lg-12 col-md-12 col-sm-12' style='max-height:90px; min-height:90px;'>" +
-            "<label id='txshdw' class='col-lg-12 col-md-12 col-sm-12 col-xs-12 text-capitalize text-bold' style='overflow:hidden; text-overflow:clip; color:black; min-height:50px; max-height:50px;' >{{:: item.name}} / {{item.Price.Price| number : 2}} {{:: 'main.CURRENCY_SYMBOL' | translate}}</label>" +
-            "<button class='col-lg-6 col-md-6 col-sm-6 col-xs-6 btn-red ti-zoom-in radius-3' style='height:25px;' option-click ></button>" +
-            "<button class='col-lg-6 col-md-6 col-sm-6 col-xs-6 btn-dark-yellow ti-plus radius-3' style='height:25px;' ng-click='ControlOptions(item)'></button>" +
-            "</div>" +
-            "</div>" +
-
-
-
-            "<div class='btn btn-wide btn-o  btn-red col-lg-2 col-md-3 col-sm-8 col-xs-12 margin-top-5 margin-right-5' style='width:150px; height:120px;' ng-if='user.UserRole.MemberID != 106851154380'>" +
-            "<div class='col-lg-12 col-md-12 col-sm-12' style='max-height:120px; min-height:120px;'>" +
-            "<label id='txshdw' class='col-lg-12 col-md-12 col-sm-12 col-xs-12 text-capitalize text-bold' style='overflow:hidden; text-overflow:clip; color:black; min-height:70px; max-height:70px;' >{{:: item.name}} / {{item.Price.Price| number : 2}} {{:: 'main.CURRENCY_SYMBOL' | translate}}</label>" +
-            "<button class='col-lg-6 col-md-6 col-sm-6 col-xs-6 btn-dark-red ti-zoom-in radius-3' style='height:25px;' option-click ></button>" +
-            "<button class='col-lg-6 col-md-6 col-sm-6 col-xs-6 btn-light-red ti-plus radius-3' style='height:25px;' ng-click='ControlOptions(item)'></button>" +
-            "</div>" +
-            "</div>"
-
-       
+        template: `
+            <div class="btn btn-wide btn-o btn-warning col-lg-2 col-md-3 col-sm-8 col-xs-12 margin-top-5 margin-right-5" style="width:150px; height:90px;" ng-if="user.UserRole.MemberID == 106851154380">
+                <div class="container" style='max-height:90px; min-height:90px;">
+                    <div class="wrapper" style="font-size: 13px; letter-spacing: -0.5px; display: block; text-overflow: ellipsis; word-wrap: break-word; overflow: hidden; margin: 0 4px;">
+                        {{:: item.name}} / {{item.Price.Price| number : 2}} {{:: 'main.CURRENCY_SYMBOL' | translate}}
+                    </div>
+                    <button class="btn-light-red ti-zoom-in radius-3" style="height: 30px; width: 30px;" option-click></button>
+                    <button class="btn-light-red ti-plus radius-3" style="height: 30px; width: 30px;" ng-click="ControlOptions(item)"></button>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-8 col-xs-12 margin-top-5" ng-if="user.UserRole.MemberID != 106851154380">
+                <div class="row" style="text-align: center; border: 1px solid #C82E29; border-radius: 5px; white-space: nowrap; overflow: hidden; text-overflow: clip; padding: 3px;">
+                    <div class="wrapper" style="margin: 8px 0;" ng-if="isShownImage">
+                        <img src="{{item.LittleImage}}" style="width: 130px; height: 95px;" />
+                    </div>
+                    <div class="wrapper" style="color: #000; font-size: 14px; font-weight: bold; letter-spacing: -0.75px; display: block; text-overflow: ellipsis; word-wrap: break-word; overflow: hidden; white-space: normal; margin: 5px 0; height: 35px;">
+                        {{:: item.name}}
+                    </div>
+                    <div class="row">
+                        <div class="wrapper">
+                            <button class="btn btn-dark-red ti-zoom-in radius-3 col-lg-3 col-md-6 col-sm-3 col-xs-3" style="height: 30px;" option-click></button>
+                            <button class="btn btn-warning ti-plus radius-3 col-lg-3 col-md-6 col-sm-3 col-xs-3" style="height: 30px;" ng-click="ControlOptions(item)"></button>
+                            <button class="btn radius-3 col-lg-6 col-md-12 col-sm-6 col-xs-6" style="color: #000; background-color: floralwhite; height: 30px; border-color: #C82E29; border-left-color: #C82E29 !important;">{{item.Price.Price| number : 2}} {{:: 'main.CURRENCY_SYMBOL' | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `
     };
     return directive;
 }
@@ -648,44 +754,46 @@ function optionitemSmallbutton() {
     var directive = {
         restrict: 'EA',
         require: '^orderableoption',
-        template:
-            //visible-lg visible-md
-            "<button type='button' class=' btn btn-wide btn-o btn-dark-red col-lg-2 col-md-6 col-sm-8 col-xs-8 margin-top-5 margin-right-5 visible-lg visible-md' ng-if='user.UserRole.MemberID != 106851154380 && item.ItemType==\"ProductPrototype\"'  style='width:150px; height:60px;' item='item' order='OrderID' option-click>" + //btn-squared
-            "<div class='col-lg-12'>" +
-            "<label class='col-lg-1 col-md-1 col-sm-1 col-xs-1 text-bold' ng-if='user.UserRole.MemberID != 106851154380 && item.ItemType==\"ProductPrototype\"' style='color:black;'>*</label>" +
-            "<label id='txshdw' class='col-lg-11 col-md-11 col-sm-11 col-xs-11 text-capitalize text-bold' style='overflow:hidden; color:black;'>{{:: item.name}}</label>" +
-            "</div>" +
-            "</button>" +
-
-            "<button type='text' class='col-lg-2 col-md-6 col-sm-8 col-xs-8 btn btn-wide btn-default margin-top-5 margin-right-5 visible-lg visible-md' ng-if='user.UserRole.MemberID != 106851154380 && item.ItemType==\"Product\"'  style='width:150px; height:80px;' item='item' order='OrderID' option-click>" +  //border:inset;
-            "<div class='row center'>" +
-            "<div class='view view-second center '>" +
-            "</div>" +
-            "</div>" +
-            "<div class='col-lg-12'>" +
-            "<label id='txshdw' class='col-lg-11 col-md-11 col-sm-11 col-xs-11 text-capitalize text-bold' style=' overflow:hidden; text-overflow:clip;  color:black;'>{{:: item.name}}</label>" +
-            "</div>" +
-            "</button>" +
-
-            //visible-sm visible-xs
-            "<button type='button' class='btn btn-wide btn-o btn-dark-red col-sm-4 col-xs-4 margin-top-5 margin-right-5 visible-sm visible-xs' ng-if='user.UserRole.MemberID != 106851154380 && item.ItemType==\"ProductPrototype\"'  style='width:150px; height:60px;' item='item' order='OrderID' option-click>" + //btn-squared
-            "<div class='col-lg-12'>" +
-            "<label class='col-lg-1 col-md-1 col-sm-1 col-xs-1 text-bold' ng-if='user.UserRole.MemberID != 106851154380 && item.ItemType==\"ProductPrototype\"' style='color:black;'>*</label>" +
-            "<label id='txshdw' class='col-lg-11 col-md-11 col-sm-11 col-xs-11 text-capitalize text-bold' style='white-space: nowrap; overflow:hidden; text-overflow:clip;  color:black;'>{{:: item.name}}</label>" +
-            "</div>" +
-            "</button>" +
-
-            "<button type='text' class='col-sm-4 col-xs-4 btn btn-wide btn-o btn-default margin-top-5 margin-right-5 visible-sm visible-xs' ng-if='user.UserRole.MemberID != 106851154380 && item.ItemType==\"Product\"' style='width:150px; height:80px;' item='item' order='OrderID' option-click>" +
-            "<div class='col-lg-12'>" +
-            "<label id='txshdw' class='col-lg-11 col-md-11 col-sm-11 col-xs-11 text-capitalize text-bold' style='white-space: nowrap; overflow:hidden; text-overflow:clip;  color:black;'>{{:: item.name}}</label>" +
-            "</div>" +
-            "</button>"
-
+        template: `
+            <!-- @Tag: ProductPrototype ise Button yerleşimi (> SM Ekran için) -->
+            <!-- visible-lg visible-md -->
+            <button type="button" class="btn btn-wide btn-o btn-dark-red col-lg-2 col-md-6 col-sm-8 col-xs-8 margin-top-5 margin-right-5 visible-lg visible-md" ng-if="user.UserRole.MemberID != 106851154380 && item.ItemType==\'ProductPrototype\'" style="width:150px; height:60px;" item="item" order="OrderID" option-click>
+                <div class="col-lg-12">
+                    <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-bold" ng-if="user.UserRole.MemberID != 106851154380 && item.ItemType==\'ProductPrototype\'" style="color:black;">*</label>
+                    <label id="txshdw" class="col-lg-11 col-md-11 col-sm-11 col-xs-11 text-capitalize text-bold" style="overflow: hidden; color: black;">{{:: item.name}}</label>
+                </div>
+            </button>
+            <!-- @Tag: Product ise Button yerleşimi (> SM Ekran için) -->
+            <button type="text" class="col-lg-2 col-md-6 col-sm-8 col-xs-8 btn btn-wide btn-default margin-top-5 margin-right-5 visible-lg visible-md" ng-if="user.UserRole.MemberID != 106851154380 && item.ItemType==\'Product\'" style="width: 150px; {{isShownImage ? 'height: 170px;' : 'height: 75px;'}}" item="item" order="OrderID" option-click>
+                <div class="row center">
+                    <div class="view view-second center"></div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="wrapper" style="margin-bottom: 8px;" ng-if="isShownImage">
+                        <img src="{{:: item.LittleImage}}" style="height: 95px;">
+                    </div>
+                    <label id="txshdw" class="col-lg-11 col-md-11 col-sm-11 col-xs-11 text-capitalize text-bold" style="overflow: hidden; text-overflow: clip; color: black;">{{:: item.name}}</label>
+                </div>
+            </button>
+            <!-- @Tag: ProductPrototype ise Button yerleşimi (=< SM Ekran için) -->
+            <!-- visible-sm visible-xs -->
+            <button type="button" class="btn btn-wide btn-o btn-dark-red col-sm-4 col-xs-4 margin-top-5 margin-right-5 visible-sm visible-xs" ng-if="user.UserRole.MemberID != 106851154380 && item.ItemType==\'ProductPrototype\'" style="width: 150px; height: 60px;" item="item" order="OrderID" option-click>
+                <div class="col-lg-12">
+                    <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-bold" ng-if="user.UserRole.MemberID != 106851154380 && item.ItemType==\'ProductPrototype\'" style="color: black;">*</label>
+                    <label id="txshdw" class="col-lg-11 col-md-11 col-sm-11 col-xs-11 text-capitalize text-bold" style="white-space: nowrap; overflow: hidden; text-overflow: clip; color:black;">{{:: item.name}}</label>
+                </div>
+            </button>
+            <!-- @Tag: Product ise Button yerleşimi (=< SM Ekran için) -->
+            <button type="text" class="col-sm-4 col-xs-4 btn btn-wide btn-o btn-default margin-top-5 margin-right-5 visible-sm visible-xs" ng-if="user.UserRole.MemberID != 106851154380 && item.ItemType==\'Product\'" style="width: 150px; height: 80px;" item="item" order="OrderID" option-click>
+                <div class="col-lg-12">
+                    <label id="txshdw" class="col-lg-11 col-md-11 col-sm-11 col-xs-11 text-capitalize text-bold" style="white-space: nowrap; overflow: hidden; text-overflow: clip; color:black;">{{:: item.name}}</label>
+                </div>
+            </button>
+        `
     };
+
     return directive;
-
 }
-
 app.directive('orderitemClick', orderitemClick);
 function orderitemClick() {
     return {
@@ -693,6 +801,7 @@ function orderitemClick() {
         link: function (scope, element, attr) {
             element.bind("click", function (e) {
                 scope.$emit('EditItem', { ObjectID: scope.member.ProductID, OrderID: scope.member.OrderID, OrderItemID: scope.member.id });
+                changedQuantity = false;
             });
         }
     };
@@ -716,18 +825,17 @@ function orderItem($compile) {
             "<label class='text-bold pull-right text-large text-red'>{{member.TotalAmount| number : 2}} {{:: 'main.CURRENCY_SYMBOL' | translate}}</label>" +
             "</div>" +
             "<div class='col-lg-1 col-md-1 col-sm-1 col-xs-1 margin-top-5 pull-right'>" +
-            "<span class='text-extra-large text-dark ng ti-close' ng-click='DeleteAndEdit()'><span class='text-large text-bold'></span>" + "</button>" +
+            "<span class='text-extra-large text-dark ng ti-close test123' ng-click='DeleteAndEdit()'><span class='text-large text-bold'></span>" + "</button>" +
             "</div>" +
             "</div>",
 
 
-        controller: function ($scope, $element, $attrs, $modal, $rootScope) {
+        controller: function ($scope, $element, $translate, $attrs, $modal, $rootScope, userService, toaster) {
+          
             $scope.DeleteAndEdit = function () {
                 $scope.Remove();
             };
-            $scope.$on('$destroy', function () {
-                $element.remove();
-            });
+
             $scope.orderItemDiscount = function (item) {
                 var modalInstance = $modal.open({
                     templateUrl: 'assets/views/order/orderItemDiscount.html',
@@ -755,9 +863,57 @@ function orderItem($compile) {
             $scope.$on('ChangePerson', function (event, data) {
                 $scope.CurrentPerson = data;
             });
+            $scope.CheckCodeOnDeleteAndEdit = function () {
+                //if ($rootScope.BRAND == 'PH') {
+                $scope.DeleteAndEdit();
+                //    }
+                //    else {
+                //        if ($rootScope.user.restrictions.authorized == "Enable") {
+                //            $scope.DeleteAndEdit()
+                //        } else {
+                //            var modalInstance = $modal.open({
+                //                templateUrl: 'assets/views/mainscreen/managerloginpassword.html',
+                //                controller: 'managerloginpasswordCtrl',
+                //                size: '',
+                //                backdrop: '',
+                //                resolve: {
+                //                    ctrlFrom: function () {
+                //                        return 'directive';
+                //                    }
+                //                }
+                //            });
+                //            modalInstance.result.then(function (password) {
+                //                if (password != "cancel") {
+                //                    userService.checkIsManager(password, true).then(function (response) {
+                //                        if (response) {
+                //                            $scope.DeleteAndEdit()
+                //                        }
+                //                        else {
+                //                            toaster.pop('warrning', $translate.instant('orderfile.PasswordIncorrect'), $translate.instant('orderfile.PasswordIncorrect'));
+                //                        }
+
+                //                    }, function (err) {
+                //                        if (err) {
+                //                            toaster.pop('warrning', $translate.instant('orderfile.PasswordIncorrect'), err.error_description);
+                //                        }
+                //                        else {
+                //                            $scope.message = "Unknown error";
+                //                        }
+                //                    });
+
+                //                }
+                //            })
+                //            //toaster.pop("warning", $translate.instant('orderfile.YOURENOTAUTHORIZEDTODOTHAT'));
+                //            return 'Yes';
+                //        }
+                //    }
+            };
+            $scope.$on('$destroy', function () {
+                $element.remove();
+            });
         },
         link: function (scope, element, attrs) {
-            if (scope.member.Notes){
+            if (scope.member.Notes) {
                 var newElement2 = angular.element("<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 text-extra-small' ng-if='member.Notes'><span bindonce='mmber'>Not:{{member.Notes}}</span></div>");
                 element.append(newElement2);
                 $compile(newElement2)(scope);
@@ -767,7 +923,81 @@ function orderItem($compile) {
                 element.append(newElement);
                 $compile(newElement)(scope);
             }
-            
+
+        }
+    };
+}
+app.directive('managerOrderItem', managerOrderItem);
+function managerOrderItem($compile) {
+    return {
+        restrict: "E",
+        replace: true,
+        scope: {
+            member: '=',
+            persons: '=',
+            splits: '=',
+        },
+        template:
+            "<div class='col-lg-12 col-sm-12 col-md-12 col-xs-12'>" +
+            "<div class='col-lg-7 col-md-7 col-sm-7 col-xs-7 margin-top-5'>" +
+            "<label class='text-bold text-large' ng-model='member.Quantity' orderitem-click  style='white-space:nowrap; overflow:hidden; text-overflow:clip;'><strong>{{member.Quantity}}</strong> X {{member.Product || member.ProductPrototype}} </label></br>" +
+            "</div>" +
+            "<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 margin-top-5'>" +
+            "<label class='text-bold pull-right text-large text-red'>{{member.TotalAmount| number : 2}} {{:: 'main.CURRENCY_SYMBOL' | translate}}</label>" +
+            "</div>" +
+            "<div class='col-lg-1 col-md-1 col-sm-1 col-xs-1 margin-top-5 pull-right'>" +
+            "<span class='text-extra-large text-dark ng ti-close test123' ng-click='DeleteAndEdit()'><span class='text-large text-bold'></span>" + "</button>" +
+            "</div>" +
+            "</div>",
+
+
+        controller: function orderItemCtrl($scope, $element, $translate, $attrs, $modal, $rootScope, userService, toaster) {
+            $rootScope.uService.EnterController("orderItemCtrl");
+            $scope.DeleteAndEdit = function () {
+                $scope.Remove();
+            };
+
+            $scope.orderItemDiscount = function (item) {
+                var modalInstance = $modal.open({
+                    templateUrl: 'assets/views/order/orderItemDiscount.html',
+                    controller: 'orderItemDiscountCtrl',
+                    size: '',
+                    backdrop: '',
+                    resolve: {
+                        Order: function () {
+                            return item;
+                        },
+                    }
+                });
+                modalInstance.result.then(function (item) {
+                    if (item == 'remove') {
+                        $scope.$emit('RemoveItem', { id: $scope.member.id });
+                    }
+                    if (item == 'Treat') {
+                        $scope.$emit('Treat', { id: $scope.member.id });
+                    }
+                })
+            };
+            $scope.Remove = function () {
+                $scope.$emit('RemoveItem', { id: $scope.member.id });
+            }
+            $scope.$on('ChangePerson', function (event, data) {
+                $scope.CurrentPerson = data;
+            });
+           
+        },
+        link: function (scope, element, attrs) {
+            if (scope.member.Notes) {
+                var newElement2 = angular.element("<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 text-extra-small' ng-if='member.Notes'><span bindonce='mmber'>Not:{{member.Notes}}</span></div>");
+                element.append(newElement2);
+                $compile(newElement2)(scope);
+            }
+            if (angular.isArray(scope.member.items)) {
+                var newElement = angular.element("<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'><span bindonce='mmber'  ng-repeat='mmber in member.items'><detailorder-item  member='mmber'></detailorder-item></span></div>");
+                element.append(newElement);
+                $compile(newElement)(scope);
+            }
+
         }
     };
 }
@@ -782,7 +1012,7 @@ function detailorderItem($compile) {
         template:
             //large & medium & small
             "<div class='row col-lg-12 col-md-12 col-sm-12 col-xs-12'>" +
-            "<label class='col-lg-9 col-md-9 col-sm-9 col-xs-9 text-capitalize' style='font-size:medium;'><span>{{member.Quantity}} X {{:: member.Product}} </span></label>" +
+            "<label class='col-lg-9 col-md-9 col-sm-9 col-xs-9 text-capitalize' style='font-size:medium;'><span style='color: #bdbdbd;font-size: 14px;'>{{member.Quantity}} X {{:: member.Product}} </span></label>" +
             "<label class='col-lg-3 col-md-3 col-sm-3 col-xs-3 text-large pull-right'><span class='pull-right'> {{member.Amount| number : 2}} <span ng-if='member.Amount >= 0'>{{:: 'main.CURRENCY_SYMBOL' | translate}}</span></span></label>" +
             "</div>",
         controller: function ($scope, $element, $attrs) {
@@ -804,7 +1034,7 @@ function detailorderItem($compile) {
     };
 }
 app.directive("addsplitbutton", addsplitbutton);
-function addsplitbutton(Restangular,$translate, toaster) {
+function addsplitbutton(Restangular, $translate, toaster) {
     return {
         restrict: 'A',
         link: function (scope, element, attr) {
@@ -823,7 +1053,7 @@ function addsplitbutton(Restangular,$translate, toaster) {
     }
 }
 app.directive("addpersonbutton", addpersonbutton);
-function addpersonbutton(Restangular,$translate, toaster) {
+function addpersonbutton(Restangular, $translate, toaster) {
     return {
         restrict: 'A',
         link: function (scope, element, attr) {

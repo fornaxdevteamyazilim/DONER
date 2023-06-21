@@ -1,5 +1,5 @@
 ﻿app.controller('ingredientsCtrl', ingredientsCtrl);
-function ingredientsCtrl($scope, $log, $modal, Restangular, ngTableParams, SweetAlert, toaster, $window, $location, $translate, $element) {
+function ingredientsCtrl($scope, $log, $modal, $rootScope, Restangular, ngTableParams, SweetAlert, toaster, $window, $location, $translate, $element) {
     $rootScope.uService.EnterController("ingredientsCtrl");
     var ing = this;
     $scope.objectType = 'ingredient';

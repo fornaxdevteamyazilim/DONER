@@ -45,17 +45,17 @@
                         <th style="background-color: #f86e0c;"> {{::'main.TRENDYOLSTATUS' | translate}}</th>
                         <th style="background-color: #ffd300;"> {{::'main.GETIRSTATUS' | translate}}</th>
                          <th style="background-color: #f76905;"> {{::'main.MIGROSSTATUS' | translate}}</th>
-                        <th> {{::'main.ROPNGTIME' | translate}}</th>
-                        <th> {{::'main.OPERATIONDATE' | translate}}</th>
-                        <th> {{::'main.AVRPREPARING' | translate}}</th>
-                        <th> {{::'main.AVROUT' | translate}}</th>
-                        <th> {{::'main.AVRDELIVERYY' | translate}}</th>
-                        <th> {{::'main.AVRBELOW30' | translate}}</th>                  
-                        <th> {{::sales}}</th>
-                        <th> {{::totalamount}}</th>
-                        <th> {{::average}}</th>
-                        <th> {{::activecomplaints}}</th>
-                        <th> {{::latecomplaints}}</th>
+                        <th  ng-if="user.restrictions.ROPNGTIME=='Enable'"> {{::'main.ROPNGTIME' | translate}}</th>
+                        <th  ng-if="user.restrictions.OPERATIONDATE=='Enable'"> {{::'main.OPERATIONDATE' | translate}}</th>
+                        <th  ng-if="user.restrictions.AVRPREPARING=='Enable'"> {{::'main.AVRPREPARING' | translate}}</th>
+                        <th  ng-if="user.restrictions.AVROUT=='Enable'"> {{::'main.AVROUT' | translate}}</th>
+                        <th  ng-if="user.restrictions.AVRDELIVERYY=='Enable'"> {{::'main.AVRDELIVERYY' | translate}}</th>
+                        <th  ng-if="user.restrictions.AVRBELOW30=='Enable'"> {{::'main.AVRBELOW30' | translate}}</th>                  
+                        <th ng-if="user.restrictions.OrderTotalCount=='Enable'"> {{::sales}}</th>
+                        <th ng-if="user.restrictions.OrderTotalAmountTXT=='Enable'"> {{::totalamount}}</th>
+                        <th ng-if="user.restrictions.OrderACTXT=='Enable'"> {{::average}}</th>
+                        <th ng-if="user.restrictions.activecomplaints=='Enable'"> {{::activecomplaints}}</th>
+                        <th ng-if="user.restrictions.latecomplaints=='Enable'"> {{::latecomplaints}}</th>
                     </tr>
                     <tr>
                         <td> <strong class="text-green text-large text-uppercase"
@@ -86,27 +86,27 @@
                             ng-if="AggregatorStoreStats[3].isActive ==  false">
                             {{::close}} <i class="fa fa-exclamation"></i></strong>
                     </td>
-                        <td><strong class="text-bricky">{{:: theClock}}</strong></td>
-                        <td>{{::opdate|| txtENDOFDAY}}</td>
-                        <td>{{:: storePerformanceData.PeparingDuration || '00:00:00'}}</td>
-                        <td>{{:: storePerformanceData.OutDuration || '00:00:00'}}</td>
-                        <td>{{:: storePerformanceData.DeliveryPeriod || '00:00:00'}}</td>
-                        <td>{{::storePerformanceData.Below30Percent|| 0 |number :2}}%</td>
+                        <td ng-if="user.restrictions.ROPNGTIME=='Enable'"><strong class="text-bricky">{{:: theClock}}</strong></td>
+                        <td ng-if="user.restrictions.OPERATIONDATE=='Enable'">{{::opdate|| txtENDOFDAY}}</td>
+                        <td ng-if="user.restrictions.AVRPREPARING=='Enable'">{{:: storePerformanceData.PeparingDuration || '00:00:00'}}</td>
+                        <td ng-if="user.restrictions.AVROUT=='Enable'">{{:: storePerformanceData.OutDuration || '00:00:00'}}</td>
+                        <td ng-if="user.restrictions.AVRDELIVERYY=='Enable'">{{:: storePerformanceData.DeliveryPeriod || '00:00:00'}}</td>
+                        <td ng-if="user.restrictions.AVRBELOW30=='Enable'">{{::storePerformanceData.Below30Percent|| 0 |number :2}}%</td>
                       
-                        <td>
+                        <td ng-if="user.restrictions.OrderTotalCount=='Enable'">
                             <div class="sparkline">
                                 <span jq-sparkline ng-model="saless" type="bar" height="20px"
                                     bar-color="#D43F3A"></span>
                             </div>{{:: OrderTotalCount}} {{:: 'main.ORDERS' | translate}}
                         </td>
-                        <td>
+                        <td ng-if="user.restrictions.OrderTotalAmountTXT=='Enable'">
                             <div class="sparkline">
                                 <span jq-sparkline ng-model="earnings" type="bar" height="20px"
                                     bar-color="#5CB85C"></span>
                             </div>{{::OrderTotalAmountTXT}} {{:: 'main.CURRENCY_SYMBOL' |
                             translate}}
                         </td>
-                        <td>
+                        <td ng-if="user.restrictions.OrderACTXT=='Enable'">
                             <div class="sparkline">
                                 <span jq-sparkline ng-model="referrals" type="bar" height="20px"
                                     bar-color="#46B8DA"></span>
@@ -443,7 +443,7 @@
                             <td>{{:: storePerformanceData.PeparingDuration || '00:00:00'}}</td>
                             <td>{{:: storePerformanceData.OutDuration || '00:00:00'}}</td>
                             <td>{{:: storePerformanceData.DeliveryPeriod || '00:00:00'}}</td>
-                            <td>{{::storePerformanceData.Below30Percent|| 0 |number :2}}%</td>
+                            <td>{{::storePerformanceData.Below45Percent|| 0 |number :2}}%</td>
                         </tr>
                     </table>
                 </div>

@@ -291,15 +291,15 @@
         </a>
         <ul class="sub-menu">
             <li ui-sref-active="active" ng-if="user.restrictions.productlist=='Enable'">
-                <a ui-sref="app.product.product.images">
-                    <i class="ti-view-list"></i> 
-                    <span class="title" translate="sidebar.nav.product.PRODUCTIMAGES"></span>
-                </a>
-            </li>
-            <li ui-sref-active="active" ng-if="user.restrictions.productlist=='Enable'">
                 <a ui-sref="app.product.product.list">
                     <i class="ti-view-list"></i> <span class="title"
                                                        translate="sidebar.nav.product.PRODUCTDEFINITOIN"></span>
+                </a>
+            </li>
+            <li ui-sref-active="active" ng-if="user.restrictions.productlist=='Enable'">
+                <a ui-sref="app.product.product.images">
+                    <i class="ti-view-list"></i> 
+                    <span class="title" translate="sidebar.nav.product.PRODUCTIMAGES"></span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.productlist=='Enable'">
