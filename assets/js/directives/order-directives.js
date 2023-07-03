@@ -719,15 +719,7 @@ function optionitemImage() {
         restrict: 'EA',
         require: '^orderableoption',
         template: `
-            <div class="btn btn-wide btn-o btn-warning col-lg-2 col-md-3 col-sm-8 col-xs-12 margin-top-5 margin-right-5" style="width:150px; height:90px;" ng-if="user.UserRole.MemberID == 106851154380">
-                <div class="container" style='max-height:90px; min-height:90px;">
-                    <div class="wrapper" style="font-size: 13px; letter-spacing: -0.5px; display: block; text-overflow: ellipsis; word-wrap: break-word; overflow: hidden; margin: 0 4px;">
-                        {{:: item.name}} / {{item.Price.Price| number : 2}} {{:: 'main.CURRENCY_SYMBOL' | translate}}
-                    </div>
-                    <button class="btn-light-red ti-zoom-in radius-3" style="height: 30px; width: 30px;" option-click></button>
-                    <button class="btn-light-red ti-plus radius-3" style="height: 30px; width: 30px;" ng-click="ControlOptions(item)"></button>
-                </div>
-            </div>
+          
             <div class="col-lg-2 col-md-3 col-sm-8 col-xs-12 margin-top-5" ng-if="user.UserRole.MemberID != 106851154380">
                 <div class="row" style="text-align: center; border: 1px solid #C82E29; border-radius: 5px; white-space: nowrap; overflow: hidden; text-overflow: clip; padding: 3px;">
                     <div class="wrapper" style="margin: 8px 0;" ng-if="isShownImage">

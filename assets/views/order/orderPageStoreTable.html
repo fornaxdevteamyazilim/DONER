@@ -705,7 +705,7 @@ hr.new5 {
             tooltip="Ödeme" tooltip-placement="left" style="width: 73px;height: 40px; border-radius: 14px;"></button>
     </span> -->
 
-        <div>
+        <div ng-if="user.UserRole.MemberID == 111679600561 || _order.OrderTypeID == 10 || _order.OrderTypeID == 1">
           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right margin-top-5">
             <button ng-click="SelectPromotions(_order)"
               class="col-lg-8 col-md-8 col-sm-8 col-xs-8 btn btn-o btn-primary btn-lg fa fa-minus-square pull-right tooltips"
@@ -740,7 +740,7 @@ hr.new5 {
             </button>
           </div>
         </div>
-        <div ng-if="BRAND === 'PH'">
+        <div ng-if="user.UserRole.MemberID == 111679600561 || _order.OrderTypeID == 4">
           <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 margin-top-10" ng-if="_order.OrderTypeID != 4">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <span class="text-large text-bold pull-right" style="color: black">

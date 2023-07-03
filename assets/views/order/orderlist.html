@@ -422,7 +422,7 @@
                         {{:: selectorderstatus}}
                     </span><br />
                            <select id="OrderStateID" class="form-control" ng-model="OrderStateID" ng-change="changeOrderState(OrderStateID)">
-                               <option value="OrderStateID >0">{{:: allorder}}</option>
+                               <option value="OrderStateID >0" >{{:: allorder}}</option>
                                <option value="OrderTypeID=2">{{:: hdorders}}</option>
                                <option value="OrderTypeID=3" ng-if="user.Store.MemberID == 106851154380">{{:: hnrorders}}</option>
                                <option value="OrderTypeID=1">{{:: takeawayorders}}</option>
@@ -452,9 +452,9 @@
             <table ng-table="ao.tableParams" class="table table-striped table-hover">
                 <tbody ng-repeat="item in $data | orderBy:'-OrderDate'">
                     <tr ng-keyup="FormKeyPress($event,rowform,$data[$index],$index)" ng-class="{'strike':item.OrderStateID == 14,'red':item.OrderStateID == 14}">
-                        <td data-title="trOrderNo" data-sortable="'OrderNumber'" width="10%" ng-click="SelectItem(item)" class="ng">
+                        <!-- <td data-title="trOrderNo" data-sortable="'OrderNumber'" width="10%" ng-click="SelectItem(item)" class="ng" ng-if="user.restrictions.OrderListId=='Enable'">
                             {{ :: item.id  }}
-                        </td>
+                        </td> -->
                         <td data-title="trOrderNumber" data-sortable="'OrderNumber'" width="7%">
                             <span ng-if="item.OrderTypeID != 0">
                                 <label class="tooltips ti-thought hidden-sm hidden-xs" tooltip="{{::item.OrderProducts}}" tooltip-placement="right"></label>
@@ -485,9 +485,9 @@
                                 <label class="tooltips ti-direction-alt hidden-sm hidden-xs text-uppercase" tooltip="{{:: item.Address.StreetAddress}}" tooltip-placement="right"></label>
                             </div>
                         </td>
-                        <td data-title="trVAT" data-sortable="'VAT'" width="10%">
+                        <!-- <td data-title="trVAT" data-sortable="'VAT'" width="10%" ng-if="user.restrictions.OrderListVAT=='Enable'">
                             {{:: item.VAT|number:2}} <span>{{:: 'main.CURRENCY_SYMBOL' | translate}}</span>
-                        </td>
+                        </td> -->
                         <td data-title="trAmount" data-sortable="'Amount'" width="10%">
                             {{:: item.Amount|number:2}} <span>{{:: 'main.CURRENCY_SYMBOL' | translate}}</span>
                         </td>
@@ -496,12 +496,12 @@
                                 {{:: promotion.Promotion.name}}
                             </span>
                         </td>
-                        <td data-title="trEfatura" data-sortable="'Efatura'" width="10%">
+                        <!-- <td data-title="trEfatura" data-sortable="'Efatura'" width="10%" ng-if="user.restrictions.OrderListEfatura=='Enable'">
                             <span class="fa fa-check" ng-if="item.orderInvoice.id">
 
-                                <!--{{item.orderInvoice.id}}-->
+                                {{item.orderInvoice.id}}
                             </span>
-                        </td>
+                        </td> -->
                         <td data-title="trPaymenttype" data-sortable="'Promotion'" width="10%">
                             <span ng-repeat="payment in ::item.payments">
                                 {{:: payment.PaymentType}}
