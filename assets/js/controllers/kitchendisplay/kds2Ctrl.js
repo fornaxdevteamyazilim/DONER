@@ -84,7 +84,7 @@ function kds2Ctrl(
     var sID = $scope.$storage.KDisplayIndex ? $scope.$storage.KDisplayIndex : 0;
     if (data.StationID == sID) $scope.ApplyBumpBarData(data);
   });
-  if ($rootScope.BRAND === 'KFC' || $rootScope.BRAND === 'KK') {
+
     Restangular.all("cache/StoreProductions")
       .getList({
         StoreID: localStorageService.get("StoreID"),
@@ -101,7 +101,7 @@ function kds2Ctrl(
           );
         }
       );
-  }
+
   $scope.ApplyBumpBarData = function (data) {
     var key = -1;
     switch (data.Data) {
