@@ -85,22 +85,22 @@ function kds2Ctrl(
     if (data.StationID == sID) $scope.ApplyBumpBarData(data);
   });
 
-    Restangular.all("cache/StoreProductions")
-      .getList({
-        StoreID: localStorageService.get("StoreID"),
-      })
-      .then(
-        function (result) {
-          $scope.StoreProductions = result;
-        },
-        function (response) {
-          toaster.pop(
-            "warning",
-            $translate.instant("Server.ServerError"),
-            response.data.ExceptionMessage
-          );
-        }
-      );
+  Restangular.all("cache/StoreProductions")
+    .getList({
+      StoreID: localStorageService.get("StoreID"),
+    })
+    .then(
+      function (result) {
+        $scope.StoreProductions = result;
+      },
+      function (response) {
+        toaster.pop(
+          "warning",
+          $translate.instant("Server.ServerError"),
+          response.data.ExceptionMessage
+        );
+      }
+    );
 
   $scope.ApplyBumpBarData = function (data) {
     var key = -1;
@@ -177,20 +177,20 @@ function kds2Ctrl(
     $scope.inProgress = true;
 
     var params =
-      ($rootScope.BRAND === 'KFC' || $rootScope.BRAND === 'KK') && $scope.$storage.KDisplayIndex == "0"
-        ? {
-          StoreID: $rootScope.user.StoreID,
-          OrderStateID: 4,
-          StoreProductionID: $scope.$storage.StoreProductionID,
-        }
-        : {
-          StoreID: $rootScope.user.StoreID,
-          OrderStateID: 4,
-          KDisplayIndex: $scope.$storage.KDisplayIndex
-            ? $scope.$storage.KDisplayIndex
-            : 0,
-          CompletedOrdersCount: $scope.completedOrdersCount
-        };
+     
+  $scope.$storage.KDisplayIndex == "0"
+  ? {
+    StoreProductionID: $scope.$storage.StoreProductionID,
+    OrderStateID: 4,
+    StoreID: $rootScope.user.StoreID   
+  }
+  : {
+    StoreID: $rootScope.user.StoreID,
+    StoreProductionID: $scope.$storage.StoreProductionID,
+    OrderStateID: 4,
+    CompletedOrdersCount: $scope.completedOrdersCount
+    
+  };
 
     Restangular.all("kds/getitems")
       .getList(params)
@@ -257,60 +257,76 @@ function kds2Ctrl(
   };
   $scope.LoadOrderItemStates();
   $scope.dataGridOptionsorder = function (items, itemBgColor) {
-        return {
-            dataSource: items,
-            dataStructure: "tree",
-            showRowLines: true,
-            showBorders: true,
-            columnAutoWidth: true,
-            allowColumnResizing: true,
-            showColumnLines: true,
-            //rowAlternationEnabled: true,
-            hoverStateEnabled: true,
-            allowColumnReordering: true,
-            //selectedRowKeys: [1, 29, 42],
-            autoExpandAll: true,
-            wordWrapEnabled: true,
-            remoteOperations: { grouping: true },
-            //keyExpr: 'id',
-            //displayExpr: 'caption',
-            parentIdExpr: "ParentItemID",
-            virtualModeEnabled: true,
-            autoExpandAll: true,
-            //filterSyncEnabled: true,
-            //headerFilter: { visible: true },
-            //filterValue: ["DisplayOnKDS", "=", "true"],
-            columns: [
-                {
-                    name: "Product",
-                    dataField: "Product",
-                    caption: $scope.product,
-                    Width: "90%",
-                },
-                {
-                    name: "Quantity",
-                    dataField: "Quantity",
-                    caption: "#",
-                    format: { type: "fixedPoint", precision: 0 },
-                },
-            ],
-            onRowPrepared: function (e) {
-                if (e.rowType === "data") {
-                    e.rowElement.css("fontWeight", "bold");
-                    if (e.data.IsCompleted) {
-                        e.rowElement.css("background", completedOrderBgColor);
-                    } else if (e.data.IsPrepared2) {
-                        e.rowElement.css("background", preparedItemBgColor);
-                    } else {
-                        e.rowElement.css("background", itemBgColor);
-                    }
-                }
-                else if (e.rowType === "header") {
-                    e.rowElement.css("background", itemBgColor);
-                }
-            },
-        };
+    return {
+      dataSource: items,
+      dataStructure: "tree",
+      showRowLines: true,
+      showBorders: true,
+      columnAutoWidth: true,
+      allowColumnResizing: true,
+      showColumnLines: true,
+      //rowAlternationEnabled: true,
+      hoverStateEnabled: true,
+      allowColumnReordering: true,
+      //selectedRowKeys: [1, 29, 42],
+      autoExpandAll: true,
+      wordWrapEnabled: true,
+      remoteOperations: { grouping: true },
+      //keyExpr: 'id',
+      //displayExpr: 'caption',
+      parentIdExpr: "ParentItemID",
+      virtualModeEnabled: true,
+      autoExpandAll: true,
+      //filterSyncEnabled: true,
+      //headerFilter: { visible: true },
+      //filterValue: ["DisplayOnKDS", "=", "true"],
+      columns: [
+        {
+          name: "Product",
+          dataField: "Product",
+          caption: $scope.product,
+          Width: "90%",
+        },
+        {
+          name: "Quantity",
+          dataField: "Quantity",
+          caption: "#",
+          format: { type: "fixedPoint", precision: 0 },
+        },
+      ],
+      onRowPrepared: function (e) {
+        if (e.rowType === "data") {
+            
+            e.rowElement.css("fontWeight", "bold");
+            if ($scope.$storage.KDisplayIndex>-1 && e.data.states.length>1){
+              if (e.data.states.some(st => !st.Completed))
+              {
+                //hazır değil regi.
+                e.rowElement.css("background", completedOrderBgColor);
+              }
+              else 
+              {
+                //norma/hazır rengi
+                e.rowElement.css("background", preparedItemBgColor);
+              }
+            }
+            else {
+              e.rowElement.css("background", preparedItemBgColor); //"Mutfak seçili ise"
+            }
+            // if (e.data.IsCompleted) {
+            //     e.rowElement.css("background", completedOrderBgColor);
+            // } else if (e.data.IsPrepared2) {
+            //     e.rowElement.css("background", preparedItemBgColor);
+            // } else {
+            //     e.rowElement.css("background", itemBgColor);
+            // }
+        }
+        else if (e.rowType === "header") {
+            e.rowElement.css("background", itemBgColor);
+        }
+    },
     };
+  };
 
   const threeMinutes = 180;
   const fiveMinutes = 300;

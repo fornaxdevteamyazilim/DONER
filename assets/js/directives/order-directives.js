@@ -672,7 +672,7 @@ function optionitemCombo($compile) {
             "<div id='optdetail'></div>" +
             "</div>",
         link: function (scope, element, attr) {
-           // scope.isShownImage = scope.BRAND === 'KK' ? true : false;
+          
             var container = $(element).children("#contentdetail").children("#optdetail");
             var newElement = angular.element("<orderableoption class='col-lg-12 col-md-12 col-sm-12 col-xs-12' bindonce='option'  ng-repeat='option in option.SelectedItems.Options' option='option' order='OrderID'></orderableoptiondetail>");
             container.html(newElement);
@@ -1004,7 +1004,7 @@ function detailorderItem($compile) {
         template:
             //large & medium & small
             "<div class='row col-lg-12 col-md-12 col-sm-12 col-xs-12'>" +
-            "<label class='col-lg-9 col-md-9 col-sm-9 col-xs-9 text-capitalize' style='font-size:medium;text-decoration: line-through;color:red' ng-class='item.DefaultQuantity>0'><span style='color: #bdbdbd;font-size: 14px;'>{{member.Quantity}} X {{:: member.Product}} </span></label>" +
+            "<label class='col-lg-9 col-md-9 col-sm-9 col-xs-9 text-capitalize' style='font-size:medium;><span style='color: #bdbdbd;font-size: 14px;'>{{member.Quantity}} X {{:: member.Product}} </span></label>" +
             "<label class='col-lg-3 col-md-3 col-sm-3 col-xs-3 text-large pull-right'><span class='pull-right'> {{member.Amount| number : 2}} <span ng-if='member.Amount >= 0'>{{:: 'main.CURRENCY_SYMBOL' | translate}}</span></span></label>" +
             "</div>",
         controller: function ($scope, $element, $attrs) {

@@ -456,8 +456,8 @@
                             {{ :: item.id  }}
                         </td> -->
                         <td data-title="trOrderNumber" data-sortable="'OrderNumber'" width="7%">
-                            <span ng-if="item.OrderTypeID != 0">
-                                <label class="tooltips ti-thought hidden-sm hidden-xs" tooltip="{{::item.OrderProducts}}" tooltip-placement="right"></label>
+                            <span ng-if="item.OrderTypeID != 0" ng-click="SelectItem(item)">
+                                <label class="tooltips ti-thought hidden-sm hidden-xs" tooltip="{{::item.OrderProducts}}" tooltip-placement="right" ></label>
                                 {{ :: item.OrderNumber  }}
                             </span>
                             <span ng-if="item.OrderTypeID == 0">

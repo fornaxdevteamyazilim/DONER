@@ -8,10 +8,10 @@
             <tr ng-repeat="item in $data"
                 ng-keyup="FormKeyPress($event,rowform,$data[$index],$index)">
                 <td data-title="trDriversName" data-sortable="'DriverID'" ng-click="rowform.$show()" class="ng" style="width:10%">
-                    <!--<span class="text-capitalize" editable-select="item.DriverID" e-name="DriverID" e-ng-model="item.DriverID" e-form="rowform"
+                    <!-- <span class="text-capitalize" editable-select="item.DriverID" e-name="DriverID" e-ng-model="item.DriverID" e-form="rowform"
                           e-ng-options="q.id as q.name for q in drivers | filter: {UserRoleID: '106761563444'}" e-style="width:10vw;" ng-if="user.Store.MemberID==106851154380">
                         {{ShowObject('drivers','id',item.DriverID,'name')}}
-                    </span>-->
+                    </span> -->
                     <span class="text-capitalize" editable-select="item.DriverID" e-name="DriverID" e-ng-model="item.DriverID" e-form="rowform"
                           e-ng-options="q.id as q.name for q in drivers | filter:{isActive:'true' }| filter:{isDriver:'true' }" e-style="width:10vw;" ng-if="user.Store.MemberID==700000000054">
                         {{ShowObject('drivers','id',item.DriverID,'name')}}
