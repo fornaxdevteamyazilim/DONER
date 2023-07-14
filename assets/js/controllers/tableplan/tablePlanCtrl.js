@@ -207,13 +207,27 @@ function tablePlanCtrl($scope, $log, $modal, Restangular, ngTableParams, SweetAl
 
         }
     };
-    $scope.printOrder = function (data) {
-        if (data) {
+    // $scope.printOrder = function (data) {
+    //     if (data) {
+    //         Restangular.all('ordertools/PrintReciept').getList({
+    //             OrderID: data.id,
+    //             StationName:localStorageService.get('ClientName')
+    //         }).then(function (_orderItems) {
+    //         }, function (response) {
+    //         });
+    //     }
+    // };
+    $scope.printOrder = function (order) {
+        if (order) {
             Restangular.all('ordertools/PrintReciept').getList({
-                OrderID: data.id,
+                OrderID: order.id,
                 StationName:localStorageService.get('ClientName')
-            }).then(function (_orderItems) {
+            }).then(function (resp) {
+                $scope.ShowObject = true;
+                toaster.pop('success', 'Order Printed');
             }, function (response) {
+                $scope.ShowObject = true;
+                toaster.pop('error', 'Order Printing Error', response.data.ExceptionMessage);
             });
         }
     };

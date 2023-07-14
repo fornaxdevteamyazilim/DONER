@@ -155,6 +155,8 @@ function inventorytransactionsCtrl($scope, $filter, $window, $stateParams, $root
             totalItems: [
                 { column: "Inventory.name", summaryType: "count", displayFormat: "{0}" },
                 { column: "Units", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}" },
+                { column: "UnitCount", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}" },
+                { column: "UnitPrice", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}₺" },
                 { column: "Amount", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}₺" },
             ],
             groupItems: [

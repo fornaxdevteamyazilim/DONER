@@ -82,7 +82,7 @@
                         <option value="ngsize16pt">16 pt</option>
                         <option value="ngsize18pt">18 pt</option>
                     </select> -->
-                    <select id="StoreProductionID" class="form-control ng" ng-show="$storage.KDisplayIndex=='0'" ng-options="q.id as q.name for q in StoreProductions | orderBy:'+name'" ng-model="$storage.StoreProductionID" ng-change="LoadOrderItemStates()"></select>
+                    <select id="StoreProductionID" class="form-control ng" ng-show="$storage.KDisplayIndex=='-1'" ng-options="q.id as q.name for q in StoreProductions | orderBy:'+name'" ng-model="$storage.StoreProductionID" ng-change="LoadOrderItemStates()"></select>
                 </span>
                 <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pull-right" ng-if="user.Store.MemberID < 300000000000">
                     <!--<input type="text" class="form-control text-uppercase" ng-model="$storage.KDisplayIndex" ng-change="LoadOrderItemStates()">-->
@@ -95,8 +95,8 @@
                 <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pull-right" ng-if="user.Store.MemberID >= 300000000000">
                     <!--<input type="text" class="form-control text-uppercase" ng-model="$storage.KDisplayIndex" ng-change="LoadOrderItemStates()">-->
                     <select id="KDisplayIndex" class="form-control" ng-model="$storage.KDisplayIndex" ng-change="LoadOrderItemStates()">
-                        <option value="0">Mutfak</option>
-                        <option value="1">KDS</option>
+                        <option value="-1">Mutfak</option>
+                        <option value="0">KDS</option>
                     </select>
 
                 </span>

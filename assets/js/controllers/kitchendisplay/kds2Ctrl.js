@@ -180,9 +180,10 @@ function kds2Ctrl(
      
   $scope.$storage.KDisplayIndex == "0"
   ? {
-    StoreProductionID: $scope.$storage.StoreProductionID,
+    //StoreProductionID: $scope.$storage.StoreProductionID,
     OrderStateID: 4,
-    StoreID: $rootScope.user.StoreID   
+    StoreID: $rootScope.user.StoreID,
+    KDisplayIndex:0
   }
   : {
     StoreID: $rootScope.user.StoreID,
@@ -296,10 +297,10 @@ function kds2Ctrl(
       ],
       onRowPrepared: function (e) {
         if (e.rowType === "data") {
-            
-            e.rowElement.css("fontWeight", "bold");
+            if (e.data.ParentItemID==0)
+              e.rowElement.css("fontWeight", "bold");
             if ($scope.$storage.KDisplayIndex>-1 && e.data.states.length>1){
-              if (e.data.states.some(st => !st.Completed))
+              if (e.data.states.some(st => !st.Completed && st.ProductStateID>0))
               {
                 //hazır değil regi.
                 e.rowElement.css("background", completedOrderBgColor);
@@ -442,8 +443,8 @@ function kds2Ctrl(
       .get({
         OrderID: OrderID,
         AutoPrint: false,
-        KDisplayIndex: $scope.$storage.KDisplayIndex
-          ? $scope.$storage.KDisplayIndex
+        KDisplayIndex: $scope.$storage.KDisplayIndex>=0
+          ? 1 //$scope.$storage.KDisplayIndex
           : 0,
         // StoreProductionID: $scope.$storage.StoreProductionID
         //   ? $scope.$storage.StoreProductionID

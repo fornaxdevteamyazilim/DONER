@@ -272,7 +272,6 @@
     "PRODUCTDISABLE": "{{appName}} - Ürün Açma-Kapama",
     "INVENTORYCONSUPTIONS": "{{appName}} - Kullanılan Malzeme Raporu",
     "DELETEDORDERITEMS": "{{appName}} - Silinen Sipariş Kalemleri",
-    "PRODUCTIMAGES": "{{appName}} - Ürün Resimleri",
     "GETDEMANDLIST": "{{appName}} - Malzeme Sevkiyat",
     "RETURNEDPRODUCTS": "{{appName}} - Return (İptal Adisyon) Ürün Listesi (Adet)",
     "YSENTEGRASYON": "{{appName}} - Yemek Sepeti Entegrasyonu",
@@ -439,7 +438,8 @@
     "THEORICINVANTORIES": "Ideal Maliyet Malzeme Toplamı",
     "ACTUALINVANTORIES": "Gerçekleşen Maliyet Malzeme Toplamı",
     "THEORIC": "Ideal Maliyet Tablosu",
-    "ACTUALCOST": "Actual Cost Table",
+    "THEORICTODAY": "Ideal Maliyet Günlük",
+    "ACTUALCOST": "Gerçek Maliyet Tablosu",
     "ACCOUNTTRANSACTIONS": "Hesap İşlemleri",
     "SEARCHTRANSACTION": "İşlem Ara",
     "TRANSACTIONTYPEDESCRIPTION": "İşlem Tipi Açıklması",
@@ -1955,7 +1955,7 @@
     "AVRPREPARING": "Hazırlanma",
     "AVROUT": "Çıkış",
     "AVRDELIVERYY": "Teslim",
-    "AVRBELOW30": "Teslim < 45",
+    "AVRBELOW30": "Teslim < 30",
     "YSCANCELREASON": "YS İptal Sebebi",
     "TRENDYOLCANCELREASON": "Trendyol İptal Sebebi",
     "MIGROSCANCELREASON": "Migros İptal Sebebi",
@@ -2618,8 +2618,7 @@
         "PRODUCTDEFINITOIN": "Ürün Tanımları",
         "PRODUCTDISABLE": "Ürün Açma-Kapama",
         "PRODUCTRECOMENDEDPROMOTION": "Ürün/Promosyon İlişkilendirme",
-        "PRODUCTPRICELIST": "Ürün Fiyatı Düzenleme",
-        "PRODUCTIMAGES":  "Ürün Resimleri"
+        "PRODUCTPRICELIST": "Ürün Fiyatı Düzenleme"
       },
       "schedule": {
         "MAIN": "Zamanlama",
@@ -2992,7 +2991,7 @@
         "INVENTORYADJUSTTYPE": "Malzeme Atık Tipleri",
         "MAIN": "Tanımlar",
         "MEMBERS": "Üyeler",
-        "ORDERREASONS": "İptal Sebebi Tanımlama",
+        "ORDERREASONS": "Sebep Tanımlama",
         "PERIOD": "Dönemler",
         "PREFERENCE": "Tercihler",
         "PREFERENCES": "Tercih Seçimi",
@@ -3465,8 +3464,8 @@
     "Seleccancellation": "İptal nedenini seçin",
     "OrderStatusUpdated": "Sipariş Durumu Güncellendi.",
     "OrderDenied": "Sipariş Reddedildi",
-    "Yes": "Evet",
-    "No": "Hayır",
+    "yes": "Evet",
+    "no": "Hayır",
     "StatusOrderChanged": "Siparişin Durumu Değişti!!",
     "Havewedeliveredorder": "Siparişi teslim ettik mi ?",
     "NoDepartment": "Bölüm Yok",
@@ -3572,7 +3571,8 @@
     "YSOrderCustomerMatchingDeleted": "YS sipariş Müşteri eşleştirme silindi!",
     "Markorderasdelivered": "Siparişi teslim edildi olarak işaretle",
     "THEDRAWERISCLOSED": "Çekmece Kapandı",
-    "THEDRAWERISOPENED": "Çekmece Açıldı"
+    "THEDRAWERISOPENED": "Çekmece Açıldı",
+    "ORDERSAVED": "Sipariş Kaydedildi" 
   },
   "yemeksepetifile": {
     "Cancelled": "İptal edildi !",

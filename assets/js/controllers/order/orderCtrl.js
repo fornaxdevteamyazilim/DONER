@@ -1,4 +1,10 @@
-﻿app.controller('orderCtrl', orderCtrl);
+﻿app.factory('PaymentRestangular', function (Restangular) {
+    return Restangular.withConfig(function (RestangularConfigurer) {
+        RestangularConfigurer.setBaseUrl('http://185.169.53.183:9065/api/');
+    });
+});
+
+app.controller('orderCtrl', orderCtrl);
 function orderCtrl($scope, $log, $filter, $timeout, $translate, $modal, SweetAlert, Restangular, PaymentRestangular, ngTableParams, $document, toaster, $window, $stateParams, $rootScope, $location, $anchorScroll, $compile, callsService, userService, $element, ngnotifyService, $localStorage, localStorageService) {
     var or = this;
     $rootScope.uService.EnterController("orderCtrl");
@@ -560,6 +566,7 @@ function orderCtrl($scope, $log, $filter, $timeout, $translate, $modal, SweetAle
                 ordertosave.put().then(function (result) {
                     event.preventDefault();
                     $rootScope.searchName = '';
+                    ////burası düzenlenecek
                     if ($scope._order.OrderTypeID == 2 || $scope._order.OrderTypeID == 7|| $scope._order.OrderTypeID == 11) {
                         swal({
                             title: "Order ID :'" + result.id + "' Store :'" + result.Store + "' Date:'" + $filter('date')(ngnotifyService.ServerTime(), 'HH:mm:ss') + "'" + $scope.WDT,
@@ -633,7 +640,7 @@ function orderCtrl($scope, $log, $filter, $timeout, $translate, $modal, SweetAle
                     if ($scope._order.OrderTypeID == 2) {
                         swal({
                             title: "Order ID :'" + result.id + "' Store :'" + result.Store + "' Date :'" + $filter('date')(ngnotifyService.ServerTime(), 'HH:mm:ss') + "'" + $scope.WDT,
-                            text: "Order Saved",
+                            text:  $translate.instant('orderfile.ORDERSAVED'),
                             type: "success",
                         });
                         if (userService.userIsInRole("CALLCENTER") || userService.userIsInRole("CCMANAGER"))
