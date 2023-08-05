@@ -77,7 +77,9 @@ function kds2Ctrl(
     $scope.LoadOrderItemStates();
   });
   var KDSNotify = $scope.$on("KDSUpdate", function (event, data) {
-    if (data.Beep) $scope.audio.play();
+    if (data.Beep) 
+    $scope.audio.play();
+    $scope.audio.play();
     $scope.LoadOrderItemStates();
   });
   var BumpBarData = $scope.$on("BumpBarData", function (event, data) {

@@ -27,6 +27,7 @@ function orderpaymentCtrl(
 ) {
   $rootScope.uService.EnterController("orderpaymentCtrl");
   $scope.order = Order;
+  $scope.cash=0;
   $scope.order.Amount = parseFloat(
     Math.round($scope.order.Amount * 100) / 100
   ).toFixed(2);
@@ -122,13 +123,37 @@ function orderpaymentCtrl(
     }
     if (operation == "") {
       $scope.showchange = false;
-      $scope.currentPayment.Amount = 0.0;
+      $scope.currentPayment.Amount = $scope.CalcRequiredAmount();
+      $scope.cash=0;
+      $scope.count5=0;
+      $scope.count10=0;
+      $scope.count20=0;
+      $scope.count50=0;
+      $scope.count100=0;
+      $scope.count200=0;
     }
   };
+  $scope.cash=0;
+  $scope.count5=0;
+  $scope.count10=0;
+  $scope.count20=0;
+  $scope.count50=0;
+  $scope.count100=0;
+  $scope.count200=0;
+
   $scope.CalcChange = function (Amount) {
-    if (Amount >= $scope.currentPayment.Amount) {
+    switch(Amount){
+      case 5: $scope.count5++; break;
+      case 10: $scope.count10++;break;
+      case 20: $scope.count20++;break;
+      case 50: $scope.count50++;break;
+      case 100: $scope.count100++;break;
+      case 200: $scope.count200++;break;
+    }
+    $scope.cash+=Amount;
+    if ($scope.cash >= $scope.currentPayment.Amount) {
       $scope.showchange = true;
-      $scope.change = Amount - $scope.currentPayment.Amount;
+      $scope.change = $scope.cash - $scope.currentPayment.Amount;
     } else {
       $scope.showchange = false;
     }
