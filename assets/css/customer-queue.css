@@ -1,0 +1,99 @@
+html,
+body {
+  height: 98%;
+  width: 100%;
+  font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+.footer {
+  background-color: #d15a5a;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.marquee,
+.marquee-with-options,
+.marquee-vert-before,
+.marquee-vert {
+  width: 100%;
+  overflow: hidden;
+}
+
+.card .card-header {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.queue-number {
+  font-size: 8.8vh;
+  font-weight: 800;
+}
+
+.queue-number-sm {
+  font-size: 3vh;
+}
+
+.list-group-item.active {
+  background-color: #0003bc;
+  color: white;
+  border-color: #1300bc;
+}
+
+.box {
+  min-height: 48vh;
+}
+
+.box-head {
+  width: 100%;
+  height: 100%;
+  /* min-height: 6vh; */
+  background: #f80404;
+  color:yellow;
+  border-radius: 0.5vh;
+  
+
+}
+.order-preparing {
+    width: 100%;
+    height: 100%;
+    /* min-height: 6vh; */
+    background: #f80404;
+    color:yellow;
+    border-radius: 1.5vh;
+    text-align: center;
+    font-size: 3rem;
+    /* font-weight: 300; */
+    margin-top: 1.5vh; /*Dışardan 100px aşağı doğru kayar*/
+margin-bottom: 0.5vh; /*Dışardan 100px yukarı doğru kayar*/
+margin-right: 1.5vh; /*Dışardan 100px sağa doğru kayar*/
+margin-left: 1.5vh; /*Dışardan 100px sola doğru kayar*/
+  }
+  .order-ready {
+    width: 100%;
+    height: 100%;
+    /* min-height: 6vh; */
+    background: yellow;
+    color:#f80404;
+    border-radius: 1.5vh;
+    text-align: center;
+    font-size: 3rem;
+    /* font-weight: 300; */
+    margin-top: 1.5vh; /*Dışardan 100px aşağı doğru kayar*/
+margin-bottom: 0.5vh; /*Dışardan 100px yukarı doğru kayar*/
+margin-right: 1.5vh; /*Dışardan 100px sağa doğru kayar*/
+margin-left: 1.5vh; /*Dışardan 100px sola doğru kayar*/
+  }
+
+.box-detail {
+  font-size: 5.5vh;
+  font-weight: 800;
+  position: absolute;
+  top: 5.5vh;
+  left: 50%;
+  text-align: center;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}

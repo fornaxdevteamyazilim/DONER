@@ -24,48 +24,66 @@ body {
     width: 100vw;
     font-family:Verdana;
 }
-.page-idle-kfc {
+/* .page-idle-kfc {
     height: 100vh;
     width: 100vw;
-    background-image: url('../images/kfc/300000000000.jpg');
+    background-image: url('../images/kfc/700000000054.jpg'); */
     /*background-size: cover;*/
-    background-repeat: no-repeat;
+    /* background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-}
-.page-idle-ph {
+} */
+/* .page-idle-ph {
     height: 100vh;
     width: 100vw;
-    background-image: url('../images/ph/cdisplay.jpg');
+    background-image: url('../images/ph/700000000054.jpg');
     /*background-size: cover;*/
-    background-repeat: no-repeat;
+    /* background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-}
-.page-idle-kk {
+} */ */
+.page-idle {
     height: 100vh;
     width: 100vw;
-    background-image: url('../images/kk/300000000000.jpg');
+    background-image: url('../images/700000000054.jpg');
     /*background-size: cover;*/
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 }
 
-.page-active-ph {
+.page-active {
     height: 100%;
-    background-image: url('../images/ph/cdisplay_order.jpg');
+    background-image: url('../images/rop1.jpg');
     background-size: cover;
     background-position: center center;
 }
 
-.hutla-katla-ph {
+.hutla-katla {
     height: 100%;
-    background-image: url('../images/ph/cdisplay_PH_Hutlakatla.jpg');
+    background-image: url('../images/rop2.jpg');
     background-size: cover;
     background-position: center center;
 }
-.sosyal-mesafe {
+.hutla-katlas {
+    height: 100%;
+    background-image: url('../images/rop3.jpg');
+    background-size: cover;
+    background-position: center center;
+}
+.hutla-katlass {
+    height: 100%;
+    background-image: url('../images/rop4.jpg');
+    background-size: cover;
+    background-position: center center;
+}
+.video {
+    height: 100%;
+    background-image: url('../videos/1366X766 Black.mp4');
+    background-size: cover;
+    background-position: center center;
+}
+/* .sosyal-mesafe {
     height: 100%;
     background-image: url('../images/SOSYAL MESAFE.jpg');
     background-size: cover;
@@ -82,7 +100,7 @@ body {
     background-image: url('../images/SOSYAL MESAFE3.jpg');
     background-size: cover;
     background-position: center center;
-}
+} */
 .flex {
     display: flex;
 }
@@ -119,7 +137,9 @@ body {
     flex-grow: 1;
     height: 100vh;
     width: 25vw;
-    background-color:white;
+    background-color: #7d7d7dc9;
+    color: #000000;
+    font-size: 18px;
 }
 .wrapper {
     width: 100%;
@@ -128,7 +148,7 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    /*width: 30%;*/
+    /* width: 100%; */
     /*height:30%;*/
 }
 /* Clock Module */
@@ -161,7 +181,7 @@ body {
     flex-grow: 1;
     height: 100vh;
     width: 50vw;
-    //Everything below is just style background: #000;
+    /* Everything below is just style background: #000; */
     &:nth-child(2n)
 
 {
@@ -177,6 +197,21 @@ body {
 }
 
 }
+}
+.player .wide {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+ 
+.player .wide video {
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 

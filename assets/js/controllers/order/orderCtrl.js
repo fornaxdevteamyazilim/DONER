@@ -289,6 +289,7 @@ function orderCtrl($scope, $log, $filter, $timeout, $translate, $modal, SweetAle
             }
         //$scope._order.VAT = $scope._order.Amount * 0.08;
         $scope.CalculatePromotion($scope._order.Amount);
+         $scope.UpdateCustomerDisplayData();
     };
     $scope.CalculateItemAmountWithsubItems = function () {
         for (var i = 0; i < $scope.orderItems.length; i++) {
