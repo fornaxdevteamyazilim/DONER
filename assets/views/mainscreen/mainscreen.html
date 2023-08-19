@@ -66,17 +66,17 @@
                                 {{::close}} <i class="fa fa-exclamation"></i></strong>
                         </td>
                         <td> <strong class="text-green text-large text-uppercase"
-                                ng-if="AggregatorStoreStats[1].isActive ==  true">
-                                {{::open}} <i class="fa fa-check"></i></strong>
-                            <strong class="text-red text-large text-uppercase"
-                                ng-if="AggregatorStoreStats[1].isActive ==  false">
-                                {{::close}} <i class="fa fa-exclamation"></i></strong>
-                        </td>
-                        <td> <strong class="text-green text-large text-uppercase"
                                 ng-if="AggregatorStoreStats[2].isActive ==  true">
                                 {{::open}} <i class="fa fa-check"></i></strong>
                             <strong class="text-red text-large text-uppercase"
                                 ng-if="AggregatorStoreStats[2].isActive ==  false">
+                                {{::close}} <i class="fa fa-exclamation"></i></strong>
+                        </td>
+                        <td> <strong class="text-green text-large text-uppercase"
+                                ng-if="AggregatorStoreStats[1].isActive ==  true">
+                                {{::open}} <i class="fa fa-check"></i></strong>
+                            <strong class="text-red text-large text-uppercase"
+                                ng-if="AggregatorStoreStats[1].isActive ==  false">
                                 {{::close}} <i class="fa fa-exclamation"></i></strong>
                         </td>
                         <td> <strong class="text-green text-large text-uppercase"
@@ -398,8 +398,9 @@
                     <table>
                         <tr >
                             <th> {{::'main.YSSTATUS' | translate}}</th>
-                            <th> {{::'main.GETIRSTATUS' | translate}}</th>
                             <th> {{::'main.TRENDYOLSTATUS' | translate}}</th>
+                            <th> {{::'main.GETIRSTATUS' | translate}}</th>
+                            <th> {{::'main.MIGROSSTATUS' | translate}}</th>
                             <th> {{::'main.ROPNGTIME' | translate}}</th>
                             <th> {{::'main.OPERATIONDATE' | translate}}</th>
                         </tr>
@@ -419,12 +420,19 @@
                                     {{::close}} <i class="fa fa-exclamation"></i></strong>
                             </td>
                             <td> <strong class="text-green text-large text-uppercase"
-                                    ng-if="AggregatorStoreStats[2].isActive ==  true">
+                                    ng-if="AggregatorStoreStats[3].isActive ==  true">
                                     {{::open}} <i class="fa fa-check"></i></strong>
                                 <strong class="text-red text-large text-uppercase"
-                                    ng-if="AggregatorStoreStats[2].isActive ==  false">
+                                    ng-if="AggregatorStoreStats[3].isActive ==  false">
                                     {{::close}} <i class="fa fa-exclamation"></i></strong>
                             </td>
+                            <td> <strong class="text-green text-large text-uppercase"
+                                ng-if="AggregatorStoreStats[2].isActive ==  true">
+                                {{::open}} <i class="fa fa-check"></i></strong>
+                            <strong class="text-red text-large text-uppercase"
+                                ng-if="AggregatorStoreStats[2].isActive ==  false">
+                                {{::close}} <i class="fa fa-exclamation"></i></strong>
+                        </td>
                             <td><strong class="text-bricky">{{:: theClock}}</strong></td>
                             <td>{{::opdate|| txtENDOFDAY}}</td>
                         </tr>
@@ -741,7 +749,7 @@
             </div>
         </div>
 
-        <div class="col-sm-12 col-xs-12 visible-sm visible-xs" style="margin-top: 128px;">
+        <div class="col-sm-12 col-xs-12 visible-sm visible-xs" style="margin-top: 151px;">
             <div ng-repeat="ordertype in ::StoreOrderTypes | filter :{OrderTypeID: '!4', isActiveValue: 'true'}"
                 ng-if="user.restrictions.ordertypebuttons=='Enable'">
                 <div class="col-sm-4 col-xs-6 center">

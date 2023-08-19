@@ -4541,7 +4541,7 @@
     "FixedSize": "FixedSize",
     "MapByPrototype": "MapByPrototype",
     "SkipProduct": "SkipProduct",
-    "AutoAddProductID": "AutoAddProductID",
+    "AutoAddProductID": "Auto Add Product",
     "AutoAddMapToOption": "AutoAddMapToOption",
     "AutoAddProductQuantity":"AutoAddProductQuantity",
     "AutoAddMapOptionsLevel": "AutoAddMapOptionsLevel",
@@ -4618,7 +4618,7 @@
     "FixedSize": "Fixed Size",
     "MapByPrototype": "Map By Prototype",
     "SkipProduct": "Skip Product",
-    "AutoAddProductID": "Auto Add Product ID",
+ "AutoAddProductID": "Auto Add Product",
     "AutoAddMapToOption": "Auto Add Map To Option",
     "AutoAddProductQuantity": "Auto Add Product Quantity",
     "AutoAddMapOptionsLevel": "Auto Add Map Options Level",
@@ -4626,7 +4626,8 @@
     "AggregatorID": "Aggregator ID",
     "type": "Type",
     "PaymentType": "Payment Type",
-    "Name": "Name"
+    "Name": "Name",
+    "ChildName":"Child Name"
   },
   "dxTrendyolRejectReason":{
     "Code": "Code",
@@ -4641,7 +4642,7 @@
     "FixedSize": "Fixed Size",
     "MapByPrototype": "Map By Prototype",
     "SkipProduct": "Skip Product",
-    "AutoAddProductID": "Auto Add Product ID",
+ "AutoAddProductID": "Auto Add Product",
     "AutoAddMapToOption": "Auto Add Map To Option",
     "AutoAddProductQuantity": "Auto Add Product Quantity",
     "AutoAddMapOptionsLevel": "Auto Add Map Options Level",

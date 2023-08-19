@@ -4576,7 +4576,7 @@
     "FixedSize": "Sabit Boy",
     "MapByPrototype": "Eşleşme Proto tipi",
     "SkipProduct": "Ürünü Atla",
-    "AutoAddProductID": "Otomatik Ürün kimliği Ekle",
+    "AutoAddProductID": "Otomatik Eklenecek Ürün",
     "AutoAddMapToOption": "Eşleşme Otomatik Ekleme Seçeneği",
     "AutoAddProductQuantity": "Otomatik Ürün Miktarı Ekle",
     "AutoAddMapOptionsLevel": "Otomatik Eşleşme Seçenekleri Seviyesi Ekle",
@@ -4653,7 +4653,7 @@
     "FixedSize": "Sabit Boy",
     "MapByPrototype": "Eşleşme Proto tipi",
     "SkipProduct": "Ürünü Atla",
-    "AutoAddProductID": "Otomatik Ürün kimliği Ekle",
+    "AutoAddProductID": "Otomatik Eklenecek Ürün",
     "AutoAddMapToOption": "Eşleşme Otomatik Ekleme Seçeneği",
     "AutoAddProductQuantity": "Otomatik Ürün Miktarı Ekle",
     "AutoAddMapOptionsLevel": "Otomatik Eşleşme Seçenekleri Seviyesi Ekle",
@@ -4661,7 +4661,8 @@
     "AggregatorID": "Firma",
     "type": "Tipi",
     "PaymentType": "Ödeme Tipi",
-    "Name": "İsim"
+    "Name": "İsim",
+    "ChildName":"Alt Ürün İsmi"
   },
   "dxMigrosProduct": {
     "TrendyolProductID": "Migros Ürün ID",
@@ -4670,7 +4671,7 @@
     "FixedSize": "Sabit Boy",
     "MapByPrototype": "Eşleşme Proto tipi",
     "SkipProduct": "Ürünü Atla",
-    "AutoAddProductID": "Otomatik Ürün kimliği Ekle",
+    "AutoAddProductID": "Otomatik Eklenecek Ürün",
     "AutoAddMapToOption": "Eşleşme Otomatik Ekleme Seçeneği",
     "AutoAddProductQuantity": "Otomatik Ürün Miktarı Ekle",
     "AutoAddMapOptionsLevel": "Otomatik Eşleşme Seçenekleri Seviyesi Ekle",

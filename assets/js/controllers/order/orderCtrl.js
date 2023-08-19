@@ -92,7 +92,20 @@ function orderCtrl($scope, $log, $filter, $timeout, $translate, $modal, SweetAle
     //}
     //**************** MarketingPermission ******************//
 
-
+    $scope.printOrder = function (order) {
+        if (order) {
+            Restangular.all('ordertools/PrintReciept').getList({
+                OrderID: order.id,
+                StationName:localStorageService.get('ClientName')
+            }).then(function (resp) {
+                $scope.ShowObject = true;
+                toaster.pop('success', 'Order Printed');
+            }, function (response) {
+                $scope.ShowObject = true;
+                toaster.pop('error', 'Order Printing Error', response.data.ExceptionMessage);
+            });
+        }
+    };
     $scope.isorderpayeds = function (OrderID) {
         Restangular.one('ordertools/isorderpayed').get({
             OrderID: $stateParams.id
@@ -704,6 +717,7 @@ function orderCtrl($scope, $log, $filter, $timeout, $translate, $modal, SweetAle
                     $rootScope.allowNavigation();
                     $scope.CallReason(1, 'new');
                     $scope.ClearCallerID();
+                    $scope.printOrder();
                     userService.landingPage(false);
                 }, function (restresult) {
                     toaster.pop('Warning', $translate.instant('orderfile.OrderFailed'), restresult.data.ExceptionMessage);

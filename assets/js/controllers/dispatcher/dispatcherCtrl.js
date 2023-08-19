@@ -1,5 +1,5 @@
 ﻿app.controller('dispatcherCtrl', dispatcherCtrl);
-function dispatcherCtrl($scope, $log, $interval, $timeout, amMoment, $filter, $modal, SweetAlert, Restangular, ngTableParams, toaster, $window, $stateParams, $rootScope, $location, $anchorScroll, $translate, userService, ngnotifyService, $element) {
+function dispatcherCtrl($scope, $log, $interval, $timeout, amMoment, localStorageService, $filter, $modal, SweetAlert, Restangular, ngTableParams, toaster, $window, $stateParams, $rootScope, $location, $anchorScroll, $translate, userService, ngnotifyService, $element) {
     $rootScope.uService.EnterController("dispatcherCtrl");
     var dis = this;
     //$scope.oneAtATime = true;
@@ -276,13 +276,15 @@ function dispatcherCtrl($scope, $log, $interval, $timeout, amMoment, $filter, $m
     };
     $scope.RePrintOrder = function (OrderID) {
         Restangular.all('ordertools/PrintLabels').getList({
-            OrderID: OrderID
+            OrderID: OrderID,
+            StationName:localStorageService.get('ClientName')
         }).then(function (_orderItems) {
             toaster.pop('success', $translate.instant('dispatcherfile.LabelPrintingAgain'));
         }, function (response) {
             toaster.pop('error', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
         });
     };
+
     $scope.homedeliveryOrder = function () {
         location.href = '#/app/orders/personpage/list';
     };

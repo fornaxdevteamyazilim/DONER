@@ -43,6 +43,13 @@ function pickupCtrl($scope, $log, $modal, Restangular, $filter, SweetAlert, ngTa
         $scope.hnrorders = $translate.instant('main.HNRORDERS');
         $scope.stafforders = $translate.instant('main.STAFFORDERS');
         $scope.orderdetails = $translate.instant('main.ORDERDETAILS');
+        $scope.trOrderSource= $translate.instant('main.ORDERSOURCE');
+        $scope.getir = $translate.instant('main.GETIRSTATUS');
+        $scope.trendyol = $translate.instant('main.TRENDYOLSTATUS');
+        $scope.migros = $translate.instant('main.MIGROSSTATUS');
+        $scope.yemeksepeti = $translate.instant('main.YSSTATUS');
+
+        
 
     };
     $scope.translate();
@@ -243,7 +250,9 @@ function pickupCtrl($scope, $log, $modal, Restangular, $filter, SweetAlert, ngTa
     };
     $scope.ordersources = [];
     $scope.loadEntities('ordersource', 'ordersources');
-
+    $scope.Back = function () {
+        $window.history.back();
+    };
     $scope.$on('$destroy', function () {
         tranlatelistener();
         $element.remove();

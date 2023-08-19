@@ -1,10 +1,10 @@
 ﻿var app = angular
   .module('ropngSSApp', ['dx', 'ngStorage'])
-    .controller('SSAppCtrl', function ($scope, $localStorage, $interval, $rootScope, $element) {
+    .controller('SSAppCtrl', function ($scope, $localStorage, $interval) {
       $scope.$storage = $localStorage.$default({
-          customerItems: [],
+          customerItems: []
       });
-      var pages=['hutla-katla','hutla-katlas','hutla-katlass','page-active'];
+      var pages=['hutla-katla','hutla-katlas','hutla-katlass','page-active'];//,'sosyal-mesafe','sosyal-mesafe2','sosyal-mesafe3'];
       var pageIndex=0;
       $scope.bgIndex = pages[pageIndex];
       $interval(function () {

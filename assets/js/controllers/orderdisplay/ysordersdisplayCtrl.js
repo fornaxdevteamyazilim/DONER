@@ -3,11 +3,11 @@ function ysordersdisplayCtrl($rootScope, $scope, $log, $modal, $interval, Restan
     $rootScope.uService.EnterController("ysordersdisplayCtrl");
     userService.userAuthorizated()
     $scope.orders = [];
-    var NewYSOrderfresh = (userService.userIsInRole("CALLCENTER") || userService.userIsInRole("CCMANAGER") || userService.userIsInRole("CCBACKOFFICE")|| userService.userIsInRole("CCSIKAYET")) ?
+    var NewYSOrderfresh = (userService.isAdmin() ||userService.userIsInRole("CALLCENTER")  || userService.userIsInRole("Admin") || userService.userIsInRole("CCMANAGER") || userService.userIsInRole("CCBACKOFFICE")|| userService.userIsInRole("CCSIKAYET")) ?
         $scope.$on('YSOrderUpdate', function (event, data) { $scope.getYSorder(); }) : $scope.$on('YSOrder', function (event, data) { $scope.getYSorder(); });
     $scope.getYSorder = function () {
         Restangular.all('YemekSepetiOrderMap').getList({
-            search: $rootScope.user.StoreID ? 'YemekSepetiOrderStateID < 5 and StoreID=' + $rootScope.user.StoreID :'YemekSepetiOrderStateID < 5'
+            search: 'YemekSepetiOrderStateID < 5'
         }).then(function (result) {
             $scope.orders = angular.copy(result);
         }, function (response) {

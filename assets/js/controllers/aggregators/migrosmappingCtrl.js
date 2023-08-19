@@ -211,6 +211,7 @@ function migrosmappingCtrl($rootScope, $scope, NG_SETTING, $translate, $element,
         columns: [
             { dataField: "id", caption: "id", visible: false },
             { dataField: "MigrosProductID", caption: $translate.instant('dxMigrosProduct.TrendyolProductID'), visible: false },
+            { dataField: "ChildName", caption: $translate.instant('dxTrendyolProduct.ChildName')},
             { dataField: "MigrosProductName", caption: $translate.instant('dxMigrosProduct.TrendyolProductName'),visibleIndex: 0,fixed: true },
             {
                 dataField: "ProductID", caption: $translate.instant('dxMigrosProduct.ProductID'), fixed: true,width: 200,    
@@ -238,7 +239,24 @@ function migrosmappingCtrl($rootScope, $scope, NG_SETTING, $translate, $element,
             { dataField: "FixedSize", caption: $translate.instant('dxMigrosProduct.FixedSize') },
             { dataField: "MapByPrototype", caption: $translate.instant('dxMigrosProduct.MapByPrototype') },
             { dataField: "SkipProduct", caption: $translate.instant('dxMigrosProduct.SkipProduct') },
-            { dataField: "AutoAddProductID", caption: $translate.instant('dxMigrosProduct.AutoAddProductID') },
+            { dataField: "AutoAddProductID", caption: $translate.instant('dxTrendyolProduct.AutoAddProductID') ,
+            lookup: {
+                valueExpr: "id",
+                displayExpr: "name",
+                searchMode:"contains",
+                dataSource: {
+                    store: DevExpress.data.AspNet.createStore({
+                        key: "id",
+                        loadUrl: NG_SETTING.apiServiceBaseUri + "/api/dxProduct" 
+                    }),
+                    sort: "name",
+                    headerFilter: { allowSearch: true }
+                },
+                calculateSortValue: function (data) {
+                    var value = this.calculateCellValue(data);
+                    return this.lookup.calculateCellValue(value);
+                }  
+            },},
             { dataField: "AutoAddMapToOption", caption: $translate.instant('dxMigrosProduct.AutoAddMapToOption') },
             { dataField: "AutoAddProductQuantity", caption: $translate.instant('dxMigrosProduct.AutoAddProductQuantity') },
             { dataField: "AutoAddMapOptionsLevel", caption: $translate.instant('dxMigrosProduct.AutoAddMapOptionsLevel') },

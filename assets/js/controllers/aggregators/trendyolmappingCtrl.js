@@ -230,6 +230,7 @@ function trendyolmappingCtrl($rootScope, $scope, NG_SETTING, $translate, $elemen
         columns: [
             { dataField: "id", caption: "id", visible: false },
             { dataField: "TrendyolProductID", caption: $translate.instant('dxTrendyolProduct.TrendyolProductID'), visible: false },
+            { dataField: "ChildName", caption: $translate.instant('dxTrendyolProduct.ChildName')},
             { dataField: "TrendyolProductName", caption: $translate.instant('dxTrendyolProduct.TrendyolProductName'),visibleIndex: 0,fixed: true },
             {
                 dataField: "ProductID", caption: $translate.instant('dxTrendyolProduct.ProductID'), fixed: true,width: 200,    
@@ -257,7 +258,24 @@ function trendyolmappingCtrl($rootScope, $scope, NG_SETTING, $translate, $elemen
             { dataField: "FixedSize", caption: $translate.instant('dxTrendyolProduct.FixedSize') },
             { dataField: "MapByPrototype", caption: $translate.instant('dxTrendyolProduct.MapByPrototype') },
             { dataField: "SkipProduct", caption: $translate.instant('dxTrendyolProduct.SkipProduct') },
-            { dataField: "AutoAddProductID", caption: $translate.instant('dxTrendyolProduct.AutoAddProductID') },
+            { dataField: "AutoAddProductID", caption: $translate.instant('dxTrendyolProduct.AutoAddProductID') ,
+            lookup: {
+                valueExpr: "id",
+                displayExpr: "name",
+                searchMode:"contains",
+                dataSource: {
+                    store: DevExpress.data.AspNet.createStore({
+                        key: "id",
+                        loadUrl: NG_SETTING.apiServiceBaseUri + "/api/dxProduct" 
+                    }),
+                    sort: "name",
+                    headerFilter: { allowSearch: true }
+                },
+                calculateSortValue: function (data) {
+                    var value = this.calculateCellValue(data);
+                    return this.lookup.calculateCellValue(value);
+                }  
+            },},
             { dataField: "AutoAddMapToOption", caption: $translate.instant('dxTrendyolProduct.AutoAddMapToOption') },
             { dataField: "AutoAddProductQuantity", caption: $translate.instant('dxTrendyolProduct.AutoAddProductQuantity') },
             { dataField: "AutoAddMapOptionsLevel", caption: $translate.instant('dxTrendyolProduct.AutoAddMapOptionsLevel') },
