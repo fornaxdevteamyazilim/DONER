@@ -1,5 +1,5 @@
 ﻿app.controller('orderdetailsCtrl', orderdetailsCtrl);
-function orderdetailsCtrl($scope, $rootScope, $log, $translate, $http, $modal, $interval, $filter, Restangular, $q, $stateParams, NG_SETTING, ngTableParams, SweetAlert, toaster, $window, $location, userService, ngnotifyService, $element, $translate) {
+function orderdetailsCtrl($scope, $rootScope, $log, $translate, $http, $modal, $interval, $filter, Restangular, $q, $stateParams, NG_SETTING, ngTableParams, SweetAlert, toaster, $window, $location, userService, ngnotifyService, $element, $translate,localStorageService) {
     $rootScope.uService.EnterController("orderdetailsCtrl");
     userService.userAuthorizated();
     $scope.StoreData = {};
@@ -353,7 +353,8 @@ function orderdetailsCtrl($scope, $rootScope, $log, $translate, $http, $modal, $
     };
     $scope.RePrintOrder = function (OrderID) {
         Restangular.all('ordertools/PrintLabels').getList({
-            OrderID: OrderID
+            OrderID: OrderID,
+            StationName:localStorageService.get('ClientName')
         }).then(function (_orderItems) {
             toaster.pop('success', $translate.instant('yemeksepetifile.PrintedAgain'));
         }, function (response) {

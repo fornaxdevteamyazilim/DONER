@@ -1,6 +1,6 @@
 var app = angular
   .module("ropngCDApp", ["ngAudio"])
-  .controller("CDAppCtrl", function ($scope, $location, ngAudio) {
+  .controller("CDAppCtrl", function ($scope, $location, ngAudio, $http) {
     //http://127.0.0.1:5502/customer-queue.html#?StoreID=100620224522
     var paramValue = $location.search();
     var connected = false;
@@ -10,8 +10,8 @@ var app = angular
     $scope.preparingOrders = [];
     $scope.preparedOrders = [];
     $scope.audio = ngAudio.load("assets/sound/doorbell.mp3");
-    $scope.audio.volume = 0.8;
-    $scope.audio.pause();
+    $scope.audio.volume = 1.0;
+    //$scope.audio.pause();
     var connection = $.hubConnection("http://185.169.53.183:9065");
     var proxy = connection.createHubProxy("NGNotifyHub");
     proxy.on("CustomerQueueDataUpdate", onCustomerQueueDataUpdate);
@@ -22,6 +22,19 @@ var app = angular
       console.log("Server time: " + serverdate);
       //$rootScope.$broadcast("ServerTime", serverdate);
     });
+    $http({
+      method: "GET",
+      url:
+        "http://185.169.53.183:9065/api/tools/customerqueue?StoreID=" + groupName,
+    }).then(
+      function mySuccess(response) {
+        onCustomerQueueDataUpdate(response.data);
+        $scope.audio.play();
+      },
+      function myError(response) {
+        //$scope.myWelcome = response.statusText;
+      }
+    );
     connection
       .start()
       .done(connectedToSignalR)
@@ -51,17 +64,24 @@ var app = angular
     function onCustomerQueueDataUpdate(data) {
       console.log("client.CustomerQueueDataUpdate " + JSON.stringify(data));
 
-        // const removed = before.filter((x: any) => !after.includes(x));
-        // const added = after.filter((x: any) => !before.includes(x));
-      var added = data.PreparedOrders.filter(o1 => !$scope.preparedOrders.some(o2 => o1.OrderID === o2.OrderID));
-        
-        console.log('Added Prepared Order:'+added);
-      if (added.length>0) {
-        $scope.audio.play();
+      // const removed = before.filter((x: any) => !after.includes(x));
+      // const added = after.filter((x: any) => !before.includes(x));
+      var added = data.PreparedOrders.filter(
+        (o1) => !$scope.preparedOrders.some((o2) => o1.OrderID === o2.OrderID)
+      );
+
+      if (added.length > 0) {
+        console.log("Added Prepared Order:" + added);
+        for (var i = 0; i < added.length; i++) {
+          $scope.audio.play();
+        }
+      }
+      else {
+        console.log("No new prepared Orders!");
       }
       $scope.preparingOrders = data.PreparingOrders;
       $scope.preparedOrders = data.PreparedOrders;
-      $scope.$apply();
+      //$scope.$apply();
     }
     proxy.connection.connectionSlow(function () {
       console.log(
