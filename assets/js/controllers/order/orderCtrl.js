@@ -717,7 +717,8 @@ function orderCtrl($scope, $log, $filter, $timeout, $translate, $modal, SweetAle
                     $rootScope.allowNavigation();
                     $scope.CallReason(1, 'new');
                     $scope.ClearCallerID();
-                    $scope.printOrder();
+                    $scope.printOrder($scope._order);
+                    $scope.printOrder($scope._order);
                     userService.landingPage(false);
                 }, function (restresult) {
                     toaster.pop('Warning', $translate.instant('orderfile.OrderFailed'), restresult.data.ExceptionMessage);
