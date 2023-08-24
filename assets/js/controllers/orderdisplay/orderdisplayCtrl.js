@@ -98,6 +98,16 @@ function orderdisplayCtrl($scope, $log, $modal, $interval, Restangular, ngTableP
             Restangular.restangularizeElement('', ordertosave, 'order');
             ordertosave.put().then(function (result) {
                 toaster.pop('success', $translate.instant('orderfile.OrderConfirmed '));
+                Restangular.all('ordertools/PrintReciept').getList({
+                    OrderID: ordertosave.id,
+                    StationName:localStorageService.get('ClientName')
+                }).then(function (resp) {
+                    //$scope.ShowObject = true;
+                    //toaster.pop('success', 'Order Printed');
+                }, function (response) {
+                    //$scope.ShowObject = true;
+                    //toaster.pop('error', 'Order Printing Error', response.data.ExceptionMessage);
+                });
                 $scope.LoadOrders();
                 $rootScope.$broadcast('AskingOrder');
             }, function () {
