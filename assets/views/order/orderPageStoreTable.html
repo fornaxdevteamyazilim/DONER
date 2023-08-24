@@ -859,8 +859,8 @@ hr.new5 {
         <label class="col-lg-10 col-md-10 col-sm-10 col-xs-10 text-bold text-extra-large text-uppercase"
           style="color: rgb(156, 154, 154);"
           ng-class="{'strike': _order.Amount < proitem.Promotion.PromotionRequirementParameter , 'text-danger': _order.Amount < proitem.Promotion.PromotionRequirementParameter}">
-          <strong> * {{:: proitem.Promotion.name}}&nbsp; </strong>:<label ng-repeat="items in OrderPromotion">
-            {{items.Amount| number : 2}} {{:: 'main.CURRENCY_SYMBOL' |
+          <strong> * {{:: proitem.Promotion.name}}&nbsp; </strong>:<label>
+            {{proitem.Amount| number : 2}} {{:: 'main.CURRENCY_SYMBOL' |
             translate}}</label><hr>
         </label>
         <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ng pull-left text-extra-large">

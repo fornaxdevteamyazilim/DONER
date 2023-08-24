@@ -8,6 +8,10 @@ app.factory('authInterceptorService', ['$q', '$injector', '$location', 'localSto
         if (authData) {
             config.headers.Authorization = 'Bearer ' + authData.token;
         }
+        var clientName = localStorageService.get('ClientName');
+        if (clientName) {
+            config.headers["x-ropng-clientname"] = clientName;
+        }
         return config;
     }
     var _responseError = function (rejection) {

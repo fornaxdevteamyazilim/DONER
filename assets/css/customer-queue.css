@@ -28,12 +28,12 @@ iframe {
 }
 
 .queue-number {
-  font-size: 4.0vw;
-  font-weight: 800;
+  font-size: 7.0vw;
+  font-weight: 600;
 }
 
 .queue-number-sm {
-  font-size: 3vh;
+  font-size: 6vh;
 }
 
 .list-group-item.active {
