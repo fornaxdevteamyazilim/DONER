@@ -244,7 +244,7 @@ app.factory('userService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
             else if (userServiceFactory.userIsInRole("CCMANAGER") || userServiceFactory.userIsInRole("CALLCENTER") || userServiceFactory.userIsInRole("Alonet")) {
                 $location.path('/app/orders/personpage/list');
             }
-            else if (userServiceFactory.userIsInRole("Manager") || userServiceFactory.userIsInRole("AREAMANAGER") || userServiceFactory.userIsInRole("Manager_v2") ||userServiceFactory.userIsInRole("Admin")) {
+            else if (userServiceFactory.userIsInRole("Manager") || userServiceFactory.userIsInRole("GENERALMANAGER") || userServiceFactory.userIsInRole("Manager_v2") ||userServiceFactory.userIsInRole("Admin")) {
                 //$location.path('/app/dashboard');
                 $location.path('app/reports/giroreports/trends');
             }
@@ -316,6 +316,7 @@ app.factory('userService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
                     { id: 700000021855, name: 'Oprasyon', isActive: true , isDriver: true},
                     { id: 700000120844, name: 'Cashier', isActive: true , isDriver: true},
                     { id: 700000021853, name: 'Admin', isActive: true , isDriver: true},
+                    { id: 700000534014, name: 'GENERALMANAGER', isActive: true , isDriver: true},
                    
                 ];
             }

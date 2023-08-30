@@ -95,7 +95,7 @@ function trendsCtrl($scope, Restangular, toaster, $interval, $http, NG_SETTING, 
         },
         columns: [
             { dataField: "Store", caption: $translate.instant('trends.Store'), visibleIndex: 0, fixed: true, dataType: "string", sortIndex: 0, sortOrder: "asc" },
-            { dataField: "RegionManager", caption: $translate.instant('trends.Region'), visible: false, dataType: "string" },
+            { dataField: "RegionManager", caption: $translate.instant('trends.Region'), visible: false, dataType: "string",fixed: true, },
             { dataField: "SalesRank", caption: $translate.instant('trends.Rank'), format: { type: "fixedPoint", precision: 0 } },
             { dataField: "RegionalSalesRank", caption: $translate.instant('trends.regionRank'), format: { type: "fixedPoint", precision: 0 } },
             {

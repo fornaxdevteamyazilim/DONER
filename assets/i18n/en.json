@@ -1936,6 +1936,7 @@
     "AVROUT": "Out",
     "AVRDELIVERYY": "Delivery",
     "AVRBELOW30": "Delivery < 30",
+    "AVRBELOW45": "Delivery < 45",
     "YSCANCELREASON": "Ys Cancel Reason",
     "TRENDYOLCANCELREASON": "Trendyol Cancel Reason",
     "MIGROSCANCELREASON": "Migros Cancel Reason",
@@ -4767,8 +4768,14 @@
     "Trendyol_StoreID": "Trendyol StoreID",
     "Trendyol_sid": "Trendyol sid",
     "Trendyol_Status": "Trendyol Status",
-    "Active":"Active",
-    "Passive":"Passive"
+    "Active": "Active",
+    "Passive": "Passive",
+    "Migros": "Migros",
+    "Migros_Active": "Migros Active",
+    "Migros_Enabled": "Migros Enabled",
+    "Migros_ServiceTime": "Migros Service Time",
+    "Migros_Name": "Migros Name",
+    "Migros_StoreID": "Migros Store ID"
   },
   "orderrouted": {
     "OrderID": "Order ID",

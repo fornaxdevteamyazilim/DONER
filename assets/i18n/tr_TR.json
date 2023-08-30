@@ -1956,6 +1956,7 @@
     "AVROUT": "Çıkış",
     "AVRDELIVERYY": "Teslim",
     "AVRBELOW30": "Teslim < 30",
+     "AVRBELOW45": "Teslim < 45",
     "YSCANCELREASON": "YS İptal Sebebi",
     "TRENDYOLCANCELREASON": "Trendyol İptal Sebebi",
     "MIGROSCANCELREASON": "Migros İptal Sebebi",
@@ -3048,7 +3049,7 @@
         "orders": "Onay Bekleyen Siparişler",
         "mapping": "Getir - Eşleştirmeler",
         "trendyolmapping": "Trendyol - Eşleştirmeler",
-         "migrosmapping": "Migros - Eşleştirmeler",
+        "migrosmapping": "Migros - Eşleştirmeler",
         "storeaggregatorstatus": "Restoran Entegrasyon Ayarları",
         "AggregatorStoreStatus": "Sipariş Kanal Ayarları"
       },
@@ -4784,7 +4785,13 @@
     "Trendyol_sid": "Trendyol Sıd",
     "Trendyol_Status": "Trendyol Durumu",
     "Active":"Açık",
-    "Passive":"Kapalı"
+    "Passive":"Kapalı",
+    "Migros": "Migros",
+    "Migros_Active": "Durumu",
+    "Migros_Enabled": "NG Durumu",
+    "Migros_ServiceTime": "Servis Süresi",
+    "Migros_Name": "YemekSepeti Adı ",
+    "Migros_StoreID": "YemekSepeti Restoran Id"
     
   },
   "orderrouted": {

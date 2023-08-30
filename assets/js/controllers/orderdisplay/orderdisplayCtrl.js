@@ -1,5 +1,5 @@
 ﻿app.controller('orderdisplayCtrl', orderdisplayCtrl);
-function orderdisplayCtrl($scope, $log, $modal, $interval, Restangular, ngTableParams, $timeout, SweetAlert, toaster, $window, $rootScope, $location, $translate, userService, $filter, $element, ngnotifyService) {
+function orderdisplayCtrl($scope, $log, $modal, $interval, Restangular, ngTableParams, $timeout, SweetAlert,localStorageService , toaster, $window, $rootScope, $location, $translate, userService, $filter, $element, ngnotifyService) {
     $rootScope.uService.EnterController("orderdisplayCtrl");
     $scope.orders = [];
     userService.userAuthorizated();
@@ -98,25 +98,13 @@ function orderdisplayCtrl($scope, $log, $modal, $interval, Restangular, ngTableP
             Restangular.restangularizeElement('', ordertosave, 'order');
             ordertosave.put().then(function (result) {
                 toaster.pop('success', $translate.instant('orderfile.OrderConfirmed '));
+                
                 Restangular.all('ordertools/PrintReciept').getList({
                     OrderID: ordertosave.id,
-                    StationName:localStorageService.get('ClientName')
-                }).then(function (resp) {
-                    //$scope.ShowObject = true;
-                    //toaster.pop('success', 'Order Printed');
-                }, function (response) {
-                    //$scope.ShowObject = true;
-                    //toaster.pop('error', 'Order Printing Error', response.data.ExceptionMessage);
+                  
                 });
                 Restangular.all('ordertools/PrintReciept').getList({
                     OrderID: ordertosave.id,
-                    StationName:localStorageService.get('ClientName')
-                }).then(function (resp) {
-                    //$scope.ShowObject = true;
-                    //toaster.pop('success', 'Order Printed');
-                }, function (response) {
-                    //$scope.ShowObject = true;
-                    //toaster.pop('error', 'Order Printing Error', response.data.ExceptionMessage);
                 });
                 $scope.LoadOrders();
                 $rootScope.$broadcast('AskingOrder');

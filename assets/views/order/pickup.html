@@ -54,7 +54,7 @@
                       
                         <td data-title="trOrderNumber" data-sortable="'OrderNumber'" width="7%">
                             <span ng-if="order.OrderTypeID != 0">
-                                <label class="tooltips ti-thought hidden-sm hidden-xs" tooltip="{{::order.OrderProducts}}" tooltip-placement="right"></label>
+                                <label class="tooltips ti-thought hidden-sm hidden-xs" tooltip="{{::order.OrderProducts}}"   ng-click="SelectItem(order.id)" tooltip-placement="right"></label>
                                 {{ :: order.OrderNumber  }}
                             </span>
                         </td>
@@ -74,17 +74,17 @@
                             {{ :: order.persons[0].Person }} <span ng-if="::order.Alias">({{::order.Alias}})</span>
                         </td>
                    
-                        <!-- <td class="text-capitalize" data-title="trOrderType" data-sortable="'OrderTypeID'" width="10%">
-                            {{ :: order.OrderType}}
+                        <td class="text-capitalize" data-title="trPaymentStatus" data-sortable="'PaymentStatus'" width="10%">
+                            {{ :: order.PaymentStatus}}
                         </td>
-                    -->
+                   
                         <td data-title="trAmount" data-sortable="'Amount'" width="10%">
                             {{:: order.Amount|number:2}} <span>{{:: 'main.CURRENCY_SYMBOL' | translate}}</span>
                         </td>
                         <td style="white-space: nowrap;grid-column-sizing:auto;"  width="10%">
                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="user.restrictions.pickuppaymentbuttons=='Enable'">
-                                <button class="btn btn-o btn-success ti-credit-card pull-left" ng-click="OrderPaymentDeteails(order)" ng-disabled="::order.PaymentStatusID==0"></button>
-                                <button class="btn btn-o btn-primary ti-share pull-right" ng-click="SaveOpenOrders(order)" ng-disabled="::order.PaymentStatusID==0 || order.OrderStateID==5"></button>
+                                <button class="btn btn-o btn-success ti-credit-card pull-left" ng-click="OrderPaymentDeteails(order)" ng-disabled="::order.PaymentStatusID==1"></button>
+                                <button class="btn btn-o btn-primary ti-share pull-right" ng-click="SaveOpenOrders(order)" ng-disabled="::order.PaymentStatusID==1 && order.OrderStateID==4"></button>
                             </div>
                         </td>
                     </tr>

@@ -6,6 +6,7 @@ function yemeksepetirejectreasonCtrl($rootScope, $scope, $log, $modal, $filter, 
         $scope.trReason = $translate.instant('main.REASONS');
         $scope.trCommands = $translate.instant('main.COMMANDS');
         $scope.trIsActive = $translate.instant('main.ISACTIVE');
+        $scope.trDescription = $translate.instant('main.DESCRIPTION');
     }
     $scope.translate();
     var deregistration = $scope.$on('$translateChangeSuccess', function (event, data) {// ON LANGUAGE CHANGED

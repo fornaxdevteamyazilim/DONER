@@ -56,6 +56,9 @@ function pickupCtrl($scope, $log, $modal, Restangular, $filter, SweetAlert, ngTa
     var tranlatelistener = $scope.$on('$translateChangeSuccess', function (event, data) {// ON LANGUAGE CHANGED
         $scope.translate();
     });
+    $scope.SelectItem = function (item) {
+        $location.path('app/orders/orderDetail/' + item.id);
+    };
     $scope.OrderPaymentDeteails = function (item) {
         Restangular.all('orderperson').getList({
             pageNo: 1,

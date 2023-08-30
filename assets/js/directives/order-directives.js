@@ -656,7 +656,7 @@ function optionitemCombo($compile) {
         scope: true,
         template:
             //large & medium
-            "<h4  class='hideContentHeader col-lg-9 col-md-9  visible-lg visible-md' content-click >" +
+            "<h4  class='hideContentHeader col-lg-9 col-md-9  visible-lg visible-md visible-xs' content-click >" +
             "{{:: option.name}}" +
             "</h4>" +
             "<h4 class='col-lg-3 col-md-3 visible-lg visible-md'>" +

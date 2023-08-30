@@ -28,6 +28,11 @@
                             {{ item.Reason }}
                         </span>
                     </td>
+                    <td data-title="trDescription" data-sortable="'Description'" ng-click="rowform.$show()" class="ng">
+                        <span editable-text="item.Description" e-name="Description" e-form="rowform" e-ng-model="item.Description" e-style="width:20vw;">
+                            {{ item.Description }}
+                        </span>
+                    </td>
                     <td data-title="trIsActive" data-sortable="'isActive'" ng-click="rowform.$show()" class="ng">
                         <span editable-checkbox="item.isActive" e-name="isActive" e-form="rowform" e-ng-model="item.isActive" e-style="width:4vw;">
                             {{ item.isActive }}
