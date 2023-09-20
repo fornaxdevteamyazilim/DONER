@@ -183,7 +183,7 @@
                             </tr>
                         </table>
                         <div>
-                            <a class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-minus-circle pull-right" ng-show="ComplaintActions == true" ng-click="closecomplaint(item)">
+                            <a ng-if="user.restrictions.closecomplaint=='Enable'" class="btn btn-primary btn-wide btn-scroll btn-scroll-top fa fa-minus-circle pull-right" ng-show="ComplaintActions == true" ng-click="closecomplaint(item)">
                                 <span translate="main.CLOSECOMPLAINT"></span>
                             </a>
                             <hr />

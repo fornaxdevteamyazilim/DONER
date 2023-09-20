@@ -91,6 +91,7 @@ function orderlistCtrl($scope, $log, $modal, Restangular, ngTableParams, SweetAl
         if (ao.search && ao.search.length > 1) {
             $scope.hideCombo = true;
             result.push("ExtendedSearch=" + ao.search);
+            result.push("ExtendedSearch=" + ao.search);
             return result;
         } else {
             if (!userService.isAdmin() &&!userService.userIsInRole("CALLCENTER") && !userService.userIsInRole("CMRESTORANHATTI") && !userService.userIsInRole("Admin") && !userService.userIsInRole("CCMANAGER") && !userService.userIsInRole("MemberAdmin")) {

@@ -103,8 +103,7 @@
             </div>
         </a>
     </li>
-    <li ng-class="{'active open':$state.includes('app.getirstats')}"
-        ng-if="user.restrictions.getirstats=='Enable'">
+    <li ng-class="{'active open':$state.includes('app.getirstats')}" ng-if="user.restrictions.getirstats=='Enable'">
         <a ui-sref="app.getirstats">
             <div class="item-content">
                 <div class="item-media">
@@ -293,31 +292,31 @@
             <li ui-sref-active="active" ng-if="user.restrictions.productlist=='Enable'">
                 <a ui-sref="app.product.product.list">
                     <i class="ti-view-list"></i> <span class="title"
-                                                       translate="sidebar.nav.product.PRODUCTDEFINITOIN"></span>
+                        translate="sidebar.nav.product.PRODUCTDEFINITOIN"></span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.productlist=='Enable'">
                 <a ui-sref="app.product.product.images">
-                    <i class="ti-view-list"></i> 
+                    <i class="ti-view-list"></i>
                     <span class="title" translate="sidebar.nav.product.PRODUCTIMAGES"></span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.productlist=='Enable'">
                 <a ui-sref="app.product.productdisable">
                     <i class="ti-view-list"></i> <span class="title"
-                                                       translate="sidebar.nav.product.PRODUCTDISABLE"></span>
+                        translate="sidebar.nav.product.PRODUCTDISABLE"></span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.productrecomendedpromotion=='Enable'">
                 <a ui-sref="app.product.productrecomendedpromotion">
                     <i class="ti-view-list"></i> <span class="title"
-                                                       translate="sidebar.nav.product.PRODUCTRECOMENDEDPROMOTION"></span>
+                        translate="sidebar.nav.product.PRODUCTRECOMENDEDPROMOTION"></span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.productpricelist=='Enable'">
                 <a ui-sref="app.product.product.productprice.list">
                     <i class="ti-view-list"></i> <span class="title"
-                                                       translate="sidebar.nav.product.PRODUCTPRICELIST"></span>
+                        translate="sidebar.nav.product.PRODUCTPRICELIST"></span>
                 </a>
             </li>
         </ul>
@@ -709,11 +708,13 @@
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.aggregatorsmapping=='Enable'">
                 <a ui-sref="app.aggregators.migrosmapping">
-                    <i class="ti-settings"></i> <span class="title" translate="sidebar.nav.aggregator.migrosmapping">Migros Mapping</span>
+                    <i class="ti-settings"></i> <span class="title"
+                        translate="sidebar.nav.aggregator.migrosmapping">Migros Mapping</span>
                 </a>
             </li>
             <li ui-sref-active="active">
-                <a ui-sref="app.aggregators.storeaggregatorstatus" ng-if="user.restrictions.storeaggregatorstatus=='Enable'" >
+                <a ui-sref="app.aggregators.storeaggregatorstatus"
+                    ng-if="user.restrictions.storeaggregatorstatus=='Enable'">
                     <i class="ti-settings"></i> <span class="title"
                         translate="sidebar.nav.aggregator.storeaggregatorstatus">storeaggregatorstatus Mapping</span>
                 </a>
@@ -913,7 +914,7 @@
                                 İŞLEMLERİ</span>
                         </a>
                     </li>
-                    
+
                 </ul>
             </li>
             <li ng-if="user.restrictions.otherreports=='Enable'">
@@ -1019,7 +1020,7 @@
                                 translate="sidebar.nav.reports.FSRACTUALTHEORETICAL">Transactions</span>
                         </a>
                     </li>
-                  
+
 
                 </ul>
             </li>
@@ -1236,8 +1237,8 @@
                         </a>
                     </li>
                     <li ui-sref-active="active">
-                        <a ui-sref="app.reports.productsalesreports.productsalesstatistics"
-                            ng-if="user.restrictions.productsalesstatistics=='Enable'">
+                        <a ui-sref="app.reports.productsalesreports.productsalesstatisticspivot"
+                            ng-if="user.restrictions.productsalesstatisticspivot=='Enable'">
                             <i class="ti-files"></i><span class="title"
                                 translate="sidebar.nav.reports.PRODUCTSALESSTATISTICSPIVOT">Ürün Satış Ýstatistikleri
                                 (Adet)- Pivot</span>
@@ -1486,6 +1487,13 @@
                         </a>
                     </li>
                     <li ui-sref-active="active">
+                        <a ui-sref="app.reports.ordersreports.promotioncodedetails"
+                            ng-if="user.restrictions.orderpromotionreport=='Enable'">
+                            <i class="ti-files"></i><span class="title"
+                                translate="sidebar.nav.reports.PROMOTIONCODEDETAILS">Sipariþ Ýndirim Raporu</span>
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
                         <a ui-sref="app.reports.ordersreports.ordertotals"
                             ng-if="user.restrictions.ordertotals=='Enable'">
                             <i class="ti-files"></i><span class="title"
@@ -1499,13 +1507,13 @@
                                 translate="sidebar.nav.reports.ORDERLASTATES">Sipariþ Durumları Toplamı</span>
                         </a>
                     </li>
-                    <li ui-sref-active="active">
+                    <!-- <li ui-sref-active="active">
                         <a ui-sref="app.reports.callcenterreports.hourlyorders"
                             ng-if="user.restrictions.hourlyorders=='Enable'">
                             <i class="ti-files"></i><span class="title"
                                 translate="sidebar.nav.reports.HOURLYORDERS">Saatlik Sipariþler (Adet)</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li ui-sref-active="active">
                         <a ui-sref="app.reports.ordersreports.changeorderpayments"
                             ng-if="user.restrictions.changeorderpayments=='Enable'">
@@ -1532,7 +1540,8 @@
                         <a ui-sref="app.reports.ordersreports.DriversTransactions">
                             <!-- ng-if="user.restrictions.orderrouted=='Enable'" -->
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.DRIVERSTRANSACTIONS">Kuriye Taşıma İstatistikleri Raporu</span>
+                                translate="sidebar.nav.reports.DRIVERSTRANSACTIONS">Kuriye Taşıma İstatistikleri
+                                Raporu</span>
                         </a>
                     </li>
                 </ul>
@@ -1718,7 +1727,8 @@
                         </a>
                     </li>
                     <li ui-sref-active="active">
-                        <a ui-sref="app.reports.callcenterreports.customermaps" ng-if="user.restrictions.customermaps=='Enable'">
+                        <a ui-sref="app.reports.callcenterreports.customermaps"
+                            ng-if="user.restrictions.customermaps=='Enable'">
                             <i class="ti-files"></i><span class="title"
                                 translate="sidebar.nav.reports.CUSTOMERMAPS">customer maps</span>
                         </a>
@@ -1770,8 +1780,8 @@
                             <i class="ti-pencil-alt"></i>
                         </div>
                         <div class="item-inner">
-                            <span class="title" translate="sidebar.nav.reports.INTEGRATIONINCOMINGORDERS">Entegrasyonla Gelen Siparişler</span><i
-                                class="icon-arrow"></i>
+                            <span class="title" translate="sidebar.nav.reports.INTEGRATIONINCOMINGORDERS">Entegrasyonla
+                                Gelen Siparişler</span><i class="icon-arrow"></i>
                         </div>
                     </div>
                 </a>
@@ -1795,10 +1805,17 @@
                     </li>
                     <li ui-sref-active="active">
                         <a ui-sref="app.reports.callcenterreports.aggregatorordersreport"
-                        ng-if="user.restrictions.aggregatorordersreport=='Enable'">
+                            ng-if="user.restrictions.aggregatorordersreport=='Enable'">
                             <i class="ti-files"></i><span class="title"
                                 translate="sidebar.nav.reports.AGGREGATORORDERSREPORT">Call Center Product Sales
                                 Scoreboard</span>
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="app.reports.callcenterreports.aggregatorordersrawdatareport">
+                            <i class="ti-files"></i><span class="title"
+                                translate="sidebar.nav.reports.AGGREGATORORDERSRAWDATAREPORT">Aggregator Orders List
+                                Details</span>
                         </a>
                     </li>
                 </ul>
@@ -1901,15 +1918,15 @@
                     </li>
                     <li ui-sref-active="active">
                         <a ui-sref="app.reports.accounting.monthlysalesvsbudget"
-                        ng-if="user.restrictions.monthlysalesvsbudget=='Enable'"  >
+                            ng-if="user.restrictions.monthlysalesvsbudget=='Enable'">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.MONTHLYSALESVSBUDGET">Aylik Satişlar vs Butce Raporu</span>
+                                translate="sidebar.nav.reports.MONTHLYSALESVSBUDGET">Aylik Satişlar vs Butce
+                                Raporu</span>
                         </a>
                     </li>
                     <li ui-sref-active="active">
                         <a ui-sref="app.reports.accounting.weeklysalescompare"
-                           ng-if="user.restrictions.weeklysalescompare=='Enable'"
- >
+                            ng-if="user.restrictions.weeklysalescompare=='Enable'">
                             <i class="ti-files"></i><span class="title"
                                 translate="sidebar.nav.reports.WEEKLYSALESCOMPARE">Haftalik Satis Karsılastirmasi</span>
                         </a>
@@ -2119,7 +2136,7 @@
                         translate="sidebar.nav.addresses.STREETADDRESS">Adresler</span>
                 </a>
             </li>
-            
+
             <li ui-sref-active="active" ng-if="user.restrictions.indeximport=='Enable'">
                 <a ui-sref="app.specialoperations.indeximport">
                     <i class="ti-money"></i> <span class="title"
@@ -2240,16 +2257,14 @@
             </li>
         </ul>
     </li>
-    <li ng-class="{'active open':$state.includes('app.Carriers')}"
-        ng-if="user.restrictions.Carriers=='Enable'">
+    <li ng-class="{'active open':$state.includes('app.Carriers')}" ng-if="user.restrictions.Carriers=='Enable'">
         <a href="javascript:void(0)">
             <div class="item-content">
                 <div class="item-media">
                     <i class="ti-hand-open tooltips hidden-sm hidden-xs"></i>
                 </div>
                 <div class="item-inner">
-                    <span class="title" translate="sidebar.nav.Carriers.MAIN">Carrier</span><i
-                        class="icon-arrow"></i>
+                    <span class="title" translate="sidebar.nav.Carriers.MAIN">Carrier</span><i class="icon-arrow"></i>
                 </div>
             </div>
         </a>
@@ -2686,12 +2701,15 @@
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.restrictorderchangessystem=='Enable'">
                 <a ui-sref="app.help.document({ id: 'SiparisDegisikligiKisitlari' })">
-                    <i class="ti-check-box"></i> <span class="title" translate="sidebar.nav.help.RESTRICTORDERCHANGESINTHESYSTEM">Sipariş Değişikliği Kisitlamalari</span>
+                    <i class="ti-check-box"></i> <span class="title"
+                        translate="sidebar.nav.help.RESTRICTORDERCHANGESINTHESYSTEM">Sipariş Değişikliği
+                        Kisitlamalari</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.posinstallations=='Enable'">
                 <a ui-sref="app.help.document({ id: 'Poskurumlari' })">
-                    <i class="ti-check-box"></i> <span class="title" translate="sidebar.nav.help.POSINSTALLATIONS">Pos Kurumlari</span>
+                    <i class="ti-check-box"></i> <span class="title" translate="sidebar.nav.help.POSINSTALLATIONS">Pos
+                        Kurumlari</span>
                 </a>
             </li>
             <li ui-sref-active="active" ng-if="user.restrictions.ysentegrasyon=='Enable'">
@@ -2877,8 +2895,9 @@
                         translate="sidebar.nav.definitions.COMPLAINTSUBJECTS">Complaint Subjects</span>
                 </a>
             </li>
-            <li ui-sref-active="active" >
-                <a ui-sref="app.definitions.CashDrawerOpenReasons" ng-if="user.restrictions.CashDrawerOpenReasons=='Enable'">
+            <li ui-sref-active="active">
+                <a ui-sref="app.definitions.CashDrawerOpenReasons"
+                    ng-if="user.restrictions.CashDrawerOpenReasons=='Enable'">
                     <i class="ti-comment-alt"></i> <span class="title"
                         translate="sidebar.nav.definitions.CASHDRAWEROPENREASONS">Cash Drawer Open Reasons</span>
                 </a>

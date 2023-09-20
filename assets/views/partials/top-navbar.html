@@ -25,11 +25,11 @@
     </a>
 </div>
 <div  class="navbar-collapse collapse" collapse="navbarCollapsed" ng-init="navbarCollapsed = true" off-click="navbarCollapsed = true" off-click-if='!navbarCollapsed' off-click-filter="#menu-toggler">
-    <div class="text-bold text-dark pull-left  visible-lg visible-md"  ng-if="user.restrictions.ClientNames =='Enable'">
+    <div class="text-bold text-dark pull-left  visible-lg visible-md"  >
         <label class="margin-top-15" ng-click="ChangeExtensionNumber()"><i class="ti-user" style="font-size: 12px;"></i> {{user.Store.name}}  {{user.ClientName}} / {{user.UserExtensionNumber}}</label><br />
         <label><i class="ti-world"></i> {{user.UserRole.OrderSource.Department.Member.name}}</label><br />
     </div>
-    <div class="pull-left visible-sm visible-xs"  ng-if="user.restrictions.ClientNames =='Enable'">
+    <div class="pull-left visible-sm visible-xs"  >
         <label class="margin-top-15"><i class="ti-user"></i> {{user.Store.name}}</label> <br />
         <label ng-click="ChangeExtensionNumber()">{{user.ClientName}} / {{user.UserExtensionNumber}}</label>
     </div>

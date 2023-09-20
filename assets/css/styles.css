@@ -374,11 +374,17 @@ h5.over-title {
     width: 260px;
   }
 }
+@media only screen and (max-width: 991px) and (min-width: 767px) {
+  .navbar .navbar-header {
+    width: 60px;
+  }
+}
 @media (min-width: 992px) {
   .navbar .navbar-header {
     border-right: 1px solid #c8c7cc;
   }
 }
+
 .navbar .navbar-header a {
   line-height: 65px;
   height: 65px;
@@ -421,7 +427,7 @@ h5.over-title {
   padding-right: 15px !important;
   position: relative;
 }
-@media (min-width: 768px) {
+@media (min-width: 767px) {
   .navbar .navbar-collapse {
     margin-left: 260px;
     height: 65px !important;
@@ -430,7 +436,7 @@ h5.over-title {
     height: auto !important;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 766px) {
   .navbar .navbar-collapse {
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -438,6 +444,15 @@ h5.over-title {
   .navbar .navbar-collapse .nav {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+  }
+}
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .navbar .navbar-collapse {
+    margin-left: 51px;
+    height: 65px !important;
+  }
+  .navbar .navbar-collapse .nav {
+    height: auto !important;
   }
 }
 .navbar .navbar-collapse.in {

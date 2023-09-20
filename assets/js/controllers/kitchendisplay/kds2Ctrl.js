@@ -77,8 +77,8 @@ function kds2Ctrl(
     $scope.LoadOrderItemStates();
   });
   var KDSNotify = $scope.$on("KDSUpdate", function (event, data) {
-    if (data.Beep) 
-    $scope.audio.play();
+    if (data.Beep)
+      $scope.audio.play();
     $scope.audio.play();
     $scope.LoadOrderItemStates();
   });
@@ -179,21 +179,21 @@ function kds2Ctrl(
     $scope.inProgress = true;
 
     var params =
-     
-  $scope.$storage.KDisplayIndex == "0"
-  ? {
-    //StoreProductionID: $scope.$storage.StoreProductionID,
-    OrderStateID: 4,
-    StoreID: $rootScope.user.StoreID,
-    KDisplayIndex:0
-  }
-  : {
-    StoreID: $rootScope.user.StoreID,
-    StoreProductionID: $scope.$storage.StoreProductionID,
-    OrderStateID: 4,
-    CompletedOrdersCount: $scope.completedOrdersCount
-    
-  };
+
+      $scope.$storage.KDisplayIndex == "0"
+        ? {
+          //StoreProductionID: $scope.$storage.StoreProductionID,
+          OrderStateID: 4,
+          StoreID: $rootScope.user.StoreID,
+          KDisplayIndex: 0
+        }
+        : {
+          StoreID: $rootScope.user.StoreID,
+          StoreProductionID: $scope.$storage.StoreProductionID,
+          OrderStateID: 4,
+          CompletedOrdersCount: $scope.completedOrdersCount
+
+        };
 
     Restangular.all("kds/getitems")
       .getList(params)
@@ -204,10 +204,10 @@ function kds2Ctrl(
           // else
           //     $scope.audio.pause();
           $scope.inProgress = false;
-          $scope.orderitemstates = $scope.UpdateOrderItemStatesTimers(
+          $scope.UpdateOrderItemStates(
             result.plain()
           );
-          $scope.$broadcast("$$rebind::refresh");
+          //$scope.$broadcast("$$rebind::refresh");
         },
         function (response) {
           $scope.inProgress = false;
@@ -299,35 +299,33 @@ function kds2Ctrl(
       ],
       onRowPrepared: function (e) {
         if (e.rowType === "data") {
-            if (e.data.ParentItemID==0)
-              e.rowElement.css("fontWeight", "bold");
-            if ($scope.$storage.KDisplayIndex>-1 && e.data.states.length>1){
-              if (e.data.states.some(st => !st.Completed && st.ProductStateID>0))
-              {
-                //hazır değil regi.
-                e.rowElement.css("background", completedOrderBgColor);
-              }
-              else 
-              {
-                //norma/hazır rengi
-                e.rowElement.css("background", preparedItemBgColor);
-              }
+          if (e.data.ParentItemID == 0)
+            e.rowElement.css("fontWeight", "bold");
+          if ($scope.$storage.KDisplayIndex > -1 && e.data.states.length > 1) {
+            if (e.data.states.some(st => !st.Completed && st.ProductStateID > 0)) {
+              //hazır değil regi.
+              e.rowElement.css("background", completedOrderBgColor);
             }
             else {
-              e.rowElement.css("background", preparedItemBgColor); //"Mutfak seçili ise"
+              //norma/hazır rengi
+              e.rowElement.css("background", preparedItemBgColor);
             }
-            // if (e.data.IsCompleted) {
-            //     e.rowElement.css("background", completedOrderBgColor);
-            // } else if (e.data.IsPrepared2) {
-            //     e.rowElement.css("background", preparedItemBgColor);
-            // } else {
-            //     e.rowElement.css("background", itemBgColor);
-            // }
+          }
+          else {
+            e.rowElement.css("background", preparedItemBgColor); //"Mutfak seçili ise"
+          }
+          // if (e.data.IsCompleted) {
+          //     e.rowElement.css("background", completedOrderBgColor);
+          // } else if (e.data.IsPrepared2) {
+          //     e.rowElement.css("background", preparedItemBgColor);
+          // } else {
+          //     e.rowElement.css("background", itemBgColor);
+          // }
         }
         else if (e.rowType === "header") {
-            e.rowElement.css("background", itemBgColor);
+          e.rowElement.css("background", itemBgColor);
         }
-    },
+      },
     };
   };
 
@@ -358,9 +356,9 @@ function kds2Ctrl(
         items[i].isTimedOut = timerValue < 0;
         items[i].TimerStr = timerValue;
 
-        if (timerValue === threeMinutes || timerValue === fiveMinutes) {
-          refreshOrders = true;
-        }
+        // if (timerValue === threeMinutes || timerValue === fiveMinutes) {
+        //   refreshOrders = true;
+        // }
         if (items[i].IsCompleted) {
           items[i].bgColor = completedOrderBgColor;
           items[i].bgColorStyle = { background: completedOrderBgColor };
@@ -383,6 +381,24 @@ function kds2Ctrl(
       return items;
     }
   };
+  $scope.UpdateOrderItemStates = function (items) {
+    for (var i = 0; i < items.length; i++) {
+      var idx = ($scope.orderitemstates)?$scope.orderitemstates.findIndex(x => x.OrderID===items[i].OrderID):-1;
+      if (idx>-1) {        
+        if (!angular.equals($scope.orderitemstates[idx].orderItems, items[i].orderItems))
+        $scope.orderitemstates[idx] = items[i];
+      }
+      else {
+        $scope.orderitemstates.push(items[i]);
+      }
+    }
+    for (var i = 0; i < $scope.orderitemstates.length; i++) {
+      if (!items.some(x => x.OrderID === $scope.orderitemstates[i].OrderID)) {
+        $scope.orderitemstates.splice(i, 1);
+      }
+    }
+    $scope.UpdateOrderItemStatesTimers(items);
+  }
   //$scope.RemoveItem = function (OrderID, index, AutoPrint) {
   //    $scope.orderitemstates.splice(index, 1);
   //    $scope.$broadcast('$$rebind::refresh');
@@ -425,7 +441,7 @@ function kds2Ctrl(
   $scope.RemoveItem = function (OrderID, index) {
     const isCompleted = $scope.orderitemstates[index].IsCompleted == true;
     $scope.orderitemstates.splice(index, 1);
-    $scope.$broadcast("$$rebind::refresh");
+    //$scope.$broadcast("$$rebind::refresh");
     if ($scope.WaitForResult == true) {
       toaster.pop(
         "warning",
@@ -445,7 +461,7 @@ function kds2Ctrl(
       .get({
         OrderID: OrderID,
         AutoPrint: false,
-        KDisplayIndex: $scope.$storage.KDisplayIndex>=0
+        KDisplayIndex: $scope.$storage.KDisplayIndex >= 0
           ? 1 //$scope.$storage.KDisplayIndex
           : 0,
         // StoreProductionID: $scope.$storage.StoreProductionID

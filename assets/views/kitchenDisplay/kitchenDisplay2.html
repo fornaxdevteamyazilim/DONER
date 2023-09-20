@@ -103,7 +103,7 @@
             </div>
         </div> <br />
         <div class="row">
-            <div class="list-group-item-success" ng-repeat="item in :refresh:orderitemstates">
+            <div class="list-group-item-success" ng-repeat="item in orderitemstates">
                 <div class="col-sm-6 col-md-3" ng-click="RemoveItem(item.OrderID, $index, $index,item.AutoPrint)" ng-dblclick="BottonDblcilik()">
                     <div style="background-color:dimgray;">
                         <div style="border: 5px solid black;">
@@ -111,14 +111,14 @@
 
                                 <table>
                                     <tr ng-style="item.headerBgColorStyle">
-                                        <th> {{:refresh:item.OrderType }} <span class="badge badge-danger pull-left">{{:refresh:$index+1}}</span></th>
-                                        <th> {{:refresh:item.OrderSource}}</th>
-                                        <th> {{:refresh:item.TakenBy}}</th>
+                                        <th> {{item.OrderType }} <span class="badge badge-danger pull-left">{{$index+1}}</span></th>
+                                        <th> {{item.OrderSource}}</th>
+                                        <th> {{item.TakenBy}}</th>
                                     </tr>
                                     <tr ng-style="item.bgColorStyle">
-                                        <!-- ({{:refresh:$index+1}})-{{:refresh:item.OrderID}} / {{:refresh:item.OrderNumber}} [{{:refresh:item.TableName }}] -->
-                                        <th> {{:refresh:item.OrderNumber}}</th>
-                                        <th> {{:refresh:item.OrderDescrition}}  </th>
+                                        <!-- ({{$index+1}})-{{item.OrderID}} / {{item.OrderNumber}} [{{item.TableName }}] -->
+                                        <th> {{item.OrderNumber}}</th>
+                                        <th> {{item.OrderDescrition}}  </th>
                                         <th> {{:: timer}} ({{item.Timer}}) </th>
                                     </tr>
                                 </table>
@@ -141,5 +141,3 @@
 
     </div>
 </div>
-
-

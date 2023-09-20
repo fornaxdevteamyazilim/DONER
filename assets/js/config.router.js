@@ -2517,8 +2517,16 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 ncyBreadcrumb: {
                     label: 'aggregatorordersreport'
                 }
-            })
-            .state('app.reports.callcenterreports.marketingpermissions', {
+            }).state('app.reports.callcenterreports.aggregatorordersrawdatareport', {
+                url: '/aggregatorordersrawdatareport',
+                templateUrl: "assets/views/reports/callcenterreports/aggregatorordersrawdatareport.html",
+                resolve: loadSequence('aggregatorordersrawdatareportCtrl'),
+                title: 'aggregator orders report',
+                authenticate: true,
+                ncyBreadcrumb: {
+                    label: 'aggregatorordersrawdatareport'
+                }
+            }).state('app.reports.callcenterreports.marketingpermissions', {
                 url: '/marketingpermissions',
                 templateUrl: "assets/views/reports/callcenterreports/marketingpermissions.html",
                 resolve: loadSequence('marketingpermissionsCtrl'),

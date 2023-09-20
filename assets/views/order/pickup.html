@@ -50,7 +50,7 @@
         <div class="table-responsive col-lg-12">
             <table ng-table="us.tableParams" class="table table-striped table-hover table-condensed">
                 <tbody  ng-repeat="order in orders | filter:({OrderTypeID:5})">
-                    <tr ng-keyup="FormKeyPress($event,rowform,$data[$index],$index)" ng-class="::{'strike':order.OrderStateID == 14,'red':order.OrderStateID == 14}">
+                    <tr ng-keyup="FormKeyPress($event,rowform,$data[$index],$index)">
                       
                         <td data-title="trOrderNumber" data-sortable="'OrderNumber'" width="7%">
                             <span ng-if="order.OrderTypeID != 0">
