@@ -219,18 +219,21 @@ function activeordersCtrl($rootScope, $scope, $log, $modal, $filter, $timeout, S
     $scope.ChangeOrderState = function (OrderID, data) {
         if (userService.isAdmin() || userService.userIsInRole("CCMANAGER")  || userService.userIsInRole("CALLCENTER")  || userService.userIsInRole("CCBACKOFFICE") ) {
             swal({
-                title: $translate.instant('accounting.PreparingChanging'),
+                title: $translate.instant('yemeksepetifile.CANCELORDER'),
+                text: $translate.instant('yemeksepetifile.Areyousureyouwantcanceltheorder'),
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: $translate.instant('accounting.confirmButtonText'),
-                closeOnConfirm: false
+                confirmButtonText: $translate.instant('yemeksepetifile.YesCanceled'),
+                cancelButtonText: $translate.instant('yemeksepetifile.NoDontCancel'),
+                closeOnConfirm: true,
+                closeOnCancel: true
             }, function () {
                 Restangular.one('order', OrderID).get().then
                (function (restresult) {
                    var ordertosave = $scope.CopyOrder(restresult);
-                   if (data == 4) {
-                       ordertosave.OrderStateID = 4;
+                   if (data == 8) {
+                       ordertosave.OrderStateID = 8;
                    }
                    if (data == 13) {
                        ordertosave.OrderStateID = 13;
@@ -238,7 +241,7 @@ function activeordersCtrl($rootScope, $scope, $log, $modal, $filter, $timeout, S
                    Restangular.restangularizeElement('', ordertosave, 'order');
                    if (ordertosave.restangularized && ordertosave.id) {
                        ordertosave.put().then(function (resp) {
-                           swal($translate.instant('accounting.Updated'), $translate.instant('accounting.OrderStatus'), "success");
+                           swal($translate.instant('accounting.Updated'), "Sipariş Durumu Güncellendi", "success");
                            // toaster.pop('success', "Güncellendi");
                        }, function (response) {
                            toaster.pop('error', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);

@@ -6,6 +6,7 @@ function orderpromotionsCtrl($rootScope, $translate, $scope, $log, $filter, $mod
         $scope.trSlectPromotion = $translate.instant('main.SELECTPROMOTION');
         $scope.trCODE = $translate.instant('main.CODE');
         $scope.trOk = $translate.instant('main.OK');
+        $scope.trdiscount = $translate.instant('main.DISCOUNT₺');
     };
     $scope.translate();
     var deregistration = $scope.$on('$translateChangeSuccess', function (event, data) {// ON LANGUAGE CHANGED

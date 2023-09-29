@@ -16,6 +16,12 @@
                 </label>
                 <input id="Code" type="text" placeholder="Enter Code" class="form-control text-uppercase" ng-model="item.Code">
             </div>
+            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-show="AktiveCode == true">
+                <label class="margin-top-5">
+                    {{::trdiscount}}
+                </label>
+                <input id="Code" type="text" placeholder="TL İndirimi" class="form-control text-uppercase" ng-model="item.Code">
+            </div>
         </div>
         <div class="modal-footer center">
             <button class="btn btn-primary margin-top-5" ng-click="SaveOrderPromotrion(item)">{{::trOk}}</button>

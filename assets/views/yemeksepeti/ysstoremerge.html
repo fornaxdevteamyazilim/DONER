@@ -18,7 +18,8 @@
             <tr ng-repeat="item in $data | orderBy: '+number'"
                 ng-keyup="FormKeyPress($event,rowform,$data[$index],$index)">
                 <td data-title="trMember" width="2%">
-                    <span class="text-capitalize" e-name="MemberID" e-ng-model="item.MemberID" e-ng-options="q.id as q.name for q in members | orderBy:'+name' " e-style="width:5vw;" ng-click="rowform.$show()">
+                    <span class="text-capitalize" editable-select="item.MemberID" e-name="MemberID" e-ng-model="item.MemberID" e-form="rowform"
+                          e-ng-options="q.id as q.name for q in members | orderBy:'+name' " e-style="width:5vw;" ng-click="rowform.$show()" >
                         {{ ShowObject('members','id',item.MemberID,'name')  }}
                     </span>
                 </td>
@@ -64,16 +65,22 @@
                     </span>
                 </td>
                 <td data-title="trIsOpen" data-sortable="'isOpen'" style="width:5%">
-                    <span class="text-capitalize" e-name="isOpen" e-form="rowform" e-ng-model="item.isOpen" e-ng-true-value="true" e-ng-false-value="false" e-style="width:5vw;">
+                    <!-- <span class="text-capitalize" e-name="isOpen" e-form="rowform" e-ng-model="item.isOpen" e-ng-true-value="true" e-ng-false-value="false" e-style="width:5vw;">
+                        {{ item.isOpen && "True" || "False"}}
+                    </span> -->
+                    <span class="text-capitalize" editable-checkbox="item.isOpen" e-name="isOpen" e-form="rowform" e-ng-model="item.isOpen" e-required e-ng-true-value="true" e-ng-false-value="false" e-style="width:5vw;">
                         {{ item.isOpen && "True" || "False"}}
                     </span>
-                    <!--<span class="text-capitalize" editable-checkbox="item.isOpen" e-name="isOpen" e-form="rowform" e-ng-model="item.isOpen" e-required e-ng-true-value="true" e-ng-false-value="false" e-style="width:5vw;">
-                        {{ item.isOpen && "True" || "False"}}
-                    </span>-->
                 </td>
                 <td data-title="trisEnabled" data-sortable="'isEnabled'" style="width:5%">
                     <span class="text-capitalize" editable-checkbox="item.isEnabled" e-name="isEnabled" e-form="rowform" e-ng-model="item.isEnabled" e-required e-ng-true-value="true" e-ng-false-value="false" e-style="width:5vw;">
                         {{ item.isEnabled && "True" || "False"}}
+                    </span>
+                   
+                </td>
+                <td data-title="trStatusName" data-sortable="'StatusName'" style="width:5%">
+                    <span class="text-capitalize" editable-checkbox="item.StatusName" e-name="StatusName" e-form="rowform" e-ng-model="item.StatusName" e-required e-ng-true-value="true" e-ng-false-value="false" e-style="width:5vw;">
+                        {{ item.StatusName && "True" || "False"}}
                     </span>
                    
                 </td>
