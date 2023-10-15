@@ -3,19 +3,18 @@
 
 <head>
   <!-- Required meta tags -->
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-  <meta http-equiv="refresh" content="1800"/>
-    <meta http-equiv="cache-control" content="max-age=0" />
-    <meta http-equiv="cache-control" content="no-store" />
-    <meta http-equiv="expires" content="-1" />
-    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-    <meta http-equiv="pragma" content="no-cache" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="refresh" content="1800" />
+  <meta http-equiv="cache-control" content="max-age=0" />
+  <meta http-equiv="cache-control" content="no-store" />
+  <meta http-equiv="expires" content="-1" />
+  <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+  <meta http-equiv="pragma" content="no-cache" />
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="assets/css/bootstrap-darkly.css">
   <link rel="stylesheet" href="assets/css/customer-queue.css">
-
   <title>Queue Monitor</title>
 </head>
 
@@ -37,11 +36,9 @@
           <div class="card-body">
             <div>
               <div class="row">
-                <div ng-repeat="x in preparingOrders" class="col-md-4 order-preparing"><span class="queue-number">{{x.OrderNumber.split("-")[1]}}</span></div>
-                <!-- <div class="col-md-3 order-preparing"><span class="queue-number">266</span></div>
-                <div class="col-md-3 order-preparing"><span class="queue-number">251</span></div> -->
+                <div ng-repeat="x in preparingOrders" class="col-md-5 order-preparing"><span
+                    class="queue-number">{{x.OrderNumber.split("-")[1]}}</span></div>
               </div>
-              
             </div>
           </div>
         </div>
@@ -55,17 +52,15 @@
           </div>
           <div class="card-body">
             <div>
-                <div class="row">
-                    <div ng-repeat="x in preparedOrders"class="col-md-4 order-ready"><span class="queue-number">{{x.OrderNumber.split("-")[1]}}</span></div>
-                    <!-- <div class="col-md-3 order-ready"><span class="queue-number">266</span></div> -->
-                    <!-- <div class="col-md-3 order-ready"><span class="queue-number">251</span></div> -->
-                </div>
+              <div class="row">
+                <div ng-repeat="x in preparedOrders" class="col-md-5 order-ready"><span
+                    class="queue-number">{{x.OrderNumber.split("-")[1]}}</span></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
   <div style="height: 5vh;margin-top:2vh ;background-color:#5c5b5b;padding-top: 0.8vh">
     <div style="width: 100%;" class='marquee' data-speed="100" data-direction="left">
@@ -74,7 +69,6 @@
       </span>
     </div>
   </div>
-  <!-- libs -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/angular/angular.js"></script>
   <script src="vendor/angular/i18n/angular-locale_tr-tr.js"></script>
@@ -83,8 +77,6 @@
   <script src="scripts/jquery.signalR-2.4.1.js"></script>
   <script src="vendor/angular-audio/angular.audio.js"></script>
   <script src="assets/js/customer-queue.js"></script>
-
-  
 </body>
 
 
