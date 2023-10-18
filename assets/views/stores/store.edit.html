@@ -1148,10 +1148,10 @@
                             </table>
                         </div>
                     </tab>
-                    <tab heading="{{'main.STOREWORKINGTIME' | translate}}" ng-if="user.restrictions.storeworkingtime=='Enable'">
+                    <tab heading="{{'main.STORECARRIER' | translate}}" ng-if="user.restrictions.storecarrier=='Enable'">
                         <div ng-controller="storecarrierCtrl as sc" ng-keypress="FormKeyPressRoute($event,rowform,$data[$index],$index)">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <span class="mainTitle text-dark col-lg-8 col-md-8 col-sm-8 col-xs-12" style="font-size:25px;" translate="tittle.STORECARRIER" translate-values="{ appName: app.name }">{{ mainTitle }}</span><br /><br />
+                                <span class="mainTitle text-dark col-lg-8 col-md-8 col-sm-8 col-xs-12" style="font-size:25px;" translate-values="{ appName: app.name }">{{ mainTitle }}</span><br /><br />
                                 <a class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-plus pull-right" ng-click="addItem()">
                                     <span translate="main.ADD"></span>
                                 </a>

@@ -57,7 +57,7 @@
                     <span translate="main.ORDERSOURCE">Order Source</span><br />
                     <select class="form-control" ng-model="params.OrderSourceID" ng-change="GetOrderSourceID(params.OrderSourceID)">
                         <option value="">Tümü !</option>
-                        <option ng-repeat="params in ordersources | orderBy:'+name'" value="{{params.id}}">{{params.name}}</option>
+                        <option ng-repeat="params in ordersources | orderBy:'+name' | filter: {AuthorizeOrders: 'true'}" value="{{params.id}}">{{params.name}}</option>
                     </select>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                         <img ng-src="assets/images/report.png" style="width:2.2vw; height:3vh;" class="center" /><br />
                         <span ng-if="ObjectShow==true" class="fa fa-spin fa-spinner"></span>
                     </button>
-                    <button class="btn btn-default tooltips" style="margin-top:2px;" tooltip="{{'main.EXCEL' | translate}}" tooltip-placement="bottom" ng-disabled="ObjectShow==true" ng-click="exportToExcel('#orderlisttwo')">
+                    <button class="btn btn-default tooltips" style="margin-top:2px;" tooltip="{{'main.EXCEL' | translate}}" tooltip-placement="bottom" ng-disabled="ObjectShow==true" ng-if="user.restrictions.orderlisttwoexel=='Enable'" ng-click="exportToExcel('#orderlisttwo')">
                         <img ng-src="assets/images/excel.png" style="width:2.2vw; height:3vh;" class="center" /><br />
                     </button>
                 </div>
@@ -205,9 +205,9 @@
                     <td class="text-capitalize " data-title="trPerson" data-sortable="'PersonID'" ng-model="item.PersonID" width="10%">
                         {{item.Alias}}{{item.persons[0].Person}}
                     </td>
-                    <td class="text-capitalize " data-title="trPhone" data-sortable="'PersonID'" ng-model="item.PersonID" width="10%">
+                    <!-- <td class="text-capitalize " data-title="trPhone" data-sortable="'PersonID'" ng-model="item.PersonID" width="10%">
                         <label ng-repeat="phone in item.persons[0].Person.PersonPhones">"{{phone.Number}}"</label>
-                    </td>
+                    </td> -->
                     <td class="text-capitalize" data-title="trAddress" data-sortable="'StreetAddressID'" ng-model="item.StreetAddressID" width="10%">
                         {{ item.Address.StreetAddress }} / {{ item.Address.AddressNo }} / {{ item.Address.AppartmentNo }} / {{ item.Address.Floor }}
                     </td>
@@ -217,6 +217,10 @@
                     <td class="text-capitalize" data-title="trOrderType" data-sortable="'OrderTypeID'" ng-model="item.OrderTypeID" width="10%">
                         <!--{{ ShowObject('ordertypes','Value',item.OrderTypeID,'Name') }}-->
                         {{item.OrderType}}
+                    </td>
+                      <td class="text-capitalize" data-title="trOrderSource" data-sortable="'OrderSource'" ng-model="item.OrderSource" width="10%">
+                        <!--{{ ShowObject('ordertypes','Value',item.OrderTypeID,'Name') }}-->
+                        {{item.OrderSource}}
                     </td>
                     <td data-title="trVAT" data-sortable="'VAT'" ng-model="item.VAT" width="10%">
                         {{ item.VAT|number:2}} {{:: 'main.CURRENCY_SYMBOL' | translate}}

@@ -1,189 +1,160 @@
 ﻿'use strict';
 app.controller('orderpromotionCtrl', orderpromotionCtrl);
-function orderpromotionCtrl($scope, $log, $modal, $filter, SweetAlert, Restangular, $interval, ngTableParams, toaster, $window, $stateParams, $rootScope, $location, $translate, Excel, $timeout, ngnotifyService, $element,userService) {
+function orderpromotionCtrl($scope, $filter, $window, $stateParams, $rootScope, $translate, userService, ngnotifyService, $element, NG_SETTING, $http, $q) {
     $rootScope.uService.EnterController("orderpromotionCtrl");
-    if (!$scope.StartDate) {
-        $scope.StartDate = $filter('date')(ngnotifyService.ServerTime(), 'yyyy-MM-dd ');
-    }
-    if (!$scope.EndDate) {
-        $scope.EndDate = moment().add(1, 'days').format('YYYY-MM-DD ');
-    }
-        $scope.Time = ngnotifyService.ServerTime();
-    var totalPromotion = 0;
-    var totalOrderAmount = 0;
+    $scope.Time = ngnotifyService.ServerTime();
 
- //if (userService.userIsInRole("Admin") || userService.userIsInRole("CCMANAGER") || userService.userIsInRole("LC") || userService.userIsInRole("AREAMANAGER") || userService.userIsInRole("ACCOUNTING") || userService.userIsInRole("PH")|| userService.userIsInRole("MarketingDepartment") || userService.userIsInRole("PHAdmin") || userService.userIsInRole("OperationDepartment")|| userService.userIsInRole("FinanceDepartment")) {
- //       $scope.StoreID = '';
- //       $scope.ShowStores = true;
- //   } else {
- //       $scope.StoreID = $rootScope.user.StoreID;
- //   }
- //   $scope.SetStoreID = function (FromValue) {
- //       $scope.StoreID = FromValue;
- //       $scope.selectedStore = $filter('filter')($scope.stores, { id: FromValue });
- //   };
-
-    if (userService.userIsInRole("Admin") || userService.userIsInRole("CCMANAGER") || userService.userIsInRole("LC") || userService.userIsInRole("AREAMANAGER") || userService.userIsInRole("ACCOUNTING") || userService.userIsInRole("PH") || userService.userIsInRole("MarketingDepartment") || userService.userIsInRole("PHAdmin") || userService.userIsInRole("OperationDepartment") || userService.userIsInRole("FinanceDepartment")) {
+    if ($rootScope.user.userstores && $rootScope.user.userstores.length > 1) {
+        $scope.selectStore = true;
         $scope.StoreID = '';
-        $scope.ShowStores = true;
-    } else {
+    }
+    else {
         $scope.StoreID = $rootScope.user.StoreID;
     }
-    $scope.SetStoreID = function (FromValue) {
-        $scope.StoreID = FromValue;
-        $scope.selectedStore = $filter('filter')($scope.stores, { id: FromValue });
-
-    };
-
-    $scope.OrderPromotions = [];
-    $scope.LoadOrderPromotions = function (FromValue) {
-        $scope.isWaiting = true;
-        Restangular.all('order/reports/orderpromotions').getList(
-            {
-                StartDate: $scope.StartDate,
-                EndDate: $scope.EndDate,
-                //StoreID: (!$scope.StoreID) ? $rootScope.user.StoreID : $scope.StoreID,
-                //StoreID: ($scope.StoreID) ? $rootScope.user.StoreID : "",
-                StoreID: $scope.StoreID,
-                OrderStateID: (!$scope.OrderStateID) ? '' : $scope.OrderStateID
-            }
-        ).then(function (result) {
-            $scope.isWaiting = false;
-            $scope.total = result.length;
-            $scope.totalPromotion = $scope.sumColumnJS(result, "Amount");
-            $scope.totalOrderAmount = $scope.sumColumnJS(result, "OrderAmount");
-            $scope.OrderPromotions = result;
-        }, function (response) {
-            $scope.isWaiting = false;
-            toaster.pop('error', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
-        });
-    };
-    $scope.sumColumnJS = function sumColumnJS(array, col) {
-        var sum = 0;
-        array.forEach(function (value, index, array) {
-            sum += value[col];
-        });
-        return sum;
-    };
-    $scope.exportToExcel = function (tableId) {
-        var blob = new Blob([document.querySelector(tableId).innerHTML], {
-            type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
-        });
-        var downloadLink = angular.element('<a></a>');
-        downloadLink.attr('href', window.URL.createObjectURL(blob));
-        downloadLink.attr('download', 'SiparisIndirimRaporu.xls');
-        downloadLink[0].click();
-    };
-    $scope.GetOrderState = function (data) {
-        $scope.OrderStateID = data;
-    };
-    $scope.GetStore = function (data) {
-        $scope.StoreID = data;
-        $scope.selectedStore = $filter('filter')($scope.stores, { id: data });
-    };
-    $scope.ShowObject = function (Container, idName, idvalue, resName) {
-        for (var i = 0; i < $scope[Container].length; i++) {
-            if ($scope[Container][i][idName] == idvalue)
-                return $scope[Container][i][resName];
-        }
-        return idvalue || 'Not set';
-    };
-    $scope.loadEntities = function (EntityType, Container, filter) {
-        if (!$scope[Container].length) {
-            Restangular.all(EntityType).getList({
-                pageNo: 1,
-                pageSize: 1000,
-                search: filter,
-            }).then(function (result) {
-                $scope[Container] = result;
-            }, function (response) {
-                toaster.pop('Warning', $translate.instant('Server.ServerError'), response);
-            });
-        }
-    };
-    $scope.loadEntitiesCache = function (EntityType, Container) {
-        if (!$scope[Container].length) {
-            Restangular.all(EntityType).getList({}).then(function (result) {
-                $scope[Container] = result;
-            }, function (response) {
-                toaster.pop('Warning', $translate.instant('Server.ServerError'), response);
-            });
-        }
-    };
-    $scope.stores = [];
-    $scope.loadEntitiesCache('cache/store', 'stores');
-    $scope.orderstates = [];
-    $scope.loadEntities('enums/orderstate', 'orderstates');
-    $scope.RunOrderDetail = function (itemID) {
-        var modalInstance = $modal.open({
-            templateUrl: 'assets/views/reports/ordersreports/orderpromotionorderdetails.html',
-            controller: 'orderpromotionorderdetailsCtrl',
-            size: 'lg',
-            backdrop: '',
-            resolve: {
-                OrderID: function () {
-                    return itemID;
-                }
-            }
-        });
-        modalInstance.result.then(function (item) {
-            var data = new Date(item);
-        })
-    };
-    $scope.SelectStartDate = function (item) {
-        var modalInstance = $modal.open({
-            templateUrl: 'assets/views/Tools/date.html',
-            controller: 'dateCtrl',
-            size: '',
-            backdrop: '',
-            resolve: {
-                DateTime: function () {
-                    return item;
-                }
-            }
-        });
-        modalInstance.result.then(function (item) {
-            var data = new Date(item);
-            $scope.StartDate = $filter('date')(data, 'yyyy-MM-dd ');
-        })
-    };
-    $scope.SelectEndDate = function (item) {
-        var modalInstance = $modal.open({
-            templateUrl: 'assets/views/Tools/date.html',
-            controller: 'dateCtrl',
-            size: '',
-            backdrop: '',
-            resolve: {
-                DateTime: function () {
-                    return item;
-                }
-            }
-        });
-        modalInstance.result.then(function (item) {
-            var data = new Date(item);
-            $scope.EndDate = $filter('date')(data, 'yyyy-MM-dd ');
-        })
-    };
     $scope.Back = function () {
         $window.history.back();
     };
+    Date.prototype.addDays =
+    Date.prototype.addDays ||
+    function (days) {
+      return this.setTime(864e5 * days + this.valueOf()) && this;
+    };
+  $scope.DateRange = {
+    fromDate: {
+      max: new Date(),
+      min: new Date(2019, 0, 1),
+      displayFormat: "dd.MM.yyyy",
+      bindingOptions: {
+        value: "DateRange.fromDate.value",
+      },
+      value: new Date().addDays(-2),
+      labelLocation: "top", // or "left" | "right"
+    },
+    toDate: {
+      max: new Date(),
+      min: new Date(2019, 0, 1),
+      displayFormat: "dd.MM.yyyy",
+      bindingOptions: {
+        value: "DateRange.toDate.value",
+      },
+      value: new Date().addDays(-1),
+      label: {
+        location: "top",
+        alignment: "right", // or "left" | "center"
+      },
+    },
+  };
+    $scope.VeiwHeader = {};
+    $scope.reportButtonOptions = {
+        text: $translate.instant('reportcommands.GetData'),
+        onClick: function () {
+            var dataGrid = $('#gridContainer').dxDataGrid('instance');
+            dataGrid.refresh();
+        }
+    };
+    $scope.resetlayout = $translate.instant('main.RESETLAYOUT');
+    function getFilter() {
+        return [["OperationDate", ">=", $scope.DateRange.fromDate.value], "and", ["OperationDate", "<=", $scope.DateRange.toDate.value]];
+    }
+    $scope.StoreID;
+    var store = new DevExpress.data.CustomStore({
+        // key: "StoreID",
+        load: function () {
+            var params = {
+                StartDate: $scope.DateRange.fromDate.value,
+                EndDate: $scope.DateRange.toDate.value,
+                OrderStateID: (!$scope.OrderStateID) ? '' : $scope.OrderStateID,
+                StoreID: $scope.StoreID
+               
+            };
 
-       $scope.$on('$destroy', function () {
+            return $http.get(NG_SETTING.apiServiceBaseUri + "/api/order/reports/orderpromotions", { params: params })
+                .then(function (response) {
+                    return {
+                        data: response.data,
+                        totalCount: 10
+                    };
+                }, function (response) {
+                    return $q.reject("Data Loading Error");
+                });
+        }
+    });
+    $scope.dataGridOptions = {
+        dataSource: store,
+        showBorders: true,
+        allowColumnResizing: true,
+        columnAutoWidth: true,
+        showColumnLines: true,
+        showRowLines: true,
+        rowAlternationEnabled: true,
+        //keyExpr: "id",
+        showBorders: true,
+        //selection: {
+        //    mode: "single"
+        //},
+        hoverStateEnabled: true,
+        allowColumnReordering: true,
+        filterRow: { visible: true },
+        headerFilter: { visible: true },
+        searchPanel: { visible: true },
+        groupPanel: { visible: true },
+        grouping: { autoExpandAll: false },
+        columnChooser: { enabled: false },
+        columnFixing: { enabled: true },
+        columnChooser: { enabled: true, mode: "dragAndDrop" },
+        columns: [
+            //{ dataField: "OrderID", dataType: "number"},
+            { dataField: "StoreName", caption: $translate.instant('orderpromotions.StoreName'), dataType: "string" },
+            { dataField: "OperationDate", caption : $translate.instant('orderpromotions.OperationDate'),alignment: "right", dataType: "date", format: 'dd-MM-yyyy HH:mm' }, 
+            { dataField: "OrderNumber", caption: $translate.instant('orderpromotions.OrderNumber'), dataType: "string" },
+            { dataField: "Promotion", caption: $translate.instant('orderpromotions.Promotion'), dataType: "string" },
+            { caption: $translate.instant('orderpromotions.Amount'), dataField: "Amount", dataType: "number", format: { type: "fixedPoint", precision: 2 } },
+           { caption: $translate.instant('orderpromotions.OrderAmount'), dataField: "OrderAmount", dataType: "number", format: { type: "fixedPoint", precision: 2 } },
+            { caption: $translate.instant('orderpromotions.Code'),dataField: "Code", dataType: "string" },
+,
+        ],
+        summary: {
+            totalItems: [
+                // { column: "Inventory.name", summaryType: "count", displayFormat: "{0}" },
+                // { column: "Units", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}" },
+                // { column: "UnitCount", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}" },
+                { column: "OrderAmount", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}₺" },
+                { column: "Amount", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}₺" },
+            ],
+            groupItems: [
+                // { column: "Inventory.name", summaryType: "count", displayFormat: "{0}", alignByColumn: true },
+                { column: "OrderAmount", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}", alignByColumn: true },
+                { column: "Amount", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}₺", alignByColumn: true },
+            ]
+        },
+        export: {
+            enabled: true,
+            fileName: "InventoryTransactions",
+        },
+        scrolling: { mode: "virtual" },
+        height: 600
+    };
+    $scope.selectBox = {
+        dataSourceUsage: {
+            dataSource: new DevExpress.data.ArrayStore({
+                data: $filter('orderBy')($rootScope.user.userstores, 'name'),
+                key: "id"
+            }),
+            displayExpr: "name",
+            valueExpr: "id",
+            placeholder: "Select Store...",
+            value: $rootScope.user.StoreID,
+            bindingOptions: {
+                value: "StoreID"
+            }
+        },
+    };
+    $scope.LoadData = function () {
+        var dataGrid = $('#gridContainer').dxDataGrid('instance');
+        dataGrid.refresh();
+    };
+    $scope.$on('$destroy', function () {
         $element.remove();
         $rootScope.uService.ExitController("orderpromotionCtrl");
     });
 };
-app.factory('Excel', function ($window) {
-    var uri = 'data:application/vnd.ms-excel;base64,',
-        template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"<!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
-        base64 = function (s) { return $window.btoa(unescape(encodeURIComponent(s))); },
-        format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) };
-    return {
-        tableToExcel: function (tableId, worksheetName) {
-            var table = document.querySelector(tableId),
-                ctx = { worksheet: worksheetName, table: table.innerHTML },
-                href = uri + base64(format(template, ctx));
-            return href;
-        }
-    };
-})

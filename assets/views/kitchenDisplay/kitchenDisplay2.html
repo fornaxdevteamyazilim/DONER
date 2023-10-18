@@ -40,7 +40,10 @@
         background-attachment: fixed;
         background-position: center;
     }
-
+    .notes{
+        font-size: 16px;
+        color:white;
+    }
     .page-active {
         height: 100%;
         /* background-image: url('assets/images/CORS.png') ; */
@@ -125,7 +128,9 @@
                                
                                     <div id="treeViewContainer" dx-tree-list="dataGridOptionsorder(item.orderItems, item.bgColor)">
                                     </div>
-                                
+                                <div class="notes" ng-if="item.OrderNote">
+                                    {{item.OrderNote}}
+                                </div>
                             </div>
                         </div>
                     </div>

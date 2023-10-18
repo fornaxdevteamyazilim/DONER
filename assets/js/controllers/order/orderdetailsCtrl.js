@@ -289,7 +289,7 @@ function orderdetailsCtrl($scope, $rootScope, $log, $translate, $http, $modal, $
         {
             itemType: "group", items: [
                 { dataField: "Notes", label: { text: $scope.addressnote }, editorType: "dxTextArea", editorOptions: { height: 90 } },
-                { dataField: "PaymentNote", label: { text: $scope.paymentnote }, editorType: "dxTextArea", editorOptions: { height: 90 } },
+                //{ dataField: "item.PaymentNote", label: { text: $scope.paymentnote }, editorType: "dxTextArea", editorOptions: { height: 90 } },
             ]
         }
         ],

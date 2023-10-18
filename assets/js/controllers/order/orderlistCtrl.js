@@ -58,7 +58,8 @@ function orderlistCtrl($scope, $log, $modal, Restangular, ngTableParams, SweetAl
         $scope.mallorders = $translate.instant('main.MALLORDERS');
         $scope.trEfatura = $translate.instant('main.EFATURA');
         $scope.notaccepted = $translate.instant('main.NOTACCEPTED');
-          $scope.tableorders = $translate.instant('main.TABLEORDERS');
+        $scope.tableorders = $translate.instant('main.TABLEORDERS');
+        $scope.trCommands = $translate.instant('main.COMMANDS');
 
 
     };
@@ -89,7 +90,7 @@ function orderlistCtrl($scope, $log, $modal, Restangular, ngTableParams, SweetAl
     $scope.BuildSearchString = function (src) {
         var result = [];
         if (ao.search && ao.search.length > 1) {
-            $scope.hideCombo = true;
+            // $scope.hideCombo = true;
             result.push("ExtendedSearch=" + ao.search);
             result.push("ExtendedSearch=" + ao.search);
             return result;
@@ -181,16 +182,16 @@ function orderlistCtrl($scope, $log, $modal, Restangular, ngTableParams, SweetAl
     $scope.Back = function () {
         $window.history.back();
     };
-    //var OrderRefresh = $scope.$on('OrderChange', function (event, data) {
-    //    //if ($scope.AutoRefresh) bu da bir checkbox veya switch e bağlanır.
-    //    ao.tableParams.page(1); //bunlar emniyet
-    //    ao.tableParams.count(10); //bunlar emniyet...
-    //    ao.tableParams.reload();
-    //});
+    var OrderRefresh = $scope.$on('OrderChange', function (event, data) {
+       if ($scope.AutoRefresh) //bu da bir checkbox veya switch e bağlanır.
+       ao.tableParams.page(1); //bunlar emniyet
+       ao.tableParams.count(10); //bunlar emniyet...
+       ao.tableParams.reload();
+    });
     $scope.$on('$destroy', function () {
         tranlatelistener();
         unbindWatcher();
-        //OrderRefresh();
+        OrderRefresh();
         $element.remove();
         $rootScope.uService.ExitController("orderlistCtrl");
     });

@@ -224,6 +224,7 @@ color:red;
                         <th>{{:: orderstate}}</th>
                         <th>{{:: paymentstatus}}</th>
                         <th>{{:: paymenttype}}</th>
+                        <th>{{:: paymentnote}}</th>
                     </tr>
                     <tr>
                         <td>{{:: item.Amount | number : 2}}</td>
@@ -231,6 +232,7 @@ color:red;
                         <td>{{:: item.PaymentStatus}}</td>
                         <td ng-dblclick="CheckCode(item,'ChangeOrderPayment')">{{:: item.PaymentType.PaymentType.name}}
                         </td>
+                        <td>{{:: item.PaymentNote}}</td>
                     </tr>
                 </table>
                 <br>

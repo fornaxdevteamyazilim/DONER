@@ -346,6 +346,49 @@ function aggregatormappingCtrl($rootScope, $scope, NG_SETTING, $translate, $elem
         scrolling: { mode: "virtual" },
         height: 600
     };
+    $scope.rejectreasonGridOptions = {
+        dataSource: DevExpress.data.AspNet.createStore({
+            key: "id",
+            loadUrl: NG_SETTING.apiServiceBaseUri + "/api/dxGetirRejectReason",
+            insertUrl: NG_SETTING.apiServiceBaseUri + "/api/dxGetirRejectReason",
+            updateUrl: NG_SETTING.apiServiceBaseUri + "/api/dxGetirRejectReason",
+            deleteUrl: NG_SETTING.apiServiceBaseUri + "/api/dxGetirRejectReason",
+        }),
+        //filterValue: getFilter(),
+        showBorders: true,
+        allowColumnResizing: true,
+        columnAutoWidth: true,
+        showColumnLines: false,
+        showRowLines: true,
+        rowAlternationEnabled: true,
+        showBorders: true,
+        allowColumnReordering: true,
+        filterRow: { visible: true },
+        filterPanel: { visible: true },
+        headerFilter: { visible: true },
+        //grouping: { autoExpandAll: false },
+        searchPanel: { visible: true },
+        //groupPanel: { visible: true },
+        editing: {
+            allowAdding: true,
+            allowUpdating: true,
+            allowDeleting: true,
+            allowInserting: true
+        },
+        columnChooser: { enabled: false },
+        columnFixing: { enabled: true },
+        remoteOperations: true,
+        columns: [
+            { dataField: "id", caption: "id", visible: false },
+            { dataField: "Code",   caption: $translate.instant('dxTrendyolRejectReason.Code'), },
+            { dataField: "Reason",   caption: $translate.instant('dxTrendyolRejectReason.Reason'), },
+            { dataField: "Description",   caption: $translate.instant('dxTrendyolRejectReason.Description'), },
+            { dataField: "isActive",   caption: $translate.instant('dxTrendyolRejectReason.isActive'), },
+        ],
+        export: { enabled: true, fileName: "TrendyolRejectReasons", },
+        scrolling: { mode: "virtual" },
+        height: 600
+    };
     $scope.Back = function () {
         $window.history.back();
     };

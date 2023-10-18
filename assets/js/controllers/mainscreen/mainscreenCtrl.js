@@ -508,7 +508,7 @@ function mainscreenCtrl($scope, $modal, $timeout, $filter, SweetAlert, $interval
             }, function (isConfirm) {
                 if (isConfirm) {
                     $scope.ShowAlert = false;
-                    location.href = '#/app/specialoperations/declaredrevenueelist';
+                    // location.href = '#/app/specialoperations/declaredrevenueelist';
                 }
             });
         }
@@ -700,7 +700,7 @@ function endofdayCtrl($scope, $log, $modal, Restangular, SweetAlert, toaster, $w
                         $scope.ShowingObje = false;
                         toaster.pop('success', $translate.instant('mainscreen.EndOfDayReceived '), 'OK');
                     }
-                    location.href = '#/app/specialoperations/declaredrevenueelist';
+                    // location.href = '#/app/specialoperations/declaredrevenueelist';
                 },
                     function (restresult) {
                         $scope.ShowingObje = false;

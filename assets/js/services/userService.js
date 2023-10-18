@@ -309,14 +309,14 @@ app.factory('userService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
                     { id: 700000115774, name: 'Rest. Driver', isActive: true, isDriver: true },
                     { id: 300002043360, name: 'REST. KITCHEN MEMBER', isActive: false, isDriver: false },
                     { id: 300021512530, name: 'Fiyuu Driver', isActive: false , isDriver: false},//Bir tane de Fiyuu sürücü
-                    { id: 300021694696, name: 'Sürücü', isActive: false , isDriver: true},
+                    { id: 300021694696, name: 'Sürücü', isActive: true , isDriver: true},
                     { id: 300156809299, name: 'REST. DRIVER (No Shift)', isActive: false, isDriver: false},
-                    { id: 700000021854, name: 'Restroan', isActive: true , isDriver: true},
-                    { id: 700000021856, name: 'Merkez ofis', isActive: true , isDriver: true},
-                    { id: 700000021855, name: 'Oprasyon', isActive: true , isDriver: true},
-                    { id: 700000120844, name: 'Cashier', isActive: true , isDriver: true},
+                    { id: 700000021854, name: 'Restroan', isActive: false , isDriver: false},
+                    { id: 700000021856, name: 'Merkez ofis', isActive: true , isDriver: false},
+                    { id: 700000021855, name: 'Oprasyon', isActive: true , isDriver: false},
+                    { id: 700000120844, name: 'Cashier', isActive: true , isDriver: false},
                     { id: 700000021853, name: 'Admin', isActive: true , isDriver: true},
-                    { id: 700000534014, name: 'GENERALMANAGER', isActive: true , isDriver: true},
+                    { id: 700000534014, name: 'GENERALMANAGER', isActive: false , isDriver: false},
                    
                 ];
             }

@@ -27,15 +27,15 @@ function ysstoremergeCtrl($rootScope, $scope, $modal, $filter, SweetAlert, Resta
     ysst.tableParams = new ngTableParams({
         page: 1,
         count: 10,
-        sorting: {
-            DisplayName: 'asc'
-        }
+        // sorting: {
+        //     DisplayName: 'asc'
+        // }
     }, {
         getData: function ($defer, params) {
             Restangular.all('yemeksepetistore').getList({
                 pageNo: params.page(),
                 pageSize: params.count(),
-                sort: params.orderBy(),
+                // sort: params.orderBy(),
             }).then(function (items) {
                 params.total(items.paging.totalRecordCount);
                 $defer.resolve(items);

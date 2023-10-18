@@ -52,7 +52,7 @@
         <div class="table-responsive col-lg-12">
             <table ng-table="comp.tableParams" class="table table-striped table-hover">
                 <tr ng-repeat="item in $data | orderBy:'-ComplaintDate'"
-                    ng-keyup="FormKeyPress($event,rowform,$data[$index],$index)">
+                    ng-keyup="FormKeyPress($event,rowform,$data[$index],$index)" ng-click="SelectItem(item.id)">
                     <td data-title="trPerson" data-sortable="'StoreID'" width="10%">
                         {{item.Person.name}}
                     </td>

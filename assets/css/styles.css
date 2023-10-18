@@ -379,6 +379,11 @@ h5.over-title {
     width: 60px;
   }
 }
+@media only screen and (max-width: 1024px) and (min-width: 992px) {
+  .navbar .navbar-header {
+    width: 60px;
+  }
+}
 @media (min-width: 992px) {
   .navbar .navbar-header {
     border-right: 1px solid #c8c7cc;
@@ -455,6 +460,21 @@ h5.over-title {
     height: auto !important;
   }
 }
+@media only screen and (max-width: 1024px) and (min-width: 992px) {
+  .navbar .navbar-collapse {
+    margin-left: 51px;
+    height: 65px !important;
+  }
+  .navbar .navbar-collapse .nav {
+    position: absolute;
+    float: left;
+  }
+   .app-navbar-fixed .navbar .dropdown-off-sidebar {
+    position: fixed;
+    top: 0;
+  }
+}
+
 .navbar .navbar-collapse.in {
   overflow-y: visible;
 }
@@ -647,6 +667,11 @@ h5.over-title {
   .navbar .navbar-right {
     position: relative;
     margin-right: 1px 35px 0 0;
+  }
+}
+@media (max-width: 1024px) and (min-width: 992px) {
+  .navbar .navbar-right > li {
+    float: left;
   }
 }
 @media (min-width: 768px) {
@@ -851,7 +876,12 @@ h5.over-title {
     width: 100%;
   }
 }
-
+@media only screen and (max-width: 1366px) and (min-width: 1024px) {
+  .navbar .navbar-right > li {
+    float: left;
+  
+  }
+}
 /* ---------------------------------------------------------------------- */
 /*  Sidebar
 /* ---------------------------------------------------------------------- */
@@ -11673,6 +11703,7 @@ border-bottom-color: transparent;
   display: block;
 }
 }
+
 @media (max-width: 760px) {
 /* Dropdown Button */
 .dropbtn {
@@ -11752,7 +11783,7 @@ border-bottom-color: transparent;
         background-image: -o-linear-gradient(top, #9E9E9E, #FFFFFF);
         background-image: linear-gradient(to bottom, #9E9E9E, #FFFFFF);
     }*/
-
+/* 
 .btn-wides {
     � width: 124px;
     � border-radius: 15px;
@@ -11764,11 +11795,11 @@ border-bottom-color: transparent;
 }
     /* .btn-wides:active {� color: #ffbf00;} */
 
-    .btn-wides:focus {
+    /* .btn-wides:focus {
         � color:white;
         � background-color: #64bf5d;
     }
 
 .backgr {
   background-image: url('../images/CORS.png'); �
-}
+} */

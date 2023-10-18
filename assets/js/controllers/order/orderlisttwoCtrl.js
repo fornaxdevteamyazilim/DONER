@@ -41,6 +41,7 @@ function orderlisttwoCtrl($scope, ngnotifyService, $modal, Restangular, ngTableP
         $scope.stafforders = $translate.instant('main.STAFFORDERS');
         $scope.voids = $translate.instant('main.VOIDS');
         $scope.notaccepted = $translate.instant('main.NOTACCEPTED');
+        $scope.trOrderSource = $translate.instant('main.ORDERSOURCEE');
     }
     $scope.params = userService.getParameter('inventorydeliverylist',
         {            

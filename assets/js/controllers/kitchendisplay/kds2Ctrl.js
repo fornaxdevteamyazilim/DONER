@@ -289,6 +289,21 @@ function kds2Ctrl(
           dataField: "Product",
           caption: $scope.product,
           Width: "90%",
+          cellTemplate(container, options) {
+            const productname = options.data.Product;
+            const pnotes = options.data.Notes;
+            if (pnotes) {
+                container
+                    .append($('<span>', { class: 'name', text: productname }))
+                    .append('<br>')
+                    .append($('<span>', { class: 'name', text: pnotes }).css("font-style", "italic"));
+                //.append($('<span>', { class: 'name', text: pnotes }).css("color", "blue").css("font-style", "italic"));
+            }
+            else {
+                container
+                    .append($('<span>', { class: 'name', text: productname }));
+            }
+        }
         },
         {
           name: "Quantity",
