@@ -1,15 +1,15 @@
 ﻿'use strict';
 app.controller('productsalesstatisticsCtrl', productsalesstatisticsCtrl);
-function productsalesstatisticsCtrl($scope, $filter, $modal, $log, $translate, Restangular, localStorageService, SweetAlert, toaster, $window, $rootScope, $compile, $timeout, $location, userService, ngnotifyService, $element, NG_SETTING) {
+function productsalesstatisticsCtrl($scope, $filter, $modal, $log, $translate, Restangular, localStorageService,SweetAlert, toaster, $window, $rootScope, $compile, $timeout, $location, userService, ngnotifyService, $element, NG_SETTING) {
     $scope.NewDate = $filter('date')(ngnotifyService.ServerTime(), 'yyyy-MM-dd');
     var ctrl = this;
     $scope.Time = ngnotifyService.ServerTime();
     $scope.TableData = [];
     $scope.VeiwHeader = {};
-
+    
     if (!$rootScope.user || !$rootScope.user.UserRole || !$rootScope.user.UserRole.Name) {
         $location.path('/login/signin');
-    }
+    } 
     if (userService.userIsInRole("Admin") || userService.userIsInRole("CCMANAGER") || userService.userIsInRole("LCAdmin") || userService.userIsInRole("LC") || userService.userIsInRole("AREAMANAGER") || userService.userIsInRole("ACCOUNTING") || userService.userIsInRole("PH") || userService.userIsInRole("MarketingDepartment") || userService.userIsInRole("PHAdmin") || userService.userIsInRole("OperationDepartment") || userService.userIsInRole("FinanceDepartment")) {
         $scope.StoreID = '';
         $scope.ShowStores = true;
@@ -121,8 +121,8 @@ function productsalesstatisticsCtrl($scope, $filter, $modal, $log, $translate, R
             remoteOperations: true,
             store: DevExpress.data.AspNet.createStore({
                 key: "id",
-                loadUrl: NG_SETTING.apiServiceBaseUri + "/api/dxProductSales",
-                onBeforeSend: function (method, ajaxOptions) { ajaxOptions.headers = { Authorization: 'Bearer ' + localStorageService.get('authorizationData').token }; }
+                loadUrl: NG_SETTING.apiServiceBaseUri + "/api/dxProductSales",                 
+                onBeforeSend: function (method, ajaxOptions) {ajaxOptions.headers = {Authorization: 'Bearer ' + localStorageService.get('authorizationData').token};}
             }),
             filter: getFilter(),
             fields: [
@@ -150,18 +150,28 @@ function productsalesstatisticsCtrl($scope, $filter, $modal, $log, $translate, R
         if (src) {
             for (var i = 0; i < src.length; i++) {
                 result.push(["StoreID", "=", src[i].id]);
-                if (i < src.length - 1)//if (src.length > 0)
+                if (i<src.length -1)
                     result.push("or");
             }
         }
         else
             return null;
+        return null
         return result;
-    }
+    }  
     function getFilter() {
-        return [[["OperationDate", ">=", $scope.StartDate], "and", ["OperationDate", "<=", $scope.EndDate]]];
+        if ($scope.StoreID) {
+            return [[["OperationDate", ">=", $scope.StartDate], "and", ["OperationDate", "<=", $scope.EndDate]], "and",["StoreID", "=", $scope.StoreID]];
+        }
+        else {
+            var s = BuildUserStoresArray($rootScope.user.userstores);
+            if (s)
+                return [[["OperationDate", ">=", $scope.StartDate], "and", ["OperationDate", "<=", $scope.EndDate]], [s]];
+            else 
+                return [["OperationDate", ">=", $scope.StartDate], "and", ["OperationDate", "<=", $scope.EndDate]];
+        }
     }
-
+    
 
     $scope.LoadData = function () {
         var pivot = $("#sales").dxPivotGrid('instance');
@@ -171,13 +181,13 @@ function productsalesstatisticsCtrl($scope, $filter, $modal, $log, $translate, R
         }
         else {
             pivotDS.filter(getFilter());
-        }
+        }        
         pivotDS.reload();
         //$('#sales').dxPivotGrid('instance').getDataSource().reload();
     };
-
+    
     $scope.ProductSalesApiExcel = function () {
-        location.href = NG_SETTING.apiServiceBaseUri + '/api/extendedreports/productstatisticsxls?fromDate=' + $scope.StartDate + '&toDate=' + $scope.EndDate + '&StoreID=' + $scope.StoreID;
+        location.href = NG_SETTING.apiServiceBaseUri + '/api/extendedreports/productstatisticsxls?fromDate=' + $scope.DateFromDate + '&toDate=' + $scope.DateToDate + '&StoreID=' + $scope.StoreID;
     };
 
     $scope.ShowObject = function (Container, idName, idvalue, resName) {
@@ -216,7 +226,7 @@ function productsalesstatisticsCtrl($scope, $filter, $modal, $log, $translate, R
         $scope.OrderTypeID = data;
     };
     $scope.FromDate = function () {
-        var item = $scope.StartDate;
+        var item=$scope.StartDate;
         var modalInstance = $modal.open({
             templateUrl: 'assets/views/Tools/date.html',
             controller: 'dateCtrl',
@@ -234,7 +244,7 @@ function productsalesstatisticsCtrl($scope, $filter, $modal, $log, $translate, R
         })
     };
     $scope.ToDate = function () {
-        var item = $scope.EndDate;
+        var item=$scope.EndDate;
         var modalInstance = $modal.open({
             templateUrl: 'assets/views/Tools/date.html',
             controller: 'dateCtrl',
@@ -271,8 +281,7 @@ function productsalesstatisticsCtrl($scope, $filter, $modal, $log, $translate, R
         $window.history.back();
     };
 
-    $scope.$on('$destroy', function () {
+        $scope.$on('$destroy', function () {
         $element.remove();
     });
 };
-

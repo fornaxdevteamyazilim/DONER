@@ -7,7 +7,6 @@ function inventorydeliveryeditCtrl($scope, $filter, SweetAlert, Restangular, NG_
     $scope.item.VAT = 0;
     $scope.item.Discount = 0;
     $scope.item.GrandTotal = 0;
-    $scope.DeliveryItems=[];
     userService.userAuthorizated();
     $scope.item = {};
     if ($rootScope.user && $rootScope.user.UserRole && $rootScope.user.UserRole.MemberID == "111679600561") {
@@ -127,7 +126,6 @@ function inventorydeliveryeditCtrl($scope, $filter, SweetAlert, Restangular, NG_
         $scope.isWaiting = true;
         if ($scope.item.restangularized && $scope.item.id) {
             $scope.ShowObject = true;
-            $scope.item.items=$scope.DeliveryItems;
             $scope.item.put().then(function (resp) {
                 $rootScope.allowNavigation();
                 $location.path('app/inventory/inventorydeliveries/list');
@@ -332,9 +330,9 @@ function inventorydeliveryeditCtrl($scope, $filter, SweetAlert, Restangular, NG_
     };
     $http.get(NG_SETTING.apiServiceBaseUri + "/api/inventorydeliveryitem", { params: params })
         .then(function (result) {
-            $scope.DeliveryItems = result.data.Items;
+            $scope.item.items = result.data.Items;
             var dataGrid = $('#gridContainer').dxDataGrid('instance');
-            dataGrid.option("dataSource", $scope.DeliveryItems);
+            dataGrid.option("dataSource", $scope.item.items);
         }, function (response) {
             return $q.reject("Data Loading Error");
         });
@@ -358,7 +356,7 @@ function inventorydeliveryeditCtrl($scope, $filter, SweetAlert, Restangular, NG_
         });
     };
     $scope.dataGridOptions = {
-        dataSource: $scope.DeliveryItems,
+        dataSource: $scope.item.items,
         showBorders: true,
         allowColumnResizing: true,
         columnAutoWidth: true,
@@ -378,7 +376,7 @@ function inventorydeliveryeditCtrl($scope, $filter, SweetAlert, Restangular, NG_
             enabled: false
         },
         editing: {
-            mode: "cell",
+            mode: "inline",
             allowAdding: true, //inventorydeliveryItem_add
             allowUpdating: true, //inventorydeliveryItem_update
             allowDeleting: ($rootScope.user.restrictions.inventorydeliveryItem_delete == 'Enable'), //inventorydeliveryItem_delete
@@ -416,13 +414,11 @@ function inventorydeliveryeditCtrl($scope, $filter, SweetAlert, Restangular, NG_
                         ForDate: $scope.item.DateTime
                     }).then(function (result) {
                         rowData.InventoryUnitID = value;
+                        //data.VAT = data.UnitPrice * data.UnitCount * $scope.GetInventoryVAT(data.InventoryUnitID);
                         //data.GetVat = $scope.GetInventoryVAT(data.InventoryUnitID) * 100;
                         if (result && result) {
                             console.log("GetInventoryUnitPrice result:" + result);
                             rowData.UnitPrice = result;
-                            var vt=$scope.GetInventoryVAT(rowData.InventoryUnitID);
-                            rowData.VAT = rowData.UnitPrice * rowData.UnitCount * vt;
-                        
                         }
                         else {
                             console.log("GetInventoryUnitPrice result not found!");
@@ -439,11 +435,7 @@ function inventorydeliveryeditCtrl($scope, $filter, SweetAlert, Restangular, NG_
             },
             {
                 caption: $translate.instant('inventorydeliveriesedit.UnitCount'), dataField: "UnitCount", dataType: "number", format: { type: "fixedPoint", precision: 0 }, allowEditing: true, visibleIndex: 2,
-                setCellValue: function (rowData, value) {
-                            var vt=$scope.GetInventoryVAT(rowData.InventoryUnitID);
-                            rowData.VAT = rowData.UnitPrice * rowData.UnitCount * vt;                       
-                        
-                },
+
 
             },
             {
@@ -453,7 +445,6 @@ function inventorydeliveryeditCtrl($scope, $filter, SweetAlert, Restangular, NG_
             },
             { caption: $translate.instant('inventorydeliveriesedit.UnitPrice'), dataField: "UnitPrice", dataType: "number", format: { type: "fixedPoint", precision: 2 }, displayFormat: "%{0}", allowEditing: false, visibleIndex: 3, },
             { caption: $translate.instant('inventorydeliveriesedit.Total'), dataField: "Total", calculateCellValue: function (data) { return data.UnitCount * data.UnitPrice; }, allowEditing: false, format: { type: "fixedPoint", precision: 2 }, visibleIndex: 4 },
-            { caption: $translate.instant('inventorydeliveriesedit.GrossTotal'), dataField: "GrossTotal", calculateCellValue: function (data) { return data.UnitCount * data.UnitPrice+data.VAT; }, allowEditing: false, format: { type: "fixedPoint", precision: 2 }, visibleIndex: 4 },
         ],
         summary: {
             totalItems: [
@@ -625,7 +616,7 @@ function inventorydeliveryeditCtrl($scope, $filter, SweetAlert, Restangular, NG_
     $scope.GetInventoryVAT = function (InventoryUnitID) {
         if (InventoryUnitID && $scope.inventories.length) {
             var SelectInventory = $filter('filter')($scope.inventoryunitstoshow, { id: InventoryUnitID });
-            var selected = $filter('filter')($scope.inventories, { id: SelectInventory[0].InventoryID });
+            var selected = $filter('filter')($scope.inventories, { id: SelectInventory[0] });
             return selected.length ? selected[0].VATRatio : 0;
         } else {
             return 0;

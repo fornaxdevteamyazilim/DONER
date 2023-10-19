@@ -151,7 +151,7 @@ function poductsalesccoreboardCtrl($scope, $filter, $modal, $log, Restangular, S
     }
     function getFilter() { //"and",["!",["OrderType","=",""]]
         if ($scope.StoreID) {
-            return [[["OperationDate", ">=", $rootScope.ReportParameters.StartDate], "and", ["OperationDate", "<=", $rootScope.ReportParameters.EndDate]], "and", ["StoreID", "=", $scope.StoreID]];
+            return [[["OperationDate", ">=", $scope.DateFromDate], "and", ["OperationDate", "<=", $scope.EndDate]], "and", ["StoreID", "=", $scope.StoreID]];
         }
         else {
             var s = BuildUserStoresArray($rootScope.user.userstores);

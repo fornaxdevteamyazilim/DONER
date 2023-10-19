@@ -1441,11 +1441,7 @@
     "FONTSELECTION": "Punto Seçimi",
     "PRINT": "Yazdır",
     "STOREWORKINGTIME": "Restoran Çalışma Saatleri",
-<<<<<<< HEAD
     "STORECARRIER": "Restoran Taşıyıcı",
-=======
-    "STORECARRIER": "Restoran Taşıyıcıları",
->>>>>>> ed84e712fab267a6448e75cd31d015a6005f84a6
     "DAYOFWEEK": "Hafta Günü",
     "PRODUCTSALESBYHOURS": "Saatlere Göre Ürün Satış (Adet)",
     "MATERIALNAME": "Malzeme Adı",
