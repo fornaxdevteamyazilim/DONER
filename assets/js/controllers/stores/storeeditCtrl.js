@@ -2774,7 +2774,7 @@ function usertrainingCtrl($rootScope, $scope, $log, $modal, $filter, SweetAlert,
     });
 };
 app.controller('storecarrierCtrl', storecarrierCtrl);
-function storecarrierCtrl($rootScope, $scope, $log, $modal, Restangular, ngTableParams, SweetAlert, toaster, $window, $translate, $element) {
+function storecarrierCtrl($rootScope, $scope, $log, $modal, Restangular, ngTableParams, SweetAlert, toaster, $window, $translate, $element,$stateParams) {
     $rootScope.uService.EnterController("storecarrierCtrl");
     var sc = this;
     $scope.translate = function () {
@@ -2796,6 +2796,7 @@ function storecarrierCtrl($rootScope, $scope, $log, $modal, Restangular, ngTable
         $scope.SelectedItem = id;
     };
     $scope.saveData = function (data) {
+        data.StoreID=$stateParams.id;
         if (data.restangularized) {
             data.put().then(function (res) { sc.tableParams.reload(); toaster.pop('success', "Güncellendi.", 'Updated.'); });
         }
@@ -2837,7 +2838,7 @@ function storecarrierCtrl($rootScope, $scope, $log, $modal, Restangular, ngTable
                 Restangular.all($scope.objectType).getList({
                     pageNo: params.page(),
                     pageSize: params.count(),
-                    //search: "StoreID='" + $scope.StoreID + "'",
+                    search: "StoreID='" + $stateParams.id + "'",
                     sort: params.orderBy()
                 }).then(function (items) {
                     params.total(items.paging.totalRecordCount);
@@ -2849,6 +2850,7 @@ function storecarrierCtrl($rootScope, $scope, $log, $modal, Restangular, ngTable
             }
         });
     $scope.saveItem = function (data) {
+        data.StoreID=$stateParams.id;
         _update(data, this.item);
         $scope.saveData(this.item);
         return this.item;

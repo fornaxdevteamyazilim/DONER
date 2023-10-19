@@ -1413,7 +1413,11 @@
     "FONTSELECTION": "Font Selection",
     "PRINT": "Print",
     "STOREWORKINGTIME": "Store Working Time",
+<<<<<<< HEAD
     "STORECARRIER": "Restoran Taşıyıcı",
+=======
+    "STORECARRIER": "Store Carriers",
+>>>>>>> ed84e712fab267a6448e75cd31d015a6005f84a6
     "DAYOFWEEK": "Day Of Week",
     "MATERIALNAME": "Material Name",
     "RATIO": "%",
