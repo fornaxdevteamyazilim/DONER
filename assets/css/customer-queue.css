@@ -28,7 +28,7 @@ iframe {
 }
 
 .queue-number {
-  font-size: 5.0vw;
+  font-size: 8.5vw;
   font-weight: 600;
 }
 
@@ -51,41 +51,51 @@ iframe {
   height: 100%;
   /* min-height: 6vh; */
   background: #f80404;
-  color:yellow;
+  color: yellow;
   border-radius: 0.5vh;
-  
+
 
 }
+
 .order-preparing {
-    width: 100%;
-    height: 100%;
-    /* min-height: 6vh; */
-    background: #f80404;
-    color:yellow;
-    border-radius: 1.5vh;
-    text-align: center;
-    font-size: 3rem;
-    /* font-weight: 300; */
-    margin-top: 1.5vh; /*Dışardan 100px aşağı doğru kayar*/
-margin-bottom: 0.5vh; /*Dışardan 100px yukarı doğru kayar*/
-margin-right: 1.5vh; /*Dışardan 100px sağa doğru kayar*/
-margin-left: 1.5vh; /*Dışardan 100px sola doğru kayar*/
-  }
-  .order-ready {
-    width: 100%;
-    height: 100%;
-    /* min-height: 6vh; */
-    background: yellow;
-    color:#f80404;
-    border-radius: 1.5vh;
-    text-align: center;
-    font-size: 3rem;
-    /* font-weight: 300; */
-    margin-top: 1.5vh; /*Dışardan 100px aşağı doğru kayar*/
-margin-bottom: 0.5vh; /*Dışardan 100px yukarı doğru kayar*/
-margin-right: 1.5vh; /*Dışardan 100px sağa doğru kayar*/
-margin-left: 1.5vh; /*Dışardan 100px sola doğru kayar*/
-  }
+  width: 48%;
+  height: 100%;
+  /* min-height: 6vh; */
+  background: #f80404;
+  color: yellow;
+  border-radius: 1.5vh;
+  text-align: center;
+  font-size: 3rem;
+  /* font-weight: 300; */
+  margin-top: 0.5vh;
+  /*Dışardan 100px aşağı doğru kayar*/
+  margin-bottom: 0.5vh;
+  /*Dışardan 100px yukarı doğru kayar*/
+  margin-right: 0.5vh;
+  /*Dışardan 100px sağa doğru kayar*/
+  margin-left: 0.5vh;
+  /*Dışardan 100px sola doğru kayar*/
+}
+
+.order-ready {
+  width: 48%;
+  height: 100%;
+  /* min-height: 6vh; */
+  background: yellow;
+  color: #f80404;
+  border-radius: 1.5vh;
+  text-align: center;
+  font-size: 3rem;
+  /* font-weight: 300; */
+  margin-top: 0.5vh;
+  /*Dışardan 100px aşağı doğru kayar*/
+  margin-bottom: 0.5vh;
+  /*Dışardan 100px yukarı doğru kayar*/
+  margin-right: 0.5vh;
+  /*Dışardan 100px sağa doğru kayar*/
+  margin-left: 0.5vh;
+  /*Dışardan 100px sola doğru kayar*/
+}
 
 .box-detail {
   font-size: 2.2vh;

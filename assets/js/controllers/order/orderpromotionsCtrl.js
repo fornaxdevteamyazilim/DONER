@@ -2,11 +2,14 @@
 function orderpromotionsCtrl($rootScope, $translate, $scope, $log, $filter, $modalInstance, SweetAlert, Restangular, Order, ngTableParams, toaster, $window) {
     $rootScope.uService.EnterController("orderproductitemsCtrl");
     $scope.AktiveCode = false;
+    $scope.CustomAmountVisible = false;
+    $scope.CustomPercentVisible = false;
     $scope.translate = function () {
         $scope.trSlectPromotion = $translate.instant('main.SELECTPROMOTION');
         $scope.trCODE = $translate.instant('main.CODE');
         $scope.trOk = $translate.instant('main.OK');
         $scope.trdiscount = $translate.instant('main.DISCOUNT₺');
+        $scope.trdiscountpercent = $translate.instant('main.DISCOUNTPERCENT');
     };
     $scope.translate();
     var deregistration = $scope.$on('$translateChangeSuccess', function (event, data) {// ON LANGUAGE CHANGED
@@ -20,8 +23,9 @@ function orderpromotionsCtrl($rootScope, $translate, $scope, $log, $filter, $mod
             search: "tt.id in ('" + data.PromotionID + "')"
         }).then(function (result) {
             for (var i = 0; i < result.length; i++) {
-                if (result[i].PromotionScenario == 1)
-                    $scope.AktiveCode = true;
+                $scope.AktiveCode = (result[i].PromotionScenario == 1);
+                $scope.CustomAmountVisible = (result[i].PromotionRule == 5);
+                $scope.CustomPercentVisible = (result[i].PromotionRule == 8);
             }
         }, function (response) {
             toaster.pop('error', $translate.instant('Server.ServerError'));
@@ -34,12 +38,12 @@ function orderpromotionsCtrl($rootScope, $translate, $scope, $log, $filter, $mod
         }
         return idvalue || 'Not set';
     };
-    $scope.loadEntities = function (EntityType, Container,OrderID) {
+    $scope.loadEntities = function (EntityType, Container, OrderID) {
         if (!$scope[Container].length) {
             Restangular.all(EntityType).getList({
                 pageNo: 1,
                 pageSize: 1000,
-                CalcParameters:"OrderID="+OrderID
+                CalcParameters: "OrderID=" + OrderID
             }).then(function (result) {
                 $scope[Container] = result;
             }, function (response) {
@@ -51,7 +55,12 @@ function orderpromotionsCtrl($rootScope, $translate, $scope, $log, $filter, $mod
     $scope.loadEntities('promotion', 'promotions', Order.id);
     $scope.OrderPromotion = [];
     $scope.SaveOrderPromotrion = function (data) {
-        var result = { PromotionID: data.PromotionID, OrderID: Order.id, Code: data.Code };
+        var modifyValue=0;
+        if ($scope.CustomPercentVisible)
+            modifyValue = Math.abs(data.ModifyPercent) / -100;
+        if ($scope.CustomAmountVisible)
+            modifyValue = Math.abs(data.ModifyValue)*-1;
+        var result = { PromotionID: data.PromotionID, OrderID: Order.id, Code: data.Code, ModifyValue: modifyValue };
         Restangular.restangularizeElement('', result, 'orderpromotion');
         result.post().then(
             function (res) {

@@ -36,7 +36,7 @@
           <div class="card-body">
             <div>
               <div class="row">
-                <div ng-repeat="x in preparingOrders" class="col-md-5 order-preparing"><span
+                <div ng-repeat="x in preparingOrders" class="order-preparing"><span
                     class="queue-number">{{x.OrderNumber.split("-")[1]}}</span></div>
               </div>
             </div>
@@ -47,13 +47,13 @@
         <div class="card text-white mb-2 mt-2" style="min-height: 80vh;max-height: 75vh">
           <div class="card-header">
             <div class="row">
-              <div class="col-md-12 text-center">Hazır</div>
+              <div class="col-12 text-center">Hazır</div>
             </div>
           </div>
           <div class="card-body">
             <div>
               <div class="row">
-                <div ng-repeat="x in preparedOrders" class="col-md-5 order-ready"><span
+                <div ng-repeat="x in preparedOrders" class="order-ready"><span
                     class="queue-number">{{x.OrderNumber.split("-")[1]}}</span></div>
               </div>
             </div>
