@@ -129,7 +129,7 @@ function orderpromotionCtrl($scope, $filter, $window, $stateParams, $rootScope, 
         },
         export: {
             enabled: true,
-            fileName: "InventoryTransactions",
+            fileName: "OrderPromotion",
         },
         scrolling: { mode: "virtual" },
         height: 600

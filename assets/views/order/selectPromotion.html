@@ -1,4 +1,4 @@
-﻿<div class="panel-body">
+﻿﻿<div class="panel-body">
     <div class="col-md-12 modal-header center">
         <h3 class="modal-title">{{:: trSlectPromotion}}<button class="btn btn-danger ti-close pull-right" ng-click="cancel()"></button></h3>
     </div>
@@ -16,11 +16,17 @@
                 </label>
                 <input id="Code" type="text" placeholder="Enter Code" class="form-control text-uppercase" ng-model="item.Code">
             </div>
-            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-show="AktiveCode == true">
+            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-show="CustomAmountVisible == true">
                 <label class="margin-top-5">
                     {{::trdiscount}}
                 </label>
-                <input id="Code" type="text" placeholder="TL İndirimi" class="form-control text-uppercase" ng-model="item.Code">
+                <input id="CustomAmount" type="text" placeholder="TL İndirimi" class="form-control text-uppercase" ng-model="item.ModifyValue">
+            </div>
+            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-show="CustomPercentVisible == true">
+                <label class="margin-top-5">
+                    {{::trdiscountpercent}}
+                </label>
+                <input id="CustomPercent" type="text" placeholder="% İndirimi" class="form-control text-uppercase" ng-model="item.ModifyPercent">
             </div>
         </div>
         <div class="modal-footer center">
@@ -28,6 +34,3 @@
         </div>
     </form>
 </div>
-
-
-

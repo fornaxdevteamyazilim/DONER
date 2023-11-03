@@ -549,7 +549,7 @@ function kds2Ctrl(
 
   $scope.$on("$destroy", function () {
     //$timeout.cancel(interval);
-    $rootScope.app.layout.isNavbarFixed = ($rootScope.BRAND === 'KFC' || $rootScope.BRAND === 'KK');
+   // $rootScope.app.layout.isNavbarFixed = ($rootScope.BRAND === 'KFC' || $rootScope.BRAND === 'KK');
     deregistration();
     clearInterval(interval);
     //$timeout.cancel(OrderRefreshTimeOut);

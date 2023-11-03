@@ -305,7 +305,7 @@ app.factory('userService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
                     { id: 700000118355, name: 'REST. MANAGER', isActive: true , isDriver: false},
                     { id: 109474168055, name: 'REST. ASSIST. MANAGER', isActive: false , isDriver: false },
                     { id: 104536896676, name: 'REST. SHIFT MANAGER', isActive: false, isDriver: false },
-                    { id: 300002043374, name: 'REST. TEAM MEMBER', isActive: false, isDriver: false },
+                    { id: 700005073211, name: 'REST. TEAM MEMBER', isActive: false, isDriver: false },
                     { id: 700000115774, name: 'Rest. Driver', isActive: true, isDriver: true },
                     { id: 300002043360, name: 'REST. KITCHEN MEMBER', isActive: false, isDriver: false },
                     { id: 300021512530, name: 'Fiyuu Driver', isActive: false , isDriver: false},//Bir tane de Fiyuu sürücü

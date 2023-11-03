@@ -66,7 +66,7 @@
                     <span translate="main.ORDER">Order Back</span>
                 </a>
             </div> -->
-            <div class="col-lg-1 col-md-2 col-sm-6 col-xs-6 margin-top-5 pull-right visible-lg">
+            <div class="col-lg-1 col-md-2 col-sm-6 col-xs-6 margin-top-5 pull-right visible-lg" ng-if="::user.restrictions.revertlastorder=='Enable'">
                 <a class="btn btn-wide btn-red btn-scroll btn-scroll-top ti-back-left pull-right" ng-click="revertlastorder()">
                     <span translate="main.LASTORDER">Last Order Back</span>
                 </a>

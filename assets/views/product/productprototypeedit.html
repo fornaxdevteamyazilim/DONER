@@ -59,13 +59,17 @@
                     <label for="FilterID">
                         {{:: filter}}
                     </label>
-                    <select id="FilterID" ng-options="s.id as s.Name for s in filters | orderBy:'+Name'" class="form-control text-capitalize" ng-model="item.isActiveFilter"></select>
+                    <select id="FilterID" ng-options="s.id as s.Name for s in filters | orderBy:'+Name'" class="form-control text-capitalize" ng-model="item.isActiveFilter">
+                        <option value=""></option>
+                    </select>
                 </div>
                 <div class="form-group col-sm-6 col-lg-2 col-md-3 col-xs-12">
                     <label for="FilterID">
                         {{:: orderablefilter}}
                     </label>
-                    <select id="FilterID" ng-options="s.id as s.Name for s in filters | orderBy:'+Name'" class="form-control text-capitalize ng" ng-model="item.isOrderableFilter"></select>
+                    <select id="FilterID" ng-options="s.id as s.Name for s in filters | orderBy:'+Name'" class="form-control text-capitalize ng" ng-model="item.isOrderableFilter">
+                        <option value=""></option>
+                    </select>
                 </div>
                 <!--<div class="form-group col-sm-6 col-lg-2 col-md-3 col-xs-12">
                     <label for="Price">

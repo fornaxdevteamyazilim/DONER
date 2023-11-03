@@ -290,7 +290,7 @@
     "DECLAREDREVENUEELIST": "{{appName}} - Declared Revenuee List",
     "STORESALESBUDGETLIST": "{{appName}} - Store Sales Budget List",
     "NGSETTINGITEM": "{{appName}} - RopNG Settings",
-    "CONNECTIONTOROPNGAPISERVICENOTAVAILIBLE" : "{{appName}} -Connection to ROPNG API service not availible!",
+    "CONNECTIONTOROPNGAPISERVICENOTAVAILIBLE": "{{appName}} -Connection to ROPNG API service not availible!",
     "INVENTORYPERIDICCOST": "{{appName}} - Inventory Periodic Costs",
     "USERPRODUCTSALES": "{{appName}} - User - Product Sale List",
     "DEMANDRULEDEFINITION": "{{appName}} - Demand Rules Definition",
@@ -410,8 +410,8 @@
     "BONUSSTATS": "{{appName}} - Bonus Stats Report",
     "WEBUSERS": "{{appName}} - Web Users Report",
     "DRIVERSTRANSACTIONS": "{{appName}} - Drivers Transactions",
-    "PunchCardStoreCompare":"{{appName}} - PunchCard Store Compare",
-    "MIGROSPERSON":"MIGROS Customer"
+    "PunchCardStoreCompare": "{{appName}} - PunchCard Store Compare",
+    "MIGROSPERSON": "MIGROS Customer"
   },
   "main": {
     "CURRENCY_SYMBOL": "TL",
@@ -586,7 +586,7 @@
     "BRANDNAME": "Brand Name",
     "CHASSISNUMBER": "Chassis Number",
     "COMMANDS": "Commands",
-    "QUANTITYLIMIT":"Quantity Limit",
+    "QUANTITYLIMIT": "Quantity Limit",
     "STOREBASEDQUANTITYLIMIT": "Store Based Quantity Limit",
     "ORDERDELIVERYPRICE": "Order delivery price",
     "COMPANY": "Company",
@@ -724,7 +724,7 @@
     "RELATEDOPTION": "Related Option",
     "REPOSITORY": "Repository",
     "REPOSITORYNAME": "Repository Name",
-    "ADDDATE":"Add Date",
+    "ADDDATE": "Add Date",
     "REQUIRED": "Required",
     "RETURN": "Return",
     "ROUTEDTOSTORE": "Routed To Store",
@@ -914,7 +914,8 @@
     "EDITMODE": "Edit Mode",
     "VIEWMODE": "View Mode",
     "VATDISCOUNT%": "VAT Discount %",
-    "DISCOUNT₺": "Discount ₺",
+    "DISCOUNT₺": "Discount (TL)",
+    "DISCOUNTPERCENT":"Discount %",
     "AMOUNT₺": "Amount ₺",
     "VAT₺": "VAT ₺",
     "TODAY": "Today",
@@ -1311,7 +1312,7 @@
     "TAKEAWAYORDERS": "TakeAway Orders",
     "WEBDINEIN": "Dine In Web",
     "HDORDERS": "Delivery Orders",
-    "NOTACCEPTED":"Not Accepted",
+    "NOTACCEPTED": "Not Accepted",
     "ESTIMATEDDELIVERYTIME": "Estimated Delivery Time",
     "ASSIGNDRIVER": "Assing Driver",
     "ADDCARRIER": "Add Carrier",
@@ -1491,8 +1492,8 @@
     "USAGERETURNED": "Usage Returned",
     "REALCOSTS": "Real Cost",
     "IDEALCOSTS": "Theorical Cost",
-    "TOTALACTUALAMOUNT":"Total Actual Amount",
-    "TOTALDECLAREDAMOUNT":"Total Declared Amount",
+    "TOTALACTUALAMOUNT": "Total Actual Amount",
+    "TOTALDECLAREDAMOUNT": "Total Declared Amount",
     "YSPAYMENTTYPE": "YS Payment Type",
     "YSNAME": "YS Name",
     "YSDESCRIPTION": "YS Description",
@@ -1925,7 +1926,7 @@
     "FIRSTORDERDATE": "First Order Date",
     "ACTIVEPERIOD": "Active Period",
     "ISOPEN": "Store Open/Close",
-    "ISENABLED": "Enabled Status", 
+    "ISENABLED": "Enabled Status",
     "STORESTATUS": "Store Status",
     "STOREYSSTATUS": "Ys Store Status",
     "WAITINGPERIOD": "Waiting Period",
@@ -2324,7 +2325,7 @@
     "GLOVOORDERS": "Glovo Orders",
     "GETIRORDERS": "Getir Orders",
     "TRENDYOL": "Trendyol Orders",
-    "CONNECTIONTOROPNGAPISERVICENOTAVAILIBLE" : "Connection to ROPNG API service not availible!",
+    "CONNECTIONTOROPNGAPISERVICENOTAVAILIBLE": "Connection to ROPNG API service not availible!",
     "ORDERNUMBERPREFIX": "Order Number Prefix",
     "GIFTPROMOTIONBLACKLIST": "Gift Promotion Black List",
     "PROMOTIONSETTING": "Promotion Setting",
@@ -2484,7 +2485,7 @@
     "ACTUALTOTHEORIC": "Actual to Theoric",
     "PROMOTIONANALISYS": "Promotion Analisys",
     "PAYMENTORDERSOURCESTATS": "Payment States by Order Source",
-    "ORDERSOURCETYPESTATS":"Orders by Type and Source",
+    "ORDERSOURCETYPESTATS": "Orders by Type and Source",
     "STOREROUTINGTYPE": "Routing Type",
     "ORDERPAYMENTSCHECK": "Payments Check Report",
     "STAFFORDERSREPORT": "Staff  Order Reports",
@@ -2493,8 +2494,8 @@
     "BONUSTRANSACTIONS": "Bonus Transactions Report",
     "BONUSSTATS": "Bonus Stats Report",
     "LOYALTYREPORTS": "Loyalty",
-    "WEBUSERS": "{{appName}} - Web Users Report",
-    "PunchCardStoreCompare":"{{appName}} - PunchCard Store Compare"
+    "WEBUSERS": "Web Users Report",
+    "PunchCardStoreCompare": "PunchCard Store Compare"
   },
   "topbar": {
     "messages": {
@@ -2883,17 +2884,17 @@
         "BONUSSTATS": "Bonus Stats Report",
         "WEBREPORTS": "Web",
         "WEBUSERS": "Web Users Report",
-        "PunchCardStoreCompare":"{{appName}} - PunchCard Store Compare",
+        "PunchCardStoreCompare": "PunchCard Store Compare",
         "MONTHLYSALESVSBUDGET": "Monthly Sales Vs Budget",
         "WEEKLYSALESCOMPARE": "Weekly Sales Compare",
         "SINGLEPRICE": "Single Price",
         "DOUBLEPRICE": "Double Price",
         "DAILYINITIALAMOUNT": "Daily Initial Amount",
-        "COURIERTRANSACTIONPRICEID":" Courier Transaction Price ID",
+        "COURIERTRANSACTIONPRICEID": " Courier Transaction Price ID",
         "REASONNAME": "Reason Name",
-        "CULTURECODE":"Culture Code",
-        "REASONID":"Reason Id",
-        "CULTUREID":"Culture Id"
+        "CULTURECODE": "Culture Code",
+        "REASONID": "Reason Id",
+        "CULTUREID": "Culture Id"
       },
       "addresses": {
         "MAIN": "Address",
@@ -3021,7 +3022,7 @@
         "PREDEFINEDNOTE": "PreDefinet Note",
         "YEMEKSEPETIREJECTREASON": "Yemek Sepeti Reject Reason",
         "NGSETTINGITEM": "RopNG Setting Definitions",
-        "CONNECTIONTOROPNGAPISERVICENOTAVAILIBLE" : "Connection to ROPNG API service not availible!",
+        "CONNECTIONTOROPNGAPISERVICENOTAVAILIBLE": "Connection to ROPNG API service not availible!",
         "SETTINGITEM": "Editing Tools ",
         "SURVEURESULT": "Survey Result Definition",
         "STAFFTYPE": "Staff Types",
@@ -3365,8 +3366,8 @@
     "Cardreading": "To exit the shift, please read the Card",
     "Cardentry": "'Please read the Card for shift entry'",
     "EnrollCardPrint": "Card Registration",
-    "SwipeCardToClockOut":"Scan Card to end shift",
-    "SwipeCardToClockIn":"Scan Card to start shift"
+    "SwipeCardToClockOut": "Scan Card to end shift",
+    "SwipeCardToClockIn": "Scan Card to start shift"
   },
   "difinitions": {
     "Updated": "Updated.",
@@ -3564,7 +3565,7 @@
     "Markorderasdelivered": "Mark order as delivered",
     "THEDRAWERISCLOSED": "The Drawer is Closed",
     "THEDRAWERISOPENED": "The Drawer is Opened",
-    "ORDERSAVED": "Order Saved" 
+    "ORDERSAVED": "Order Saved"
   },
   "yemeksepetifile": {
     "Cancelled": "It is cancelled !",
@@ -3894,8 +3895,7 @@
     "ConnectionError": "Server Connection error!!!",
     "Reconnecting": "Reconnecting to ROPNG services...",
     "ConnectionSlow": "Connection quality is poor!",
-    "CONNECTIONTOROPNGAPISERVICENOTAVAILIBLE" : "Connection to ROPNG API service not availible!"
-    
+    "CONNECTIONTOROPNGAPISERVICENOTAVAILIBLE": "Connection to ROPNG API service not availible!"
   },
   "OrderType": {
     "Paket": "Delivery",
@@ -3962,9 +3962,9 @@
     "Usage(%)": "Usage (%)",
     "c.name": "c.name",
     "TransformUnits": "Transform Units",
-    "StaffTheoriticalUsage":"Staff Theoritical (Quantity)",
-    "StaffTheoriticalUsageAmount":"Staff Theoritical Usage (Amount)",
-    "StaffTheoriticalUsagePercent":"Staff Theoritical Usage (Percent)",
+    "StaffTheoriticalUsage": "Staff Theoritical (Quantity)",
+    "StaffTheoriticalUsageAmount": "Staff Theoritical Usage (Amount)",
+    "StaffTheoriticalUsagePercent": "Staff Theoritical Usage (Percent)",
     "Staff": "Staff"
   },
   "weeklycolsummary": {
@@ -4108,7 +4108,7 @@
     "AvgDispatchTime": "Avg Dispatch Time",
     "DispatchU14": "Dispatch U14",
     "AvgDeliveryTime": "Avg Delivery Time",
-    "AvgDriveTime":"Avg Drive Time"
+    "AvgDriveTime": "Avg Drive Time"
   },
   "podsreport": {
     "POD": "POD",
@@ -4147,7 +4147,7 @@
     "Day": "Day",
     "Cost": "Cost",
     "Store": "Store",
-    "OrderID":"Order ID"
+    "OrderID": "Order ID"
   },
   "promotionanaisys": {
     "Region": "Region",
@@ -4494,9 +4494,9 @@
     "TITLE": "Aggregator Mapping",
     "productmap": "Product Mapping",
     "paymentmapping": "Payment Type Mapping",
-    "store" : "store",
+    "store": "store",
     "TrendyolAggregator": "Trendyol Aggregator Setting",
-     "MigrosAggregator": "Migros Aggregator Setting"
+    "MigrosAggregator": "Migros Aggregator Setting"
   },
   "aggregatororderlist": {
     "MAIN": "Aggregator Order List",
@@ -4533,9 +4533,9 @@
     "UnitCount": "Unit Count",
     "UnitPrice": "Unit Price",
     "Total": "Total",
-    "InventoryGroup":"Inventory Group"
+    "InventoryGroup": "Inventory Group"
   },
-   "unmappedorders":{
+  "unmappedorders": {
     "Aggregator": "Aggregator",
     "Name": "Name",
     "Address": "Address",
@@ -4543,7 +4543,7 @@
     "OrderDate": "Order Date",
     "Commands": "Commands"
   },
-  "dxGetirProduct":{
+  "dxGetirProduct": {
     "GetirProductID": "GetirProductID",
     "GetirProductName": "GetirProductName",
     "ProductID": "ProductID",
@@ -4552,7 +4552,7 @@
     "SkipProduct": "SkipProduct",
     "AutoAddProductID": "Auto Add Product",
     "AutoAddMapToOption": "AutoAddMapToOption",
-    "AutoAddProductQuantity":"AutoAddProductQuantity",
+    "AutoAddProductQuantity": "AutoAddProductQuantity",
     "AutoAddMapOptionsLevel": "AutoAddMapOptionsLevel",
     "MemberID": "Member",
     "AggregatorID": "Aggregator",
@@ -4561,25 +4561,25 @@
     "Name": "Name"
   },
   "PunchCardStoreCompare": {
-    "EarnedFromSameStore":"EarnedFromSameStore",
-    "Store":"Store",
-    "PersonName":"PersonName",
-    "Count":"Count"
+    "EarnedFromSameStore": "EarnedFromSameStore",
+    "Store": "Store",
+    "PersonName": "PersonName",
+    "Count": "Count"
   },
   "dxGetirStore": {
     "MemberID": "MemberID",
     "GetirStoreName": "Getir Store Name",
     "AggregatorID": "Aggregator ID",
-    "AggregatorStoreID":"Aggregator Store ID",
+    "AggregatorStoreID": "Aggregator Store ID",
     "StoreID": "Store ID",
     "averagePreparationTime": "Average Preparation Time",
     "status": "Status",
     "isCourierAvailable": "Is Courier Available",
-    "restaurantSecretKey":"Restaurant Secret Key",
-    "isActive":"Is Active",
+    "restaurantSecretKey": "Restaurant Secret Key",
+    "isActive": "Is Active",
     "isEnabled": "is Enabled"
   },
-  "trendyolmapping":{
+  "trendyolmapping": {
     "TITLE": "Trentyol Mapping",
     "rejectreason": "Reason for rejected order"
   },
@@ -4620,14 +4620,14 @@
     "TransferOrdersInstant": "Transfer Orders Instant",
     "chainCode": "Chain Code"
   },
-  "dxTrendyolProduct":{
+  "dxTrendyolProduct": {
     "TrendyolProductID": "Trendyol Product ID",
     "TrendyolProductName": "Trendyol Product Name",
     "ProductID": "Product ID",
     "FixedSize": "Fixed Size",
     "MapByPrototype": "Map By Prototype",
     "SkipProduct": "Skip Product",
- "AutoAddProductID": "Auto Add Product",
+    "AutoAddProductID": "Auto Add Product",
     "AutoAddMapToOption": "Auto Add Map To Option",
     "AutoAddProductQuantity": "Auto Add Product Quantity",
     "AutoAddMapOptionsLevel": "Auto Add Map Options Level",
@@ -4636,9 +4636,9 @@
     "type": "Type",
     "PaymentType": "Payment Type",
     "Name": "Name",
-    "ChildName":"Child Name"
+    "ChildName": "Child Name"
   },
-  "dxTrendyolRejectReason":{
+  "dxTrendyolRejectReason": {
     "Code": "Code",
     "Reason": "Reason",
     "Description": "Description",
@@ -4651,7 +4651,7 @@
     "FixedSize": "Fixed Size",
     "MapByPrototype": "Map By Prototype",
     "SkipProduct": "Skip Product",
- "AutoAddProductID": "Auto Add Product",
+    "AutoAddProductID": "Auto Add Product",
     "AutoAddMapToOption": "Auto Add Map To Option",
     "AutoAddProductQuantity": "Auto Add Product Quantity",
     "AutoAddMapOptionsLevel": "Auto Add Map Options Level",
@@ -4688,7 +4688,7 @@
     "DeliveryTransactionsCHG": "Delivery Transactions CHG",
     "DeliveryGCAvg": "Delivery GCAvg",
     "DeliveryGCAvgCY": "Delivery GCAvgCY",
-    "DeliveryGCAvgLY": "Delivery GCAvgLY", 
+    "DeliveryGCAvgLY": "Delivery GCAvgLY",
     "DeliveryGCAvgCHG": "Delivery GCAvgCHG"
   },
   "monthlysalesvsbudget": {
@@ -4701,7 +4701,6 @@
     "TotalMonthlyIncome": "Total Monthly Income",
     "SalesTarget": "SalesTarget",
     "Ratio": "Ratio"
-    
   },
   "getiristatsdetail": {
     "MapID": "Map ID",
@@ -4720,7 +4719,6 @@
     "Getir": "Getir Order ID",
     "Aggregator": "Aggregator",
     "AggregatorOrderID": "Aggregator Order ID"
-    
   },
   "AggregatorOrdersstatsdetail": {
     "MapID": "ID",
@@ -4738,7 +4736,7 @@
     "YemekSepetiOrderID": "YemekSepeti Order ID",
     "GetirOrderID": "Getir Order ID",
     "Aggregator": "Aggregator",
-    "AggregatorOrderID":"Aggregator Order ID"
+    "AggregatorOrderID": "Aggregator Order ID"
   },
   "InventoryCounts": {
     "RepositoryID": "Repository",
@@ -4791,7 +4789,7 @@
     "ToStore": "To Store",
     "customername": "Customer Name",
     "customerphone": "Customer Phone",
-    "OperationDate": "Operation Date", 
+    "OperationDate": "Operation Date",
     "FromStoreID": "From Store ID",
     "ToStoreID": "To Store ID",
     "AddressID": "Address ID",
@@ -4833,8 +4831,8 @@
     "SendDate": "Subcity Name",
     "fk_ObjectUpdate_id": "fk_ObjectUpdate_id",
     "transmittedOracle": "Transmitted Oracle",
-    "ATMID":"Atm Id",
-    "DepositedAmount":"Deposited Amount",
+    "ATMID": "Atm Id",
+    "DepositedAmount": "Deposited Amount",
     "AC_CostCenter": "Expense Center"
   },
   "DriversTransactions": {
@@ -4880,15 +4878,43 @@
     "ValidTo": "Valid To",
     "StoreID": "Store"
   },
-  "AggregatorStoreStatus":{
+  "AggregatorStoreStatus": {
     "StoreID": "StoreID",
     "Aggregator": "Aggregator",
     "Aggregator_Name": "Aggregator_Name",
-    "Aggregator_StoreID":"Aggregator_StoreID",
-    "Aggregator_Enabled":"Aggregator_Enabled",
-    "Aggregator_ServiceTime":"Aggregator_ServiceTime",
-    "Aggregator_sid":"Aggregator_sid",
-    "Aggregator_Status":"Aggregator_Status"
-  }
-  
+    "Aggregator_StoreID": "Aggregator_StoreID",
+    "Aggregator_Enabled": "Aggregator_Enabled",
+    "Aggregator_ServiceTime": "Aggregator_ServiceTime",
+    "Aggregator_sid": "Aggregator_sid",
+    "Aggregator_Status": "Aggregator_Status"
+},
+"callcenterreports": {
+  "Store": "Store",
+  "Hour": "Hour",
+  "OrderDate": "Order Date",
+  "OrdersCountTKW": "Orders Count TKW",
+  "OrdersAmountTKW": "Orders Amount TKW",
+  "OrdersCountDelivery": "Orders Count Delivery",
+  "OrdersAmountDelivery": "Orders Amount Delivery",
+  "OrdersCount": "Orders Count",
+  "OrderAmount": "Order Amount",
+  "UserName": "User Name",
+  "AgentName": "Agent Name",
+  "AC": "AC (TL)",
+  "Group1ProductCount": "Group1ProductCount",
+  "Group1ProductRatio": "Group1ProductRatio",
+  "Group2ProductCount": "Group2ProductCount",
+  "Group2ProductRatio": "Group2ProductRatio",
+  "GroupsAmounRatioNoVAT": "GroupsAmounRatioNoVAT",
+  "GroupsAmountNoVAT": "GroupsAmountNoVAT",
+  "OrdersAmount": "Orders Amount",
+  "OrderHour": "Order Hour",
+  "OrderNumber": "Order Number",
+  "ordertype": "Order Type",
+  "Discounts": "Discounts",
+  "PendingPaymentStatus": "Pending Payment Status",
+  "PaymentType": "Payment Type",
+  "PaymentDate": "Payment Date",
+  "Amount": "Amount"
+}
 }

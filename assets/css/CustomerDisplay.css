@@ -65,6 +65,15 @@ body {
     height: 100vh;
     width: 65vw;
 }
+.hutla-katlassw {
+    height: 100vh;
+    background-image: url('../images/rop5.jpg');
+    background-size: 100% 100%;
+    background-position: auto;
+    flex-grow: 2;
+    height: 100vh;
+    width: 65vw;
+}
 
 .flex {
     display: flex;

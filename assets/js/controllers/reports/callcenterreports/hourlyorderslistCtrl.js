@@ -1,141 +1,156 @@
 ﻿'use strict';
 app.controller('hourlyorderslistCtrl', hourlyorderslistCtrl);
-function hourlyorderslistCtrl($scope, $log, $modal, $timeout, $filter, SweetAlert, Restangular, ngTableParams, toaster, $window, $location, $translate, Excel, ngnotifyService, $rootScope, $element) {
+function hourlyorderslistCtrl($scope, $filter, $window, $stateParams, $interval, $rootScope, $translate, userService, ngnotifyService, $element, NG_SETTING, $http, $q) {
     $rootScope.uService.EnterController("hourlyorderslistCtrl");
-    var stopTime;
-    $scope.OnRefresh = true;
-    if (!$scope.StartDate) {
-        $scope.StartDate = $filter('date')(ngnotifyService.ServerTime(), 'yyyy-MM-dd');
-    }
-    if (!$scope.EndDate) {
-        $scope.EndDate = moment().add(1, 'days').format('YYYY-MM-DD');
-    }
     $scope.Time = ngnotifyService.ServerTime();
-    $scope.HourlyOrdersList = [];
-    $scope.LoadHourlyOrdersList = function () {
-        $scope.isWaiting = true;
-        Restangular.all('ccstats/hourlyorderslist').getList(
-            {
-                StartDate: $scope.StartDate,
-                EndDate: $scope.EndDate,
-            }
-        ).then(function (result) {
-            $scope.OrderHour = 0;
-            $scope.OrdersCount = 0;
-            $scope.OrdersAmount = 0;
-            for (var i = 0; i < result.length; i++) {
-                $scope.OrderHour += result[i].OrderHour;
-            }
-            for (var i = 0; i < result.length; i++) {
-                $scope.OrdersCount += result[i].OrdersCount;
-            }
-            for (var i = 0; i < result.length; i++) {
-                $scope.OrdersAmount += result[i].OrdersAmount;
-            }
-            $scope.isWaiting = false;
-            $scope.HourlyOrdersList = result;
-            $scope.start();
-        }, function (response) {
-            $scope.isWaiting = false;
-            toaster.pop('error', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
-        });
-    };
-    $scope.LoadHourlyOrdersList();
-    $scope.SelectStartDate = function (item) {
-        $scope.stop();
-        var modalInstance = $modal.open({
-            templateUrl: 'assets/views/Tools/date.html',
-            controller: 'dateCtrl',
-            size: '',
-            backdrop: '',
-            resolve: {
-                DateTime: function () {
-                    return item;
-                }
-            }
-        });
-        modalInstance.result.then(function (item) {
-            var data = new Date(item);
-            $scope.OnRefresh = false;
-            $scope.StartDate = $filter('date')(data, 'yyyy-MM-dd');
-        })
-    };
-    $scope.exportToExcel = function (tableId) {
-        var blob = new Blob([document.querySelector(tableId).innerHTML], {
-            type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
-        });
-        var downloadLink = angular.element('<a></a>');
-        downloadLink.attr('href', window.URL.createObjectURL(blob));
-        downloadLink.attr('download', 'CM Hourly Order List.xls');
-        downloadLink[0].click();
-    };
-    $scope.SelectEndDate = function (item) {
-        $scope.stop();
-        var modalInstance = $modal.open({
-            templateUrl: 'assets/views/Tools/date.html',
-            controller: 'dateCtrl',
-            size: '',
-            backdrop: '',
-            resolve: {
-                DateTime: function () {
-                    return item;
-                }
-            }
-        });
-        modalInstance.result.then(function (item) {
-            var data = new Date(item);
-            $scope.OnRefresh = false;
-            $scope.EndDate = $filter('date')(data, 'yyyy-MM-dd');
-        })
-    };
-    $scope.RefreshData = function () {
-        $scope.LoadHourlyOrdersList();
-        $scope.start();
-    };
-    $scope.start = function () {
-        $scope.stop();
-        if ($scope.OnRefresh == true) {
-            stopTime = $timeout(function () { $scope.RefreshData(); }, 60000);
-        }
-    };
-    $scope.stop = function () {
-        $timeout.cancel(stopTime);
-    };
-    $scope.$on('$destroy', function () {
-        $scope.stop();
-    });
-    $scope.$watch(angular.bind($scope.OnRefresh, function () {
-        return $scope.OnRefresh;
-    }), function (value) {
-        if (value == false) {
-            $scope.stop();
-        }
-        if (value == true) {
-            $scope.StartDate = $filter('date')(ngnotifyService.ServerTime(), 'yyyy-MM-dd');
-            $scope.EndDate = moment().add(1, 'days').format('YYYY-MM-DD');
-            $scope.start();
-        }
-    });
+    var promise;
+
+    if ($rootScope.user.userstores && $rootScope.user.userstores.length > 1) {
+        $scope.selectStore = true;
+        $scope.StoreID = '';
+    }
+    else {
+        $scope.StoreID = $rootScope.user.StoreID;
+    }
     $scope.Back = function () {
         $window.history.back();
     };
+    Date.prototype.addDays = Date.prototype.addDays || function (days) {
+        return this.setTime(864E5 * days + this.valueOf()) && this;
+    };
+    $scope.DateRange = {
+        fromDate: {
+            max: new Date(),
+            min: new Date(2019, 0, 1),
+            displayFormat: 'dd.MM.yyyy',
+            bindingOptions: {
+                value: "DateRange.fromDate.value"
+            },
+            value: (new Date()).addDays(-1),
+            labelLocation: "top", // or "left" | "right"  
 
-        $scope.$on('$destroy', function () {
+        },
+        toDate: {
+            max: new Date(),
+            min: new Date(2019, 0, 1),
+            displayFormat: 'dd.MM.yyyy',
+            bindingOptions: {
+                value: "DateRange.toDate.value"
+            },
+            value: (new Date()).addDays(0),
+            label: {
+                location: "top",
+                alignment: "right" // or "left" | "center"
+            }
+        }
+    };
+    $scope.VeiwHeader = {};
+    $scope.reportButtonOptions = {
+        text: $translate.instant('reportcommands.GetData'),
+        onClick: function () {
+            var dataGrid = $('#gridContainer').dxDataGrid('instance');
+            dataGrid.refresh();
+        }
+    };
+    $scope.resetlayout = $translate.instant('main.RESETLAYOUT');
+    $scope.resetButtonOptions = {
+        text: $scope.resetlayout,
+        onClick: function () {
+            $("#sales").dxPivotGrid("instance").getDataSource().state({});
+        }
+    };
+    $scope.StoreID;
+    var store = new DevExpress.data.CustomStore({
+        //key: "id",
+        load: function (loadOptions) {
+            var params = {
+                StartDate: $scope.DateRange.fromDate.value,
+                EndDate: $scope.DateRange.toDate.value,
+
+            };
+
+            return $http.get(NG_SETTING.apiServiceBaseUri + "/api/ccstats/hourlyorderslist", { params: params })
+            // .then(function (response) {
+            //     if (response.data)
+            //         for (var i = 0; i < response.data.length; i++) {
+            //             response.data[i].Amount = response.data[i].UnitCount * response.data[i].UnitPrice;
+            //             response.data[i].id = i;
+            //         }
+            //     return {
+            //         data: response.data,
+            //         totalCount: 10
+            //     };
+            // }, function (response) {
+            //     return (response.data.ExceptionMessage) ? $q.reject(response.data.ExceptionMessage) : $q.reject("Data Loading Error");
+            // });
+        }
+    });
+    $scope.dataGridOptions = {
+        dataSource: store,
+        showBorders: true,
+        allowColumnResizing: true,
+        columnAutoWidth: true,
+        showColumnLines: true,
+        showRowLines: true,
+        rowAlternationEnabled: true,
+        //keyExpr: "id",
+        showBorders: true,
+        //selection: {
+        //    mode: "single"
+        //},
+        hoverStateEnabled: true,
+        allowColumnReordering: true,
+        filterRow: { visible: true },
+        headerFilter: { visible: true },
+        searchPanel: { visible: true },
+        groupPanel: { visible: true },
+        grouping: { autoExpandAll: false },
+        columnChooser: { enabled: false },
+        columnFixing: { enabled: true },
+        columnChooser: { enabled: true, mode: "dragAndDrop" },
+        columns: [
+            //{ dataField: "OrderID", dataType: "number"},
+            { dataField: "Store", caption: $translate.instant('callcenterreports.Store'), dataType: "string" },
+            { dataField: "OrderHour", caption: $translate.instant('callcenterreports.OrderHour'), dataType: "number" },
+            { dataField: "OrdersCount", caption: $translate.instant('callcenterreports.OrdersCount'), dataType: "number" },
+           { caption: $translate.instant('callcenterreports.OrderAmount'), dataField: "OrdersAmount", dataType: "number", format: { type: "fixedPoint", precision: 2 } },
+        ],
+        summary: {
+            totalItems: [
+                // { column: "Inventory.name", summaryType: "count", displayFormat: "{0}" },
+                // { column: "Units", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}" },
+                // { column: "UnitCount", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}" },
+                { column: "OrdersCount", summaryType: "sum",  displayFormat: "{0}" },
+                { column: "OrdersAmount", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}₺" },
+                
+            ],
+        },
+        export: {
+            enabled: true,
+            fileName: "HOURLYORDERSLIST",
+        },
+        scrolling: { mode: "virtual" },
+        height: 600
+    };
+    $scope.LoadData = function () {
+        var dataGrid = $('#gridContainer').dxDataGrid('instance');
+        dataGrid.refresh();
+    };
+    var refreshData = function () {
+        var dataGrid = $('#gridContainer').dxDataGrid('instance');
+        dataGrid.refresh();
+    }
+    $scope.start = function () {
+        $scope.stop();
+        promise = $interval(refreshData, 60000);
+    };
+
+    $scope.stop = function () {
+        $interval.cancel(promise);
+    };
+    $scope.start();
+    $scope.$on('$destroy', function () {
         $element.remove();
         $rootScope.uService.ExitController("hourlyorderslistCtrl");
     });
 };
-app.factory('Excel', function ($window) {
-    var uri = 'data:application/vnd.ms-excel;base64,',
-        template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
-        base64 = function (s) { return $window.btoa(unescape(encodeURIComponent(s))); },
-        format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) };
-    return {
-        tableToExcel: function (tableId, worksheetName) {
-            var table = document.querySelector(tableId),
-                ctx = { worksheet: worksheetName, table: table.innerHTML },
-                href = uri + base64(format(template, ctx));
-            return href;
-        }
-    };
-})

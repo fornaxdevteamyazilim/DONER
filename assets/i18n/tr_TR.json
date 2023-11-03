@@ -296,7 +296,7 @@
     "DECLAREDREVENUEELIST": "{{appName}} - Beyan Edilen Gelir Listesi",
     "STORESALESBUDGETLIST": "{{appName}} -  Resturant Satış Bütce listesi",
     "NGSETTINGITEM": "{{appName}} - RopNG Parametre Tanımları",
-    "CONNECTIONTOROPNGAPISERVICENOTAVAILIBLE" : "{{appName}} - ROPING API Servislerine Bağlantınız Kesilmiştir !",
+    "CONNECTIONTOROPNGAPISERVICENOTAVAILIBLE": "{{appName}} - ROPING API Servislerine Bağlantınız Kesilmiştir !",
     "INVENTORYPERIDICCOST": "{{appName}} - Dönemsel Maliyetler",
     "USERPRODUCTSALES": "{{appName}} - Kullanıcı - Ürün Satış Listesi",
     "DEMANDRULEDEFINITION": "{{appName}} - Talep Kuralları Tanımı",
@@ -412,9 +412,9 @@
     "BONUSTRANSACTIONS": "{{appName}} - Puan Detay Raporu",
     "BONUSSTATS": "{{appName}} - Bonus Durum Raporu",
     "WEBUSERS": "{{appName}} - Web Kullanıcıları Raporu",
-    "PunchCardStoreCompare":"{{appName}} - PunchCard Store Compare",
+    "PunchCardStoreCompare": "{{appName}} - PunchCard Store Compare",
     "DRIVERSTRANSACTIONS": "{{appName}} - Kuriye Taşıma İstatistikleri Raporu",
-    "MIGROSPERSON":"MIGROS Müşteri Bul"
+    "MIGROSPERSON": "MIGROS Müşteri Bul"
   },
   "main": {
     "CURRENCY_SYMBOL": "₺",
@@ -435,8 +435,8 @@
     "PAYMENTTERM": "Vade",
     "USAGERETURNED": "Atık Kullanımı",
     "IDEALCOSTS": "Ideal Maliyet.",
-    "TOTALACTUALAMOUNT":"Toplam Gerçek Tutar",
-    "TOTALDECLAREDAMOUNT":"Beyan Edi̇len Toplam Tutar",
+    "TOTALACTUALAMOUNT": "Toplam Gerçek Tutar",
+    "TOTALDECLAREDAMOUNT": "Beyan Edi̇len Toplam Tutar",
     "THEORICINVANTORIES": "Ideal Maliyet Malzeme Toplamı",
     "ACTUALINVANTORIES": "Gerçekleşen Maliyet Malzeme Toplamı",
     "THEORIC": "Ideal Maliyet Tablosu",
@@ -568,7 +568,7 @@
     "ADDUSEREMAIL": "E-mail Ekle",
     "NUMBER": "Numara",
     "COMMANDS": "İşlemler",
-    "QUANTITYLIMIT":"Adet Limiti",
+    "QUANTITYLIMIT": "Adet Limiti",
     "STOREBASEDQUANTITYLIMIT": "Restoran Bazlı Adet Limiti",
     "ORDERDELIVERYPRICE": "Sipariş teslim fiyatı",
     "PERSONSPECIALDATE": "Özel Günler",
@@ -729,8 +729,8 @@
     "PRODUCTPROTOTYPENAME": "Ürün Prototip Adı",
     "PRODUCTPROTYPEOPTION": "Ürün Prototip Seçeneği",
     "PRODUCT": "Ürün",
-    "ADDDATE":"Eklenme Süresi",
-    "PRODUCTOPTION":"Ürün Seçeneği",
+    "ADDDATE": "Eklenme Süresi",
+    "PRODUCTOPTION": "Ürün Seçeneği",
     "PRODUCTPRICE": "Ürün Fiyatı",
     "PRODUCTRECIPE": "Ürün Reçetesi",
     "PRODUCTSTATES": "Ürün Süreçleri",
@@ -938,6 +938,7 @@
     "VIEWMODE": "Görüntüleme Modu",
     "VATDISCOUNT%": "KDV İndirim (%)",
     "DISCOUNT₺": "İndirim (TL)",
+    "DISCOUNTPERCENT":"İndirim %",
     "AMOUNT₺": "Toplam (TL)",
     "VAT ₺": "KDV (TL)",
     "TODAY": "Bugün",
@@ -1340,11 +1341,11 @@
     "WEBDINEIN": "Dine In Web",
     "LANGUAGE": "Language",
     "HDORDERS": "Paket Siparişler ",
-    "NOTACCEPTED":"Kabul Edilmedi",
+    "NOTACCEPTED": "Kabul Edilmedi",
     "ESTIMATEDDELIVERYTIME": "Tahmini Teslimat Saati ",
     "ASSIGNDRIVER": "Zimmet",
     "ADDCARRIER": "Taşıyıcı Ekle",
-    "CARRIERSELECT":"Taşıyıcı Seç",
+    "CARRIERSELECT": "Taşıyıcı Seç",
     "ORDERPERIOD": "Sipariş Süresi",
     "MINUTES": "Dk.",
     "NEWORDERR": "Yeni Sipariş",
@@ -1961,7 +1962,7 @@
     "AVROUT": "Çıkış",
     "AVRDELIVERYY": "Teslim",
     "AVRBELOW30": "Teslim < 30",
-     "AVRBELOW45": "Teslim < 45",
+    "AVRBELOW45": "Teslim < 45",
     "YSCANCELREASON": "YS İptal Sebebi",
     "TRENDYOLCANCELREASON": "Trendyol İptal Sebebi",
     "MIGROSCANCELREASON": "Migros İptal Sebebi",
@@ -2356,7 +2357,7 @@
     "GLOVOORDERS": "Glovo Siparişleri",
     "GETIRORDERS": "Getir Siparişleri",
     "TRENDYOL": "Trendyol Siparişleri",
-    "CONNECTIONTOROPNGAPISERVICENOTAVAILIBLE" : " ROPING API Servislerine Bağlantınız Kesilmiştir ! (CTRL + F5 Yapar mısınız !!)",
+    "CONNECTIONTOROPNGAPISERVICENOTAVAILIBLE": " ROPING API Servislerine Bağlantınız Kesilmiştir ! (CTRL + F5 Yapar mısınız !!)",
     "ORDERNUMBERPREFIX": "Sipariş Numarası Başlangıç",
     "GIFTPROMOTIONBLACKLIST": "Hediye Promosyon Kara Liste",
     "PROMOTIONSETTING": "Otomatik Promosyon Ayarları",
@@ -2495,7 +2496,7 @@
     "ACTUALTOTHEORIC": "Actual to Theoric",
     "PROMOTIONANALISYS": "Promosyon Analizi",
     "PAYMENTORDERSOURCESTATS": "Sipariş Kaynağına Göre Dağılım",
-    "ORDERSOURCETYPESTATS":"Kaynağına ve Tipine Göre Dağılım",
+    "ORDERSOURCETYPESTATS": "Kaynağına ve Tipine Göre Dağılım",
     "STOREROUTINGTYPE": "Yönlendirme Tipi",
     "ORDERPAYMENTSCHECK": "Ödeme Karşılaştırma Raporu",
     "STAFFORDERSREPORT": "Personel Sipariş Raporu",
@@ -2509,12 +2510,12 @@
     "SINGLEPRICE": "Tek Fiyatı",
     "DOUBLEPRICE": "Çift fiyatı",
     "DAILYINITIALAMOUNT": "Günlük Başlangiç Tutari",
-    "COURIERTRANSACTIONPRICEID":" Kurye Taşıma Fiyatı ID",
-    "PunchCardStoreCompare":"{{appName}} - PunchCard Store Compare",
+    "COURIERTRANSACTIONPRICEID": "Kurye Taşıma Fiyatı ID",
+    "PunchCardStoreCompare": "PunchCard Store Compare",
     "REASONNAME": "İptal Sebepi",
-    "CULTURECODE":"Kültür Kodu",
-    "REASONID":"Sebep Id",
-    "CULTUREID":"Kültür Id"
+    "CULTURECODE": "Kültür Kodu",
+    "REASONID": "Sebep Id",
+    "CULTUREID": "Kültür Id"
   },
   "topbar": {
     "messages": {
@@ -2901,7 +2902,7 @@
         "LOYALTYREPORTS": "Sadakat",
         "WEBUSERS": "Web Kullanıcıları",
         "WEBREPORTS": "Web",
-        "PunchCardStoreCompare":"{{appName}} - PunchCard Store Compare",
+        "PunchCardStoreCompare": "PunchCard Store Compare",
         "MONTHLYSALESVSBUDGET": "Aylık Satışlar Vs Bütçe",
         "WEEKLYSALESCOMPARE": "Haftalık Satış Karşılaştırması",
         "DRIVERSTRANSACTIONS": "Kuriye Taşıma İstatistikleri Raporu"
@@ -2929,7 +2930,6 @@
         "MAIN": "Taşıyıcılar",
         "Carrier": "Taşıyıcı",
         "CourierTransactionPrice": "Kurye Taşıma Fiyatı"
-       
       },
       "hnr": {
         "MAIN": "Hot and Ready",
@@ -2947,7 +2947,7 @@
         "DOCUMENTS": "Dokümanlar",
         "UPDATELOG": "Yapılan Güncellemeler",
         "ENDOFDAYCHECKLIST": "Gün Sonu Alma Adımları",
-        "RESTRICTORDERCHANGESINTHESYSTEM":"Sipariş Değişikliği Kisitlamalari",
+        "RESTRICTORDERCHANGESINTHESYSTEM": "Sipariş Değişikliği Kisitlamalari",
         "POSINSTALLATIONS": "POS Kurulumları",
         "YSENTEGRASYON": "Yemek Sepeti Entegrasyon",
         "LISTS": "Listeler"
@@ -3035,7 +3035,7 @@
         "PREDEFINEDNOTE": "Tanımlı Notlar",
         "YEMEKSEPETIREJECTREASON": "Yemek Sepeti Red Sebepleri",
         "NGSETTINGITEM": "RopNG Parametre Tanımları",
-        "CONNECTIONTOROPNGAPISERVICENOTAVAILIBLE" : " ROPING API Servislerine Bağlantınız Kesilmiştir !",
+        "CONNECTIONTOROPNGAPISERVICENOTAVAILIBLE": " ROPING API Servislerine Bağlantınız Kesilmiştir !",
         "SETTINGITEM": "Düzenleme Araçları",
         "SURVEURESULT": "Anket Sonuç Tanımları",
         "STAFFTYPE": "Personel Tipleri",
@@ -3329,8 +3329,7 @@
     "GotoOrder": "Siparişe git",
     "Cancel": " İptal Et",
     "Editdeclaration": "Beyanı düzenle",
-    "Declareinformation":"Beyan edilen gelir bilgileri geçerli değildir! Lütfen düzenleyiniz!"
-
+    "Declareinformation": "Beyan edilen gelir bilgileri geçerli değildir! Lütfen düzenleyiniz!"
   },
   "accounting": {
     "Updated": "Güncellendi.",
@@ -3387,8 +3386,8 @@
     "Cardentry": "'Vardiya girişi için Kart okutunuz'",
     "EnrollFingerprint": "Parmak İzi Kaydı",
     "EnrollCardPrint": "Kart Kaydı",
-    "SwipeCardToClockOut":"Vardiya çıkışı için kart okutunuz",
-    "SwipeCardToClockIn":"vardiya girişi için kart okutunuz"
+    "SwipeCardToClockOut": "Vardiya çıkışı için kart okutunuz",
+    "SwipeCardToClockIn": "vardiya girişi için kart okutunuz"
   },
   "difinitions": {
     "Updated": "Güncellendi.",
@@ -3455,14 +3454,14 @@
     "NotSaved": "Kaydedilmedi",
     "DataRemove": "Veri Silme",
     "SENDAGAIN": "Tekrar Gönder",
-    "DoYouWantToProcessTheNeedsList":"Girilen ihtiyaç listesini ilgili firmaya iletmek istiyor musunuz?",
+    "DoYouWantToProcessTheNeedsList": "Girilen ihtiyaç listesini ilgili firmaya iletmek istiyor musunuz?",
     "YesWithWork": "Evet, İlet!",
     "Nodontprocess": "Hayır, İletme!",
     "Processed": "İletilmiştir!",
     "Notprocessed": "İletilmedi",
     "Yourlistofneedshasbeenprocessed": "İhtiyaç Listeniz firmaya iletilmiştr.",
     "Yourlistofneedshasnotbeenprocessed": "İhtiyaç listeniz firmaya iletilmedi.",
-    "itisapproved":"Siparişin Durumu Onaylandıya alınmıştır"
+    "itisapproved": "Siparişin Durumu Onaylandıya alınmıştır"
   },
   "kitchendisplayf": {
     "PleaseWait": "Lütfen Bekleyin !",
@@ -3583,7 +3582,7 @@
     "Markorderasdelivered": "Siparişi teslim edildi olarak işaretle",
     "THEDRAWERISCLOSED": "Çekmece Kapandı",
     "THEDRAWERISOPENED": "Çekmece Açıldı",
-    "ORDERSAVED": "Sipariş Kaydedildi" 
+    "ORDERSAVED": "Sipariş Kaydedildi"
   },
   "yemeksepetifile": {
     "Cancelled": "İptal edildi !",
@@ -3918,7 +3917,7 @@
     "ConnectionError": "Bağlantı hatası",
     "Reconnecting": "ROPNG servislerine yeniden bağlanıyor...",
     "ConnectionSlow": "ROPNG sunucu bağlantı kalitesi düşük...",
-    "CONNECTIONTOROPNGAPISERVICENOTAVAILIBLE" :"ROPING API Servislerine Bağlantınız Kesilmiştir !"
+    "CONNECTIONTOROPNGAPISERVICENOTAVAILIBLE": "ROPING API Servislerine Bağlantınız Kesilmiştir !"
   },
   "OrderType": {
     "Paket": "Paket",
@@ -4144,8 +4143,8 @@
     "AvgCutToDispatchTime": "Ort Cute Çıkış Süresi",
     "AvgDispatchTime": "Ort Çıkış Süresi",
     "DispatchU14": "U14 Çıkış",
-    "AvgDeliveryTime":"Avg Teslim Süresi",
-    "AvgDriveTime": "Ort Sürücü Süresi" 
+    "AvgDeliveryTime": "Avg Teslim Süresi",
+    "AvgDriveTime": "Ort Sürücü Süresi"
   },
   "podsreport": {
     "POD": "POD",
@@ -4184,7 +4183,7 @@
     "Amount": "Tutar",
     "Cost": "Maliyet",
     "Store": "Restoran",
-    "OrderID":"Sipariş ID"
+    "OrderID": "Sipariş ID"
   },
   "promotionanaisys": {
     "Store": "Restoran",
@@ -4572,7 +4571,7 @@
     "Total": "Toplam",
     "InventoryGroup": "Stok Grubu"
   },
-  "unmappedorders":{
+  "unmappedorders": {
     "Aggregator": "Kaynak",
     "Name": "İsim",
     "Address": "Adres",
@@ -4580,7 +4579,7 @@
     "OrderDate": "Sipariş Tarihi",
     "Commands": "İşlemler"
   },
-  "dxGetirProduct":{
+  "dxGetirProduct": {
     "GetirProductID": "Getir Ürün ID",
     "GetirProductName": "Ürün Adı",
     "ProductID": "Ürün ID",
@@ -4598,10 +4597,10 @@
     "Name": "İsim"
   },
   "PunchCardStoreCompare": {
-    "EarnedFromSameStore":"EarnedFromSameStore",
-    "Store":"Store",
-    "PersonName":"PersonName",
-    "Count":"Count"
+    "EarnedFromSameStore": "EarnedFromSameStore",
+    "Store": "Store",
+    "PersonName": "PersonName",
+    "Count": "Count"
   },
   "dxGetirStore": {
     "MemberID": "Kaynak",
@@ -4616,7 +4615,7 @@
     "isActive": "Aktif",
     "isEnabled": "Etkin"
   },
-  "trendyolmapping":{
+  "trendyolmapping": {
     "TITLE": "Trendyol Eşleme Ekranı",
     "rejectreason": "Reddetilen Sipariş sebebi"
   },
@@ -4657,7 +4656,7 @@
     "TransferOrdersInstant": "Anlık Sipariş Transferi",
     "chainCode": "Marka Kodu"
   },
-  "dxTrendyolProduct":{
+  "dxTrendyolProduct": {
     "TrendyolProductID": "Trenyol Ürün ID",
     "TrendyolProductName": "Ürün Adı",
     "ProductID": "Ürün ID",
@@ -4673,7 +4672,7 @@
     "type": "Tipi",
     "PaymentType": "Ödeme Tipi",
     "Name": "İsim",
-    "ChildName":"Alt Ürün İsmi"
+    "ChildName": "Alt Ürün İsmi"
   },
   "dxMigrosProduct": {
     "TrendyolProductID": "Migros Ürün ID",
@@ -4692,7 +4691,7 @@
     "PaymentType": "Ödeme Tipi",
     "Name": "İsim"
   },
-  "dxTrendyolRejectReason":{
+  "dxTrendyolRejectReason": {
     "Code": "Kod",
     "Reason": "Sebep",
     "Description": "Açıklama",
@@ -4725,7 +4724,7 @@
     "DeliveryTransactionsCHG": "% CHG",
     "DeliveryGCAvg": "Delivery GCAvg",
     "DeliveryGCAvgCY": "CY",
-    "DeliveryGCAvgLY": "LY", 
+    "DeliveryGCAvgLY": "LY",
     "DeliveryGCAvgCHG": "% CHG"
   },
   "monthlysalesvsbudget": {
@@ -4738,7 +4737,6 @@
     "TotalMonthlyIncome": "Toplam Aylık Gelir",
     "SalesTarget": "Satış Hedefi",
     "Ratio": "Oran"
-    
   },
   "AggregatorOrdersstatsdetail": {
     "MapID": "ID",
@@ -4756,7 +4754,7 @@
     "YemekSepetiOrderID": "YemekSepeti Sipariş ID",
     "GetirOrderID": "Getir Sipariş ID",
     "Aggregator": "Kaynak",
-    "AggregatorOrderID":"Kaynak Sipariş ID"
+    "AggregatorOrderID": "Kaynak Sipariş ID"
   },
   "InventoryCounts": {
     "RepositoryID": "Depo",
@@ -4794,15 +4792,14 @@
     "Trendyol_StoreID": "Trendyol Restoran Id",
     "Trendyol_sid": "Trendyol Sıd",
     "Trendyol_Status": "Trendyol Durumu",
-    "Active":"Açık",
-    "Passive":"Kapalı",
+    "Active": "Açık",
+    "Passive": "Kapalı",
     "Migros": "Migros",
     "Migros_Active": "Durumu",
     "Migros_Enabled": "NG Durumu",
     "Migros_ServiceTime": "Servis Süresi",
     "Migros_Name": "YemekSepeti Adı ",
     "Migros_StoreID": "YemekSepeti Restoran Id"
-    
   },
   "orderrouted": {
     "OrderID": "Sipariş ID",
@@ -4899,19 +4896,46 @@
     "ValidTo": "Anlaşma Bitiş Tarihi",
     "StoreID": "Store"
   },
-  "AggregatorStoreStatus":{
+  "AggregatorStoreStatus": {
     "TITLE": "Sipariş Kanal Ayarları",
     "StoreID": "Restoran",
     "Aggregator": "Dijital Kanal",
     "Aggregator_Name": "Dijital Kanal Adı",
-    "Aggregator_StoreID":"Dijital Kanal Restoran #",
-    "Aggregator_Enabled":"Aç/Kapa",
-    "Aggregator_Active":"Dijital Kanal Açık mı?",
-    "Aggregator_ServiceTime":"Servis süresi",
-    "Aggregator_sid":"Aggregator_sid",
-    "Aggregator_Status":"Dijital Kanal Durumu"
+    "Aggregator_StoreID": "Dijital Kanal Restoran #",
+    "Aggregator_Enabled": "Aç/Kapa",
+    "Aggregator_Active": "Dijital Kanal Açık mı?",
+    "Aggregator_ServiceTime": "Servis süresi",
+    "Aggregator_sid": "Aggregator_sid",
+    "Aggregator_Status": "Dijital Kanal Durumu"
+  },
+  "callcenterreports": {
+    "Store": "Restoran",
+    "Hour": "Saat",
+    "OrderDate": "Sipariş Tarihi",
+    "OrdersCountTKW": "Gel-Al Sipariş Sayısı",
+    "OrdersAmountTKW": "Gel-Al Sipariş Tutarı",
+    "OrdersCountDelivery": "Paket Sipariş Sayısı",
+    "OrdersAmountDelivery": "Paket Sipariş Tutarı",
+    "OrdersCount": "Sipariş Sayısı",
+    "OrderAmount": "Sipariş Tutarı",
+    "UserName": "Kullanıcı Adı",
+    "AgentName": "Agent Adı",
+    "AC": "AC (TL)",
+    "Group1ProductCount": "Yan Ürün (Adet)",
+    "Group1ProductRatio": "Yan Ürün (%)",
+    "Group2ProductCount":  "Kenar (Adet)",
+    "Group2ProductRatio": "Kenar (%)",
+    "GroupsAmounRatioNoVAT":  "Yan Ürünler Toplamı (%)",
+    "GroupsAmountNoVAT": "Yan Ürünler Toplamı (TL)",
+    "OrdersAmountNoVAT": "Sipariş Toplamı (TL)",
+    "OrdersAmount": "Sipariş Toplamı",
+    "OrderHour": "Sipariş Saati",
+    "OrderNumber": "Sipariş Numarası",
+    "ordertype": "Sipariş Tipi",
+    "Discounts": "İndirim",
+    "PendingPaymentStatus": "Bekleyen Ödeme Durumu",
+    "PaymentType": "Ödeme Tipi",
+    "PaymentDate": "Ödeme Zamanı",
+    "Amount": "Tutar"
   }
-  
-  
-  
 }
