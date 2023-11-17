@@ -1465,27 +1465,27 @@ function driverCtrl($rootScope, $scope, $modal, $filter, SweetAlert, Restangular
         }
     };
     $scope.staffpositions = [
-        { id: 300000014253, Name: "Restoran Müdürü",isActive: false  },
-        { id: 300000014254, Name: "Kurye",isActive: false  },
-        { id: 300000014776, Name: "Asistan Müdür",isActive: false  },
-        { id: 300000014777, Name: "Mutfakçi",isActive: false },
-        { id: 300000014778, Name: "Vardiya Müdürü",isActive: false  },
-        { id: 300048516424, Name: "Team Member",isActive: false  },
-        { id: 300087503237, Name: "Restoran Müdürü - Kidemli",isActive: false  },
-        { id: 300087503752, Name: "Restoran Müdürü - 2.Kademe",isActive: false  },
-        { id: 300087503897, Name: "Restoran Müdürü - 3.Kademe",isActive: false  },
-        { id: 300087504030, Name: "Restoran Müdürü - 4.Kademe",isActive: false  },
-        { id: 300087504398, Name: "Asistan Müdür - 2.Kademe",isActive: false  },
-        { id: 300087504536, Name: "Asistan Müdür - 3.Kademe",isActive: false  },
+        { id: 300000014253, Name: "Restoran Müdürü", isActive: false },
+        { id: 300000014254, Name: "Kurye", isActive: false },
+        { id: 300000014776, Name: "Asistan Müdür", isActive: false },
+        { id: 300000014777, Name: "Mutfakçi", isActive: false },
+        { id: 300000014778, Name: "Vardiya Müdürü", isActive: false },
+        { id: 300048516424, Name: "Team Member", isActive: false },
+        { id: 300087503237, Name: "Restoran Müdürü - Kidemli", isActive: false },
+        { id: 300087503752, Name: "Restoran Müdürü - 2.Kademe", isActive: false },
+        { id: 300087503897, Name: "Restoran Müdürü - 3.Kademe", isActive: false },
+        { id: 300087504030, Name: "Restoran Müdürü - 4.Kademe", isActive: false },
+        { id: 300087504398, Name: "Asistan Müdür - 2.Kademe", isActive: false },
+        { id: 300087504536, Name: "Asistan Müdür - 3.Kademe", isActive: false },
         { id: 300087504709, Name: "Asistan Müdür - 4.Kademe", isActive: false },
-        { id: 300087504961, Name: "Vardiya Müdürü – 2.Kademe",isActive: false  },
-        { id: 300087505089, Name: "Vardiya Müdürü - 3.Kademe",isActive: false  },
-        { id: 300087505141, Name: "Vardiya Müdürü - 4.Kademe",isActive: false  },
+        { id: 300087504961, Name: "Vardiya Müdürü – 2.Kademe", isActive: false },
+        { id: 300087505089, Name: "Vardiya Müdürü - 3.Kademe", isActive: false },
+        { id: 300087505141, Name: "Vardiya Müdürü - 4.Kademe", isActive: false },
         { id: 300087505293, Name: "ULAK Kurye", isActive: false },
         { id: 300106395212, Name: "Getir Kurye", isActive: false },
         { id: 300132772261, Name: "Team Training", isActive: false },
-        { id: 300133806509, Name: "Vigo-Kurye",isActive: false  },
-        { id: 300250073138, Name: "Joker-Kurye",isActive: true  },
+        { id: 300133806509, Name: "Vigo-Kurye", isActive: false },
+        { id: 300250073138, Name: "Joker-Kurye", isActive: true },
         { id: 300148827478, Name: "Isim-Kurye", isActive: true },
         { id: 300154984454, Name: "Dispatcher Kurye", isActive: false }
     ];
@@ -2774,7 +2774,7 @@ function usertrainingCtrl($rootScope, $scope, $log, $modal, $filter, SweetAlert,
     });
 };
 app.controller('storecarrierCtrl', storecarrierCtrl);
-function storecarrierCtrl($rootScope, $scope, $log, $modal, Restangular, ngTableParams, SweetAlert, toaster, $window, $translate, $element) {
+function storecarrierCtrl($rootScope, $scope, $log, $modal, Restangular, $stateParams, ngTableParams, SweetAlert, toaster, $window, $translate, $element) {
     $rootScope.uService.EnterController("storecarrierCtrl");
     var sc = this;
     $scope.translate = function () {
@@ -2805,6 +2805,23 @@ function storecarrierCtrl($rootScope, $scope, $log, $modal, Restangular, ngTable
             data.get();
         }
     };
+    // $scope.saveData = function (data) {
+    //     data.CarrierID = $stateParams.id;
+    //     if (data.restangularized) {
+    //         data.put().then(function (res) {
+    //             sc.tableParams.reload();
+    //             toaster.pop('success', $translate.instant('orderfile.Updated'), $translate.instant('orderfile.Updated'));
+    //         });
+    //     }
+    //     else {
+    //         Restangular.restangularizeElement('', data, $scope.objectType)
+    //         data.post().then(function (res) {
+    //             sc.tableParams.reload();
+    //             toaster.pop('success', $translate.instant('orderfile.Saved'), $translate.instant('orderfile.Saved'));
+    //         });
+    //         data.get();
+    //     }
+    // }
     $scope.FormKeyPress = function (event, rowform, data, index) {
         if (event.keyCode === 13 && rowform.$visible) {
             _update(rowform.$data, data);

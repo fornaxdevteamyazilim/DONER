@@ -83,22 +83,22 @@ function tablePlanEditCtrl($scope, $log, $modal, Restangular, ngTableParams, $tr
     $scope.LoadStoreTablePlans();
     $scope.CheckCode = function (item, root) {
         if ($rootScope.user.restrictions.editstoretable == "Enable") {
-            var modalInstance = $modal.open({
-                templateUrl: 'assets/views/mainscreen/loginpassword.html',
-                controller: 'loginpasswordCtrl',
-                size: '',
-                backdrop: '',
-            });
-            modalInstance.result.then(function (password) {
-                if (password != "cancel") {
-                    userService.cardLogin(password,true).then(function (response) {
+            // var modalInstance = $modal.open({
+            //     templateUrl: 'assets/views/mainscreen/loginpassword.html',
+            //     controller: 'loginpasswordCtrl',
+            //     size: '',
+            //     backdrop: '',
+            // });
+            // modalInstance.result.then(function (password) {
+            //     if (password != "cancel") {
+            //         userService.cardLogin(password,true).then(function (response) {
                         if (root == 'edittableplan') {
                         $scope.ShowEditButton = true;
                         userService.stopTimeout();
                         }
                         if (root == 'addtableplan')
                             $scope.addstoretable();
-                    }, function (err) {
+                    // }, function (err) {
                         if (err) {
                             toaster.pop('warrning', $translate.instant('Server.PasswordError'), err.error_description);
                             return 'No'
@@ -108,10 +108,10 @@ function tablePlanEditCtrl($scope, $log, $modal, Restangular, ngTableParams, $tr
                             $scope.message = "Unknown error";
                             return 'No'
                         }
-                    });
+                    // });
 
-                }
-            })
+            //     }
+            // })
         } else {
             toaster.pop("warning",  $translate.instant('yemeksepetifile.YOUARENOTAUTHORIZEDFORTHISPROCEDURE'));
             return 'No';

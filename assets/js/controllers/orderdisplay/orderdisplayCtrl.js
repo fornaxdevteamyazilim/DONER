@@ -103,9 +103,9 @@ function orderdisplayCtrl($scope, $log, $modal, $interval, Restangular, ngTableP
                     OrderID: ordertosave.id,
                  
                 });
-                Restangular.all('ordertools/PrintReciept').getList({
-                    OrderID: ordertosave.id,
-                });
+                // Restangular.all('ordertools/PrintReciept').getList({
+                //     OrderID: ordertosave.id,
+                // });
                 $scope.LoadOrders();
                 $rootScope.$broadcast('AskingOrder');
             }, function () {

@@ -182,16 +182,16 @@ function orderlistCtrl($scope, $log, $modal, Restangular, ngTableParams, SweetAl
     $scope.Back = function () {
         $window.history.back();
     };
-    var OrderRefresh = $scope.$on('OrderChange', function (event, data) {
-       if ($scope.AutoRefresh) //bu da bir checkbox veya switch e bağlanır.
-       ao.tableParams.page(1); //bunlar emniyet
-       ao.tableParams.count(10); //bunlar emniyet...
-       ao.tableParams.reload();
-    });
+    //var OrderRefresh = $scope.$on('OrderChange', function (event, data) {
+    //    //if ($scope.AutoRefresh) bu da bir checkbox veya switch e bağlanır.
+    //    ao.tableParams.page(1); //bunlar emniyet
+    //    ao.tableParams.count(10); //bunlar emniyet...
+    //    ao.tableParams.reload();
+    //});
     $scope.$on('$destroy', function () {
         tranlatelistener();
         unbindWatcher();
-        OrderRefresh();
+        //OrderRefresh();
         $element.remove();
         $rootScope.uService.ExitController("orderlistCtrl");
     });

@@ -159,19 +159,21 @@ function productsalesstatisticsCtrl($scope, $filter, $modal, $log, $translate, R
         return null
         return result;
     }  
+    // function getFilter() {
+    //     if ($scope.StoreID) {
+    //         return [[["OperationDate", ">=", $scope.StartDate], "and", ["OperationDate", "<=", $scope.EndDate]], "and",["StoreID", "=", $scope.StoreID]];
+    //     }
+    //     else {
+    //         var s = BuildUserStoresArray($rootScope.user.userstores);
+    //         if (s)
+    //             return [[["OperationDate", ">=", $scope.StartDate], "and", ["OperationDate", "<=", $scope.EndDate]], [s]];
+    //         else 
+    //             return [["OperationDate", ">=", $scope.StartDate], "and", ["OperationDate", "<=", $scope.EndDate]];
+    //     }
+    // }
     function getFilter() {
-        if ($scope.StoreID) {
-            return [[["OperationDate", ">=", $scope.StartDate], "and", ["OperationDate", "<=", $scope.EndDate]], "and",["StoreID", "=", $scope.StoreID]];
-        }
-        else {
-            var s = BuildUserStoresArray($rootScope.user.userstores);
-            if (s)
-                return [[["OperationDate", ">=", $scope.StartDate], "and", ["OperationDate", "<=", $scope.EndDate]], [s]];
-            else 
-                return [["OperationDate", ">=", $scope.StartDate], "and", ["OperationDate", "<=", $scope.EndDate]];
-        }
-    }
-    
+        return [["OperationDate", ">=", $scope.StartDate], "and", ["OperationDate", "<=", $scope.EndDate]];
+}
 
     $scope.LoadData = function () {
         var pivot = $("#sales").dxPivotGrid('instance');

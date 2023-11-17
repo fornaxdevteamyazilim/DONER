@@ -66,7 +66,7 @@
                         <label translate="main.EMAIL" for="phone"></label>
                         <input id="email" class="form-control1" placeholder="example@example.com" type="text" ng-model="item.email"  ng-disabled="EditCountDisabled()"/>
                         <!--<label translate="main.EMAIL" for="email"></label>
-        <textarea type="text" style='min-height:70px; max-width:225px; max-height:70px; min-width:225px;' class="form-control1" ng-model="item.email"placeholder="example@example.com"></textarea>-->
+                     <textarea type="text" style='min-height:70px; max-width:225px; max-height:70px; min-width:225px;' class="form-control1" ng-model="item.email"placeholder="example@example.com"></textarea>-->
                     </div>
                     <div class="form-group col-sm-6 col-lg-1 col-md-2 col-xs-12" ng-if="user.restrictions.storecmediISACTIVE =='Enable'">
                         <label for="town" translate="main.ISACTIVE"></label>
@@ -110,7 +110,7 @@
                         <label translate="main.ORACLESTARTDATE" for="OracleStartDate"></label>
                         <input id="OracleStartDate" class="form-control1" type="text" ng-click="OracleStartDatepopup(item.OracleStartDate)" datepicker-popup="dd-MM-yyyy" ng-model="item.OracleStartDate" required> </input>
                     </div> -->
-                    <div class="form-group col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                <div class="form-group col-sm-12 col-lg-12 col-md-12 col-xs-12">
                     <div class="form-group col-sm-6 col-lg-2 col-md-4 col-xs-12" ng-if="user.restrictions.isMainStoreCOMPANY =='Enable'">
                        
                         <label translate="main.COMPANY" for="Member"></label>
@@ -1192,6 +1192,11 @@
                                     <td data-title="trisDefault" data-sortable="'isDefault'" style="width:15%" class="ng">
                                         <span class="text-capitalize" editable-checkbox="item.isDefault" e-name="isDefault" e-form="rowform" e-ng-model="item.isDefault" e-ng-true-value="true" e-ng-false-value="false" e-style="width:5vw;">
                                             {{ item.isDefault && "Active" || "Passive"}}
+                                        </span>
+                                    </td>
+                                     <td data-title="trActive" data-sortable="'isActive'" style="width:15%" class="ng">
+                                        <span class="text-capitalize" editable-checkbox="item.isActive" e-name="isActive" e-form="rowform" e-ng-model="item.isActive" e-ng-true-value="true" e-ng-false-value="false" e-style="width:5vw;">
+                                            {{ item.isActive && "Active" || "Passive"}}
                                         </span>
                                     </td>
                                     <!--<td data-title="trisDispatchEnabled" data-sortable="'isDispachEnabled'" style="width:15%" class="ng">

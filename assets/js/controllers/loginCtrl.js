@@ -74,7 +74,7 @@ app.controller('loginCtrl', ['$scope', '$location', 'authService', 'ngAuthSettin
             $scope.isWaiting = true;            
                 authService.login($scope.loginData).then(function (response) {
                     $scope.GetCurrentUserData(false);
-                    //  userService.landingPage(false);
+                     userService.landingPage(false);
                 },
                  function (err) {
                      $scope.isWaiting = false;
@@ -99,7 +99,7 @@ app.controller('loginCtrl', ['$scope', '$location', 'authService', 'ngAuthSettin
                 userService.setCurrentUser(result, skipRoute);
                 $rootScope.user.UserExtensionNumber = callsService.currentExtension = localStorageService.get('ExtensionNumber');
                 $rootScope.user.ClientName = localStorageService.get('ClientName');
-                //  userService.landingPage(false);
+                 userService.landingPage(false);
             }, function (response) {
                 $scope.isWaiting = false;
                 toaster.pop('error', $translate.instant('Server.ServerError'), response);
