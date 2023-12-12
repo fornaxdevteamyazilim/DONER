@@ -507,13 +507,13 @@
                                 {{:: payment.PaymentType}}
                             </span>
                         </td>
-                        <td data-title="trPaymentStatus" data-sortable="'PaymentStatus'" width="5%">
+                        <td data-title="trPaymentStatus" data-sortable="'PaymentStatus'" width="7%">
                             {{:: item.PaymentStatus}}
                         </td>
-                        <td data-title="trDriverName" data-sortable="'item.states.Driver.name'" width="5%">
+                        <td data-title="trDriverName" data-sortable="'item.states.Driver.name'" width="7%">
                             {{ ::item.states[0].Driver}}
                         </td>
-                        <td data-title="trisCharged" data-sortable="'item.isCharged'" width="5%">
+                        <td data-title="trisCharged" data-sortable="'item.isCharged'" width="7%">
                             <div ng-if="item.OrderTypeID==2 && item.isCharged == false">
                                 <span ng-class="{'text-red': item.isCharged == false}">{{:: open}}</span>
                             </div>
@@ -527,10 +527,13 @@
                                 <span>{{:: close}}</span>
                             </div>
                         </td>
-                        <td style="white-space: nowrap;grid-column-sizing:auto;" data-title="trCommands" width="2%">
-                            <div class="buttons pull-right" ng-show="!rowform.$visible">
+                        <td style="white-space: nowrap;grid-column-sizing:auto;" data-title="trCommands" width="10%">
+                            <div class="buttons pull-left" ng-show="!rowform.$visible">
                                 <a class="btn btn-transparent btn-sm tooltips ti-pencil hidden-sm hidden-xs" tooltip="{{::orderdetails}}" tooltip-placement="top" href="#/app/orders/orderDetail/{{::item.id}}"></a>
                             </div>
+                            <button class="buttons" ng-show="!rowform.$visible" style="margin-right: 30px; border-radius: 10px;background-color: green;"  ng-click="RePrintOrder(item.id)"  ng-if="user.restrictions.orderlistprint=='Enable'">
+                                <a class="btn btn-transparent btn-sm tooltips  hidden-sm hidden-xs" tooltip="Yazdır" tooltip-placement="top" style="color: rgb(245, 245, 245);">Yazdır</a>
+                            </button>
                         </td>
                     </tr>
                 </tbody>

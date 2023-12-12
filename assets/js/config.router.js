@@ -334,6 +334,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'product Edit'
             }
+        }).state('app.product.product.productprices', {
+            url: '/productprices',
+            templateUrl: "assets/views/product/productprices.html",
+            resolve: loadSequence('xeditable', 'config-xeditable', 'ngTable', 'productpricesCtrl', 'TagModalCtrl', 'dateCtrl'),
+            title: 'Product Prices',
+            authenticate: true,
+            ncyBreadcrumb: {
+                label: 'Product Prices'
+            }
         }).state('app.product.productdisable', {
             url: '/productdisable',
             templateUrl: "assets/views/product/productdisable.html",
@@ -2106,6 +2115,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 ncyBreadcrumb: {
                     label: 'scorecard'
                 }
+            }).state('app.reports.giroreports.cashierpayments', {
+                url: '/cashierpayments',
+                templateUrl: "assets/views/reports/giroreports/cashierpayments.html",
+                resolve: loadSequence('underscore', 'xeditable', 'config-xeditable', 'cashierpaymentsCtrl'),
+                title: 'Cashier Payments',
+                authenticate: true,
+                ncyBreadcrumb: {
+                    label: 'cashierpayments'
+                }
             }).state('app.reports.productsalesreports', {
                 url: '/productsalesreports',
                 template: '<div ui-view class="fade-in-up"></div>',
@@ -2516,6 +2534,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 authenticate: true,
                 ncyBreadcrumb: {
                     label: 'aggregatorordersreport'
+                }
+            }).state('app.reports.callcenterreports.aggregatorstoreinactivetimerreport', {
+                url: '/aggregatorstoreinactivetimerreport',
+                templateUrl: "assets/views/reports/callcenterreports/aggregatorstoreinactivetimerreport.html",
+                resolve: loadSequence('aggregatorstoreinactivetimerreportCtrl'),
+                title: 'aggregator store inactive timer report',
+                authenticate: true,
+                ncyBreadcrumb: {
+                    label: 'aggregatorstoreinactivetimerreport'
                 }
             }).state('app.reports.callcenterreports.aggregatorordersrawdatareport', {
                 url: '/aggregatorordersrawdatareport',

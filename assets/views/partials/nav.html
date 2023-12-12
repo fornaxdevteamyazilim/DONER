@@ -319,6 +319,12 @@
                         translate="sidebar.nav.product.PRODUCTPRICELIST"></span>
                 </a>
             </li>
+              <li ui-sref-active="active" ng-if="user.restrictions.ProductPricesedit=='Enable'">
+                <a ui-sref="app.product.product.productprices">
+                    <i class="ti-files"></i> <span class="title"
+                        translate="sidebar.nav.product.PRODUCTPRICES">Product Prices</span>
+                </a>
+            </li>
         </ul>
     </li>
     <li ng-class="{'active open':$state.includes('app.inventory')}" ng-if="user.restrictions.inventory=='Enable'">
@@ -502,6 +508,7 @@
                         translate="sidebar.nav.accountingintegration.PRODUCTIONPIN">Production Pin</span>
                 </a>
             </li>
+          
         </ul>
     </li>
     <li ng-class="{'active open':$state.includes('app.filter')}" ng-if="user.restrictions.filters=='Enable'">
@@ -1198,6 +1205,12 @@
                                 Card</span>
                         </a>
                     </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="app.reports.giroreports.cashierpayments" >
+                            <i class="ti-files"></i> <span class="title" translate="sidebar.nav.reports.CASHIERPAYMENTS">Score
+                                Card</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li ng-if="user.restrictions.productsalesreports=='Enable'">
@@ -1812,9 +1825,9 @@
                         </a>
                     </li>
                     <li ui-sref-active="active">
-                        <a ui-sref="app.reports.callcenterreports.aggregatorordersrawdatareport">
+                        <a ui-sref="app.reports.callcenterreports.aggregatorstoreinactivetimerreport">
                             <i class="ti-files"></i><span class="title"
-                                translate="sidebar.nav.reports.AGGREGATORORDERSRAWDATAREPORT">Aggregator Orders List
+                                translate="sidebar.nav.reports.AGGREGATORSTOREINACTIVETIMERREPORT">Aggregator Orders List
                                 Details</span>
                         </a>
                     </li>

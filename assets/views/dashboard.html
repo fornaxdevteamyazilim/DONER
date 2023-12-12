@@ -263,7 +263,7 @@ tr:nth-child(even) {
                                 <th >{{'main.WAITINGPERIOD' | translate}}</th>
                                 <th >{{'main.OUTDURATION' | translate}}</th>
                                 <th >{{'main.DELIVERYPERIOD' | translate}}</th>
-                                <th >{{'main.REALDELIVERYTIME' | translate}} (OKC) </th>
+                                <!-- <th >{{'main.REALDELIVERYTIME' | translate}} (OKC) </th> -->
                                 <th >{{'main.BELOW30' | translate}} </th>
                                 <th >{{'main.BELOW30' | translate}} %</th>
                                 <th >{{'main.BEYOND30' | translate}} </th>
@@ -300,9 +300,9 @@ tr:nth-child(even) {
                                 <td >
                                         {{storePerformanceData.DeliveryPeriod}}
                                 </td>
-                                <td >
+                                <!-- <td >
                                         {{storePerformanceData.RealDeliveryTime}}
-                                </td>
+                                </td> -->
                                 <td >
                                         {{storePerformanceData.Below30}}
                                 </td>
@@ -327,7 +327,7 @@ tr:nth-child(even) {
                 </div>
             </div>
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" ng-controller="VisitsCtrl">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="panel panel-white no-radius">
                 <div class="panel-heading border-light">
                     <h4 class="panel-title text-bold" translate="main.TOTALSORDER"></h4>
@@ -344,8 +344,8 @@ tr:nth-child(even) {
                             <br />
                             <progressbar value="ordertype.OrdersCount" class="progress-xs no-radius no-margin" type="info"></progressbar>
                             <br />
-                            <!--TC : <strong class="text-dark" ng-if="user.Store.MemberID == 106851154380">₺ {{ordertype.OrdersAmount * 100 / 108 | number:2}}</strong>-->
-                            TC : <strong class="text-dark" ng-if="user.Store.MemberID == 106851154380">₺ {{ordertype.OrdersAmount | number:2}}</strong>
+                           TC : <strong class="text-dark" ng-if="user.Store.MemberID == 106851154380">₺ {{ordertype.OrdersAmount * 100 / 108 | number:2}}</strong>-->
+                            <!-- TC : <strong class="text-dark" ng-if="user.Store.MemberID == 106851154380">₺ {{ordertype.OrdersAmount | number:2}}</strong>
                             <strong class="text-dark" ng-if="user.Store.MemberID != 106851154380">₺ {{ordertype.OrdersAmount | number:2}}</strong>
                             <br />
                             AC : <strong class="text-dark">₺ {{ordertype.OrdersAverage | number:2}}</strong>
@@ -353,9 +353,27 @@ tr:nth-child(even) {
                     </div>
                 </div>
             </div>
+        </div> -->
+        <!-- <br /> -->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-repeat="ordertype in OrdersOrderType" style="background: white;
+            border-radius: 15px;margin-right: 5px;">
+                <div class="panel-heading border-bottom text-center">
+                    <h4 class="no-margin text-dark">{{ordertype.OrderType}}: {{ordertype.OrdersCount}}</h4>
+                </div>
+                <div class="panel-body center" style="color: black;">
+                    TC &nbsp;:&nbsp;<strong class="text-dark" ng-if="user.Store.MemberID == 106851154380">{{ordertype.OrdersAmount | number:2}} ₺</strong>
+                    <strong class="text-dark" ng-if="user.Store.MemberID != 106851154380">{{ordertype.OrdersAmount | number:2}} ₺</strong>
+                    <br />
+                    AC &nbsp;:&nbsp;<strong class="text-dark"> {{ordertype.OrdersAverage | number:2}} ₺</strong>
+                </div>
+                <div class="panel-footer" style="text-align: center;">        
+                     <i style="font-size: 30px !important;" ng-class="{'fa fa-caret-up text-green':(ordertype.OrdersCount*100) / OrderTotalCount > 40 ,'fa fa-caret-down text-red':(ordertype.OrdersCount*100) / OrderTotalCount < 40}"></i>&nbsp;&nbsp;<span class="percentage" style="font-size: 15px; color: black;"> % </span>&nbsp;&nbsp;<span class="value text-large" style="font-size: 25px;color: black;">{{(ordertype.OrdersCount*100) / OrderTotalCount |number:2}}</span>
+                </div>
+            </div> 
         </div>
-        <br />
-        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+     
+        <!-- <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
             <div class="panel panel-white no-radius">
                 <div class="panel-heading border-light">
                     <h4 class="panel-title text-bold" translate="main.TOTALSORDER%"></h4>
@@ -371,7 +389,7 @@ tr:nth-child(even) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" ng-controller="SalesCtrl">
         <div class="panel panel-white no-radius" id="visits">
@@ -386,8 +404,8 @@ tr:nth-child(even) {
             <div class="margin-top-10">
                 <div class="panel-body">
                     <div style="height:400px;">
-                        <canvas class="tc-chart" tc-chartjs-bar chart-options="options" chart-data="data" chart-legend="chart2"></canvas>
-                        <div tc-chartjs-legend chart-legend="chart2" class="inline pull-left legend-xs"></div>
+                        <canvas class="tc-chart" tc-chartjs-bar chart-options="options" chart-data="data" chart-legend="chart1"></canvas>
+                        <div tc-chartjs-legend chart-legend="chart1" class="inline pull-left legend-xs"></div>
                     </div>
                 </div>
             </div>
@@ -487,9 +505,9 @@ tr:nth-child(even) {
         <div collapse="visits" ng-init="visits=false" class="panel-wrapper">
             <div class="panel-body">
                 <div class="height-350">
-                    <canvas class="tc-chart" tc-chartjs-line chart-options="options" chart-data="data" chart-legend="chart1" width="100%"></canvas>
+                    <canvas class="tc-chart" tc-chartjs-line chart-options="options" chart-data="data" chart-legend="Chart6" width="100%"></canvas>
                     <div class="margin-top-20">
-                        <div tc-chartjs-legend chart-legend="chart1" class="inline pull-left"></div>
+                        <div tc-chartjs-legend chart-legend="Chart6" class="inline pull-left"></div>
                     </div>
                 </div>
             </div>

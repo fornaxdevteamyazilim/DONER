@@ -215,6 +215,7 @@
     <Content Include="assets\js\controllers\reports\giroreports\cumulativesalesCtrl.js" />
     <Content Include="assets\js\controllers\reports\giroreports\salesbysourceCtrl.js" />
     <Content Include="assets\js\controllers\reports\giroreports\scoreCardCtrl.js" />
+    <Content Include="assets\js\controllers\reports\giroreports\cashierpaymentsCtrl.js" />
     <Content Include="assets\js\controllers\reports\giroreports\storerankingCtrl.js" />
     <Content Include="assets\js\controllers\reports\giroreports\turnoverbydaysreportpivotCtrl.js" />
     <Content Include="assets\js\controllers\reports\management\PodsReportCtrl.js" />
@@ -462,7 +463,8 @@
     <Content Include="assets\js\controllers\order\selectstoreCtrl.js" />
     <Content Include="assets\js\controllers\tableplan\tablePlanCtrl.js" />
     <Content Include="assets\js\controllers\product\productprototypelistCtrl.js" />
-    <Content Include="assets\js\controllers\product\productprototypeeditCtrl.js" />
+    <Content Include="assets\js\controllers\product\productpricesCtrl.js" />
+    <Content Include="assets\js\controllers\product\productimagesCtrl.js" />
     <Content Include="assets\js\controllers\product\productimagesCtrl.js" />
     <Content Include="assets\js\controllers\order\orderpromotionsCtrl.js" />
     <Content Include="assets\js\controllers\promotions\promotionscodevalidatorsCtrl.js" />

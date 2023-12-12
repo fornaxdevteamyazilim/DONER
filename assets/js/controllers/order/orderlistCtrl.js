@@ -1,5 +1,5 @@
 ﻿app.controller('orderlistCtrl', orderlistCtrl);
-function orderlistCtrl($scope, $log, $modal, Restangular, ngTableParams, SweetAlert, toaster, $window, $rootScope, $timeout, $interval, $filter, $location, $translate, userService, $element, ngnotifyService) {
+function orderlistCtrl($scope, $log, $modal, Restangular, ngTableParams, SweetAlert, toaster, $window, $rootScope, localStorageService, $timeout, $interval, $filter, $location, $translate, userService, $element, ngnotifyService) {
     $rootScope.uService.EnterController("orderlistCtrl");
     var ao = this
     userService.userAuthorizated();
@@ -69,6 +69,16 @@ function orderlistCtrl($scope, $log, $modal, Restangular, ngTableParams, SweetAl
     });
     $scope.SelectItem = function (item) {
         $location.path('app/orders/orderDetail/' + item.id);
+    };
+    $scope.RePrintOrder = function (OrderID) {
+        Restangular.all('ordertools/PrintLabels').getList({
+            OrderID: OrderID,
+            StationName:localStorageService.get('ClientName')
+        }).then(function (_orderItems) {
+            toaster.pop('success', $translate.instant('dispatcherfile.LabelPrintingAgain'));
+        }, function (response) {
+            toaster.pop('error', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
+        });
     };
     $scope.ShowOerderItems = function (order) {
         for (var i = 0; i < order.length; i++) {

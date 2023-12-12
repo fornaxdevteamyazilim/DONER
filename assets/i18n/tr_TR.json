@@ -365,6 +365,7 @@
     "FOODCOSTBYTORDERSOURCE": "{{appName}} - Kanal Bazlı Gıda Maliyeti",
     "PRODUCTPRICEEDIT": "{{appName}} - Ürün Fiyat Düzenleme",
     "PRODUCTPRICELIST": "{{appName}} - Ürün Fiyat Düzenleme Listesi",
+    "PRODUCTPRICES": "{{appName}} - Ürün Fiyatı Düzenleme",
     "WEEKLYANALYSIS": "{{appName}} - Haftalık Analiz",
     "GIFTPROMOTIONS": "{{appName}} - Hediye Promosyonlar",
     "GIFTPROMOTIONCODE": "{{appName}} - Hediye Promosyon Kodları",
@@ -393,11 +394,13 @@
     "PRODUCTSALESSUMMARY": "{{appName}} - Ürün Satış Özeti",
     "PROMOTIONCODEDETAILS": "{{appName}} - Promosyon Kod Detayları",
     "SALESBYSOURCE": "{{appName}} - Kanal Bazlı Satış",
+    "CASHIERPAYMENTS": "{{appName}} - Agent Satış Toplamı",
     "SCORECARD": "{{appName}} - Score Card",
     "CLOCKINOUTREPORT": "{{appName}} - Vardiya Giriş-Çıkış Raporu",
     "CALLCENTERORDERS": "{{appName}} - CallCenter Orders",
     "AGGREGATORORDERSREPORT": "{{appName}} - Kanal Bazlı Sipariş Listesi",
     "AGGREGATORORDERSRAWDATAREPORT": "{{appName}} - Kanal Bazlı Sipariş Detayları (Raw Data) Raporu",
+    "AGGREGATORSTOREINACTIVETIMERREPORT": "{{appName}} - Restoranlarin Kapali Kalma Süresi Raporu",
     "CUSTOMERMAPS": "{{appName}} - Müşteri Eşleme İstatistikleri",
     "GETIRSTATSDETAIL": "{{appName}} - Aggregator İstatistikleri Detayı",
     "YEMEKSEPETISTATSDETAIL": "{{appName}} - YS İstatistikleri Detayı",
@@ -2452,6 +2455,7 @@
     "CUSTOMERMAPS": "Müşteri Eşleme İstatistikleri",
     "PRODUCTWASTES": "Pişmiş Atık Raporu",
     "SALESBYSOURCE": "Kanal Bazlı Satış",
+    "CASHIERPAYMENTS": "Agent Satış Toplamı",
     "ORDERAMOUNTT": "Sipariş Toplamı",
     "SEARCHADDRESS": "Adres Sorgula !",
     "GETIRTC": "Getir TC",
@@ -2490,6 +2494,7 @@
     "CALLCENTERORDERS": "CallCenter Siparişleri",
     "AGGREGATORORDERSREPORT": "Kanal Bazlı Sipariş Listesi",
     "AGGREGATORORDERSRAWDATAREPORT": "Kanal Bazlı Sipariş Detayları (Raw Data) Raporu",
+    "AGGREGATORSTOREINACTIVETIMERREPORT": "Restoranlarin Kapali Kalma Süresi Raporu",
     "GETIRSTATSDETAIL": "Aggregator İstatistikleri Detayı",
     "MARKETINGPERMISSIONS": "KVKK Onayları",
     "THEORICTOACTUAL": "Teorik to Actual",
@@ -2627,7 +2632,8 @@
         "PRODUCTDEFINITOIN": "Ürün Tanımları",
         "PRODUCTDISABLE": "Ürün Açma-Kapama",
         "PRODUCTRECOMENDEDPROMOTION": "Ürün/Promosyon İlişkilendirme",
-        "PRODUCTPRICELIST": "Ürün Fiyatı Düzenleme"
+        "PRODUCTPRICELIST": "Ürün Fiyatı Düzenleme Liste",
+        "PRODUCTPRICES": "Ürün Fiyatı Düzenleme"
       },
       "schedule": {
         "MAIN": "Zamanlama",
@@ -2877,6 +2883,7 @@
         "PRODUCTGROUPSTRIKERATE": "Ürün Grubu Satış Oranı",
         "PRODUCTSALESSUMMARY": "Ürün Satış Özeti",
         "SALESBYSOURCE": "Kanal Bazlı Satış",
+        "CASHIERPAYMENTS": "Agent Satış Toplamı",
         "SCORECARD": "Score Card",
         "DELIVERYU30": "30 Dk. Altı",
         "YEMEKSEPETISTATSDETAIL": "YS İstatistikleri Detayı",
@@ -2890,6 +2897,7 @@
         "CALLCENTERORDERS": "CallCenter Orders",
         "AGGREGATORORDERSREPORT": "Kanal Bazlı Sipariş Listesi",
         "AGGREGATORORDERSRAWDATAREPORT": "Kanal Bazlı Sipariş Detayları (Raw Data) Raporu",
+        "AGGREGATORSTOREINACTIVETIMERREPORT": "Restoranlarin Kapali Kalma Süresi Raporu",
         "CUSTOMERMAPS": "Müşteri Eşleme İstatistikleri",
         "MARKETINGPERMISSIONS": "KVKK Onayları",
         "VOIDORDERSREPORT": "İptal Sipariş Raporu",
@@ -4937,5 +4945,50 @@
     "PaymentType": "Ödeme Tipi",
     "PaymentDate": "Ödeme Zamanı",
     "Amount": "Tutar"
+  },
+  "smslist": {
+    "Store": "Restoran",
+    "LastOrder": "Son Sipariş",
+    "Number": "Telefon",
+    "PersonName": "Kişi Adı",
+    "Town": "Şehir"
+  },
+  "ProductSalesbyagent": {
+    "Store": "Restoran",
+    "OperationDate": "Operasyon Tarihi",
+    "OrderSource": "Sipariş Kaynağı",
+    "OrderSourceID": "Sipariş Kaynağı ID",
+    "OrderTypeID": "Sipariş Türü",
+    "Product": "Ürün",
+    "ProductAmount": "Ürün Fiyatı",
+    "ProductCount": "Ürün Adeti",
+    "ProductGroup": "Ürün Grubu",
+    "ProductID": "Ürün ID",
+    "fk_User_id": "Kullanıcı",
+    "isFree": "isFree"
+  },
+  "productprices": {
+    "Name": "Ürün Adı",
+    "Description": "Açıklama",
+    "Price": "Fiyat",
+    "Size": "Boyu",
+    "tags": "tags"
+  },
+  "Aggregatorstoreinactivetimerreport": {
+    "Store": "Restoran",
+    "Aggregator": "Dijital Kanal",
+    "OpDate": "Operasyon Tarihi",
+    "InactiveTime": "InactiveTime"
+  },
+  "cashierpayments": {
+    "StoreName": "Restoran",
+    "OperationDate": "Operasyon Tarihi",
+    "OrderSource": "Sipariş Kaynağı",
+    "OrderNumber": "Sipariş No",
+    "Amount": "Tutar",
+    "FullName": "Kullanıcı Adı",
+    "PaymentType": "Ödeme Tipi",
+    "PostName": "Kasa Adı",
+    "OrderID": "Sipariş ID"
   }
 }
