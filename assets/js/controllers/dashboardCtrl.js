@@ -49,6 +49,7 @@ app.controller('VisitsCtrl', function ($scope, $rootScope, Restangular, $locatio
         $scope.selectedStoreName = $rootScope.SelectedData.name;
     }
     $scope.OrdersOrderType = [];
+    $scope.statsByOrderSource = [];
     $scope.GetData = function () {
         Restangular.one('dashboard/storestats').get({
             // StoreID: $rootScope.user.StoreID,
@@ -86,6 +87,7 @@ app.controller('VisitsCtrl', function ($scope, $rootScope, Restangular, $locatio
             $scope.WaitingPeriod = angular.copy(result.WaitingPeriod);
             $scope.isFinalizeRequired=angular.copy(result.isFinalizeRequired);
             angular.copy(result.statsByOrderType, $scope.OrdersOrderType);
+            angular.copy(result.statsByOrderSource, $scope.statsByOrderSource);
             $scope.OrderTotalCount = 0;
             $scope.OrderTotalAmount = 0;
             for (var i = 0; i < $scope.OrdersOrderType.length; i++) {
@@ -99,6 +101,17 @@ app.controller('VisitsCtrl', function ($scope, $rootScope, Restangular, $locatio
                     default: $scope.OrdersOrderType[i].color = "danger"
 
                 }
+            }
+            $scope.OrderSource = 0;
+            $scope.OrdersAverage = 0;
+            $scope.OrdersCount = 0;
+            $scope.OrdersAmount = 0;
+            for (var i = 0; i < $scope.statsByOrderSource.length; i++) {
+                $scope.OrderSource += $scope.statsByOrderSource[i].OrderSource;
+                $scope.OrdersAverage += $scope.statsByOrderSource[i].OrdersAverage;
+                $scope.OrdersCount += $scope.statsByOrderSource[i].OrdersCount;
+                $scope.OrdersAmount += $scope.statsByOrderSource[i].OrdersAmount;
+             
             }
             //$scope.OrderTotalAmountTXT = $filter('number')($scope.OrderTotalAmount / 1.08, 2);
             //$scope.OrderACTXT = $filter('number')(($scope.OrderTotalAmount / $scope.OrderTotalCount) / 1.08, 2);
@@ -127,13 +140,13 @@ app.controller('VisitsCtrl', function ($scope, $rootScope, Restangular, $locatio
     var deregistration = $scope.$on('$translateChangeSuccess', function (event, data) {// ON LANGUAGE CHANGED
         $scope.translate();
     });
-    var OrderRefresh = $scope.$on('OrderChange', function (event, data) {
-        $scope.GetData();
-    });
+    // var OrderRefresh = $scope.$on('OrderChange', function (event, data) {
+    //     $scope.GetData();
+    // });
     $scope.$on('$destroy', function () {
         deregistration();
         $rootScope.SelectedData = {};
-        OrderRefresh();        
+      //  OrderRefresh();        
         $element.remove();
         $rootScope.uService.ExitController("VisitsCtrl");
     });  
@@ -232,7 +245,7 @@ app.controller('OnotherCtrl', function ($scope, $rootScope, Restangular, $transl
             StoreID: ($scope.selectedStoreID) ? $scope.selectedStoreID : $rootScope.user.StoreID,
         }).then(function (result) {
             $rootScope.ShowSpinnerObject = false;
-            angular.copy(result.statsByOrderType, $scope.OrdersOrderType);
+            angular.copy(result.statsByOrderType, $scope.OrdersOrderType,$scope.statsByOrderSource);
             for (var i = 0; i < result.statsByHour.length; i++) {
                 $scope.HourlyName[i] = result.statsByHour[i].Hour;
                 $scope.HourlyOrdersCount[i] = result.statsByHour[i].OrdersCount;

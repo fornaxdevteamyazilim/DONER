@@ -357,9 +357,9 @@ tr:nth-child(even) {
         <!-- <br /> -->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" ng-repeat="ordertype in OrdersOrderType" style="background: white;
-            border-radius: 15px;margin-right: 5px;">
+            border-radius: 15px;margin-right: 5px;width: 23%;">
                 <div class="panel-heading border-bottom text-center">
-                    <h4 class="no-margin text-dark">{{ordertype.OrderType}}: {{ordertype.OrdersCount}}</h4>
+                    <h4 class="no-margin" style=" color: black; font-size: 11px; font-weight: bold;">{{ordertype.OrderType}}: {{ordertype.OrdersCount}}</h4>
                 </div>
                 <div class="panel-body center" style="color: black;">
                     TC &nbsp;:&nbsp;<strong class="text-dark" ng-if="user.Store.MemberID == 106851154380">{{ordertype.OrdersAmount | number:2}} ₺</strong>
@@ -371,6 +371,28 @@ tr:nth-child(even) {
                      <i style="font-size: 30px !important;" ng-class="{'fa fa-caret-up text-green':(ordertype.OrdersCount*100) / OrderTotalCount > 40 ,'fa fa-caret-down text-red':(ordertype.OrdersCount*100) / OrderTotalCount < 40}"></i>&nbsp;&nbsp;<span class="percentage" style="font-size: 15px; color: black;"> % </span>&nbsp;&nbsp;<span class="value text-large" style="font-size: 25px;color: black;">{{(ordertype.OrdersCount*100) / OrderTotalCount |number:2}}</span>
                 </div>
             </div> 
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="top: 3px; ">
+
+                <h4 class="panel-title text-bold" translate="Kaynak istatistiği" style="color: black;"></h4>
+            
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-repeat="statsByOrderSource in statsByOrderSource" style="background: white;
+            border-radius: 15px;margin-right: 5px;width: 23%;margin-top: 5px;">
+                <div class="panel-heading border-bottom text-center">
+                    <h4 class="no-margin" style=" color: black; font-size: 11px; font-weight: bold;">{{statsByOrderSource.OrderSource}}: {{statsByOrderSource.OrdersCount}}</h4>
+                </div>
+                <div class="panel-body center" style="color: black;">
+                    TC &nbsp;:&nbsp;<strong class="text-dark" ng-if="user.Store.MemberID == 106851154380">{{statsByOrderSource.OrdersAmount | number:2}} ₺</strong>
+                    <strong class="text-dark" ng-if="user.Store.MemberID != 106851154380">{{statsByOrderSource.OrdersAmount | number:2}} ₺</strong>
+                    <br />
+                    AC &nbsp;:&nbsp;<strong class="text-dark"> {{statsByOrderSource.OrdersAverage | number:2}} ₺</strong>
+                </div>
+                <div class="panel-footer" style="text-align: center;">        
+                     <i style="font-size: 30px !important;" ng-class="{'fa fa-caret-up text-green':(statsByOrderSource.OrdersCount*100) / OrdersCount > 40 ,'fa fa-caret-down text-red':(statsByOrderSource.OrdersCount*100) / OrdersCount < 40}"></i>&nbsp;&nbsp;<span class="percentage" style="font-size: 15px; color: black;"> % </span>&nbsp;&nbsp;<span class="value text-large" style="font-size: 25px;color: black;">{{(statsByOrderSource.OrdersCount*100) / OrdersCount |number:2}}</span>
+                </div>
+            
+        </div>
         </div>
      
         <!-- <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
@@ -414,7 +436,7 @@ tr:nth-child(even) {
     
 
 </div>
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-controller="VisitsCtrl">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-controller="VisitsCtrl"  style="top: 5px;">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 panel panel-white no-radius">
         <div class="panel-heading border-bottom">
             <h4 class="panel-title text-bold">{{'main.THEORIC' | translate}} ({{InventoryCost.FromDateTXT}} / {{InventoryCost.ToDateTXT}})</h4>
