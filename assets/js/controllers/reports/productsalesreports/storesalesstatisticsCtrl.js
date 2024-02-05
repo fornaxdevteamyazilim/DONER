@@ -112,9 +112,9 @@ function storesalesstatisticsCtrl($scope, $filter, $window, $stateParams, $inter
             { dataField: "Group2ProductCount", caption: $translate.instant('callcenterreports.Group2ProductCount'), dataType: "number", format: { type: "percent", precision: 2 },visible: false },
             { dataField: "Group2ProductRatio", caption: $translate.instant('callcenterreports.Group2ProductRatio'), dataType: "number", format: { type: "percent", precision: 2 }, visible: false},
             { dataField: "GroupsAmounRatioNoVAT", caption: $translate.instant('callcenterreports.GroupsAmounRatioNoVAT'), dataType: "number", format: { type: "percent", precision: 2 }  },
-            { dataField: "GroupsAmountNoVAT", caption: $translate.instant('callcenterreports.GroupsAmountNoVAT'),  format: { type: "fixedPoint", precision: 2 } },
+            { dataField: "GroupsAmount", caption: $translate.instant('callcenterreports.GroupsAmountNoVAT'),  format: { type: "fixedPoint", precision: 2 } },
             { dataField: "OrdersCount", caption: $translate.instant('callcenterreports.OrdersCount'), dataType: "number" },
-            { caption: $translate.instant('callcenterreports.OrdersAmountNoVAT'), dataField: "OrdersAmountNoVAT",  format: { type: "fixedPoint", precision: 2 } },
+            { caption: $translate.instant('callcenterreports.OrdersAmountNoVAT'), dataField: "OrdersAmount",  format: { type: "fixedPoint", precision: 2 } },
         ],
         summary: {
             totalItems: [
@@ -124,15 +124,15 @@ function storesalesstatisticsCtrl($scope, $filter, $window, $stateParams, $inter
                 { column: "Group2ProductCount", summaryType: "sum", displayFormat: "{0}" },
                 { column: "Group2ProductRatio", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "%{0}", },
                 { column: "GroupsAmounRatioNoVAT",  summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "%{0}",},
-                { column: "GroupsAmountNoVAT", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}₺", },
+                { column: "GroupsAmount", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}₺", },
                 { column: "OrdersCount", summaryType: "sum", displayFormat: "{0}" },
-                { column: "OrdersAmountNoVAT", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}₺" },
+                { column: "OrdersAmount", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}₺" },
 
             ],
             groupItems: [
                 // { column: "Inventory.name", summaryType: "count", displayFormat: "{0}", alignByColumn: true },
                 { column: "OrdersCount", summaryType: "count", displayFormat: "{0}", alignByColumn: true },
-                { column: "OrderAmount", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}", alignByColumn: true },
+                { column: "OrdersAmount", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}", alignByColumn: true },
 
             ]
         },
@@ -230,21 +230,21 @@ function storesalesstatisticsCtrl($scope, $filter, $window, $stateParams, $inter
     };
     $scope.LoadData = function () {
         var dataGrid = $('#gridContainer').dxDataGrid('instance');
-        dataGrid.refresh();
+       // dataGrid.refresh();
     };
-    var refreshData = function () {
-        var dataGrid = $('#gridContainer').dxDataGrid('instance');
-        dataGrid.refresh();
-    }
-    $scope.start = function () {
-        $scope.stop();
-        promise = $interval(refreshData, 60000);
-    };
+    // var refreshData = function () {
+    //     var dataGrid = $('#gridContainer').dxDataGrid('instance');
+    //     dataGrid.refresh();
+    // }
+    // $scope.start = function () {
+    //     $scope.stop();
+    //     promise = $interval(refreshData, 60000);
+    // };
 
-    $scope.stop = function () {
-        $interval.cancel(promise);
-    };
-    $scope.start();
+    // $scope.stop = function () {
+    //     $interval.cancel(promise);
+    // };
+    // $scope.start();
     $scope.$on('$destroy', function () {
         $element.remove();
         $rootScope.uService.ExitController("storesalesstatisticsCtrl");

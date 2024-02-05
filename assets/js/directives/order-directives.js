@@ -16,8 +16,8 @@ function orderable($compile, $modal, $translate) {
         "<orderableoption class='fade-in' ng-if='option.OptionIndex>-2' bindonce ng-repeat='option in item.Options' option='option' order='OrderID'></orderableoption>" +
         "<div class='no-margin fade-in' id='details'>" +
         "<input type='text' placeholder='Ürün notu' class='col-lg-9 col-md-9 col-sm-9 col-xs-9' ng-model='item.Notes' ng-if='item.isOrderItem'>" +
-        "<button ng-if='item.isOrderItem' class='col-lg-3 col-md-3 col-sm-4 col-xs-6 btn-red btn-md tooltips radius-3 pull-right' style='height:33px' ng-hide='!item.canSave' ng-click='SaveToOrder(item)'ng-disabled='ButtonActive == false'><label class='fa fa-spin fa-spinner' ng-if='ButtonActive == false'></label><span> {{:: 'main.SAVE' | translate}} </span></button>",
- controller: function ($q, $scope, $element, $attrs, $transclude, $rootScope, $translate, $modal, Restangular, toaster) {
+        "<button ng-if='item.isOrderItem' class='col-lg-3 col-md-3 col-sm-4 col-xs-6 btn-red btn-md tooltips radius-3 pull-right' style='height:33px' ng-hide='!item.canSave' ng-click='SaveToOrder(item)'ng-disabled='ButtonActive == false ' ><label class='fa fa-spin fa-spinner' ng-if='ButtonActive == false'></label><span> {{:: 'main.SAVE' | translate}} </span></button>",
+ controller: function ($q, $scope, $element, $attrs, $transclude, $rootScope, $translate, $modal, Restangular, toaster, $timeout) {
             $scope.itemPrice = 0;
             $scope.itemAmount = 0;
             $scope.OrderableID = $attrs.item;
@@ -61,7 +61,7 @@ function orderable($compile, $modal, $translate) {
                     Search: [(Option.SelectedItems && Option.SelectedItems.id) ? "ItemID='" + Option.SelectedItems.id + "'" : "ItemID=''", "OrderItemID='" + oi + "'", "OptionID='" + Option.id + "'"],
                 }).then(function (result) {
                     if (result.length > 0) {
-                        Option.SelectedItems = $scope.UpdateOrderableSelections(result[0]);
+                       Option.SelectedItems = $scope.UpdateOrderableSelections(result[0]);
                         Option.SelectedItems.OrderID = $scope.OrderID;
                         Option.SelectedItems.CalcPrice = 0;
                         if (Option.SelectedItems.Options)
@@ -71,11 +71,11 @@ function orderable($compile, $modal, $translate) {
                                         Option.SelectedItems.Options[a].Items[b].OrderID = $scope.OrderID;
                                     }
                             }
-                    }
+                    }      
                 }, function (response) {
                     toaster.pop('Warning', $translate.instant('Server.ServerError'), "Warning!");
                 });
-            };
+            };          
             $scope.DisableWatch = $scope.$watch(watchItem, function () {
                 if ($scope.item) {
                     $scope.item.CalcPrice = $scope.CalculatePrice($scope.item, true);
@@ -243,8 +243,8 @@ function orderable($compile, $modal, $translate) {
                     let groupArray = []; let groupItem = {};
                     for (var i = 0; i < item.Options.length; i++) {
                         for (var a = 0; a < item.Options[i].Items.length; a++) {
-                            item.Options[i].Items[a].LittleImage = item.Options[i].Items[a].LittleImage == null ? '/assets/images/kk/no_image.png' : item.Options[i].Items[a].LittleImage;
-                            item.Options[i].Items[a].Image = item.Options[i].Items[a].Image == null ? '/assets/images/kk/no_image.png' : item.Options[i].Items[a].Image;
+                            // item.Options[i].Items[a].LittleImage = item.Options[i].Items[a].LittleImage == null ? '/assets/images/kk/no_image.png' : item.Options[i].Items[a].LittleImage;
+                            // item.Options[i].Items[a].Image = item.Options[i].Items[a].Image == null ? '/assets/images/kk/no_image.png' : item.Options[i].Items[a].Image;
                             //if (item.Options[i].OptionType == 1 || item.Options[i].OptionType == 3 || item.Options[i].OptionType == 4) {
                             if (item.Options[i].OptionType == 3) {
                                 item.Options[i].Items[a].name = (item.Options[i].Items[a].Price) ? item.Options[i].Items[a].name + ' ' + item.Options[i].Items[a].Price.Price : item.Options[i].Items[a].name;
@@ -469,9 +469,7 @@ function ngPlusminus() {
         restrict: 'E',
         template: `
             <div class="row" style="border: 1px solid #C82E29; border-radius: 5px; text-align: center;">
-                <div class="wrapper" style="margin: 8px 0;" ng-if="isShownImage">
-                    <img src="{{editorValue.LittleImage}}" style="width: 70%; height: 100px;" />
-                </div>
+              
                 <div class="wrapper" style="font-size: 13px; letter-spacing: -0.5px; display: block; text-overflow: ellipsis; word-wrap: break-word; overflow: hidden; margin: 4px;">
                     {{editorValue.name}}
                 </div>
@@ -627,9 +625,7 @@ function orderableoption() {
                 `<div ng-if="option.OptionType==6">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 6px;">
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="border: 1px solid #C82E29; border-radius: 5px;">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="isShownImage">
-                                <img src="{{groupedItem[0].LittleImage}}" style="padding: 3% 15%;">
-                            </div>
+                           
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center; margin-top: 5px; font-weight: bold;">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     {{groupedItem[0].name}}
@@ -704,7 +700,7 @@ function optionitemRadio($compile) {
             "</div>",
         link: function (scope, element, attr) {
             var container = $(element).children("#contentdetail").children("#optdetail");
-            var newElement = angular.element("<orderableoption class='col-lg-11 col-md-11 col-sm-11 col-xs-11 margin-left-30' bindonce='option'  ng-repeat='option in option.SelectedItems.Options' option='option' order='OrderID'></orderableoptiondetail>");
+            var newElement = angular.element("<orderableoption class='col-lg-11 col-md-11 col-sm-11 col-xs-11 margin-left-30' bindonce='option'  ng-repeat='option in option.SelectedItems.Options' option='option' order='OrderID'></orderableoption>");
             container.html(newElement);
             $compile(newElement)(scope);
 
@@ -722,9 +718,7 @@ function optionitemImage() {
           
             <div class="col-lg-2 col-md-3 col-sm-8 col-xs-12 margin-top-5" ng-if="user.UserRole.MemberID != 106851154380">
                 <div class="row" style="text-align: center; border: 1px solid #C82E29; border-radius: 5px; white-space: nowrap; overflow: hidden; text-overflow: clip; padding: 3px;">
-                    <div class="wrapper" style="margin: 8px 0;" ng-if="isShownImage">
-                        <img src="{{item.LittleImage}}" style="width: 130px; height: 95px;" />
-                    </div>
+                  
                     <div class="wrapper" style="color: #000; font-size: 14px; font-weight: bold; letter-spacing: -0.75px; display: block; text-overflow: ellipsis; word-wrap: break-word; overflow: hidden; white-space: normal; margin: 5px 0; height: 35px;">
                         {{:: item.name}}
                     </div>
@@ -761,9 +755,7 @@ function optionitemSmallbutton() {
                     <div class="view view-second center"></div>
                 </div>
                 <div class="col-lg-12">
-                    <div class="wrapper" style="margin-bottom: 8px;" ng-if="isShownImage">
-                        <img src="{{:: item.LittleImage}}" style="height: 95px;">
-                    </div>
+                    
                     <label id="txshdw" class="col-lg-11 col-md-11 col-sm-11 col-xs-11 text-capitalize text-bold" style="overflow: hidden; text-overflow: clip; color: black;">{{:: item.name}}</label>
                 </div>
             </button>

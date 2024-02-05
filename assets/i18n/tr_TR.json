@@ -3069,7 +3069,8 @@
         "trendyolmapping": "Trendyol - Eşleştirmeler",
         "migrosmapping": "Migros - Eşleştirmeler",
         "storeaggregatorstatus": "Restoran Entegrasyon Ayarları",
-        "AggregatorStoreStatus": "Sipariş Kanal Ayarları"
+        "AggregatorStoreStatus": "Sipariş Kanal Ayarları",
+        "RestappAggregator" : "RestApp - Eşleştirmeler"
       },
       "specialoperations": {
         "MAIN": "Özel Operasyonlar",
@@ -4990,5 +4991,63 @@
     "PaymentType": "Ödeme Tipi",
     "PostName": "Kasa Adı",
     "OrderID": "Sipariş ID"
+  },
+  "ordersreports": {
+    "Store": "Restoran",
+    "OperationDate": "Operasyon Tarihi",
+    "OrdersCount": "Sipariş Sayısı",
+    "OrderNumber": "Sipariş No",
+    "Amount": "Tutar",
+    "PaymentType": "Ödeme Tipi",
+    "OrderType": "Sipariş Türü",
+    "OrderID": "Sipariş ID"
+  },
+  "orderlist": {
+    "Store": "Restoran",
+    "OrderDate": "Sipariş Tarihi",
+    "OrderSource": "Sipariş Kaynağı",
+    "OrderNumber": "Sipariş No",
+    "Amount": "Tutar",
+    "OrderState": "Sipariş Durumu",
+    "PaymentStatus": "Ödeme Durumu",
+    "Persons": "Müşteri",
+    "isCharged": "Personel Tahsilat Durumu"
+  },
+  "RestappAggregator": {
+    "MemberID": "Kaynak",
+    "StoreName": "Restoran",
+    "AggregatorID": "Firma",
+    "AggregatorStoreID": "Firma Restoran ID",
+    "StoreID": "Restoran ID",
+    "averagePreparationTime": "Ortalama Hazırlanma süresi",
+    "status": "Durum",
+    "isCourierAvailable": "Mevcut Kurye",
+    "restaurantSecretKey": "Restoran Güvenlik Anahtarı",
+    "isActive": "Aktif",
+    "isEnabled": "Etkin",
+    "ProductName": "Ürün Adı",
+    "ProductID": "Ürün ID",
+    "FixedSize": "Sabit Boy",
+    "MapByPrototype": "Eşleşme Proto tipi",
+    "SkipProduct": "Ürünü Atla",
+    "AutoAddProductID": "Otomatik Eklenecek Ürün",
+    "AutoAddMapToOption": "Eşleşme Otomatik Ekleme Seçeneği",
+    "AutoAddProductQuantity": "Otomatik Ürün Miktarı Ekle",
+    "AutoAddMapOptionsLevel": "Otomatik Eşleşme Seçenekleri Seviyesi Ekle",
+    "type": "Tipi",
+    "PaymentType": "Ödeme Tipi",
+    "Name": "Entegrator Adı",
+    "ChildName": "Alt Ürün İsmi",
+    "HostAddress": "Entegrator URL",
+    "StoreRoutingEnabled" : "Restoran Yönlendirmesi Etkin",
+    "TransferOrdersInstant" : "Anlık Sipariş Transferi",
+    "delivery_order_status": "Teslimat Siparişi Durumu",
+    "order_status":"Sipariş Durumu",
+    "future_delivery_order_status":"Gelecekteki Teslimat Sipariş Durumu",
+    "future_takeout_order_status":"Gelecekteki Sipariş Alma Durumu",
+    "takein_order_status":"Sipariş Alma Durumu ",
+    "takeout_order_status":"Paket Sipariş Durumu",
+    "TITLE":"RESTAPP EŞLEME EKRANI",
+    "RestappSetting": "RestApp Ayarı"
   }
 }

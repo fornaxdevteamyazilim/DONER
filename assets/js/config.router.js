@@ -2997,6 +2997,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 ncyBreadcrumb: {
                     label: 'AggregatorStoreStatus'
                 }
+            }).state('app.aggregators.RestappAggregator', {
+                url: '/RestappAggregator',
+                templateUrl: "assets/views/aggregators/RestappAggregator.html",
+                resolve: loadSequence('RestappAggregatorCtrl'),
+                title: 'RestappAggregator',
+                authenticate: true,
+                ncyBreadcrumb: {
+                    label: 'RestappAggregator'
+                }
             }).state('app.addresses', {
                 url: '/addresses',
                 template: '<div ui-view class="fade-in-up"></div>',

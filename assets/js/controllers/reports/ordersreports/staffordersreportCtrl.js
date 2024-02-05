@@ -125,7 +125,7 @@ function staffordersreportCtrl($scope, $filter, $modal, $log, Restangular, Sweet
         },
         export: {
             enabled: true,
-            fileName: "orderpaymentscheckReport",
+            fileName: "staffordersreportReport",
             customizeExcelCell: (options) => {
                 var gridCell = options.gridCell;
                 if (!gridCell) {
@@ -156,4 +156,8 @@ function staffordersreportCtrl($scope, $filter, $modal, $log, Restangular, Sweet
         dataGrid.refresh();
     };
 
-}
+    $scope.$on('$destroy', function () {
+        $element.remove();
+        $rootScope.uService.ExitController("staffordersreportCtrl");
+    });
+};
