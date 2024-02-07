@@ -95,9 +95,15 @@ function RestappAggregatorCtrl($rootScope, $scope, NG_SETTING, $translate, $elem
                 //fixed: true,
                 //groupIndex: 0
             },
-            
+           
             { dataField: "AggregatorStoreID", caption: $translate.instant('RestappAggregator.AggregatorStoreID') },
+            {
+                dataField: "ApiKey", caption:'Apikey',width: 200,  
          
+
+                //fixed: true,
+                //groupIndex: 0
+            },
             { dataField: "delivery_order_status", caption: $translate.instant('RestappAggregator.delivery_order_status'),visible: false },
             { dataField: "order_status", caption: $translate.instant('RestappAggregator.order_status') },
             { dataField: "future_delivery_order_status", caption: $translate.instant('RestappAggregator.future_delivery_order_status'), visible: false },
