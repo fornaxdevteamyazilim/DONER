@@ -4,6 +4,7 @@ function usermainCtrl($rootScope, $scope, $window, $translate, $stateParams, Res
     $scope.Back = function () {
         $window.history.back();
     };
+    $scope.userroles = userService.getUserRoles($rootScope.user.UserRole.MemberID);
     $scope.saveData = function (data) {
         Restangular.restangularizeElement('', data, 'user');
         if (data.Password || (!data.Password && userService.isAdmin())) {
@@ -103,6 +104,26 @@ function usermainCtrl($rootScope, $scope, $window, $translate, $stateParams, Res
                 $scope[Container] = result;
             }, function (response) {
                 toaster.pop('Warning', $translate.instant('Server.ServerError'), response);
+            });
+        }
+    };
+    $scope.loadEntities2 = function (EntityType, Container) {
+        $scope.userroles = userService.getUserRoles($rootScope.user.UserRole.MemberID);
+        var DriverID = {};
+        for (var i = 0; i < $scope.userroles.length; i++) {
+            if ($scope.userroles[i].name == 'Sürücü') {
+                DriverID = $scope.userroles[i].id
+            }
+        }
+        if (!$scope[Container].length) {
+            Restangular.all(EntityType).getList({
+                pageNo: 1,
+                pageSize: 1000,
+                search: "UserRoleID='" + DriverID + "' and StoreID='" + $scope.StoreID + "'"
+            }).then(function (result) {
+                $scope[Container] = result;
+            }, function (response) {
+                toaster.pop('warning', $translate.instant('Server.ServerError'), response);
             });
         }
     };

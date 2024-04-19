@@ -927,7 +927,12 @@
                                 İŞLEMLERİ</span>
                         </a>
                     </li>
-
+                    <li ui-sref-active="active" >
+                        <a ui-sref="app.inventory.InventoryUnitsController">
+                            <i class="ti-files"></i> <span class="title"
+                                translate="sidebar.nav.reports.INVENTORIESREPORT">Inventory Delivery Invoice</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li ng-if="user.restrictions.otherreports=='Enable'">

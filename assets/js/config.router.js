@@ -496,6 +496,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'inventorydeliveries'
             }
+        }).state('app.inventory.InventoryUnitsController', {
+            url: '/InventoryUnitsController',
+            templateUrl: "assets/views/inventories/InventoryUnitsController.html",
+            resolve: loadSequence('underscore', 'xeditable', 'config-xeditable', 'ngTable', 'InventoryUnitsControllerCtrl', 'dateCtrl'),
+            title: 'InventoryUnitsController',
+            authenticate: true,
+            ncyBreadcrumb: {
+                label: 'InventoryUnitsController'
+            }
         }).state('app.inventory.inventorydeliveries.edit', {
             url: '/edit/:id',
             templateUrl: "assets/views/inventories/inventorydelivery.edit.html",

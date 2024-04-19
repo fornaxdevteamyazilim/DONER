@@ -1,0 +1,33 @@
+﻿<!--<style>
+    [class*="col-"] {
+        background-color: #eee;
+        background-color: rgba(86,61,124,.15);
+        border: 1px solid #ddd;
+        border: 1px solid rgba(86,61,124,.2);
+    }
+</style>-->
+<div ng-controller="InventoryUnitsControllerCtrl as id" ng-keyup="event=$event" ng-init="app.layout.isSidebarClosed=false">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-10">
+                <span class="mainTitle text-dark text-uppercase" style="font-size:25px;" translate="tittle.INVENTORIESREPORT" translate-values="{ appName: app.name }">{{ mainTitle }}</span><br /><br />
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 margin-top-10 visible-lg visible-md">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 pull-right">
+                <a class="btn btn-wide btn-red btn-scroll btn-scroll-top ti-back-left margin-right-10 pull-right" ng-click="Back()">
+                    <span translate="main.BACK"></span>
+                </a>
+            </div>
+        </div>
+        <div print-remove class="col-sm-2 col-xs-2 margin-top-5 pull-right visible-sm visible-xs">
+            <a class="btn btn-red ti-back-left pull-right" ng-click="Back()"></a>
+        </div>
+    </div>
+ 
+    <div id="report" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-15 table-responsive">
+        <div id="advgridContainer" dx-data-grid="storeGridOptions">
+        </div>
+    </div>
+    
+</div>

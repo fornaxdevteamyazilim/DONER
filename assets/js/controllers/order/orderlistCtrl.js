@@ -99,10 +99,10 @@ function orderlistCtrl($scope, $log, $modal, Restangular, ngTableParams, SweetAl
     };
     $scope.BuildSearchString = function (src) {
         var result = [];
-        if (ao.search && ao.search.length > 1) {
+        if (ao.search && ao.search.length > 0) {
             // $scope.hideCombo = true;
-            result.push("ExtendedSearch=" + ao.search);
-            result.push("ExtendedSearch=" + ao.search);
+           // result.push("ExtendedSearch=" + ao.search);
+            result.push("OrderNumber like '%" + ao.search + "%'" );
             return result;
         } else {
             if (!userService.isAdmin() &&!userService.userIsInRole("CALLCENTER") && !userService.userIsInRole("CMRESTORANHATTI") && !userService.userIsInRole("Admin") && !userService.userIsInRole("CCMANAGER") && !userService.userIsInRole("MemberAdmin")) {
@@ -110,6 +110,7 @@ function orderlistCtrl($scope, $log, $modal, Restangular, ngTableParams, SweetAl
                 result.push("tt.OperationDate ='" + $rootScope.user.Store.OperationDate + "'");
                 result.push("OrderDate >'" + $rootScope.user.Store.OperationDate + "'");
                 result.push($scope.OrderStateID);
+                
                 return result;
             } else {
                 $scope.OrderDate = $filter('date')(ngnotifyService.ServerTime(), 'yyyy-MM-dd');
@@ -136,6 +137,7 @@ function orderlistCtrl($scope, $log, $modal, Restangular, ngTableParams, SweetAl
                     pageNo: params.page(),
                     pageSize: params.count(),
                     search: $scope.BuildSearchString(),
+                    //search: (ao.search.length > 0) ? "OrderNumber like '%" + ao.search + "%'"  : "",
                     sort: params.orderBy()
                 }).then(function (items) {
                     var order = $scope.ShowOerderItems(items);

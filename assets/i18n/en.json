@@ -51,6 +51,7 @@
     "INVENTORYDELIVERYITEMS": "{{appName}} - Inventory Delivery Items",
     "INVENTORYPURCHASE": "{{appName}} - Inventory Purchases",
     "INVENTORYPURCHASEITEM": "{{appName}} - Inventory Purchase Items",
+    "INVENTORIESREPORT": "{{appName}} - Inventory Report",
     "INVENTORYRECIPE": "{{appName}} - Inventory Recipes",
     "INVENTORYRECIPEITEM": "{{appName}} - Inventory Recipe Items",
     "INVENTORYSALE": "{{appName}} - Inventory Sales",
@@ -1756,6 +1757,7 @@
     "INVENTORYCOST": "Actual Inventory Costs",
     "INVENTORYPERIODICCOST": "Inventory Periodic Costs",
     "INVENTORYRECIPES": "Inventory Recipes",
+    "INVENTORIESREPORT": "Inventory Report",
     "SELECTPERIOD": "Select Period",
     "SELECTINVENTORY": "Select Inventory",
     "ADDNEWPAYMENTITEM": "Add New Payment Item",
@@ -5028,5 +5030,115 @@
     "takeout_order_status": "Takeout Order  Status",
     "TITLE": "RESTAPP MAPPING SCREEN",
     "RestappSetting": "ReetApp Setting"
+  },
+  "lastorders": {
+   "Store": "Store",
+   "TakenBy": "Taken By",
+   "TakeDateTime": "Take Date Time",
+   "AddressType": "Address Type",
+   "Person": "Person",
+   "Address": "Address",
+   "Phone": "Phone",
+   "OrderAmount": "Order Amount"
+  },
+  "unpaiddeliveries": {
+    "DocumentNumber": "Document Number",
+    "PaymentTerm": "Payment Term",
+    "CompanyName": "Company Name",
+    "Store": "Store",
+    "PaymentDate": "Payment Date",
+    "VAT": "VAT",
+    "Amount": "Amount",
+    "GrandTotal": "Grand Total",
+    "Description": "Description",
+    "isPaid": "is Paid",
+    "CompanyPaymentTerm": "Company Payment Term",
+    "DeliveryDate": "Delivery Date"
+  },
+  "InventoryUnits": {
+    "BaseUnit": "Base Unit",
+    "InventoryGroup": "Inventory Group",
+    "InventoryName": "Inventory Name",
+    "InventoryUnitName": "Inventory Unit Name"
+  }, 
+  "ReturnedProductsDetailed": {
+   "Store": "Store",
+   "OrderDate": "Order Date",
+   "OrderSource": "Order Source",
+   "OrderNumber": "Order Number",
+   "Amount": "Amount",
+   "OrderState": "Order State",
+   "OrderID":"Order ID",
+   "OperationDate":"Operation Date",
+   "OrderTypeID":"Order Type ID",
+   "OrderType":"Order Type",
+   "OrderNote":"Order Note",
+   "Product":"Product",
+   "ProductCount":"Product Count",
+   "User":"User",
+   "ProductAmount":"Product Amount"
+  }, 
+  "company": {
+   "Name": "Name",
+   "ItemCode": "Item Code",
+   "ContactPerson": "Contact Person",
+   "Phone": "Phone",
+   "Fax":"Fax",
+   "Email":"Email",
+   "isActiveValue":"Active",
+   "OracleIntegration":"Oracle Integration"
+  },
+  "inventorydeliveryinvoice": {
+    "DocumentNumber": "Document Number",
+    "PaymentTerm": "Payment Term",
+    "Company": "Company",
+    "Store": "Store",
+    "InvoiceDate": "Invoice Date",
+    "VAT": "VAT",
+    "VATDiscount": "VATDiscount",
+    "Amount": "Amount",
+    "GrandTotal": "Grand Total",
+    "Description": "Description",
+    "Discount": "Discount",
+    "Notes": "Notes",
+    "isAccounted": "is Accounted",
+    "IntegrationId": "IntegrationId"
+  },
+  "storenotelist": {
+    "name": "Name",
+    "StoreAddress": "Store Address",
+    "notes": "Notes",
+    "OperationDate": "Operation Date",
+    "ServiceTime": "Service Time",
+    "ServiceTimeTKW": "Service Time TKW"
+  },
+  "OrderCountsBySourceTypePivot": {
+    "StoreName": "Store Name",
+    "Trendyol": "Trendyol",
+    "Store": "Store",
+    "YemekSepeti": "YemekSepeti",
+    "Migros": "Migros",
+    "Getir": "Getir",
+    "CallCenter": "CallCenter",
+    "AloPaket": "AloPaket",
+    "Kiosk": "Kiosk",
+    "MobilApp": "MobilApp",
+    "RestApp": "RestApp",
+    "WebSatis": "WebSatis",
+    "pickup": "pickup",
+    "Total": "Total"
+  },
+  "menuincom": {
+    "name": "Name",
+    "price": "Price", 
+    "quantity": "Quantity",
+    "Amount": "Amount"
+  },
+  "STORE": {
+    "name": "Name",
+    "OperationDate": "OperationDate", 
+    "isActiveFilter": "isActiveFilter",
+    "isActiveValue": "isActiveValue",
+    "isECREnabled": "isECREnabled"
   }
 }

@@ -306,7 +306,8 @@ scripts: {
 			<p>
 				Define a <code>ncyBreadcrumb.label</code> property to each states:
 			</p>
-			<pre>$stateProvider.state('app', {
+			<pre>
+				$stateProvider.state('app', {
 	url: "/app",
 	templateUrl: "assets/views/app.html",
 	resolve: loadSequence('modernizr', 'toaster'),

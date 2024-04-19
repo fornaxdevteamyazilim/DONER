@@ -26,7 +26,7 @@ function storesalesstatisticsCtrl($scope, $filter, $window, $stateParams, $inter
             bindingOptions: {
                 value: "DateRange.fromDate.value"
             },
-            value: (new Date()).addDays(-1),
+            value: (new Date()).addDays(0),
             labelLocation: "top", // or "left" | "right"  
 
         },

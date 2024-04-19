@@ -57,6 +57,7 @@
     "COMPANIES": "{{appName}} - Firma Tanımlama",
     "INVENTORYTRANSFORM": "{{appName}} - Üretim Fişi Listesi",
     "INVENTORYTRANSFORMITEM": "{{appName}} - Üretim Fişi Detayları",
+    "INVENTORIESREPORT": "{{appName}} - Malzeme Raporu",
     "INVENTORYRECIPE": "{{appName}} - Malzeme Reçetesi",
     "INVENTORYRECIPEITEM": "{{appName}} - Malzeme Reçete Detayları",
     "INVENTORYTRANSFER": "{{appName}} - Malzeme Transferleri",
@@ -1778,6 +1779,7 @@
     "INVENTORYCOST": "Aktif Dönem Maliyetler",
     "INVENTORYPERIODICCOST": "Dönemsel Maliyetler",
     "INVENTORYRECIPES": "Envanter Reçeteleri",
+    "INVENTORIESREPORT": "Malzeme Raporu",
     "SELECTPERIOD": "Dönem Seçimi",
     "SELECTINVENTORY": "Envanter Seçimi",
     "ADDNEWPAYMENTITEM": "Ödeme Kalemi Ekle",
@@ -2747,6 +2749,7 @@
         "METERIALUSAGEREPORT": "Kullanılan Malzeme Raporu",
         "ACTUALCALCULATEREMAINDERLIST": "Gerçekleşen Maliyet",
         "INVENTORYCONSUPTIONTRANSACTIONS": "Stok Tüketim İşlemleri",
+        "INVENTORIESREPORT": "Malzeme Raporu",
         "BALANCELIST": "Bakiye Listesi",
         "PRODUCTIONCONTROL": "Üretim Kontrol",
         "GIROANALYSIS": "Günlere Göre Ürün Satış Dağılımı (Tutar)",
@@ -5049,5 +5052,117 @@
     "takeout_order_status":"Paket Sipariş Durumu",
     "TITLE":"RESTAPP EŞLEME EKRANI",
     "RestappSetting": "RestApp Ayarı"
+  },
+   "lastorders": {
+    "Store": "Restoran",
+    "TakenBy": "Siparişi Alan",
+    "TakeDateTime": "Sipariş Tarihi",
+    "AddressType": "Adres Tipi",
+    "Person": "Kişi",
+    "Address": "Adres",
+    "Phone": "Telefon",
+    "OrderAmount": "Sipariş Tutarı"
+  },
+  "unpaiddeliveries": {
+    "DocumentNumber": "Döküman Numarası",
+    "PaymentTerm": "Vade",
+    "CompanyName": "Firma Adı",
+    "Store": "Restoran",
+    "PaymentDate": "Ödeme Zamanı",
+    "VAT": "KDV",
+    "Amount": "Tutar",
+    "GrandTotal": "Toplam Tutar",
+    "Description": "Açıklama",
+    "isPaid": "Ödeme Durumu",
+    "CompanyPaymentTerm": "Firma Ödeme Süresi",
+    "DeliveryDate": "Teslim Tarihi"
+  },
+  "InventoryUnits": {
+    "BaseUnit": "Birim Tipi",
+    "InventoryGroup": "Stok Grubu",
+      "InventoryName": "Ürün Adı",
+    "InventoryUnitName": "Ürün Birim Adi "
+ },
+ "ReturnedProductsDetailed": {
+  "Store": "Restoran",
+  "OrderDate": "Sipariş Tarihi",
+  "OrderSource": "Sipariş Kaynağı",
+  "OrderNumber": "Sipariş No",
+  "Amount": "Tutar",
+  "OrderState": "Sipariş Durumu",
+  "PaymentStatus": "Ödeme Durumu",
+  "OrderID": "Sipariş ID",
+   "OperationDate": "Operasyon Tarihi",
+   "OrderTypeID": "Sipariş Türü ID",
+   "OrderType": "Sipariş Türü",
+   "OrderNote": "Sipariş Notu",
+   "Product": "Ürün",
+   "ProductCount": "Ürün Adeti",
+   "User": "Kullanıcı",
+   "ProductAmount": "Ürün Fiyatı"
+  }, 
+  "company": {
+   "Name": "Firma Adı",
+   "ItemCode": "Firma Kodu",
+   "ContactPerson": "İlgili Kişi",
+   "Phone": "Telefon",
+   "Fax":"Fax",
+   "Email":"Email",
+   "isActiveValue":"Firma Durumu",
+   "OracleIntegration":"Oracle Integration"
+  },
+  "inventorydeliveryinvoice": {
+    "DocumentNumber": "Döküman Numarası",
+    "PaymentTerm": "Vade",
+    "Company": "Firma",
+    "Store": "Restoran",
+    "InvoiceDate": "Tarih",
+    "VAT": "KDV",
+    "VATDiscount": "KDV İndirimi",
+    "Amount": "Tutar",
+    "GrandTotal": "Toplam Tutar",
+    "Description": "Açıklama",
+    "Discount": "İndirim",
+    "Notes": "Not",
+    "isAccounted": "isAccounted",
+    "IntegrationId": "Entegrasyon ID"
+  },
+  "storenotelist": {
+    "name": "Restoran Adi",
+    "StoreAddress": "Restoran Adresi",
+    "notes": "Not",
+    "OperationDate": "İşletme Tarihi",
+    "ServiceTime": "Servis Süresi",
+    "ServiceTimeTKW": "Servis Süresi TKW"
+  
+  },
+  "OrderCountsBySourceTypePivot": {
+    "StoreName": "Restoran Adı",
+    "Trendyol": "Trendyol",
+    "Store": "Restoran",
+    "YemekSepeti": "YemekSepeti",
+    "Migros": "Migros",
+    "Getir": "Getir",
+    "CallCenter": "CallCenter",
+    "AloPaket": "AloPaket",
+    "Kiosk": "Kiosk",
+    "MobilApp": "MobilApp",
+    "RestApp": "RestApp",
+    "WebSatis": "WebSatis",
+    "pickup": "pickup",
+    "Total": "Toplam"
+  },
+  "menuincom": {
+    "name": "Ürün İsmi",
+    "price": "Fiyatı", 
+    "quantity": "Miktar",
+    "Amount": "Tutar"
+  },
+  "STORE": {
+    "name": "Restoran Adi",
+    "OperationDate": "İşletme Tarihi", 
+    "isActiveFilter": "Filtre",
+    "isActiveValue": "Aktif",
+    "isECREnabled": "OKC"
   }
 }

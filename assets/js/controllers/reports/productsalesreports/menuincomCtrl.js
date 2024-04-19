@@ -1,48 +1,182 @@
 ﻿'use strict';
 app.controller('menuincomCtrl', menuincomCtrl);
-function menuincomCtrl($scope, $modal, $filter, SweetAlert,$translate, Restangular, toaster, $window, Excel, $timeout, $stateParams, $rootScope, $location, userService, ngnotifyService, $element) {
+function menuincomCtrl($scope, $filter, $window, $modal, $stateParams, Restangular, $rootScope, $translate, userService, ngnotifyService, $element, NG_SETTING, $http, $q) {
     $rootScope.uService.EnterController("menuincomCtrl");
-    if (userService.userAuthorizated()) {
-        Restangular.all('report').getList().then(function (result) {
-            $scope.VeiwHeader = result[0];
-        }, function (response) {
-            toaster.pop('error', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
-        });
+    $scope.Time = ngnotifyService.ServerTime();
+    if (userService.userIsInRole("Admin") || userService.userIsInRole("CCMANAGER") || userService.userIsInRole("LC") || userService.userIsInRole("AREAMANAGER") || userService.userIsInRole("ACCOUNTING") || userService.userIsInRole("PH") || userService.userIsInRole("PHAdmin") || userService.userIsInRole("OperationDepartment") || userService.userIsInRole("FinanceDepartment")) {
+        $scope.StoreID = '';
+        $scope.ShowStores = true;
+    } else {
+        $scope.StoreID = $rootScope.user.StoreID;
     }
+    $scope.SetStoreID = function (FromValue) {
+        $scope.StoreID = FromValue;
+        $scope.selectedStore = $filter('filter')($scope.stores, { id: FromValue });
+
+    };
+ 
     if (!$scope.StartDate) {
-        $scope.StartDate = $filter('date')(ngnotifyService.ServerTime(), 'yyyy-MM-dd ');
+        $scope.StartDate = $filter('date')(ngnotifyService.ServerTime(), 'yyyy-MM-dd');
     }
     if (!$scope.EndDate) {
-        $scope.EndDate = moment().add(1, 'days').format('YYYY-MM-DD ');
+        $scope.EndDate = moment().add(1, 'days').format('YYYY-MM-DD');
     }
-    $scope.ReportData = [];
-    $scope.Time = ngnotifyService.ServerTime();
-    $scope.LoadRepor = function (FromValue) {
-        $scope.isWaiting = true;
-        Restangular.all('PoductSaleAnalisys/MenuIncome').getList(
-            {
+    $scope.Back = function () {
+        $window.history.back();
+    };
+
+    $scope.FromDate = function () {
+        var item=$scope.StartDate;
+        var modalInstance = $modal.open({
+            templateUrl: 'assets/views/Tools/date.html',
+            controller: 'dateCtrl',
+            size: '',
+            backdrop: '',
+            resolve: {
+                DateTime: function () {
+                    return item;
+                }
+            }
+        });
+        modalInstance.result.then(function (item) {
+            var data = new Date(item);
+            $scope.StartDate = $filter('date')(data, 'yyyy-MM-dd');
+        })
+    };
+    $scope.ToDate = function () {
+        var item=$scope.EndDate;
+        var modalInstance = $modal.open({
+            templateUrl: 'assets/views/Tools/date.html',
+            controller: 'dateCtrl',
+            size: '',
+            backdrop: '',
+            resolve: {
+                DateTime: function () {
+                    return item;
+                }
+            }
+        });
+        modalInstance.result.then(function (item) {
+            var data = new Date(item);
+            $scope.EndDate = $filter('date')(data, 'yyyy-MM-dd');
+        })
+    };
+    $scope.VeiwHeader = {};
+    $scope.reportButtonOptions = {
+        text: $translate.instant('reportcommands.GetData'),
+        onClick: function () {
+            var dataGrid = $('#gridContainer').dxDataGrid('instance');
+            dataGrid.refresh();
+        }
+    };
+    $scope.resetlayout = $translate.instant('main.RESETLAYOUT');
+    $scope.resetButtonOptions = {
+        text: $scope.resetlayout,
+        onClick: function () {
+            $("#sales").dxPivotGrid("instance").getDataSource().state({});
+        }
+    };
+    $scope.StoreID;
+    var store = new DevExpress.data.CustomStore({
+        key: "id",
+        load: function (loadOptions) {
+            var params = {
                 StartDate: $scope.StartDate,
                 EndDate: $scope.EndDate,
                 StoreID: ($scope.StoreID) ? $scope.StoreID : $rootScope.user.StoreID,
                 SourceID: ($scope.OrderSourceID == null) ? '' : $scope.OrderSourceID,
                 OrderType: ($scope.OrderTypeID == null) ? '' : $scope.OrderTypeID,
                 ProductListGroup: ''//'Güncel Promosyonlar'
-            }).then(function (result) {
-                $scope.isWaiting = false;
-                $scope.ReportData = result;
-            }, function (response) {
-                $scope.isWaiting = false;
-                toaster.pop('error', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
-            });
+            };
+          
+            return $http.get(NG_SETTING.apiServiceBaseUri + "/api/PoductSaleAnalisys/MenuIncome", { params: params })
+                .then(function (response) {
+                    if (response.data)
+                        for (var i = 0; i < response.data.length; i++) {
+                            response.data[i].Amount = response.data[i].UnitCount * response.data[i].UnitPrice;
+                            response.data[i].id = i;
+                        }
+                    return {
+                        data: response.data,
+                        totalCount: 10
+                    };
+                }, function (response) {
+                    return (response.data.ExceptionMessage) ? $q.reject(response.data.ExceptionMessage) : $q.reject("Data Loading Error");
+                });
+        }
+    });
+    $scope.dataGridOptions = {
+        dataSource: store,
+        showBorders: true,
+        allowColumnResizing: true,
+        columnAutoWidth: true,
+        showColumnLines: true,
+        showRowLines: true,
+        rowAlternationEnabled: true,
+        //keyExpr: "id",
+        showBorders: true,
+        //selection: {
+        //    mode: "single"
+        //},
+        hoverStateEnabled: true,
+        allowColumnReordering: true,
+        filterRow: { visible: true },
+        headerFilter: { visible: true },
+        searchPanel: { visible: true },
+        groupPanel: { visible: true },
+        grouping: { autoExpandAll: false },
+        columnChooser: { enabled: false },
+        columnFixing: { enabled: true },
+       
+        columns: [
+            { caption: $translate.instant('menuincom.name'), dataField: "name",dataType: "string"  },
+            { caption: $translate.instant('menuincom.price'), dataField: "price", dataType: "number", format: "#,##0.00₺"  },
+            { caption: $translate.instant('menuincom.quantity'), dataField: "quantity",dataType: "string"},
+            { caption: $translate.instant('menuincom.amount'), dataField: "amount", dataType: "number",valueFormat: { type: "fixedPoint", precision: 2 }, },
+       
+       
+        ],
+        summary: {
+            totalItems: [
+              
+                { column: "price", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}₺", alignByColumn: true  },
+                { column: "quantity", summaryType: "sum", displayFormat: "{0}" },
+                { column: "amount", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}₺", alignByColumn: true },
+
+            ],
+      
+        },
+        export: {
+            enabled: true,
+            fileName: "menuincom",
+        },
+        scrolling: { mode: "virtual" },
+        height: 600
     };
-    $scope.GetSoreID = function (data) {
-        $scope.StoreID = data;
-        $scope.selectedStore = $filter('filter')($scope.user.userstores, { id: data });
+
+    $scope.LoadData = function () {
+        var dataGrid = $('#gridContainer').dxDataGrid('instance');
+        dataGrid.refresh();
     };
-    $scope.exportToExcel = function (tableId) {
-        $scope.exportHref = Excel.tableToExcel(tableId, 'Menu Satis Geliri');
-        $timeout(function () { location.href = $scope.exportHref }, 1);
+    $scope.selectBox = {
+        dataSourceUsage: {
+            dataSource: new DevExpress.data.ArrayStore({
+                data: $filter('orderBy')($rootScope.user.userstores, 'name'),
+                key: "id"
+            }),
+            displayExpr: "name",
+            valueExpr: "id",
+            placeholder: "Select Store...",
+            value: $rootScope.user.StoreID,
+            bindingOptions: {
+                value: "StoreID"
+            }
+        },
     };
+    $scope.GetOrderSourceID = function (data) {
+        $scope.OrderSourceID = data;
+    }
+
     $scope.ShowObject = function (Container, idName, idvalue, resName) {
         for (var i = 0; i < $scope[Container].length; i++) {
             if ($scope[Container][i][idName] == idvalue)
@@ -64,70 +198,11 @@ function menuincomCtrl($scope, $modal, $filter, SweetAlert,$translate, Restangul
     };
     $scope.ordersources = [];
     $scope.loadEntities('ordersource', 'ordersources');
-    $scope.ordertypes = [];
-    $scope.loadEntities('enums/ordertype', 'ordertypes');
-    $scope.GetOrderSource = function (data) {
-        $scope.OrderSourceID = data;
-        $scope.selectedSource = $filter('filter')($scope.ordersources, { id: data });
-    };
-    $scope.GetOrderType = function (data) {
-        $scope.OrderTypeID = data;
-        $scope.selectedType = $filter('filter')($scope.ordertypes, { Value: data });
-    };
-    $scope.SelectStartDate = function (item) {
-        var modalInstance = $modal.open({
-            templateUrl: 'assets/views/Tools/date.html',
-            controller: 'dateCtrl',
-            size: '',
-            backdrop: '',
-            resolve: {
-                DateTime: function () {
-                    return item;
-                }
-            }
-        });
-        modalInstance.result.then(function (item) {
-            var data = new Date(item);
-            $scope.StartDate = $filter('date')(data, 'yyyy-MM-dd');
-        })
-    };
-    $scope.SelectEndDate = function (item) {
-        var modalInstance = $modal.open({
-            templateUrl: 'assets/views/Tools/date.html',
-            controller: 'dateCtrl',
-            size: '',
-            backdrop: '',
-            resolve: {
-                DateTime: function () {
-                    return item;
-                }
-            }
-        });
-        modalInstance.result.then(function (item) {
-            var data = new Date(item);
-            $scope.EndDate = $filter('date')(data, 'yyyy-MM-dd');
-        })
-    };
     $scope.Back = function () {
         $window.history.back();
     };
-
-        $scope.$on('$destroy', function () {
+    $scope.$on('$destroy', function () {
         $element.remove();
         $rootScope.uService.ExitController("menuincomCtrl");
     });
 };
-app.factory('Excel', function ($window) {
-    var uri = 'data:application/vnd.ms-excel;base64,',
-        template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"<!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
-        base64 = function (s) { return $window.btoa(unescape(encodeURIComponent(s))); },
-        format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) };
-    return {
-        tableToExcel: function (tableId, worksheetName) {
-            var table = document.querySelector(tableId),
-                ctx = { worksheet: worksheetName, table: table.innerHTML },
-                href = uri + base64(format(template, ctx));
-            return href;
-        }
-    };
-})

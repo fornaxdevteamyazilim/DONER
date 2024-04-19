@@ -129,7 +129,7 @@ function billboarditemCtrl($rootScope, $scope, Restangular, ngTableParams, toast
             }
         });
         modalInstance.result.then(function (result) {
-            item.AddDate = $filter('date')(result, 'yyyy-MM-dd');
+            item.AddDate = $filter('date')(result, 'yyyy-MM-dd HH:mm');
         })
     };
     $scope.$on('$destroy', function () {

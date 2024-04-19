@@ -47,7 +47,7 @@
                                readonly
                                ng-click="datepopup(item)" ng-show="rowform.$visible">
                         <span ng-show="!rowform.$visible" e-name="AddDate" e-form="rowform" e-ng-model="item.AddDate" class="ng" e-style="width:20vw;">
-                            {{ item.AddDate|date:'yyyy-MM-dd' }}
+                            {{ item.AddDate|date:'yyyy-MM-dd HH:mm' }}
                         </span>
                     </td>
                     <td style="white-space: nowrap;grid-column-sizing:auto;" data-title="trCommands" width="4%">

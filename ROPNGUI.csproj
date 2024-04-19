@@ -534,6 +534,7 @@
     <Content Include="assets\js\controllers\inventories\inventoryrecipelistCtrl.js" />
     <Content Include="assets\js\controllers\inventories\inventoryrecipeeditCtrl.js" />
     <Content Include="assets\js\controllers\inventories\inventorydeliverylistCtrl.js" />
+    <Content Include="assets\js\controllers\inventories\InventoryUnitsControllerCtrl.js" />
     <Content Include="assets\js\controllers\inventories\inventorytransformeditCtrl.js" />
     <Content Include="assets\js\controllers\person\personaddresseslistCtrl.js" />
     <Content Include="assets\js\controllers\person\personaddresseditCtrl.js" />

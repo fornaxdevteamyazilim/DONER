@@ -29,7 +29,7 @@ body {
 
 .page-active {
     height: 100%;
-    background-image: url('../images/rop1.jpeg');
+    background-image: url('../images/rop1.jpg');
     background-size: cover;
     background-position: auto;
     flex-grow: 2;
@@ -38,7 +38,7 @@ body {
 }
 
 .hutla-katla {
-    background-image: url('../images/rop2.jpeg');
+    background-image: url('../images/rop2.jpg');
     background-size: 100% 100%;
     background-position: auto;
     flex-grow: 2;
@@ -48,7 +48,7 @@ body {
 
 .hutla-katlas {
     height: 100vh;
-    background-image: url('../images/rop3.jpeg');
+    background-image: url('../images/rop3.jpg');
     background-size: 100% 100%;
     background-position: auto;
     flex-grow: 2;
@@ -58,7 +58,7 @@ body {
 
 .hutla-katlass {
     height: 100vh;
-    background-image: url('../images/rop4.jpeg');
+    background-image: url('../images/rop4.jpg');
     background-size: 100% 100%;
     background-position: auto;
     flex-grow: 2;
@@ -67,7 +67,7 @@ body {
 }
 .hutla-katlassw {
     height: 100vh;
-    background-image: url('../images/rop5.jpeg');
+    background-image: url('../images/rop5.jpg');
     background-size: 100% 100%;
     background-position: auto;
     flex-grow: 2;
