@@ -6,7 +6,7 @@
         </tab-heading>
         <div toggleable active-class="chat-open" ng-controller="billboardCtrl">
             <div>
-                <div class="sidebar-content" perfect-scrollbar wheel-propagation="false" suppress-scroll-x="true" >
+                <div class="sidebar-content" perfect-scrollbar wheel-propagation="false" suppress-scroll-x="true">
                     <div ng-repeat="item in items| orderBy:'-AddDate'" class="sidebar-content" perfect-scrollbar wheel-propagation="false" suppress-scroll-x="true">
                         <div ng-class="{'partition-light-primary':item.BillboardItemTypeID == 0, 'partition-dark-primary':item.BillboardItemTypeID == 1 }">
                             <span class="text-large text-uppercase center"><span class="center text-bold" style="color:white;">{{item.Title}}</span></span><br />

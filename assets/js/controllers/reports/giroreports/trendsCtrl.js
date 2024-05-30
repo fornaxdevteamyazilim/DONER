@@ -17,6 +17,7 @@ function trendsCtrl($scope, Restangular, toaster, $interval, $http, NG_SETTING, 
         $scope.SALESTARGET = $translate.instant('main.PREWEEKAC');
         $scope.TCTARGET = $translate.instant('main.PREWEEKAC');
         $scope.ACTARGET = $translate.instant('main.PREWEEKAC');
+        $scope.trOrderSource = $translate.instant('main.ORDERSOURCEE');
 
     };
     $scope.selectedStore = function (StoreID, Store) {
@@ -30,7 +31,20 @@ function trendsCtrl($scope, Restangular, toaster, $interval, $http, NG_SETTING, 
     var tranlatelistener = $scope.$on('$translateChangeSuccess', function (event, data) {// ON LANGUAGE CHANGED
         $scope.translate();
     });
-
+    $scope.OrderSourceID=0;
+    $scope.loadEntities = function (EntityType, Container) {
+        if (!$scope[Container] || !$scope[Container].length) {
+            Restangular.all(EntityType).getList({
+                pageNo: 1,
+                pageSize: 1000,
+            }).then(function (result) {
+                $scope[Container] = result;
+            }, function (response) {
+                toaster.pop('Warning', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
+            });
+        }
+    };
+    $scope.loadEntities('ordersource', 'ordersources');
     $scope.sumColumnJS = function sumColumnJS(array, col) {
         var sum = 0;
         array.forEach(function (value, index, array) {
@@ -42,6 +56,7 @@ function trendsCtrl($scope, Restangular, toaster, $interval, $http, NG_SETTING, 
     $scope.resetButtonOptions = {
         text: $scope.resetlayout,
         onClick: function () {
+            $scope.OrderSourceID=0;
             $('#advgridContainer').dxDataGrid('instance').state({});
         }
     }; 
@@ -50,6 +65,7 @@ function trendsCtrl($scope, Restangular, toaster, $interval, $http, NG_SETTING, 
             key: "StoreID",
             load: function (loadOptions) {
                 var params = {
+                    OrderSourceID:$scope.OrderSourceID
                     /* StoreID: $scope.item.StoreID,
                     theYear: $scope.item.PeriodYear,
                     theWeek: $scope.item.PeriodWeek */
@@ -94,16 +110,16 @@ function trendsCtrl($scope, Restangular, toaster, $interval, $http, NG_SETTING, 
             storageKey: "dx-trendsGrid"
         },
         columns: [
-            { dataField: "Store", caption: $translate.instant('trends.Store'), visibleIndex: 0, fixed: true, dataType: "string", sortIndex: 0, sortOrder: "asc" },
-            { dataField: "RegionManager", caption: $translate.instant('trends.Region'), visible: false, dataType: "string",fixed: true, },
-            { dataField: "SalesRank", caption: $translate.instant('trends.Rank'), format: { type: "fixedPoint", precision: 0 } },
-            { dataField: "RegionalSalesRank", caption: $translate.instant('trends.regionRank'), format: { type: "fixedPoint", precision: 0 } },
+            { dataField: "Store", caption: $translate.instant('trends.Store'), visibleIndex: 0, fixed: true, dataType: "string", sortIndex: 0, sortOrder: "asc",fixed: true },
+            { dataField: "RegionManager", caption: $translate.instant('trends.Region'), visible: false, dataType: "string",fixed: true },
+            { dataField: "SalesRank", caption: $translate.instant('trends.Rank'), format: { type: "fixedPoint", precision: 0 },visible: false },
+            { dataField: "RegionalSalesRank", caption: $translate.instant('trends.regionRank'), format: { type: "fixedPoint", precision: 0 },visible: false },
             {
                 caption: $translate.instant('trends.today'), name: "Today",
                 columns: [
                     { dataField: "TodayIncome", dataType: "number", caption: $translate.instant('trends.sales'), name: "TodayIncome", format: { type: "fixedPoint", precision: 0 } },
                     { dataField: "TodayAC", caption: $translate.instant('trends.AC'), format: { type: "fixedPoint", precision: 2 }, visible: false },
-                    { dataField: "TodayTC", caption: $translate.instant('trends.TC'), name: "TodayTC", format: { type: "fixedPoint", precision: 0 } },
+                    { dataField: "TodayTC", caption: $translate.instant('trends.TC'), name: "TodayTC", format: { type: "fixedPoint", precision: 0 }, visible: true },
                 ]
             },
             {
@@ -111,7 +127,7 @@ function trendsCtrl($scope, Restangular, toaster, $interval, $http, NG_SETTING, 
                 columns: [
                     { dataField: "PrewWeekIncome", caption: $translate.instant('trends.sales'), format: { type: "fixedPoint", precision: 0 } },
                     { dataField: "PrewWeekAC", caption: $translate.instant('trends.AC'), format: { type: "fixedPoint", precision: 2 }, visible: false },
-                    { dataField: "PrewWeekTC", caption: $translate.instant('trends.TC'), name: "PrewWeekTC", format: { type: "fixedPoint", precision: 0 } },
+                    { dataField: "PrewWeekTC", caption: $translate.instant('trends.TC'), name: "PrewWeekTC", format: { type: "fixedPoint", precision: 0 } , visible: true  },
                 ]
             },
             {
@@ -119,15 +135,15 @@ function trendsCtrl($scope, Restangular, toaster, $interval, $http, NG_SETTING, 
                 columns: [
                     { dataField: "LastDayIncome", caption: $translate.instant('trends.sales'), format: { type: "fixedPoint", precision: 0 } },
                     { dataField: "LastDayAC", caption: $translate.instant('trends.AC'), format: { type: "fixedPoint", precision: 2 }, visible: false },
-                    { dataField: "LastDayTC", caption: $translate.instant('trends.TC'), format: { type: "fixedPoint", precision: 0 } },
+                    { dataField: "LastDayTC", caption: $translate.instant('trends.TC'), format: { type: "fixedPoint", precision: 0 } , visible: true },
                 ]
             },
             {
-                caption: $translate.instant('trends.prevMonth'), name: "PrevMonth", visible: false,
+                caption: $translate.instant('trends.prevMonth'), name: "PrevMonth", visible: true ,
                 columns: [
                     { dataField: "TotalPrevMonthToDateIncome", caption: $translate.instant('trends.sales'), format: { type: "fixedPoint", precision: 0 } },
                     { dataField: "PrevMonthToDateAC", caption: $translate.instant('trends.AC'), format: { type: "fixedPoint", precision: 2 }, visible: false },
-                    { dataField: "PrevMonthToDateTC", caption: $translate.instant('trends.TC'), format: { type: "fixedPoint", precision: 0 } },
+                    { dataField: "PrevMonthToDateTC", caption: $translate.instant('trends.TC'), format: { type: "fixedPoint", precision: 0 } , visible: true },
                 ]
             },
             {
@@ -135,7 +151,7 @@ function trendsCtrl($scope, Restangular, toaster, $interval, $http, NG_SETTING, 
                 columns: [
                     { dataField: "TotalMonthlyIncome", caption: $translate.instant('trends.sales'), format: { type: "fixedPoint", precision: 0 } },
                     { dataField: "MonthlyAC", caption: $translate.instant('trends.AC'), format: { type: "fixedPoint", precision: 2 }, visible: false },
-                    { dataField: "MonthlyTC", caption: $translate.instant('trends.TC'), format: { type: "fixedPoint", precision: 0 } },
+                    { dataField: "MonthlyTC", caption: $translate.instant('trends.TC'), format: { type: "fixedPoint", precision: 0 } , visible: true },
                 ]
             },
             {
@@ -145,7 +161,7 @@ function trendsCtrl($scope, Restangular, toaster, $interval, $http, NG_SETTING, 
                     { dataField: "SalesTarget", caption: $translate.instant('trends.SalesTarget'), format: { type: "fixedPoint", precision: 0 } },
                     { dataField: "TCTrend", caption: $translate.instant('trends.TC'), format: { type: "fixedPoint", precision: 0 }, visible: false },
                     { dataField: "TCTarget", caption: "TC Target", format: { type: "fixedPoint", precision: 0 }, visible: false },
-                    { dataField: "HitRate", caption: "Hit %", name: "HitRate", format: { type: "fixedPoint", precision: 2 }, },
+                    { dataField: "HitRate", caption: $translate.instant('trends.hitRate'), name: "HitRate", format: { type: "fixedPoint", precision: 2 }, },
                 ]
             },
             { dataField: "TodaySalesTarget", caption: $translate.instant('trends.dailyTarget'), format: { type: "fixedPoint", precision: 0 }, visible: false },
@@ -252,9 +268,11 @@ function trendsCtrl($scope, Restangular, toaster, $interval, $http, NG_SETTING, 
         onRowClick: function (rowInfo) {
             //    location.href = '#/app/specialoperations/shiftplanedit2/' + rowInfo.key;
             //rowInfo.component.editRow(rowInfo.rowIndex);  
-            $rootScope.SelectedData = { id: rowInfo.key, name: rowInfo.data.Store };
-            $location.path('/app/dashboard');
-            //$location.href = '#/app/dashboard';
+            if (rowInfo.rowType === "data") {
+                $rootScope.SelectedData = { id: rowInfo.key, name: rowInfo.data.Store };
+                //$location.path('/app/dashboard');
+                //$location.href = '#/app/dashboard';   
+            }
         },
         onDataErrorOccurred: function (e) {
             console.log(e.error);
@@ -302,6 +320,10 @@ function trendsCtrl($scope, Restangular, toaster, $interval, $http, NG_SETTING, 
         var dataGrid = $('#advgridContainer').dxDataGrid('instance');
         dataGrid.refresh();
     }
+    $scope.OrderSourceChanged = function () {
+        var dataGrid = $('#advgridContainer').dxDataGrid('instance');
+        dataGrid.refresh();
+    };
     $scope.start = function () {
         $scope.stop();
         promise = $interval(refreshData, 30000);

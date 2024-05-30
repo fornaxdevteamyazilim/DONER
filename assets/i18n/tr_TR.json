@@ -5164,5 +5164,14 @@
     "isActiveFilter": "Filtre",
     "isActiveValue": "Aktif",
     "isECREnabled": "OKC"
+  },
+  "productsalesbydays": {
+    "StoreName": "Restoran Adı",
+    "ProductName": "Ürün İsmi",
+    "OrderType": "Sipariş Tipi", 
+    "Quantity": "Miktar",
+    "Amount": "Tutar",
+    "OrderSource": "Sipariş Kaynağı",
+    "OperationDate": "İşletme Tarihi"
   }
 }

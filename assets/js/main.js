@@ -95,7 +95,7 @@ app.run(['$rootScope', '$state', '$browser', '$stateParams', '$location', 'authS
             name: 'ROP NG',
             author: 'Fornax A.Ş.',
             description: 'Retail Operation Platform NG',
-            version: '1.0.835',
+            version: '1.0.839',
             year: ((new Date()).getFullYear()),
             isMobile: (function () {// true if the browser is a mobile device
                 var check = false;
@@ -132,7 +132,7 @@ app.config(function ($httpProvider) {
                 if (request.url.endsWith(".html") && !request.url.includes("tabset.html")) {
                     if ($templateCache.get(request.url) === undefined) { // cache miss
                         // Item is not in $templateCache so add our query string
-                        request.url = request.url + '?v=0835';
+                        request.url = request.url + '?v=0839';
                     }
                 }
                 return request;
@@ -147,8 +147,7 @@ app.run(['userService', function (userService) { }]);
 
 //app.value('signalRServer', 'http://10.101.252.149:9065');//Little Caesars
 //app.value('signalRServer', 'http://185.169.53.183:9065');//PH
-//app.value('signalRServer', 'http://sr.yazilimocagi.net:9063');//PH
-app.value('signalRServer', 'http://sr2.yazilimocagi.net:9060');//PH
+app.value('signalRServer', 'http://sr2.yazilimocagi.net:9065');//PH
 //app.value('signalRServer', 'http://192.168.104.153:9065');//KFC
 //app.value('signalRServer', 'http://10.0.0.245:9065');//MAROCCO
 //app.value('signalRServer', 'http://185.169.53.183:9065');//localhost

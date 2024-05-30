@@ -5140,5 +5140,14 @@
     "isActiveFilter": "isActiveFilter",
     "isActiveValue": "isActiveValue",
     "isECREnabled": "isECREnabled"
+  },
+  "productsalesbydays": {
+    "StoreName": "Store Name",
+    "ProductName": "Product Name",
+    "OrderType": "Order Type", 
+    "Quantity": "Quantity",
+    "Amount": "Amount",
+    "OrderSource": "Order Source",
+    "OperationDate": "Operation Date"
   }
 }

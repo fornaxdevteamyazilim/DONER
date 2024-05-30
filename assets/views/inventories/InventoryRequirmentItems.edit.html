@@ -27,7 +27,7 @@
                 <form role="form">
                     <div print-remove class="form-group col-sm-2 col-lg-2 col-md-2 col-xs-12">
                         <label>{{:: trStore}}</label><br />
-                        <select class="col-lg-10 col-md-10 col-sm-12 col-xs-12 form-control" ng-options="q.id as q.name for q in stores |orderBy: '+name' "ng-disabled="item.StoreID" ng-model="item.StoreID" readonly></select>
+                        <select class="col-lg-10 col-md-10 col-sm-12 col-xs-12 form-control" ng-options="q.id as q.name for q in stores |orderBy: '+name'" ng-disabled="item.StoreID" ng-model="item.StoreID" readonly></select>
                     </div>
                     <div print-remove class="form-group col-sm-2 col-lg-2 col-md-2 col-xs-12"ng-if="cdate">
                         <label>{{:: datetime}}</label><br />

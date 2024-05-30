@@ -4,7 +4,7 @@
       $scope.$storage = $localStorage.$default({
           customerItems: []
       });
-      var pages=['hutla-katla','hutla-katlas','hutla-katlass','page-active'];//,'sosyal-mesafe','sosyal-mesafe2','sosyal-mesafe3'];
+      var pages=['hutla-katla','hutla-katlas','hutla-katlass','page-active','hutla-katlsa'];//,'sosyal-mesafe','sosyal-mesafe2','sosyal-mesafe3'];
       var pageIndex=0;
       $scope.bgIndex = pages[pageIndex];
       $interval(function () {

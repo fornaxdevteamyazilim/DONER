@@ -72,7 +72,7 @@ function productsalesbydaysCtrl($scope, $filter, $window, $stateParams, $rootSco
                 OrderType: ($scope.OrderTypeID == null) ? -1 : $scope.OrderTypeID
             };
 
-            return $http.get(NG_SETTING.apiServiceBaseUri + "/api/extendedreports/productstatistics", { params: params })
+            return $http.post(NG_SETTING.apiServiceBaseUri + "/api/extendedreports/productstatistics", { params: params })
                 .then(function (response) {
                   
                     return {
@@ -110,37 +110,37 @@ function productsalesbydaysCtrl($scope, $filter, $window, $stateParams, $rootSco
        // columnChooser: { enabled: true, mode: "dragAndDrop" },
         columns: [
             // { dataField: "id", dataType: "number", onClick: function (e) { location.href = '#/app/inventory/inventorydeliveries/edit/' + e.row.data.id; }},
-            // { dataField: "StoreName", caption: $translate.instant('unpaiddeliveries.Store'), dataType: "string" },
-            // { dataField: "DocumentNumber", caption: $translate.instant('unpaiddeliveries.DocumentNumber'), dataType: "string" },
-            // { dataField: "CompanyName", caption: $translate.instant('unpaiddeliveries.CompanyName'), dataType: "string" },
+            // { dataField: "StoreName", caption: $translate.instant('productsalesbydays.Store'), dataType: "string" },
+            // { dataField: "DocumentNumber", caption: $translate.instant('productsalesbydays.DocumentNumber'), dataType: "string" },
+            // { dataField: "CompanyName", caption: $translate.instant('productsalesbydays.CompanyName'), dataType: "string" },
 
-            // { dataField: "Description", caption: $translate.instant('unpaiddeliveries.Description'), dataType: "number" },
+            // { dataField: "Description", caption: $translate.instant('productsalesbydays.Description'), dataType: "number" },
          
 
-            // { dataField: "Amount", caption: $translate.instant('unpaiddeliveries.Amount'), dataType: "number" },
-            // { dataField: "VAT", caption: $translate.instant('unpaiddeliveries.VAT'), dataType: "string" },
-            // { dataField: "GrandTotal", caption: $translate.instant('unpaiddeliveries.GrandTotal'), dataType: "number" },
+            // { dataField: "Amount", caption: $translate.instant('productsalesbydays.Amount'), dataType: "number" },
+            // { dataField: "VAT", caption: $translate.instant('productsalesbydays.VAT'), dataType: "string" },
+            // { dataField: "GrandTotal", caption: $translate.instant('productsalesbydays.GrandTotal'), dataType: "number" },
             
-            // { dataField: "DeliveryDate", caption : $translate.instant('unpaiddeliveries.DeliveryDate'),alignment: "right", dataType: "date", format: 'dd.MM.yyyy HH:mm'}, 
-            // { dataField: "PaymentTerm", caption: $translate.instant('unpaiddeliveries.PaymentTerm'), dataType: "number" },
-            // { dataField: "PaymentDate", caption : $translate.instant('unpaiddeliveries.PaymentDate'),alignment: "right", dataType: "date", format: 'dd.MM.yyyy HH:mm'}, 
+            // { dataField: "DeliveryDate", caption : $translate.instant('productsalesbydays.DeliveryDate'),alignment: "right", dataType: "date", format: 'dd.MM.yyyy HH:mm'}, 
+            // { dataField: "PaymentTerm", caption: $translate.instant('productsalesbydays.PaymentTerm'), dataType: "number" },
+            // { dataField: "PaymentDate", caption : $translate.instant('productsalesbydays.PaymentDate'),alignment: "right", dataType: "date", format: 'dd.MM.yyyy HH:mm'}, 
       
 
-            // { dataField: "isPaid", caption: $translate.instant('unpaiddeliveries.isPaid'), dataType: "number" },
+            // { dataField: "isPaid", caption: $translate.instant('productsalesbydays.isPaid'), dataType: "number" },
        
-            // { dataField: "CompanyPaymentTerm", caption: $translate.instant('unpaiddeliveries.CompanyPaymentTerm'), dataType: "number" },
-            { dataField: "StoreName", caption: $translate.instant('unpaiddeliveries.Store'), dataType: "string" },
-            { dataField: "ProductName", caption: $translate.instant('unpaiddeliveries.ProductName'), dataType: "string" },
-            { dataField: "Quantity", caption: $translate.instant('unpaiddeliveries.Quantity'), dataType: "string" },
+            // { dataField: "CompanyPaymentTerm", caption: $translate.instant('productsalesbydays.CompanyPaymentTerm'), dataType: "number" },
+            { dataField: "StoreName", caption: $translate.instant('productsalesbydays.StoreName'), dataType: "string" },
+            { dataField: "ProductName", caption: $translate.instant('productsalesbydays.ProductName'), dataType: "string" },
+            { dataField: "Quantity", caption: $translate.instant('productsalesbydays.Quantity'), dataType: "string" },
 
           
          
 
-            { dataField: "Amount", caption: $translate.instant('unpaiddeliveries.Amount'), dataType: "number" },
-            { dataField: "OrderType", caption: $translate.instant('unpaiddeliveries.OrderType'), dataType: "string" },
-            { dataField: "OrderSource", caption: $translate.instant('unpaiddeliveries.OrderSource'), dataType: "number" },
+            { dataField: "Amount", caption: $translate.instant('productsalesbydays.Amount'), dataType: "number" },
+            { dataField: "OrderType", caption: $translate.instant('productsalesbydays.OrderType'), dataType: "string" },
+            { dataField: "OrderSource", caption: $translate.instant('productsalesbydays.OrderSource'), dataType: "number" },
             
-            { dataField: "OperationDate", caption : $translate.instant('unpaiddeliveries.OperationDate'),alignment: "right", dataType: "date", format: 'dd.MM.yyyy HH:mm'}, 
+            { dataField: "OperationDate", caption : $translate.instant('productsalesbydays.OperationDate'),alignment: "right", dataType: "date", format: 'dd.MM.yyyy HH:mm'}, 
          
 
 
@@ -168,7 +168,7 @@ function productsalesbydaysCtrl($scope, $filter, $window, $stateParams, $rootSco
         // },
         export: {
             enabled: true,
-            fileName: "unpaiddeliveries",
+            fileName: "productsalesbydays",
         },
         scrolling: { mode: "virtual" },
         height: 600

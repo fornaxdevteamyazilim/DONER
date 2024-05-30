@@ -5,7 +5,7 @@ function orderlistCtrl($scope, $log, $modal, Restangular, ngTableParams, SweetAl
     userService.userAuthorizated();
     var OrderRefreshTimeOut;
     $scope.ShowObject = true;
-    $scope.OrderStateID = "OrderStateID >0";
+    $scope.OrderStateID = "OrderStateID >0"; 
     ao.search = '';
     $scope.item = {};
     $scope.translate = function () {
@@ -100,9 +100,7 @@ function orderlistCtrl($scope, $log, $modal, Restangular, ngTableParams, SweetAl
     $scope.BuildSearchString = function (src) {
         var result = [];
         if (ao.search && ao.search.length > 0) {
-            // $scope.hideCombo = true;
-           // result.push("ExtendedSearch=" + ao.search);
-            result.push("OrderNumber like '%" + ao.search + "%'" );
+            result.push("ExtendedSearch=" + ao.search);
             return result;
         } else {
             if (!userService.isAdmin() &&!userService.userIsInRole("CALLCENTER") && !userService.userIsInRole("CMRESTORANHATTI") && !userService.userIsInRole("Admin") && !userService.userIsInRole("CCMANAGER") && !userService.userIsInRole("MemberAdmin")) {

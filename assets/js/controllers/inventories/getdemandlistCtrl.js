@@ -76,7 +76,6 @@ function getdemandlistCtrl($scope, $filter, Restangular, toaster, $window, $stat
             $scope.SelectedDate = $filter('date')(data, 'yyyy-MM-dd');
         })
     };
-
     $scope.Back = function () {
         $window.history.back();
     };
