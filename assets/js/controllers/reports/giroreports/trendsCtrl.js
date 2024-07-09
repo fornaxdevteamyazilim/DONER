@@ -18,7 +18,6 @@ function trendsCtrl($scope, Restangular, toaster, $interval, $http, NG_SETTING, 
         $scope.TCTARGET = $translate.instant('main.PREWEEKAC');
         $scope.ACTARGET = $translate.instant('main.PREWEEKAC');
         $scope.trOrderSource = $translate.instant('main.ORDERSOURCEE');
-
     };
     $scope.selectedStore = function (StoreID, Store) {
         var data = {};
@@ -270,7 +269,7 @@ function trendsCtrl($scope, Restangular, toaster, $interval, $http, NG_SETTING, 
             //rowInfo.component.editRow(rowInfo.rowIndex);  
             if (rowInfo.rowType === "data") {
                 $rootScope.SelectedData = { id: rowInfo.key, name: rowInfo.data.Store };
-                //$location.path('/app/dashboard');
+                $location.path('/app/dashboard');
                 //$location.href = '#/app/dashboard';   
             }
         },

@@ -8,7 +8,8 @@
 </style>-->
 <!-- start: LOGIN -->
 <!-- toaster directive -->
-<toaster-container toaster-options="{'time-out': 2000,'position-class': 'toast-bottom-right', 'close-button':true}"></toaster-container>
+<toaster-container
+    toaster-options="{'time-out': 2000,'position-class': 'toast-bottom-right', 'close-button':true}"></toaster-container>
 <!-- / toaster directive -->
 <div class="row">
     <div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
@@ -20,11 +21,11 @@
             <!-- <div>{{ConnStatus()}}</div> -->
             <div ng-show="!ConnStatus()">
                 <!-- Connection to ROPNG API service not availible! -->
-               
+
                 {{'main.CONNECTIONTOROPNGAPISERVICENOTAVAILIBLE' | translate}}
             </div>
             <div ng-show="ConnStatus()">
-                <form class="form-login" >
+                <form class="form-login">
                     <fieldset>
                         <legend>
                             {{:: signintoyouraccount}}
@@ -35,7 +36,8 @@
                                     <img src="assets/images/loader.gif" />
                                 </span>
                                 <span class="margin-bottom-10 visible-md visible-sm visible-xs">
-                                    <img class="center" style="width:250px; height:200px;" src="assets/images/loader.gif" />
+                                    <img class="center" style="width:250px; height:200px;"
+                                        src="assets/images/loader.gif" />
                                 </span>
                             </label>
                         </div>
@@ -43,16 +45,20 @@
                             <p>
                                 {{:: pleaseenteryournameandpasswordtologin}}
                             </p>
-                            <div class="form-group">
+                            <div class="form-group"  ng-hide="TFAEnabled==true">
                                 <span class="input-icon">
-                                    <input type="text" class="form-control" name="username" placeholder="{{:: username}}" data-ng-model="loginData.userName" required autofocus ng-keyup="FormKeyPress($event)">  <!--ng-virtual-keyboard-->
+                                    <input type="text" class="form-control" name="username"
+                                        placeholder="{{:: username}}" data-ng-model="loginData.userName" required
+                                        autofocus ng-keyup="FormKeyPress($event)"> <!--ng-virtual-keyboard-->
                                     <!--<input type="text" class="form-control" name="username" placeholder="{{:: username}}" data-ng-model="loginData.userName" required autofocus ng-keyup="FormKeyPress($event)"ng-virtual-keyboard="{showKbSelect: true, numberPad: true,relative:true }" />-->
                                     <i class="fa fa-user"></i>
                                 </span>
                             </div>
-                            <div class="form-group form-actions">
+                            <div class="form-group form-actions"  ng-hide="TFAEnabled==true">
                                 <span class="input-icon">
-                                    <input type="password" class="form-control password" name="password" placeholder="{{:: password}}" data-ng-model="loginData.password" required ng-keyup="FormKeyPress($event)">
+                                    <input type="password" class="form-control password" name="password"
+                                        placeholder="{{:: password}}" data-ng-model="loginData.password" required
+                                        ng-keyup="FormKeyPress($event)">
                                     <!--<input type="password" class="form-control password" name="password" placeholder="{{:: password}}" data-ng-model="loginData.password" required ng-keyup="FormKeyPress($event)" ng-virtual-keyboard="{size: 5, imageURI: 'assets/images/keyboard.png'}">-->
                                     <!--<input type="password" class="form-control password" name="password"  placeholder="{{:: password}}" data-ng-model="loginData.password" required ng-keyup="FormKeyPress($event)"  ng-virtual-keyboard="{showKbSelect: true, numberPad: true,relative:true }">-->
                                     <i class="fa fa-lock"></i>
@@ -61,7 +67,7 @@
                                     </a>-->
                                 </span>
                             </div>
-                            <div class="form-actions">
+                            <div class="form-actions"  ng-hide="TFAEnabled==true">
                                 <div class="checkbox clip-check check-primary">
                                     <input type="checkbox" id="remember" value="1">
                                     <label for="remember">
@@ -75,12 +81,20 @@
                                     {{message}}
                                 </div>
                             </div>
-                            <!--<div class="new-account">
-                                Don't have an account yet?
-                                <a ui-sref="login.registration">
-                                    Create an account
-                                </a>
-                            </div>-->
+                          
+                        </div>
+                        <div class="form-actions"  ng-hide="TFAEnabled==true">
+                            <div class="form-group form-actions">
+                                <span class="input-icon">
+                                    <input type="text" class="form-control password" name="TFA"
+                                        placeholder="Mail Kodunu Buraya Giriniz" data-ng-model="loginData.TFA"
+                                        required ng-keyup="FormKeyPress($event)">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                            </div>
+                            <button type="submit" class="btn btn-primary pull-right" data-ng-click="TFALogin()">
+                                {{:: trlogin}} <i class="fa fa-arrow-circle-right"></i>
+                            </button>
                         </div>
                     </fieldset>
                 </form>

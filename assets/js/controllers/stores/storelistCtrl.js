@@ -1,6 +1,6 @@
 ﻿'use strict';
 app.controller('storelistCtrl', storelistCtrl);
-function storelistCtrl($scope, $filter, $window, $stateParams, $rootScope, $translate, userService, ngnotifyService, $element, NG_SETTING, $http, $q) {
+function storelistCtrl($scope, $filter, $window, $stateParams, $rootScope, $location, $translate, userService, ngnotifyService, $element, NG_SETTING, $http, $q) {
     $rootScope.uService.EnterController("storelistCtrl");
     $scope.Time = ngnotifyService.ServerTime();
     if (userService.userIsInRole("Admin") || userService.userIsInRole("CCMANAGER") || userService.userIsInRole("LC") || userService.userIsInRole("AREAMANAGER") || userService.userIsInRole("ACCOUNTING") || userService.userIsInRole("PH") || userService.userIsInRole("PHAdmin") || userService.userIsInRole("OperationDepartment") || userService.userIsInRole("FinanceDepartment")) {
@@ -18,7 +18,6 @@ function storelistCtrl($scope, $filter, $window, $stateParams, $rootScope, $tran
         $window.history.back();
     };
 
-    $scope.StoreID;
     // var store = new DevExpress.data.CustomStore({
     //    //key: "id",
     //     load: function (loadOptions) {
@@ -67,7 +66,7 @@ function storelistCtrl($scope, $filter, $window, $stateParams, $rootScope, $tran
         noDataText: $translate.instant('InventoryRequirmentItem.Calculatingrequirments'),
        // columnChooser: { enabled: true, mode: "dragAndDrop" },
         columns: [
-            { type: "buttons", width: 50, buttons: [{ hint: "edit", icon: "edit", onClick: function (e) { location.href = '#/app/store/store/edit/' + e.row.data.id; } }] },
+           // { type: "buttons", width: 50, buttons: [{ hint: "edit", icon: "edit", onClick: function (e) { location.href = '#/app/store/store/edit/' + e.row.data.id; } }] },
             { caption: $translate.instant('STORE.name'), dataField: "name", dataType: "string" },
             { caption: $translate.instant('STORE.OperationDate'), dataField: "OperationDate", dataType: "string" },
             { caption: $translate.instant('STORE.isActiveFilter'), dataField: "isActiveFilter", dataType: "string" },
@@ -92,6 +91,10 @@ function storelistCtrl($scope, $filter, $window, $stateParams, $rootScope, $tran
               
         //     ]
          },
+         onRowClick: function (rowInfo,e,row) {
+               location.href = '#/app/store/store/edit/' + rowInfo.data.id;
+         
+        },
         export: {
             enabled: true,
             fileName: "unpaiddeliveries",

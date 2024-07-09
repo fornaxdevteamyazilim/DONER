@@ -1,0 +1,129 @@
+﻿<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        color: #323237;
+    }
+
+    td,
+    th {
+        border: 3px solid #dddddd;
+        text-align: left;
+        padding: 5px;
+        font-size: 11px;
+        width: 1px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* Float four columns side by side */
+    .column {
+        float: left;
+        width: 16%;
+        padding: 0 5px;
+        margin-top: 10px;
+
+    }
+
+    /* Remove extra left and right margins, due to padding */
+    .row {
+        margin: 0 -5px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Responsive columns */
+    @media screen and (max-width: 600px) {
+        .column {
+            width: 100%;
+            display: block;
+            margin-bottom: 20px;
+        }
+    }
+
+    /* Style the counter cards */
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 8px;
+        text-align: center;
+        background-color: #f1f1f1;
+        border-radius: 11px;
+    }
+</style>
+<section class="padding-top-15 padding-bottom-15" ng-init="app.layout.isSidebarClosed=true" ng-controller="VisitsCtrl">
+</section>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center" ng-if="ShowSpinnerObject == true">
+    <span class="margin-bottom-10 visible-lg">
+        <img src="assets/images/loader.gif" />
+    </span>
+    <span class="margin-bottom-10 visible-md visible-sm visible-xs">
+        <img class="center" style="width:250px; height:200px;" src="assets/images/loader.gif" />
+    </span>
+</div>
+
+<div class="content-block" ng-controller="VisitsCtrl">
+    <div class="row">
+        <div class="column" ng-repeat="ordertype in OrdersOrderType">
+            <div class="card">
+                <h4>{{ordertype.OrderType}}: {{ordertype.OrdersCount}}</h4>
+                <div class="panel-body center" style="color: black;">
+                    TC &nbsp;:&nbsp;<strong class="text-dark"
+                        ng-if="user.Store.MemberID == 106851154380">{{ordertype.OrdersAmount | number:2}} ₺</strong>
+                    <strong class="text-dark" ng-if="user.Store.MemberID != 106851154380">{{ordertype.OrdersAmount |
+                        number:2}} ₺</strong>
+                    <br />
+                    AC &nbsp;:&nbsp;<strong class="text-dark"> {{ordertype.OrdersAverage | number:2}} ₺</strong>
+                </div>
+                <h3
+                    ng-class="{'fa fa-caret-up text-green':(ordertype.OrdersCount*100) / OrderTotalCount > 40 ,'fa fa-caret-down text-red':(ordertype.OrdersCount*100) / OrderTotalCount < 40}"> % </span>&nbsp;&nbsp;<span
+                    class="value text-large"
+                    style="font-size: 30px;">
+                    {{(ordertype.OrdersCount*100)
+                    / OrderTotalCount |number:2}}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h4 class="panel-title text-bold" translate="Kaynak istatistiği" style="color: black;"></h4>
+        <div class="column" ng-repeat="statsByOrderSource in statsByOrderSource">
+            <div class="card">
+                <h4>  {{statsByOrderSource.OrderSource}}: {{statsByOrderSource.OrdersCount}}</h4>
+                <div class="panel-body center" style="color: black;">
+                    TC &nbsp;:&nbsp;<strong class="text-dark"
+                        ng-if="user.Store.MemberID == 106851154380">{{statsByOrderSource.OrdersAmount | number:2}}
+                        ₺</strong>
+                    <strong class="text-dark"
+                        ng-if="user.Store.MemberID != 106851154380">{{statsByOrderSource.OrdersAmount | number:2}}
+                        ₺</strong>
+                    <br />
+                    AC &nbsp;:&nbsp;<strong class="text-dark"> {{statsByOrderSource.OrdersAverage | number:2}}
+                        ₺</strong>
+                </div>
+                <h3
+                ng-class="{'fa fa-caret-up text-green':(statsByOrderSource.OrdersCount*100) / OrdersCount > 40 ,'fa fa-caret-down text-red':(statsByOrderSource.OrdersCount*100) / OrdersCount < 40}"></i>&nbsp;&nbsp;<span
+                class="percentage" style="font-size: 15px;">
+                    {{(statsByOrderSource.OrdersCount*100) / OrdersCount
+                            |number:2}}</h3>
+            </div>
+        </div>
+
+    </div>
+</div>

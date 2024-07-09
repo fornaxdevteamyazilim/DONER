@@ -349,6 +349,23 @@ function mainscreenCtrl($scope, $modal, $timeout, $filter, SweetAlert, $interval
             }
         });
     });
+    var TFAListener = $rootScope.$on('TFAIdentification', function (event,data) {
+        userService.TFALogin(data.TFA).then(function (response) {
+            $scope.GetCurrentUserData(false);
+        },
+            function (err) {
+                $scope.isWaiting = false;
+                if (err && err.error == 'invalid_grant') {
+                    $scope.translate = function () {
+                        $scope.message = $translate.instant('main.LOGINERROR');
+                    };
+                    $scope.translate();
+                    
+                } else {
+                    $scope.message = (err && err.error)?err.error:"Unknown error";
+                }
+            });            
+    });
     var mcListener = $rootScope.$on('MSRIdentification', function (event, data) {
         userService.mcardLogin(data.CardData, false).then(function (response) {
             userService.stopTimeout();
@@ -670,6 +687,7 @@ function mainscreenCtrl($scope, $modal, $timeout, $filter, SweetAlert, $interval
         deregistration4();
         stopClock();
         idListener();
+        TFAListener();
         mcListener();
         $element.unbind();
         $scope.$destroy;

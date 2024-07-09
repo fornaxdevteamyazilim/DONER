@@ -70,6 +70,23 @@ app.controller('loginCtrl', ['$scope', '$location', 'authService', 'ngAuthSettin
                     }
                 });            
         });
+        var TFAListener = $rootScope.$on('TFAIdentification', function (event,data) {
+            userService.TFALogin(data.TFA).then(function (response) {
+                $scope.GetCurrentUserData(false);
+            },
+                function (err) {
+                    $scope.TFAEnabled = true;
+                    if (err && err.error == 'invalid_grant') {
+                        $scope.translate = function () {
+                            $scope.message = $translate.instant('main.LOGINERROR');
+                        };
+                        $scope.translate();
+                        
+                    } else {
+                        $scope.message = (err && err.error)?err.error:"Unknown error";
+                    }
+                });            
+        });
         $scope.login = function () {
             $scope.isWaiting = true;            
                 authService.login($scope.loginData).then(function (response) {
@@ -157,6 +174,7 @@ app.controller('loginCtrl', ['$scope', '$location', 'authService', 'ngAuthSettin
             tranlatelistener();
             idListener();
             mcListener();
+            TFAListener();
             $element.remove();
             $rootScope.uService.ExitController("loginCtrl");
         });

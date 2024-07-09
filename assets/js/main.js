@@ -193,7 +193,7 @@ app.config(['$compileProvider',
 
 app.config(['KeepaliveProvider', 'IdleProvider', function (KeepaliveProvider, IdleProvider) {
     // configure Idle settings
-    IdleProvider.idle(120);
+    IdleProvider.idle(240);
     IdleProvider.timeout(10);
     KeepaliveProvider.interval(10);
     IdleProvider.interrupt('keydown wheel mousedown touchstart touchmove scroll');

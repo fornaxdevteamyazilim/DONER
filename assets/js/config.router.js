@@ -40,6 +40,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Dashboard'
             }
+        }).state('app.dashboardmanger', {
+            url: "/dashboardmanger",
+            templateUrl: "assets/views/dashboardmanger.html",
+            resolve: loadSequence('jquery-sparkline', 'sparkline', 'dashboardmangerCtrl'),
+            title: 'dashboardmanger',
+            authenticate: true,
+            ncyBreadcrumb: {
+                label: 'dashboardmanger'
+            }
         }).state('app.mainscreen', {
             url: "/mainscreen",
             templateUrl: "assets/views/mainscreen/mainscreen.html",

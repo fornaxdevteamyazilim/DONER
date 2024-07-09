@@ -2577,6 +2577,7 @@
     "nav": {
       "dashboard": {
         "MAIN": "Kokpit",
+        "DASHMAN": "KokpitV2",
         "MAINSCREEN": "Ana Ekran",
         "LOCKSCREEN": "Kilitle!"
       },

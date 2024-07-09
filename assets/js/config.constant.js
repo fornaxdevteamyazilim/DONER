@@ -66,6 +66,7 @@ app.constant('JS_REQUIRES', {
         'ngAudio': ['vendor/angular-audio/angular.audio.js?v=0839'],
         //*** Controllers
         'dashboardCtrl': 'assets/js/controllers/dashboardCtrl.js?v=0839',
+        'dashboardmangerCtrl': 'assets/js/controllers/dashboardmangerCtrl.js?v=0839',
         'systemsCtrl': 'assets/js/controllers/systemsCtrl.js?v=0839',
         'iconsCtrl': 'assets/js/controllers/iconsCtrl.js?v=0839',
         'vAccordionCtrl': 'assets/js/controllers/vAccordionCtrl.js?v=0839',

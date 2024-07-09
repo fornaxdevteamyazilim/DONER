@@ -2557,6 +2557,7 @@
     "nav": {
       "dashboard": {
         "MAIN": "Dashboard",
+        "DASHMAN": "DashboardV2",
         "MAINSCREEN": "Main Screen",
         "LOCKSCREEN": "Lock Screen!"
       },

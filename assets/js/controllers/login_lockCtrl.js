@@ -55,6 +55,23 @@ function login_lockCtrl($rootScope, $scope, toaster, Restangular, $window, $loca
             }
         });
     });
+    var TFAListener = $rootScope.$on('TFAIdentification', function (event,data) {
+        userService.TFALogin(data.TFA).then(function (response) {
+            $scope.GetCurrentUserData(false);
+        },
+            function (err) {
+                $scope.isWaiting = false;
+                if (err && err.error == 'invalid_grant') {
+                    $scope.translate = function () {
+                        $scope.message = $translate.instant('main.LOGINERROR');
+                    };
+                    $scope.translate();
+                    
+                } else {
+                    $scope.message = (err && err.error)?err.error:"Unknown error";
+                }
+            });            
+    });
     stopTime = $timeout(function ()
             {
                 $rootScope.preventNavigation();                
@@ -91,6 +108,7 @@ function login_lockCtrl($rootScope, $scope, toaster, Restangular, $window, $loca
     $scope.$on('$destroy', function () {
         $element.remove();
         idListener();
+        TFAListener();
         mcListener();
         $timeout.cancel(stopTime);
         $rootScope.uService.ExitController("login_lockCtrl");

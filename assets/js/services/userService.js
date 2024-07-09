@@ -48,6 +48,30 @@ app.factory('userService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
             });
             return deferred.promise;
         };
+        var _TFALogin = function (TFA, skipLandigRoute) {
+            authService.logOut();
+            var _storeID = localStorageService.get('StoreID');
+            if (_storeID) {
+                _JoinGroup(_storeID.toString());
+            }
+            else {
+                _storeID = $rootScope.user.StoreID;
+            }
+            var logindata = {
+                userName: "TFA_" + _storeID,
+                password: TFA,
+                useRefreshTokens: true
+            }
+            var deferred = $q.defer();
+            authService.login(logindata).then(function (response) {
+                isTimedOut = false;
+                _refreshUserData(skipLandigRoute);
+                deferred.resolve(response);
+            }, function (err) {
+                deferred.reject(err);
+            });
+            return deferred.promise;
+        };
         var _fmdLogin = function (fmd, skipLandigRoute) {
             authService.logOut();
             var _storeID = localStorageService.get('StoreID');
@@ -385,6 +409,7 @@ app.factory('userService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
         userServiceFactory.GetPreferenceValue = _GetPreferenceValue;
         userServiceFactory.cardLogin = _cardLogin;
         userServiceFactory.fmdLogin = _fmdLogin;
+        userServiceFactory.TFA = _TFALogin;
         userServiceFactory.mcardLogin = _mcardLogin;
         userServiceFactory.getRestrictions = _getRestrictions;
         userServiceFactory.CleanPreferences = _isCleanPreference;
