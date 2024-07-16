@@ -58,7 +58,7 @@ app.factory('userService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
                 _storeID = $rootScope.user.StoreID;
             }
             var logindata = {
-                userName: "TFA_" + _storeID,
+                userName: "2FA_" + _storeID,
                 password: TFA,
                 useRefreshTokens: true
             }
@@ -409,7 +409,7 @@ app.factory('userService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
         userServiceFactory.GetPreferenceValue = _GetPreferenceValue;
         userServiceFactory.cardLogin = _cardLogin;
         userServiceFactory.fmdLogin = _fmdLogin;
-        userServiceFactory.TFA = _TFALogin;
+        userServiceFactory.TFALogin = _TFALogin;
         userServiceFactory.mcardLogin = _mcardLogin;
         userServiceFactory.getRestrictions = _getRestrictions;
         userServiceFactory.CleanPreferences = _isCleanPreference;

@@ -41,7 +41,7 @@ app.value('ngAuthSettings', {
     secret: 'Ab1234',
     apiAsiggned:false,
     connected:false,
-    dynamicApiEnable:true
+    dynamicApiEnable:false
 });
 app.constant('JS_REQUIRES', {
     //*** Scripts

@@ -42,7 +42,7 @@
                             </label>
                         </div>
                         <div ng-if="isWaiting!=true">
-                            <p>
+                            <p ng-hide="TFAEnabled==true">
                                 {{:: pleaseenteryournameandpasswordtologin}}
                             </p>
                             <div class="form-group"  ng-hide="TFAEnabled==true">
@@ -83,11 +83,15 @@
                             </div>
                           
                         </div>
-                        <div class="form-actions"  ng-hide="TFAEnabled==true">
+                        <div class="form-actions"  ng-show="TFAEnabled==true">
+                            <p ng-hide="TFAEnabled==true">
+                                Tek Kullanımlık şitreyi giriniz
+                            </p>
+                            
                             <div class="form-group form-actions">
                                 <span class="input-icon">
-                                    <input type="text" class="form-control password" name="TFA"
-                                        placeholder="Mail Kodunu Buraya Giriniz" data-ng-model="loginData.TFA"
+                                    <input type="text" class="form-control password" name="TFAPass"
+                                        placeholder="Mail Kodunu Buraya Giriniz" data-ng-model="loginData.TFAPass"
                                         required ng-keyup="FormKeyPress($event)">
                                     <i class="fa fa-lock"></i>
                                 </span>

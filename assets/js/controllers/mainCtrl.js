@@ -355,7 +355,7 @@ app.controller('AppCtrl', ['$rootScope', '$scope', '$modal', '$state', '$transla
                 $scope.getNewwAggregatorOrder();
             });
         $scope.getNewwAggregatorOrder = function () {
-            if ($rootScope.user && $rootScope.user.UserRole && $rootScope.user.UserRole.Name) {
+            if ($rootScope.user && $rootScope.user.UserRole && $rootScope.user.UserRole.Name && $rootScope.user.restrictions) {
                 if ($rootScope.user.restrictions.aggregatorcustomermapping == 'Enable') {
                     Restangular.all('aggregator/unmappedorders').getList({
                         //StoreID: $rootScope.user.StoreID ? $rootScope.user.StoreID : ''
