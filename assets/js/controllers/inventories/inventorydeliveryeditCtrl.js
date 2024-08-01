@@ -364,6 +364,8 @@ function inventorydeliveryeditCtrl($scope, $filter, SweetAlert, Restangular, NG_
          }).then(function (result) {
              if (result && result) {
                  console.log("convert barcode result:" + result);
+                 if ($scope.item.items==null)
+                    $scope.item.items=[];
                  $scope.item.items.push(result); 
                  de.barcode="";
                  refreshData();
