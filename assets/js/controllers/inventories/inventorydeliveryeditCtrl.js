@@ -8,6 +8,7 @@ function inventorydeliveryeditCtrl($scope, $filter, SweetAlert, Restangular, NG_
     $scope.item.Discount = 0;
     $scope.item.GrandTotal = 0;
     userService.userAuthorizated();
+    de.barcode='';
     $scope.item = {};
     if ($rootScope.user && $rootScope.user.UserRole && $rootScope.user.UserRole.MemberID == "111679600561") {
         $scope.ShowInventoryInvoiceButton = true;
@@ -355,6 +356,30 @@ function inventorydeliveryeditCtrl($scope, $filter, SweetAlert, Restangular, NG_
             toaster.pop('Warning', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
         });
     };
+    $scope.addItemFromBarcode = function () {
+        //GetItemFronBarcode
+        Restangular.one('inventoryunit/convertbarcode').get({
+             InventoryDeliveryID: $stateParams.id,
+             barcode: de.barcode
+         }).then(function (result) {
+             if (result && result) {
+                 console.log("convert barcode result:" + result);
+                 $scope.item.items.push(result); 
+                 de.barcode="";
+                 refreshData();
+             }
+             else {
+                 console.log("convert barcode result not found!");                 
+             }
+         }, function (response) {
+             toaster.pop('Warning', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
+         });        
+        
+    };
+    var refreshData = function () {
+        var dataGrid = $('#gridContainer').dxDataGrid('instance');
+        dataGrid.refresh();
+    }
     $scope.dataGridOptions = {
         dataSource: $scope.item.items,
         showBorders: true,
@@ -434,7 +459,7 @@ function inventorydeliveryeditCtrl($scope, $filter, SweetAlert, Restangular, NG_
                 calculateCellValue: function (data) { return data.VAT = data.UnitPrice * data.UnitCount * $scope.GetInventoryVAT(data.InventoryUnitID); },
             },
             {
-                caption: $translate.instant('inventorydeliveriesedit.UnitCount'), dataField: "UnitCount", dataType: "number", format: { type: "fixedPoint", precision: 0 }, allowEditing: true, visibleIndex: 2,
+                caption: $translate.instant('inventorydeliveriesedit.UnitCount'), dataField: "UnitCount", dataType: "number", format: { type: "fixedPoint", precision: 2 }, allowEditing: true, visibleIndex: 2,
 
 
             },
