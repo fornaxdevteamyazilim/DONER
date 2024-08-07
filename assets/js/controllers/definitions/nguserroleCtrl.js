@@ -15,6 +15,7 @@ function nguserroleCtrl($scope, $log, $modal, $filter, SweetAlert, Restangular, 
         $scope.trPasswordLogin = $translate.instant('main.PASSWORDLOGIN');
         $scope.trisDriverRole = $translate.instant('main.ISDRIVERROLE');
         $scope.trEmployeeMeal = $translate.instant('main.EMPLOYEEMEAL');
+        $scope.trTFA = $translate.instant('main.TFA');
 
     }
     $scope.translate();

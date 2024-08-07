@@ -40,18 +40,18 @@
                         <label>{{:: description}}</label><br />
                         <textarea type="text" style='min-height:60px; max-width:340px; max-height:100px' class="form-control text-uppercase" ng-model="item.Description" placeholder=""></textarea>
                     </div>
-                    <div class="form-group col-sm-6 col-lg-3 col-md-3 col-xs-12">
+                    <!-- <div class="form-group col-sm-6 col-lg-3 col-md-3 col-xs-12">
                         <label>{{:: paymentterm}}</label><br />
                         <input id="PaymentTerm" type="text" class="form-control" ng-model="item.PaymentTerm" placeholder="">
-                    </div>
+                    </div> -->
                     <div class="form-group col-sm-6 col-lg-3 col-md-3 col-xs-12">
                         <label>{{:: datetime}}</label><br />
                         <input id="Date" type="text" class="form-control ng" ng-model="item.DeliveryDate" datepicker-popup="dd-MM-yyyy" ng-click="datepopup(item.DeliveryDate)" required>
                     </div>
-                    <div class="form-group col-sm-6 col-lg-3 col-md-3 col-xs-12">
+                    <!-- <div class="form-group col-sm-6 col-lg-3 col-md-3 col-xs-12">
                         <label class="margin-left-30">{{:: ispaid}}</label><br />
                         <input class="margin-left-30" type="checkbox" ng-model="item.isPaid" style="width:33px; height:33px;">
-                    </div>
+                    </div> -->
                     <div class="form-group col-sm-12 col-lg-12 col-md-12 col-xs-12">
                         <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4 pull-left">
                             <button class="btn btn-primary btn-wide btn-scroll btn-scroll-left fa  fa-save pull-left" ng-disabled="SaveButtonActive == false || !item.DocumentNumber || !item.CompanyID" ng-click="SaveData()">
@@ -78,8 +78,12 @@
         <div class="panel panel-white table-responsive col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="InventoryDeliveryID != 'new'" ng-hide="ShowObject==true">
             <div class="form-group col-sm-6 col-lg-3 col-md-3 col-xs-12">
                 <input id="bcode" type="text" class="form-control text-capitalize" ng-model="de.barcode" placeholder="barkod" ng-model-options="{ debounce: 1000 }" ng-change="addItemFromBarcode()"/>
-                
+               
             </div>
+            <br>
+            <!-- <button class="btn btn-warning btn-wide btn-o btn-scroll btn-scroll-left fa ti-check center" ng-if="$stateParams.id !== 'new' && ShowSentInventoryInvoiceButton == true" ng-click="SendNetsisDeliveryInvoice()">
+                    <span class='fa fa-spin fa-spinner' ng-if='isSpinner == true'></span><span ng-if="isSpinner != true"> + </span>
+                </button> -->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="table-responsive">

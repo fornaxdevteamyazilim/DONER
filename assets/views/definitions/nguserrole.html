@@ -80,6 +80,11 @@
                             {{ item.EmployeeMeal && "True" || "False"}}
                         </span>
                     </td>
+                     <td data-title="trTFA" data-sortable="'TFA'">
+                        <span class="text-capitalize" editable-checkbox="item.TFA" e-name="TFA" e-form="rowform" e-ng-model="item.TFA" e-ng-true-value="true" e-ng-false-value="false" e-style="width:10vw;">
+                            {{ item.TFA && "True" || "False"}}
+                        </span>
+                    </td>
                     <td style="white-space: nowrap;grid-column-sizing:auto;" data-title="trCommands" width="4%">
                         <form editable-form name="rowform" onaftersave="saveData(item)" ng-show="rowform.$visible" class="form-buttons form-inline"
                               shown="inserted == item|| !item.id">

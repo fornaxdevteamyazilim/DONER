@@ -565,6 +565,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Inventoriesedit'
             }
+        }).state('app.inventory.BarcodeDefinition', {
+            url: '/BarcodeDefinition',
+            templateUrl: "assets/views/inventories/BarcodeDefinition.html",
+            resolve: loadSequence('underscore', 'xeditable', 'config-xeditable', 'ngTable', 'BarcodeDefinitionCtrl', 'dateCtrl'),
+            title: 'BarcodeDefinition',
+            authenticate: true,
+            ncyBreadcrumb: {
+                label: 'BarcodeDefinition'
+            }
         }).state('app.inventory.inventoryprice', {
             url: '/inventoryprice',
             templateUrl: "assets/views/inventories/inventoryprice.html",

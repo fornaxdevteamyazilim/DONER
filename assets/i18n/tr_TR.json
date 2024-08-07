@@ -201,6 +201,7 @@
     "INVENTORYTRANSACTIONS": "{{appName}} - Malzeme Hareket Raporu",
     "MATERIALUSAGEREPORT": "{{appName}} - Malzeme Kullanım Raporu",
     "GIROREPORT": "{{appName}} - Ciro Raporu",
+    "BARCODEDEFINITION": "{{appName}} - Barcode Tanımlama",
     "ORDERCOUNTSBYPAYMENTTYPE": "{{appName}} - Ödeme Tiplerine Göre Sipariş Adetleri",
     "ORDERTOTALSBYSOURCETYPE": "{{appName}} - Sipariş Kaynağına Göre Sipariş Toplamları",
     "ORDERCOUNTSBYSOURCETYPE": "{{appName}} - Sipariş Kaynağına Göre Sipariş Adetleri",
@@ -567,7 +568,7 @@
     "FLOOR": "Kat",
     "APERTMENTNAME": "Apartman Adı",
     "APERTMENTNO": "Daire No",
-    "EMAIL": "E-mail",
+    "EMAIL": "Kullanıcı E-Mail",
     "USEREMAIL": "Kullanıcı E-mailleri",
     "ADDUSEREMAIL": "E-mail Ekle",
     "NUMBER": "Numara",
@@ -679,6 +680,7 @@
     "FINALCOUNT": "Son Sayım",
     "PERIODSTATE": "Dönem Durumu",
     "ADDPERIOD": "Dönem Ekle",
+    "ADDBARCODEDEFINITION": "Barcode Ekle",
     "ADDPRODUCTIONPOINTS": "Üretim Noktası Ekle",
     "ADDDEPARTMENTS": "Bölüm Ekle",
     "DEPARTMENT": "Departman",
@@ -844,6 +846,12 @@
     "ISORDERUNIT": "Sipariş Birimi",
     "BARCODEUNITREGEX": "Barkod Birimi Regex",
     "ENTERQUANTITYONCOUNT": "Sayımda Miktar Girişi",
+    "BARCODETYPEID": "Barcode Ti̇pi̇ ID",
+    "INVENTORYUNITID": "Stok Birimi",
+    "MASK": "Maske",
+    "MULTIPLIYER": "Çarpan",
+    "QUANTITYENDDIGIT": "Bitiş Sayısı",
+    "QUANTITYSTARTDIGIT": "Başlangıç Sayısı",
     "DEFINITION": "Tarif",
     "TOTALSALES": "Toplam Satışlar",
     "TOTALSALESBYSALETYPES": "Satış Tiplerine Göre Toplam Satışlar",
@@ -937,6 +945,7 @@
     "MATERIALUSAGEREPORT": "Malzeme Kullanım Raporu",
     "USAGEREPORT": "Üretim Kontrol",
     "INVENTORYUNITFACTOR": "Malzeme Birim Faktörü",
+    "BARCODEDEFINITION":"Barcode Tanımlama",
     "BARCODE": "Barkod",
     "EDITMODE": "Düzenleme Modu",
     "VIEWMODE": "Görüntüleme Modu",
@@ -2062,6 +2071,9 @@
     "USERCARDLOGIN": "Kart Kodu Girişleri",
     "ISDRIVERROLE": "Sürücü Aktif olsun mu ? ",
     "EMPLOYEEMEAL": "Çalışan Yemeği Aktif Olsun mu",
+    "TFA": "Güvenlik Doğrulması",
+    "TFAEnabled": "Güvenlik Doğrulması Etkinleştirme",
+    "TFAPass": "Güvenlik Şifresi",
     "AUTOSENDTOECR": "ECR Otomatik Gönder",
     "ECRPAYMENTTYPE": "ECR Ödeme Tipi",
     "OPENDRAWER": "Çekmeceyi̇ Aç",
@@ -2675,7 +2687,8 @@
         "INVENTORYSUPPLIYER": "Envanter Tedarikçi Tanımları",
         "INVENTORYORDER": "Envanter Siparişi",
         "INVENTORYDEMANDRULE": "Talep Kuralları",
-        "INVENTORYDELIVERYINVOCE": "Envanter Faturaları"
+        "INVENTORYDELIVERYINVOCE": "Envanter Faturaları",
+        "BARCODEDEFINITION": "Barcode Tanımlama"
       },
       "accountingintegration": {
         "MAIN": "Muhasebe Entegrasyonu",
@@ -4506,7 +4519,8 @@
     "UnitCount": "Miktar",
     "UnitPrice": "Birim Fiyatı",
     "Discount": "İndirim",
-    "InventoryUnit": "Malzeme Adi"
+    "InventoryUnit": "Malzeme Adi",
+    "Notes": "Not"
   },
   "inventorydeliveriesedit": {
     "InventoryUnit": "Malzeme birimi",
@@ -4515,7 +4529,8 @@
     "VATRatio": "KDV Oranı",
     "VAT": "KDV",
     "Total": "Toplam",
-    "Calculatingrequirments": "Lütfen Bekleyin. Talepleriniz Hesaplanıyor..."
+    "Calculatingrequirments": "Lütfen Bekleyin. Talepleriniz Hesaplanıyor...",
+    "Notes": "Not"
   },
   "inventorydealItem": {
     "InventoryUnit": "Malzeme birimi",

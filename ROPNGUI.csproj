@@ -261,6 +261,7 @@
     <Content Include="assets\js\controllers\inventories\productwasteeditCtrl.js" />
     <Content Include="assets\js\controllers\inventories\productwastelistCtrl.js" />
     <Content Include="assets\js\controllers\inventories\selectInventorySupplyCtrl.js" />
+    <Content Include="assets\js\controllers\inventories\BarcodeDefinitionCtrl.js" />
     <Content Include="assets\js\controllers\kitchenDisplay\kdslastordersCtrl.js" />
     <Content Include="assets\js\controllers\mainscreen\authcodeCtrl.js" />
     <Content Include="assets\js\controllers\mainscreen\maindashboardCtrl.js" />
