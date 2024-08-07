@@ -8,13 +8,15 @@ function inventorytransformeditCtrl($scope, $log, $modal, $filter, SweetAlert, $
     $scope.Back = function () {
         $window.history.back();
     };
-    $rootScope.InventoryTransformID = null;
+    //$rootScope.InventoryTransformID = null;
+    $scope.InventoryDeliveryID = $stateParams.id;
     if ($stateParams.id != 'new') {
         Restangular.one('inventorytransform', $stateParams.id).get()
            .then(function (restresult) {
                $scope.original = restresult;
                $scope.item = Restangular.copy(restresult);
-               $rootScope.InventoryTransformID = restresult.id;
+               //$rootScope.InventoryTransformID = restresult.id;
+               $scope.InventoryDeliveryID = $stateParams.id;
            },
            function (restresult) {
                toaster.pop('warning',$translate.instant('Server.ServerError'), response.data.ExceptionMessage);
@@ -26,6 +28,7 @@ function inventorytransformeditCtrl($scope, $log, $modal, $filter, SweetAlert, $
     }
     $scope.saveData = function (data) {
         if ($scope.item.restangularized && $scope.item.id) {
+            $scope.ShowObject = true;
             $scope.item.put().then(function (resp) {
                 swal($translate.instant('invantories.Updated'), $translate.instant('invantories.Updated'), "success");
                 $rootScope.InventoryTransformID = resp.id;
@@ -34,12 +37,13 @@ function inventorytransformeditCtrl($scope, $log, $modal, $filter, SweetAlert, $
         } else {
             Restangular.restangularizeElement('', $scope.item, 'inventorytransform')
             $scope.item.post().then(function (resp) {
+                $scope.ShowObject = false;
                 $scope.item.id = resp.id;
                 $rootScope.InventoryTransformID = resp.id;
                 swal($translate.instant('invantories.Saved'), $translate.instant('invantories.Saved'), "success");
                 $scope.$broadcast('ChangeData');
             });
-        }
+        }  $scope.ShowObject = false;
     };
     $scope.isClean = function () {
         return angular.equals($scope.original, $scope.item);

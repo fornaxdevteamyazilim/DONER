@@ -356,6 +356,26 @@ function inventorydeliveryeditCtrl($scope, $filter, SweetAlert, Restangular, NG_
             toaster.pop('Warning', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
         });
     };
+    $scope.addItemBarcode = function () {
+        //GetItemFronBarcode
+        Restangular.one('inventoryunit/convertbarcode').get({
+             InventoryDeliveryID: $stateParams.id,
+             barcode: de.barcode
+         }).then(function (result) {
+             if (result && result) {
+                 console.log("convert barcode result:" + result);
+                 $scope.item.items.push(result); 
+                 de.barcode="";
+                 refreshData();
+             }
+             else {
+                 console.log("convert barcode result not found!");                 
+             }
+         }, function (response) {
+             toaster.pop('Warning', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
+         });        
+        
+    };
     $scope.addItemFromBarcode = function () {
         //GetItemFronBarcode
         Restangular.one('inventoryunit/convertbarcode').get({
@@ -468,19 +488,20 @@ function inventorydeliveryeditCtrl($scope, $filter, SweetAlert, Restangular, NG_
 
 
             },
-            { caption: $translate.instant('inventorydeliveriesedit.UnitPrice'), dataField: "UnitPrice", dataType: "number", format: { type: "fixedPoint", precision: 2 }, displayFormat: "%{0}", allowEditing: false, visibleIndex: 3, },
+            { caption: $translate.instant('inventorydeliveriesedit.UnitPrice'), dataField: "UnitPrice", dataType: "number", format: { type: "fixedPoint", precision: 2 }, displayFormat: "%{0}", allowEditing: true, visibleIndex: 3, },
             { caption: $translate.instant('inventorydeliveriesedit.Total'), dataField: "Total", calculateCellValue: function (data) { return data.UnitCount * data.UnitPrice; }, allowEditing: false, format: { type: "fixedPoint", precision: 2 }, visibleIndex: 4 },
         ],
         summary: {
             totalItems: [
                 { column: "Total", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}" },
                 { column: "VAT", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}" },
-                //{ name: "UnitCustom", showInColumn: "UnitCustom", summaryType: "custom", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}" },
+                { column: "UnitCount", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}" },
             ],
             groupItems: [
                 //{ name: "UnitCustom", showInColumn: "UnitCustom", summaryType: "custom", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}", alignByColumn: true },
                 { name: "Total", showInColumn: "Total", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}", alignByColumn: true },
                 { name: "VAT", showInColumn: "VAT", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}", alignByColumn: true },
+                { column: "UnitCount", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}" },
             ],
         },
         // onContentReady(e) {

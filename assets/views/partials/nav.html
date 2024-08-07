@@ -52,7 +52,7 @@
             </div>
         </a>
     </li>
-    <li ng-class="{'active open':$state.includes('app.dashboardmanger')}" >
+    <li ng-class="{'active open':$state.includes('app.dashboardmanger')}" ng-if="user.restrictions.dashboardV2 == 'Enable'" >
         <a ui-sref="app.dashboardmanger">
             <div class="item-content">
                 <div class="item-media">
@@ -471,6 +471,18 @@
                 <a ui-sref="app.inventory.inventorydeliveryinvoice.list">
                     <i class="ti-files"></i> <span class="title"
                         translate="sidebar.nav.inventory.INVENTORYDELIVERYINVOCE">Inventory Delivery Invoice</span>
+                </a>
+            </li>
+            <li ui-sref-active="active" >
+                <a ui-sref="app.inventory.inventorytransform.edit">
+                    <i class="ti-files"></i> <span class="title"
+                        translate="sidebar.nav.inventory.inventorytransformedit">Barcode Definition</span>
+                </a>
+            </li>
+            <li ui-sref-active="active" >
+                <a ui-sref="app.inventory.BarcodeDefinition">
+                    <i class="ti-files"></i> <span class="title"
+                        translate="sidebar.nav.inventory.BARCODEDEFINITION">Barcode Definition</span>
                 </a>
             </li>
         </ul>
