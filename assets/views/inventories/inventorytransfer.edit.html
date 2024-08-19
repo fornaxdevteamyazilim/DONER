@@ -83,12 +83,12 @@
                         </button>
                     </div>
                     <div print-remove class="form-group col-sm-2 col-lg-2 col-md-2 col-xs-12" style="    width: 200px;">
-                        <button class="btn btn-o btn-warning  btn-scroll btn-scroll-left fa fa-check-circle hidden-print pull-right margin-top-25" ng-disabled="(item.ApproveState != 1 || item.InventorySupplyState == 0 || item.InventorySupplyState == 1 ||  isWaiting == true" ng-click="DeliverTransfer()">
+                        <button class="btn btn-o btn-warning  btn-scroll btn-scroll-left fa fa-check-circle hidden-print pull-right margin-top-25" ng-disabled="(item.ApproveState != 1 || item.InventorySupplyState == 0 || item.InventorySupplyState == 1 ||  isWaiting == true)" ng-click="DeliverTransfer()">
                             <span class='fa fa-spin fa-spinner' ng-if='isWaiting == true'></span><span ng-if="isWaiting != true">{{:: trIsCheckStore}}</span>
                         </button>
                     </div>
                     <div print-remove class="form-group col-sm-12 col-lg-12 col-md-12 col-xs-12">
-                        <button class="btn btn-primary btn-wide btn-scroll btn-scroll-left fa  fa-save " ng-disabled="!vm.tableParams.data.length || SaveButtonActive == false || !item.Description || !item.DocumentNumber || !item.ToRepositoryID ||| isWaiting == true" ng-click="SaveData()"ng-dblclick="BottonDblcilik()">
+                        <button class="btn btn-primary btn-wide btn-scroll btn-scroll-left fa  fa-save " ng-disabled="!vm.tableParams.data.length || SaveButtonActive == false || !item.Description || !item.DocumentNumber || !item.ToRepositoryID || isWaiting == true" ng-click="SaveData()"ng-dblclick="BottonDblcilik()">
                             <span>{{:: save}}</span>
                         </button>
                         <button class="btn btn-danger btn-wide btn-scroll btn-scroll-left fa ti-close pull-right" ng-show="($stateParams.id !== 'new' && item.InventorySupplyState==0 || item.InventorySupplyState==1) || user.isAdmin" ng-click="removedata(item.id)" ng-if="user.restrictions.inventorytransfersdelete=='Enable'">
@@ -102,13 +102,20 @@
             <a class="btn btn-primary btn-wide btn-scroll btn-scroll-top ti-plus margin-top-10 margin-left-10" ng-click="addItem()" ng-disabled="(item.InventorySupplyState == 3 ||item.InventorySupplyState == 5) || isWaiting == true">
                 <span>{{:: addtransferitem}}</span>
             </a>
-            <br />
+            
+            
+            
             <div class="table-responsive">
+                
+                <br /><div class="form-group col-sm-6 col-lg-3 col-md-3 col-xs-12">
+                    <input id="bcode" type="text" class="form-control text-capitalize" ng-model="vm.barcode" placeholder="barkod" ng-model-options="{ debounce: 1000 }" ng-change="addItemFromBarcode()"/>
+                   
+                </div>
                 <table print-remove ng-table="vm.tableParams" class="table table-striped table-hover">
                     <tr ng-repeat="data in $data"
                         ng-keyup="FormKeyPress($event,rowform,$data[$index],$index)">
                         <td data-title="trInventoryUnit" data-sortable="'InventoryUnitID'" width="25%">
-                            <span class="text-uppercase" editable-select="data.InventoryUnitID" e-name="InventoryUnitID" e-ng-model="data.InventoryUnitID"  e-form="rowform" e-ng-blur="GetInventoryUnitPrice(rowform,data)"
+                            <span class="text-uppercase" editable-select="data.InventoryUnitID" e-name="InventoryUnitID" e-ng-model="data.InventoryUnitID"  e-form="rowform" e-ng-blur="GetInventoryUnitPrice(data.InventoryUnitID,rowform)"
                                   e-ng-options="q.id as q.name for q in inventoryunits | orderBy:'+name' | filter: {isActiveValue: 'true'}">
                                 {{ ShowObject('inventoryunits','id',data.InventoryUnitID,'name') }}
                             </span>
@@ -121,6 +128,11 @@
                         <td data-title="trUnitPrice" data-sortable="'UnitPrice'" width="13%">
                             <span e-name="UnitPrice" e-ng-model="data.UnitPrice" e-form="rowform" e-style="width: 13vw;">
                                 {{  data.UnitPrice | number : 4 }} {{:: 'main.CURRENCY_SYMBOL' | translate}}
+                            </span>
+                        </td>
+                        <td data-title="trNotes" data-sortable="'Notes'" width="7%">
+                            <span e-name="Notes" e-ng-model="data.Notes" e-form="rowform" e-style="width: 13vw;">
+                                {{  data.Notes }} 
                             </span>
                         </td>
                         <td style="white-space: nowrap;grid-column-sizing:auto;" data-title="trCommands" width="4%">
@@ -153,8 +165,10 @@
                     <tr class="text-bold text-dark text-extra-large">
                         <td width="25%">{{:: 'main.GROUPTOTAL' | translate}}</td>
                         <td width="25%"></td>
-                        <td width="13%"></td>
                         <td width="4%">{{groupTotal | number:2}} {{:: 'main.CURRENCY_SYMBOL' | translate}}</td>
+                        <td width="13%"></td>
+                        <td width="7%"></td>
+                        
                     </tr>
                 </table>
             </div>

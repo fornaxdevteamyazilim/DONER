@@ -270,7 +270,7 @@ function inventorytransformitemCtrl($scope, $log, $modal, $filter, SweetAlert, R
     $scope.inventoryunits = [];
     $scope.loadEntitiesCache('cache/inventoryunit', 'inventoryunits');
     $scope.inventorytransforms = [];
-    $scope.loadEntities('inventorytransform', 'inventorytransforms');
+    //$scope.loadEntities('inventorytransform', 'inventorytransforms');
     $scope.saveItem = function (data) {
         _update(data, this.item);
         $scope.saveData(this.item);

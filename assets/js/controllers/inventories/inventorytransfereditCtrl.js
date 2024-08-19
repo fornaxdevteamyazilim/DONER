@@ -7,6 +7,7 @@ function inventorytransfereditCtrl($scope, $log, $modal, $filter, SweetAlert, Re
     vm.items = {};
     $scope.repositories = [];
     $scope.NGUserRoleID = '';
+    vm.barcode='';
     $scope.Back = function () {
         $window.history.back();
     };
@@ -39,11 +40,35 @@ function inventorytransfereditCtrl($scope, $log, $modal, $filter, SweetAlert, Re
         $scope.addtransferitem = $translate.instant('main.ADDTRANSFERITEM');
         $scope.edit = $translate.instant('main.EDIT');
         $scope.trReject = $translate.instant('main.ISPREJECT');
+        $scope.trNotes = $translate.instant('main.NOTE');
     };
     $scope.translate();
     var deregistration = $scope.$on('$translateChangeSuccess', function (event, data) {
         $scope.translate();
     });
+    $scope.addItemFromBarcode = function () {
+        //GetItemFronBarcode
+        Restangular.one('inventoryunit/convertbarcode').get({
+            FromRepositoryID: $scope.item.FromRepositoryID,
+             barcode: vm.barcode,
+             fordate:$scope.item.TransferDate
+         }).then(function (result) {
+             if (result && result) {
+                 console.log("convert barcode result:" + result);
+                 if (vm.tableParams.data==null)
+                    vm.tableParams.data=[];
+                 vm.tableParams.data.push(result); 
+                 vm.barcode="";
+                 //refreshData();
+             }
+             else {
+                 console.log("convert barcode result not found!");                 
+             }
+         }, function (response) {
+             toaster.pop('Warning', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
+         });        
+        
+    };
     $scope.InventoryTransferID = $stateParams.id;
     if ($stateParams.id != 'new')
         Restangular.one('inventorytransfer', $stateParams.id).get().then(function (restresult) {
@@ -203,14 +228,23 @@ function inventorytransfereditCtrl($scope, $log, $modal, $filter, SweetAlert, Re
         }
     };
     $scope.loadRepository();
-    $scope.GetInventoryUnitPrice = function (rowform, item) {
-        Restangular.one('InventoryUnit/lastcount').get({
-            InventoryUnitID: rowform.$data.InventoryUnitID,
+    $scope.GetInventoryUnitPrice = function (inventoryUnitID,rowData) {
+        Restangular.one('inventoryunit/price').get({
+           // InventoryDeliveryID: InventoryDeliveryID,
+            InventoryUnitID: inventoryUnitID,
             StoreID: $rootScope.user.StoreID,
+            ForDate: $scope.item.TransferDate
         }).then(function (result) {
-            item.UnitPrice = result.UnitPrice;
+            if (result && result) {
+                console.log("GetInventoryUnitPrice result:" + result);
+                rowData.UnitPrice = result;
+            }
+            else {
+                console.log("GetInventoryUnitPrice result not found!");
+                rowData.UnitPrice = 0;
+            }
         }, function (response) {
-            toaster.pop('Warning',$translate.instant('Server.ServerError'), response.data.ExceptionMessage);
+            toaster.pop('Warning', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
         });
     };
     $scope.ShowObject = function (Container, idName, idvalue, resName) {

@@ -44,6 +44,7 @@ function mainscreenCtrl($scope, $modal, $timeout, $filter, SweetAlert, $interval
         $scope.cashdrawer = $translate.instant('main.CASHDRAWER');
 
     };
+    
     $scope.StoreOrderTypes = [];
     if ($rootScope.user && $rootScope.user.Store) {
         $scope.StoreOrderTypes = angular.copy($rootScope.user.Store.StoreOrderTypes);
