@@ -8,21 +8,23 @@ function inventorytransformeditCtrl($scope, $log, $modal, $filter, SweetAlert, $
     $scope.Back = function () {
         $window.history.back();
     };
-    //$rootScope.InventoryTransformID = null;
+   
+    $rootScope.InventoryTransformID = null;
     $scope.InventoryDeliveryID = $stateParams.id;
     if ($stateParams.id != 'new') {
         Restangular.one('inventorytransform', $stateParams.id).get()
-           .then(function (restresult) {
-               $scope.original = restresult;
-               $scope.item = Restangular.copy(restresult);
-               //$rootScope.InventoryTransformID = restresult.id;
-               $scope.InventoryDeliveryID = $stateParams.id;
-           },
-           function (restresult) {
-               toaster.pop('warning',$translate.instant('Server.ServerError'), response.data.ExceptionMessage);
-               swal("Error!", $translate.instant('Server.ServerError'), "Warning");
-           }
-           )
+            .then(function (restresult) {
+                $scope.original = restresult;
+                $scope.item = Restangular.copy(restresult);
+                $rootScope.InventoryTransformID = restresult.id;
+                $scope.InventoryDeliveryID = $stateParams.id;
+                
+            },
+                function (restresult) {
+                    toaster.pop('warning', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
+                    swal("Error!", $translate.instant('Server.ServerError'), "Warning");
+                }
+            )
     } else {
         $scope.item.OutputFactor = 1;
     }
@@ -43,7 +45,7 @@ function inventorytransformeditCtrl($scope, $log, $modal, $filter, SweetAlert, $
                 swal($translate.instant('invantories.Saved'), $translate.instant('invantories.Saved'), "success");
                 $scope.$broadcast('ChangeData');
             });
-        }  $scope.ShowObject = false;
+        } $scope.ShowObject = false;
     };
     $scope.isClean = function () {
         return angular.equals($scope.original, $scope.item);
@@ -79,7 +81,7 @@ function inventorytransformeditCtrl($scope, $log, $modal, $filter, SweetAlert, $
                 $scope.repositories = result;
                 $scope.item.RepositoryID = result[0].id;
             }, function (response) {
-                toaster.pop('Warning',$translate.instant('Server.ServerError'), response.data.ExceptionMessage);
+                toaster.pop('Warning', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
             });
         }
     };
@@ -99,7 +101,7 @@ function inventorytransformeditCtrl($scope, $log, $modal, $filter, SweetAlert, $
             }).then(function (result) {
                 $scope[Container] = result;
             }, function (response) {
-                toaster.pop('warning',$translate.instant('Server.ServerError'), response.data.ExceptionMessage);
+                toaster.pop('warning', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
             });
         }
     };
@@ -108,7 +110,7 @@ function inventorytransformeditCtrl($scope, $log, $modal, $filter, SweetAlert, $
             Restangular.all(EntityType).getList({}).then(function (result) {
                 $scope[Container] = result;
             }, function (response) {
-                toaster.pop('Warning',$translate.instant('Server.ServerError'), response);
+                toaster.pop('Warning', $translate.instant('Server.ServerError'), response);
             });
         }
     };
@@ -120,19 +122,19 @@ function inventorytransformeditCtrl($scope, $log, $modal, $filter, SweetAlert, $
     $scope.loadEntities('inventoryrecipe', 'inventoryrecipes');
     $scope.removedata = function (SelectItem) {
         SweetAlert.swal({
-            title: $translate.instant('invantories.Sure') ,
+            title: $translate.instant('invantories.Sure'),
             text: $translate.instant('invantories.SureRecord'),
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
-            confirmButtonText:  $translate.instant('invantories.confirmButtonText'),
-            cancelButtonText:  $translate.instant('invantories.cancelButtonText'),
+            confirmButtonText: $translate.instant('invantories.confirmButtonText'),
+            cancelButtonText: $translate.instant('invantories.cancelButtonText'),
             closeOnConfirm: true,
             closeOnCancel: true
         }, function (isConfirm) {
             if (isConfirm) {
                 $scope.item.remove().then(function () {
-                    SweetAlert.swal( $translate.instant('invantories.Deleted'), $translate.instant('invantories.RecordDeleted'), "success");
+                    SweetAlert.swal($translate.instant('invantories.Deleted'), $translate.instant('invantories.RecordDeleted'), "success");
                     $location.path('app/inventory/inventorytransform/list');
                 });
             }
@@ -166,25 +168,50 @@ function inventorytransformeditCtrl($scope, $log, $modal, $filter, SweetAlert, $
     });
 };
 app.controller('inventorytransformitemCtrl', inventorytransformitemCtrl);
-function inventorytransformitemCtrl($scope, $log, $modal, $filter, SweetAlert, Restangular, ngTableParams, toaster, $window, $stateParams, $rootScope, $location, $translate, $element) {
+function inventorytransformitemCtrl($scope, $log, $modal, $filter, SweetAlert, Restangular, ngTableParams, toaster, $window, $stateParams, $rootScope, $location, $translate, ngnotifyService, $element) {
     $rootScope.uService.EnterController("inventorytransformitemCtrl");
     var iti = this;
     $scope.item = {};
+    iti.barcode = '';
+    $rootScope.InventoryTransformID = null;
     var deregistration = $scope.$on('ChangeData', function (event) {
         iti.tableParams.reload();
     });
+    $scope.loadRepository = function () {
+        if (!$scope.repositories.length) {
+            Restangular.all('repository').getList({
+                pageNo: 1,
+                pageSize: 1000,
+                sort: 'id',
+                //search: "StoreID='" + $rootScope.user.StoreID + "'"
+            }).then(function (result) {
+                $scope.repositories = result;
+                $scope.item.FromRepositoryID = result[0].id;
+            }, function (response) {
+                toaster.pop('Warning', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
+            });
+        }
+    };
+    $scope.loadRepository();
     $scope.saveData = function () {
         if (this.item.restangularized) {
             this.item.put().then(function (res) {
                 iti.tableParams.reload();
+               
+                $scope.addItemFromBarcode ();
+                $scope.GetInventoryTransformID(resp.id);
                 toaster.pop('success', $translate.instant('invantories.Updated'), $translate.instant('invantories.Updated'));
             });
         }
         else {
             Restangular.restangularizeElement('', this.item, 'inventorytransformitem')
             this.item.post().then(function (res) {
+                $scope.item.FromRepositoryID = res[0].id;
+              
+                $scope.addItemFromBarcode ();
+                $scope.GetInventoryTransformID(resp.id);
                 iti.tableParams.reload();
-                toaster.pop('success',$translate.instant('invantories.Saved'), $translate.instant('invantories.Saved'));
+                toaster.pop('success', $translate.instant('invantories.Saved'), $translate.instant('invantories.Saved'));
             });
             this.item.get();
         }
@@ -208,7 +235,30 @@ function inventorytransformitemCtrl($scope, $log, $modal, $filter, SweetAlert, R
     $scope.GetInventoryTransformID = function () {
         return $rootScope.InventoryTransformID;
     }
+    $scope.addItemFromBarcode = function () {
+        //GetItemFronBarcode
+        Restangular.one('inventoryunit/convertbarcodetotransform').get({
 
+            barcode: iti.barcode,
+            fordate: $scope.item.TransformDate,
+            FromRepositoryID: $scope.item.FromRepositoryID
+        }).then(function (result) {
+            if (result && result) {
+                console.log("convert barcode result:" + result);
+                if (iti.tableParams.data == null)
+                    iti.tableParams.data = [];
+                iti.tableParams.data.push(result);
+                iti.barcode = "";
+                refreshData();
+            }
+            else {
+                console.log("convert barcode result not found!");
+            }
+        }, function (response) {
+            toaster.pop('Warning', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
+        });
+
+    };
     $scope.FormKeyPress = function (event, rowform, data, index) {
         if (event.keyCode === 13 && rowform.$visible) {
             _update(rowform.$data, data);
@@ -245,7 +295,7 @@ function inventorytransformitemCtrl($scope, $log, $modal, $filter, SweetAlert, R
                 params.total(items.paging.totalRecordCount);
                 $defer.resolve(items);
             }, function (response) {
-                toaster.pop('warning',$translate.instant('Server.ServerError'), response.data.ExceptionMessage);
+                toaster.pop('warning', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
             });
         }
     });
@@ -261,7 +311,7 @@ function inventorytransformitemCtrl($scope, $log, $modal, $filter, SweetAlert, R
             Restangular.all(EntityType).getList({}).then(function (result) {
                 $scope[Container] = result;
             }, function (response) {
-                toaster.pop('Warning',$translate.instant('Server.ServerError'), response);
+                toaster.pop('Warning', $translate.instant('Server.ServerError'), response);
             });
         }
     };
@@ -314,6 +364,25 @@ function inventorytransformitemCtrl($scope, $log, $modal, $filter, SweetAlert, R
             $scope.result = selectedItem;
         });
     };
+    if (!$scope.item.TransformDate) {
+        $scope.item.TransformDate = $filter('date')(ngnotifyService.ServerTime(), 'yyyy-MM-dd');
+    }
+    $scope.datepopup = function (item) {
+        var modalInstance = $modal.open({
+            templateUrl: 'assets/views/Tools/date.html',
+            controller: 'dateCtrl',
+            size: '',
+            backdrop: '',
+            resolve: {
+                DateTime: function () {
+                    return item;
+                }
+            }
+        });
+        modalInstance.result.then(function (item) {
+            $scope.item.TransformDate = item;
+        })
+    };
     $scope.$on('$destroy', function () {
         deregistration();
         deregistration1();
@@ -323,23 +392,53 @@ function inventorytransformitemCtrl($scope, $log, $modal, $filter, SweetAlert, R
     });
 };
 app.controller('inventorytransformoutputitemsCtrl', inventoryrecipeoutputitemsCtrl);
-function inventoryrecipeoutputitemsCtrl($scope, $log, $modal, Restangular, ngTableParams, SweetAlert, toaster, $window, $rootScope, $stateParams, $filter, $translate, ngnotifyService, $element) {
+function inventoryrecipeoutputitemsCtrl($scope, $log, $modal, Restangular, ngTableParams, SweetAlert, toaster, $window, $rootScope, $stateParams, $filter, $translate, ngnotifyService, $element, userService) {
     $rootScope.uService.EnterController("inventorytransformoutputitemsCtrl");
     var ito = this;
     $scope.item = {};
+    ito.barcode = '';
+
     var deregistration = $scope.$on('ChangeData', function (event) {
         ito.tableParams.reload();
     });
     $scope.saveData = function () {
         if (this.item.restangularized) {
-            this.item.put().then(function (res) { ito.tableParams.reload(); toaster.pop('success', $translate.instant('orderfile.Updated'), $translate.instant('orderfile.Updated')); });
+            this.item.put().then(function (res)
+         { 
+            ito.tableParams.reload(); 
+            $rootScope.InventoryTransformID = resp.id;
+            $scope.addItemFromBarcode();
+            toaster.pop('success', $translate.instant('orderfile.Updated'), $translate.instant('orderfile.Updated')); 
+         });
         }
         else {
             Restangular.restangularizeElement('', this.item, 'inventorytransformoutputitem')
-            this.item.post().then(function (res) { ito.tableParams.reload(); toaster.pop('success', $translate.instant('orderfile.Saved'), $translate.instant('orderfile.Saved')); });
+            this.item.post().then(function (res) 
+            {
+             ito.tableParams.reload(); 
+             $rootScope.InventoryTransformID = resp.id;
+          
+             toaster.pop('success', $translate.instant('orderfile.Saved'), $translate.instant('orderfile.Saved'));
+            });
             this.item.get();
         }
     };
+    $scope.loadRepository = function () {
+        if (!$scope.repositories.length) {
+            Restangular.all('repository').getList({
+                pageNo: 1,
+                pageSize: 1000,
+                sort: 'id',
+                //search: "StoreID='" + $rootScope.user.StoreID + "'"
+            }).then(function (result) {
+                $scope.repositories = result;
+                $scope.item.FromRepositoryID = result[0].id;
+            }, function (response) {
+                toaster.pop('Warning', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
+            });
+        }
+    };
+    $scope.loadRepository();
     $scope.translate = function () {
         $scope.trInventory = $translate.instant('main.INVENTORY');
         $scope.trUnitCount = $translate.instant('main.UNITCOUNT');
@@ -368,6 +467,30 @@ function inventoryrecipeoutputitemsCtrl($scope, $log, $modal, Restangular, ngTab
             $scope.cancelForm(rowform);
         }
     };
+    $scope.addItemFromBarcode = function () {
+        //GetItemFronBarcode
+        Restangular.one('inventoryunit/convertbarcodetotransformoutput').get({
+            InventoryTransformID:$rootScope.InventoryTransformID,
+            barcode: ito.barcode,
+            fordate: $scope.item.TransformDate,
+            FromRepositoryID: $scope.item.FromRepositoryID
+        }).then(function (result) {
+            if (result && result) {
+                console.log("convert barcode result:" + result);
+                if (ito.tableParams.data == null)
+                    ito.tableParams.data = [];
+                ito.tableParams.data.push(result);
+                ito.barcode = "";
+                //refreshData();
+            }
+            else {
+                console.log("convert barcode result not found!");
+            }
+        }, function (response) {
+            toaster.pop('Warning', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
+        });
+
+    };
     $scope.cancelForm = function (rowform) {
         rowform.$cancel();
         if (!ito.tableParams.data[ito.tableParams.data.length - 1].restangularized) {
@@ -391,7 +514,7 @@ function inventoryrecipeoutputitemsCtrl($scope, $log, $modal, Restangular, ngTab
                 params.total(items.paging.totalRecordCount);
                 $defer.resolve(items);
             }, function (response) {
-                toaster.pop('warning',$translate.instant('Server.ServerError'), response.data.ExceptionMessage);
+                toaster.pop('warning', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
             });
         }
     });
@@ -411,7 +534,7 @@ function inventoryrecipeoutputitemsCtrl($scope, $log, $modal, Restangular, ngTab
             }).then(function (result) {
                 $scope[Container] = result;
             }, function (response) {
-                toaster.pop('warning',$translate.instant('Server.ServerError'), response.data.ExceptionMessage);
+                toaster.pop('warning', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
             });
         }
     };
@@ -420,7 +543,7 @@ function inventoryrecipeoutputitemsCtrl($scope, $log, $modal, Restangular, ngTab
             Restangular.all(EntityType).getList({}).then(function (result) {
                 $scope[Container] = result;
             }, function (response) {
-                toaster.pop('Warning',$translate.instant('Server.ServerError'), response);
+                toaster.pop('Warning', $translate.instant('Server.ServerError'), response);
             });
         }
     };
@@ -471,6 +594,25 @@ function inventoryrecipeoutputitemsCtrl($scope, $log, $modal, Restangular, ngTab
         modalInstance.result.then(function (selectedItem) {
             $scope.result = selectedItem;
         });
+    };
+    if (!$scope.item.TransformDate) {
+        $scope.item.TransformDate = $filter('date')(ngnotifyService.ServerTime(), 'yyyy-MM-dd');
+    }
+    $scope.datepopup = function (item) {
+        var modalInstance = $modal.open({
+            templateUrl: 'assets/views/Tools/date.html',
+            controller: 'dateCtrl',
+            size: '',
+            backdrop: '',
+            resolve: {
+                DateTime: function () {
+                    return item;
+                }
+            }
+        });
+        modalInstance.result.then(function (item) {
+            $scope.item.TransformDate = item;
+        })
     };
     $scope.$on('$destroy', function () {
         deregistration();

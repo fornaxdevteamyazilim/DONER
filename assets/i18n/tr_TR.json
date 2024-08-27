@@ -2688,7 +2688,8 @@
         "INVENTORYORDER": "Envanter Siparişi",
         "INVENTORYDEMANDRULE": "Talep Kuralları",
         "INVENTORYDELIVERYINVOCE": "Envanter Faturaları",
-        "BARCODEDEFINITION": "Barcode Tanımlama"
+        "BARCODEDEFINITION": "Barcode Tanımlama",
+        "inventorytransformedit":" Üretim Fişi Detayları"
       },
       "accountingintegration": {
         "MAIN": "Muhasebe Entegrasyonu",

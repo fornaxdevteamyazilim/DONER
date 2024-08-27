@@ -24,6 +24,7 @@
                     <select id="repository" ng-options="q.id as q.fullname for q in repositories | orderBy:'+name'"
                         class="form-control ng" data-ng-model="item.RepositoryID"></select>
                 </div>
+            
                 <!--<div class="form-group col-sm-6 col-lg-4 col-md-4 col-xs-12">
                     <label translate="main.NOTE" for="notes">
                         Notes
@@ -50,6 +51,14 @@
                     <input id="Date" type="text" class="form-control ng" ng-model="item.TransformDate" readonly
                         ng-click="datepopup(item.TransformDate)" required>
                 </div>
+                
+                <!-- <div class="form-group col-sm-6 col-lg-4 col-md-4 col-xs-12">
+                    <label >
+                       Barcode
+                    </label><br />
+                    <input id="bcode" type="text" class="form-control text-capitalize" ng-model="vm.barcode" placeholder="barkod" ng-model-options="{ debounce: 1000 }" ng-change="addItemFromBarcode()"/>
+                   
+                </div> -->
                 <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
                     <button class="btn btn-primary btn-wide btn-scroll btn-scroll-left fa  fa-save "
                         ng-disabled="isClean()" ng-click="saveData()">
@@ -63,12 +72,17 @@
             </form>
         </div>
     </div>
-<div>dfgffdfg</div>
+   
+<!-- <div>dfgffdfg</div> -->
     <div>
         <tabset justified="true" class="tabbable">
             <tab heading={{'main.TRANSFORMITEMS'|translate}}>
                 <div ng-controller="inventorytransformitemCtrl as iti">
                     <br />
+                    <br /><div class="form-group col-sm-3 col-lg-3 col-md-3 col-xs-12">
+                        <input id="bcode" type="text" class="form-control text-capitalize" ng-model="iti.barcode" placeholder="barkod" ng-model-options="{ debounce: 1000 }" ng-change="addItemFromBarcode()"/>
+                       
+                    </div><br><br>  
                     <div class="table-responsive">
                         <table ng-table="iti.tableParams" class="table table-striped table-hover">
                             <br />
@@ -159,6 +173,10 @@
             <tab heading={{'main.OUTPUTTRANSFORMITEMS'|translate}}>
                 <div ng-controller="inventorytransformoutputitemsCtrl as ito">
                     <br />
+                    <br /><div class="form-group col-sm-3 col-lg-3 col-md-3 col-xs-12" >
+                        <input id="bcode" type="text" class="form-control text-capitalize" ng-model="ito.barcode" placeholder="barkod" ng-model-options="{ debounce: 1000 }" ng-change="addItemFromBarcode()"/>
+                       
+                    </div><br><br>  
                     <div class="table-responsive">
                         <table ng-table="ito.tableParams" class="table table-striped table-hover">
                             <tr ng-repeat="item in $data" ng-keyup="FormKeyPress($event,rowform,$data[$index],$index)">
@@ -193,7 +211,7 @@
                                 </td>
                                 <td style="white-space: nowrap;grid-column-sizing:auto;" data-title="trCommands"
                                     width="4%">
-                                    <form editable-form name="rowform" onaftersave="saveData(item)"
+                                    <form editable-form name="rowform" onaftersave="saveData()"
                                         ng-show="rowform.$visible" class="form-buttons form-inline"
                                         shown="inserted == item|| !item.id">
                                         <button type="submit" ng-disabled="rowform.$waiting"
