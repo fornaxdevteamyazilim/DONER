@@ -2591,6 +2591,7 @@
         "MAIN": "Kokpit",
         "DASHMAN": "KokpitV2",
         "MAINSCREEN": "Ana Ekran",
+        "SALESREPORT": "Satış Raporu",
         "LOCKSCREEN": "Kilitle!"
       },
       "callcenterdashboard": {

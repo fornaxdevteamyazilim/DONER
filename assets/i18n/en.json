@@ -2569,6 +2569,7 @@
         "MAIN": "Dashboard",
         "DASHMAN": "DashboardV2",
         "MAINSCREEN": "Main Screen",
+        "SALESREPORT": "Sales Report",
         "LOCKSCREEN": "Lock Screen!"
       },
       "callcenterdashboard": {

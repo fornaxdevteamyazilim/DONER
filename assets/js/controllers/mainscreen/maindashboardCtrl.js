@@ -1,108 +1,234 @@
-﻿app.controller('maindashboardCtrl', maindashboardCtrl);
-function maindashboardCtrl($scope, $filter, $window, Restangular, $stateParams, $rootScope, $location, userService, $translate, ngnotifyService, $element) {
-    $scope.translate = function () {
-        $scope.txtTABLESALE = $translate.instant('main.TABLESALE');
-        $scope.txtPACKAGEORDER = $translate.instant('main.PACKAGEORDER');
-        $scope.txtDISPATCHER = $translate.instant('main.DISPATCHER');
-        $scope.txtORDERLIST = $translate.instant('main.ORDERLIST');
-        $scope.txtKITCHENDISPLAY = $translate.instant('main.KITCHENDISPLAY2');
-        $scope.txtREPORTS = $translate.instant('main.REPORTS');
-    };
-    $scope.translate();
-    if (userService && $rootScope.user && $rootScope.user.Store) {
-        var date = new Date($rootScope.user.Store.OperationDate);
-        $scope.opdate = $filter('date')(date, 'dd-MM-yyyy')
+﻿'use strict';
+app.controller('maindashboardCtrl', maindashboardCtrl);
+function maindashboardCtrl($scope, $filter, $modal, $log, Restangular, SweetAlert, $timeout, toaster, $window, $rootScope, $compile, $location, $translate, ngnotifyService, $element, NG_SETTING) {
+    if (!$rootScope.ReportParameters.StartDate) {
+        $rootScope.ReportParameters.StartDate = moment().add(0, 'days').format('YYYY-MM-DD ');//$filter('date')(ngnotifyService.ServerTime(), 'yyyy-MM-dd ');
     }
-    $rootScope.$on('OperationDayChanged', function (event, data) {
-        var opDate = ($rootScope.user && $rootScope.user.Store && $rootScope.user.Store.OperationDate) ? $rootScope.user.Store.OperationDate : $filter('date')(new Date(), 'yyyy-MM-dd');
-        $rootScope.user.Store.OperationDate = opDate;
-    });
-    var clockStop;
-    $scope.FormatClock = function (val) {
-        return $filter('date')(val, 'HH:mm:ss');
-    };
-    $scope.theClock = $scope.FormatClock(ngnotifyService.ServerTime());
-    $scope.StartClock = function () {
-        if (angular.isDefined(clockStop)) return;
-        clockStop = $interval(function () {
-            $scope.theClock = $scope.FormatClock(ngnotifyService.ServerTime());
-        }, 1000);
+    if (!$rootScope.ReportParameters.EndDate) {
+        $rootScope.ReportParameters.EndDate = $filter('date')(ngnotifyService.ServerTime(), 'yyyy-MM-dd ');
     }
-    var stopClock = function () {
-        if (angular.isDefined(clockStop)) {
-            $interval.cancel(clockStop);
-            clockStop = undefined;
+    $scope.NewDate = $filter('date')(ngnotifyService.ServerTime(), 'yyyy-MM-dd');
+    var ctrl = this;
+    $scope.Time = ngnotifyService.ServerTime();
+    $scope.TableData = [];
+    $scope.VeiwHeader = {};
+    if (!$rootScope.user || !$rootScope.user.UserRole || !$rootScope.user.UserRole.Name) {
+        $location.path('/login/signin');
+    }
+    $scope.SetStoreTypeID = function (FromValue) {
+        $scope.StoreTypeID = FromValue;
+        $scope.selectedStoreType = $filter('filter')($scope.storetypes, { id: FromValue });
+    };
+ 
+    $scope.selectedStore = function (StoreID, Store) {
+        var data = {};
+        data.id = StoreID;
+        data.name = Store;
+        $rootScope.SelectedData = data;
+        $location.path('/app/dashboard');
+    };
+    $scope.resetlayout = $translate.instant('main.RESETLAYOUT');
+    $scope.resetButtonOptions = {
+        text: $scope.resetlayout,
+        onClick: function () {
+            $("#sales").dxPivotGrid("instance").getDataSource().state({});
         }
     };
-    $scope.login = function (path) {
-        var data = userService.TimedOut();
-        if (data) {
-            $scope.EnterCardCode(path)
+    
+    $scope.pivotGridOptions = {
+        allowSortingBySummary: true,
+        allowSorting: true,
+        allowFiltering: true,
+        allowExpandAll: true,
+        showDataFields: true,
+        showRowFields: true,
+        showColumnFields: true,
+        showFilterFields: true,
+        allowFieldDragging: true,
+        rowHeaderLayout: 'tree',
+        showTotalsPrior: "rows",
+        visible: true,
+        height: 600,
+        showBorders: true,
+        fieldChooser: {
+            enabled: true
+        },
+        "export": {
+            enabled: true,
+            fileName: "dashboard"
+        },
+        scrolling: {
+            mode: "virtual"
+        },
+        fieldPanel: {
+            visible: true
+        },
+        // stateStoring: {
+        //     enabled: true,
+        //     type: "localStorage",
+        //     storageKey: "dx-dashboard-storing"
+        // },
+
+        dataSource: {
+            remoteOperations: true,
+            fields: [   
+                { caption: $translate.instant('turnoverbydaysreport.AmountWithVAT'), dataField: "AmountWithVAT", dataType: "number", summaryType: "sum", format: { type: "fixedPoint", precision: 2 }, area: "data" },
+                { caption: $translate.instant('turnoverbydaysreport.Store'), width: 120, dataField: "Store", area: "row" },
+                { caption: $translate.instant('turnoverbydaysreport.Year'), dataField: "Year", dataType: "number", area: "column" },
+                { caption: $translate.instant('turnoverbydaysreport.MonthNumber'), dataField: "MonthNumber", dataType: "number", area: "column" },
+                { caption: $translate.instant('turnoverbydaysreport.Day'), dataField: "Day", dataType: "number", area: "column" },
+                ],
+            store: DevExpress.data.AspNet.createStore({
+                key: "id",
+                loadUrl: NG_SETTING.apiServiceBaseUri + "/api/dxSaleStatistics",
+            }),
+            filter: getFilter(),
+        }
+    };
+
+    function BuildUserStoresArray(src) {
+        var result = [];
+        
+        if (src) {
+            for (var i = 0; i < src.length; i++) {
+                result.push(["StoreID", "=", src[i].id]);
+                if (src.length > 0)
+                    result.push("or");
+            }
+        }
+        else
+       
+            return null;
+        return result;
+    }
+    function getFilter() { //"and",["!",["OrderType","=",""]]
+     
+                return [["OperationDate", ">=", $rootScope.ReportParameters.StartDate], "and", ["OperationDate", "<=", $rootScope.ReportParameters.EndDate],"and",["!",["OrderType","=",""]]];
+        
+        
+    }
+
+    $scope.StoreTypeID = -1;
+    $scope.LoadData = function () {
+        var pivot = $("#sales").dxPivotGrid('instance');
+        var pivotDS = pivot.getDataSource();
+        if ($scope.StoreID ) {
+            pivotDS.filter(getFilter());
         }
         else {
-            userService.stopTimeout();
-            location.href = path;
+            pivotDS.filter(getFilter());
+        }
+        pivotDS.reload();
+    };
+     $scope.getFilters = function(filter) {
+     
+        var today = new Date();
+        if (filter === 'yesterday') {
+            $rootScope.ReportParameters.StartDate = new Date(today.getFullYear(), today.getMonth(), today.getDate()-1);
+            $rootScope.ReportParameters.EndDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() -1);
+        } else if (filter === 'today') {
+            $rootScope.ReportParameters.StartDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            $rootScope.ReportParameters.EndDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59, 999);
+        } else if (filter === 'lastWeek') {
+            $rootScope.ReportParameters.StartDate = new Date(today.setDate(today.getDate() - today.getDay() - 7));
+            $rootScope.ReportParameters.EndDate  = new Date(today.setDate(today.getDate() + 6));
+        } else if (filter === 'thisWeek') {
+            $rootScope.ReportParameters.StartDate = new Date(today.setDate(today.getDate() - today.getDay()));
+            $rootScope.ReportParameters.EndDate  = new Date(today.setDate(today.getDate() + (6 - today.getDay())));
+        } else if (filter === 'lastMonth') {
+            $rootScope.ReportParameters.StartDate = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+            $rootScope.ReportParameters.EndDate  = new Date(today.getFullYear(), today.getMonth(), 0);
+        } else if (filter === 'thisMonth') {
+            $rootScope.ReportParameters.StartDate = new Date(today.getFullYear(), today.getMonth(), 1);
+            $rootScope.ReportParameters.EndDate  = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+        } else if (filter === 'last3Months') {
+            $rootScope.ReportParameters.StartDate = new Date(today.getFullYear(), today.getMonth() - 3, 1);
+            $rootScope.ReportParameters.EndDate  = new Date(today.getFullYear(), today.getMonth(), 0);
+        } else if (filter === 'last6Months') {
+            $rootScope.ReportParameters.StartDate = new Date(today.getFullYear(), today.getMonth() - 6, 1);
+            $rootScope.ReportParameters.EndDate  = new Date(today.getFullYear(), today.getMonth(), 0);
+        } else if (filter === 'thisYear') {
+            $rootScope.ReportParameters.StartDate = new Date(today.getFullYear(), 0, 1);
+            $rootScope.ReportParameters.EndDate = new Date(today.getFullYear(), 11, 31);
+        } else {
+            $rootScope.ReportParameters.StartDate  = new Date();
+            $rootScope.ReportParameters.EndDate  = new Date();
+        }
+          
+        $scope.LoadData();
+ 
+    };
+  
+    $scope.FromDate = function (item) {
+        var modalInstance = $modal.open({
+            templateUrl: 'assets/views/Tools/date.html',
+            controller: 'dateCtrl',
+            size: '',
+            backdrop: '',
+            resolve: {
+                DateTime: function () {
+                    return item;
+                }
+            }
+        });
+        modalInstance.result.then(function (item) {
+            var data = new Date(item);
+            $rootScope.ReportParameters.StartDate = $filter('date')(data, 'yyyy-MM-dd');
+        })
+    };
+    $scope.ToDate = function (item) {
+        var modalInstance = $modal.open({
+            templateUrl: 'assets/views/Tools/date.html',
+            controller: 'dateCtrl',
+            size: '',
+            backdrop: '',
+            resolve: {
+                DateTime: function () {
+                    return item;
+                }
+            }
+        });
+        modalInstance.result.then(function (item) {
+            var data = new Date(item);
+            $rootScope.ReportParameters.EndDate = $filter('date')(data, 'yyyy-MM-dd');
+        })
+    };
+    $scope.ShowObject = function (Container, idName, idvalue, resName) {
+        for (var i = 0; i < $scope[Container].length; i++) {
+            if ($scope[Container][i][idName] == idvalue)
+                return $scope[Container][i][resName];
+        }
+        return idvalue || 'Not set';
+    };
+    $scope.loadEntities = function (EntityType, Container) {
+        if (!$scope[Container] || !$scope[Container].length) {
+            Restangular.all(EntityType).getList({
+                pageNo: 1,
+                pageSize: 1000,
+            }).then(function (result) {
+                $scope[Container] = result;
+            }, function (response) {
+                toaster.pop('Warning', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
+            });
         }
     };
-    //$scope.OrdersOrderType = [];
-    //$scope.GetData = function () {
-    //    Restangular.one('dashboard/storestats').get({
-    //        StoreID: ($scope.selectedStoreID) ? $scope.selectedStoreID : $rootScope.user.StoreID,
-    //    }).then(function (result) {
-    //        angular.copy(result.statsByOrderType, $scope.OrdersOrderType);
-    //        $scope.OrderTotalCount = 0;
-    //        $scope.OrderTotalAmount = 0;
-    //        for (var i = 0; i < $scope.OrdersOrderType.length; i++) {
-    //            if ($scope.OrdersOrderType[i].OrderType == "Gel-Al Sipariş") {
-    //                $scope.OrdersOrderType[i] = {
-    //                    value: $scope.OrdersOrderType[i].OrdersCount,
-    //                    color: '#F7464A',
-    //                    highlight: '#FF5A5E',
-    //                    label: $scope.OrdersOrderType[i].OrderType
-    //                }
-    //            }
-    //            if ($scope.OrdersOrderType[i].OrderType == "Paket") {
-    //                $scope.OrdersOrderType[i] = {
-    //                    value: $scope.OrdersOrderType[i].OrdersCount,
-    //                    color: '#46BFBD',
-    //                    highlight: '#FF5A5E',
-    //                    label: $scope.OrdersOrderType[i].OrderType
-    //                }
-    //            }
-    //            if ($scope.OrdersOrderType[i].OrderType == "Masa Sipariş") {
-    //                $scope.OrdersOrderType[i] = {
-    //                    value: $scope.OrdersOrderType[i].OrdersCount,
-    //                    color: '#FDB45C',
-    //                    highlight: '#FF5A5E',
-    //                    label: $scope.OrdersOrderType[i].OrderType
-    //                }
-    //            }
-    //        }
-    //    }, function (restresult) {
-    //        $rootScope.ShowSpinnerObject = false;
-    //    })
-    //};
-    //$scope.GetData();
-    $scope.sales = [600, 923, 482, 1211, 490, 1125, 1487];
-    $scope.data = [
-        {
-            value: 324,
-            color: '#5cb85c',
-            highlight: '#6ec96e',
-            label: 'Res'
-        },
-        {
-            value: 36,
-            color: '#FDB45C',
-            highlight: '#FFC870',
-            label: 'ÇM'
-        },
-        {
-            value: 90,
-            color: '#F7464A',
-            highlight: '#FF5A5E',
-            label: 'YS'
-        }
-    ];
-    $scope.total = 450;
+
+    $scope.ordertypes = [];
+    $scope.loadEntities('enums/ordertype', 'ordertypes');
+    $scope.ordersources = [];
+    $scope.loadEntities('ordersource', 'ordersources');
+    $scope.storetypes = [];
+    $scope.loadEntities('enums/storetype', 'storetypes');
+    $scope.StoreType = "-1";
+    $scope.GetStoreType = function (data) {
+        $scope.StoreTypeID = data;
+        $scope.selectedType = $filter('filter')($scope.storetypes, { Value: data });
+    };
+    $scope.Back = function () {
+        $window.history.back();
+    };
+
+    $scope.$on('$destroy', function () {
+        $element.remove();
+    });
 };
