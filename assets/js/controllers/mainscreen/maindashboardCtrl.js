@@ -12,6 +12,7 @@ function maindashboardCtrl($scope, $filter, $modal, $log, Restangular, SweetAler
     $scope.Time = ngnotifyService.ServerTime();
     $scope.TableData = [];
     $scope.VeiwHeader = {};
+    $scope.orderTypeFilter="all";
     if (!$rootScope.user || !$rootScope.user.UserRole || !$rootScope.user.UserRole.Name) {
         $location.path('/login/signin');
     }
@@ -74,9 +75,7 @@ function maindashboardCtrl($scope, $filter, $modal, $log, Restangular, SweetAler
             fields: [   
                 { caption: $translate.instant('turnoverbydaysreport.AmountWithVAT'), dataField: "AmountWithVAT", dataType: "number", summaryType: "sum", format: { type: "fixedPoint", precision: 2 }, area: "data" },
                 { caption: $translate.instant('turnoverbydaysreport.Store'), width: 120, dataField: "Store", area: "row" },
-                { caption: $translate.instant('turnoverbydaysreport.Year'), dataField: "Year", dataType: "number", area: "column" },
-                { caption: $translate.instant('turnoverbydaysreport.MonthNumber'), dataField: "MonthNumber", dataType: "number", area: "column" },
-                { caption: $translate.instant('turnoverbydaysreport.Day'), dataField: "Day", dataType: "number", area: "column" },
+                { caption: "Siapriş Kaynağı", dataField: "OrderSource", area: "column" },                
                 ],
             store: DevExpress.data.AspNet.createStore({
                 key: "id",
@@ -102,8 +101,11 @@ function maindashboardCtrl($scope, $filter, $modal, $log, Restangular, SweetAler
         return result;
     }
     function getFilter() { //"and",["!",["OrderType","=",""]]
-     
-                return [["OperationDate", ">=", $rootScope.ReportParameters.StartDate], "and", ["OperationDate", "<=", $rootScope.ReportParameters.EndDate],"and",["!",["OrderType","=",""]]];
+        var filter=[["OperationDate", ">=", $rootScope.ReportParameters.StartDate], "and", ["OperationDate", "<=", $rootScope.ReportParameters.EndDate]];
+        if ($scope.orderTypeFilter!="all"){
+            filter=[["OperationDate", ">=", $rootScope.ReportParameters.StartDate], "and", ["OperationDate", "<=", $rootScope.ReportParameters.EndDate],"and",["PaymenType","=",$scope.orderTypeFilter]];
+        }
+        return filter;
         
         
     }
@@ -124,37 +126,36 @@ function maindashboardCtrl($scope, $filter, $modal, $log, Restangular, SweetAler
      
         var today = new Date();
         if (filter === 'yesterday') {
-            $rootScope.ReportParameters.StartDate = new Date(today.getFullYear(), today.getMonth(), today.getDate()-1);
-            $rootScope.ReportParameters.EndDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() -1);
+            $rootScope.ReportParameters.StartDate = $filter('date')(new Date(today.getFullYear(), today.getMonth(), today.getDate()-1), 'yyyy-MM-dd');
+            $rootScope.ReportParameters.EndDate = $filter('date')(new Date(today.getFullYear(), today.getMonth(), today.getDate() -1), 'yyyy-MM-dd');
         } else if (filter === 'today') {
-            $rootScope.ReportParameters.StartDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-            $rootScope.ReportParameters.EndDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59, 999);
+            $rootScope.ReportParameters.StartDate = $filter('date')(new Date(today.getFullYear(), today.getMonth(), today.getDate()), 'yyyy-MM-dd');
+            $rootScope.ReportParameters.EndDate = $filter('date')(new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59, 999), 'yyyy-MM-dd');
         } else if (filter === 'lastWeek') {
-            $rootScope.ReportParameters.StartDate = new Date(today.setDate(today.getDate() - today.getDay() - 7));
-            $rootScope.ReportParameters.EndDate  = new Date(today.setDate(today.getDate() + 6));
+            $rootScope.ReportParameters.StartDate = $filter('date')(new Date(today.setDate(today.getDate() - today.getDay() - 7)), 'yyyy-MM-dd');
+            $rootScope.ReportParameters.EndDate  = $filter('date')(new Date(today.setDate(today.getDate() + 6)), 'yyyy-MM-dd');
         } else if (filter === 'thisWeek') {
-            $rootScope.ReportParameters.StartDate = new Date(today.setDate(today.getDate() - today.getDay()));
-            $rootScope.ReportParameters.EndDate  = new Date(today.setDate(today.getDate() + (6 - today.getDay())));
+            $rootScope.ReportParameters.StartDate = $filter('date')(new Date(today.setDate(today.getDate() - today.getDay())), 'yyyy-MM-dd');
+            $rootScope.ReportParameters.EndDate  = $filter('date')(new Date(today.setDate(today.getDate() + (6 - today.getDay()))), 'yyyy-MM-dd');
         } else if (filter === 'lastMonth') {
-            $rootScope.ReportParameters.StartDate = new Date(today.getFullYear(), today.getMonth() - 1, 1);
-            $rootScope.ReportParameters.EndDate  = new Date(today.getFullYear(), today.getMonth(), 0);
+            $rootScope.ReportParameters.StartDate = $filter('date')(new Date(today.getFullYear(), today.getMonth() - 1, 1), 'yyyy-MM-dd');
+            $rootScope.ReportParameters.EndDate  = $filter('date')(new Date(today.getFullYear(), today.getMonth(), 0), 'yyyy-MM-dd');
         } else if (filter === 'thisMonth') {
-            $rootScope.ReportParameters.StartDate = new Date(today.getFullYear(), today.getMonth(), 1);
-            $rootScope.ReportParameters.EndDate  = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+            $rootScope.ReportParameters.StartDate = $filter('date')(new Date(today.getFullYear(), today.getMonth(), 1), 'yyyy-MM-dd');
+            $rootScope.ReportParameters.EndDate  = $filter('date')(new Date(today.getFullYear(), today.getMonth() + 1, 0), 'yyyy-MM-dd');
         } else if (filter === 'last3Months') {
-            $rootScope.ReportParameters.StartDate = new Date(today.getFullYear(), today.getMonth() - 3, 1);
-            $rootScope.ReportParameters.EndDate  = new Date(today.getFullYear(), today.getMonth(), 0);
+            $rootScope.ReportParameters.StartDate = $filter('date')(new Date(today.getFullYear(), today.getMonth() - 3, 1), 'yyyy-MM-dd');
+            $rootScope.ReportParameters.EndDate  = $filter('date')(new Date(today.getFullYear(), today.getMonth(), 0), 'yyyy-MM-dd');
         } else if (filter === 'last6Months') {
-            $rootScope.ReportParameters.StartDate = new Date(today.getFullYear(), today.getMonth() - 6, 1);
-            $rootScope.ReportParameters.EndDate  = new Date(today.getFullYear(), today.getMonth(), 0);
+            $rootScope.ReportParameters.StartDate = $filter('date')(new Date(today.getFullYear(), today.getMonth() - 6, 1), 'yyyy-MM-dd');
+            $rootScope.ReportParameters.EndDate  = $filter('date')(new Date(today.getFullYear(), today.getMonth(), 0), 'yyyy-MM-dd');
         } else if (filter === 'thisYear') {
-            $rootScope.ReportParameters.StartDate = new Date(today.getFullYear(), 0, 1);
-            $rootScope.ReportParameters.EndDate = new Date(today.getFullYear(), 11, 31);
+            $rootScope.ReportParameters.StartDate = $filter('date')(new Date(today.getFullYear(), 0, 1), 'yyyy-MM-dd');
+            $rootScope.ReportParameters.EndDate = $filter('date')(new Date(today.getFullYear(), 11, 31), 'yyyy-MM-dd');
         } else {
-            $rootScope.ReportParameters.StartDate  = new Date();
-            $rootScope.ReportParameters.EndDate  = new Date();
+            $rootScope.ReportParameters.StartDate  = $filter('date')(new Date(), 'yyyy-MM-dd');
+            $rootScope.ReportParameters.EndDate  = $filter('date')(new Date(), 'yyyy-MM-dd');
         }
-          
         $scope.LoadData();
  
     };
