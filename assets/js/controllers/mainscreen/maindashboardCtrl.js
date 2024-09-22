@@ -1,6 +1,6 @@
 ﻿'use strict';
 app.controller('maindashboardCtrl', maindashboardCtrl);
-function maindashboardCtrl($scope, $filter, $modal, $log, Restangular, SweetAlert, $timeout, toaster, $window, $rootScope, $compile, $location, $translate, ngnotifyService, $element, NG_SETTING) {
+function maindashboardCtrl($scope, $filter, $modal, $log, Restangular, localStorageService, SweetAlert, $timeout, toaster, $window, $rootScope, $compile, $location, $translate, ngnotifyService, $element, NG_SETTING) {
     if (!$rootScope.ReportParameters.StartDate) {
         $rootScope.ReportParameters.StartDate = moment().add(0, 'days').format('YYYY-MM-DD ');//$filter('date')(ngnotifyService.ServerTime(), 'yyyy-MM-dd ');
     }
@@ -80,6 +80,18 @@ function maindashboardCtrl($scope, $filter, $modal, $log, Restangular, SweetAler
             store: DevExpress.data.AspNet.createStore({
                 key: "id",
                 loadUrl: NG_SETTING.apiServiceBaseUri + "/api/dxSaleStatistics",
+                onBeforeSend: function (method, ajaxOptions) {
+
+                    var authData = localStorageService.get('authorizationData');
+                    if (authData) {
+    
+                        ajaxOptions.headers = {
+                            Authorization: 'Bearer ' + authData.token//,
+                            //'Content-type': 'application/json'
+                        };
+                    }
+                }
+              
             }),
             filter: getFilter(),
         }

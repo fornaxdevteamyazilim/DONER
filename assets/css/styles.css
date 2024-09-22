@@ -468,13 +468,13 @@ h5.over-title {
   .navbar .navbar-collapse .nav {
     position: absolute;
     float: left;
+    margin-left: 32%;
   }
    .app-navbar-fixed .navbar .dropdown-off-sidebar {
     position: fixed;
     top: 0;
   }
 }
-
 .navbar .navbar-collapse.in {
   overflow-y: visible;
 }
