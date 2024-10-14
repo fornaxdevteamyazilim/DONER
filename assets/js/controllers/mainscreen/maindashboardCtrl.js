@@ -75,7 +75,7 @@ function maindashboardCtrl($scope, $filter, $modal, $log, Restangular, localStor
             fields: [   
                 { caption: $translate.instant('turnoverbydaysreport.AmountWithVAT'), dataField: "AmountWithVAT", dataType: "number", summaryType: "sum", format: { type: "fixedPoint", precision: 2 }, area: "data" },
                 { caption: $translate.instant('turnoverbydaysreport.Store'), width: 120, dataField: "Store", area: "row" },
-                { caption: "Siapriş Kaynağı", dataField: "OrderSource", area: "column" },                
+                { caption: "Sipariş Kaynağı", dataField: "OrderSource", area: "column" },                
                 ],
             store: DevExpress.data.AspNet.createStore({
                 key: "id",

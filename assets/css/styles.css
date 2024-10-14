@@ -9364,7 +9364,8 @@ nav.links a {
   }
 }
 .main-login .logo {
-  padding: 0 10px;
+  padding: 0px 0px;
+  margin-left: -20px;
 }
 .main-login .box-login, .main-login .box-forgot, .main-login .box-register {
   background: #FFFFFF;

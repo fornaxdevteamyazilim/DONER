@@ -288,6 +288,7 @@
     <Content Include="assets\js\controllers\reports\giroreports\accountbalancereportdeteailCtrl.js" />
     <Content Include="assets\js\controllers\reports\giroreports\orderpaymentdetailsCtrl.js" />
     <Content Include="assets\js\controllers\reports\giroreports\trendsCtrl.js" />
+    <Content Include="assets\js\controllers\reports\giroreports\trendsperiodiccostsCtrl.js" />
     <Content Include="assets\js\controllers\reports\ordersreports\changeorderpaymentsCtrl.js" />
     <Content Include="assets\js\controllers\reports\ordersreports\deletedorderitemsdetailsCtrl.js" />
     <Content Include="assets\js\controllers\reports\ordersreports\kitchenperformanceCtrl.js" />
@@ -497,6 +498,7 @@
     <Content Include="assets\js\controllers\reports\giroreports\giroreportCtrl.js" />
     <Content Include="assets\js\controllers\reports\giroreports\declaredrevenueeCtrl.js" />
     <Content Include="assets\js\controllers\reports\productsalesreports\productsalesstatisticsCtrl.js" />
+    <Content Include="assets\js\controllers\reports\productsalesreports\productsalesstatisticspiecesCtrl.js" />
     <Content Include="assets\js\controllers\reports\stockandcostreports\inventorytransactionsCtrl.js" />
     <Content Include="assets\js\controllers\reports\reportspopup\selectanyCtrl.js" />
     <Content Include="assets\js\controllers\reports\reportspopup\selecttagCtrl.js" />
@@ -1062,6 +1064,7 @@
     <Content Include="assets\views\reports\giroreports\cashreport.html" />
     <Content Include="assets\views\reports\giroreports\giroanalysis.html" />
     <Content Include="assets\views\reports\productsalesreports\productsalesstatistics.html" />
+      <Content Include="assets\views\reports\productsalesreports\productsalesstatisticspieces.html" />
     <Content Include="assets\views\reports\reportspopup\selectany2.html" />
     <Content Include="assets\views\reports\stockandcostreports\inventorytransactions.html" />
     <Content Include="assets\views\reports\giroreports\giroreport.html" />

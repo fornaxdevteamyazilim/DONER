@@ -1,0 +1,223 @@
+﻿<!--<style>
+    [class*="col-"] {
+        background-color: #eee;
+        background-color: rgba(86,61,124,.15);
+        border: 1px solid #ddd;
+        border: 1px solid rgba(86,61,124,.2);
+    }
+</style>-->
+<div print-section ng-controller="productsalesstatisticspiecesCtrl as ctrl">
+    <div print-remove class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row center" ng-if="isWaiting==true">
+        <span class="margin-bottom-10 visible-lg">
+            <img src="assets/images/loader.gif" />
+        </span>
+        <span class="margin-bottom-10 visible-md visible-sm visible-xs">
+            <img class="center" style="width:250px; height:200px;" src="assets/images/loader.gif" />
+        </span>
+    </div>
+    <div print-only class="visible-print hidden col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 pull-left">
+            <span class="col-lg-12 text-bold pull-left">{{user.Store.Member}} - {{user.Store.name}}</span><br />
+            <span class="col-lg-12 text-bold pull-left">{{user.FullName}} </span>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 margin-top-10">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 pull-right">
+            <span class="col-lg-12 pull-right">Başlangıç Tarihi: {{ReportParameters.StartDate|
+                date:'dd-MM-yyyy'}}</span><br />
+            <span class="col-lg-12 pull-right">Bitiş Tarihi: {{ReportParameters.EndDate|
+                date:'dd-MM-yyyy'}}</span><br />
+            <span class="col-lg-12 pull-right">{{Time | date:'dd-MM-yyyy HH:mm'}} </span>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 responsive" ng-hide="isWaiting==true">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 visible-lg visible-md">
+       
+            <div print-remove class="col-lg-2 col-md-2 col-sm-6 col-xs-6 margin-top-10 ">
+                <div print-remove class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <span class="text-bold" translate="main.STARTDATE">Başlangıç Tarihi :</span> <span
+                        class="text-bold">*</span><br />
+                    <label><input id="Date" type="text" class="form-control " ng-model="ReportParameters.StartDate"
+                            readonly ng-click="FromDate()" required></label>
+                </div>
+                <div print-remove class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <span class="text-bold" translate="main.ENDDATE">Bitiş Tarihi :</span> <span
+                        class="text-bold">*</span><br />
+                    <label><input id="Date" type="text" class="form-control" ng-model="ReportParameters.EndDate"
+                            readonly ng-click="ToDate()" required></label>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 margin-top-10">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-15">
+                    <button class="btn btn-default tooltips" style="margin-top:2px;"
+                        tooltip="{{'main.REPORT' | translate}}" tooltip-placement="bottom"
+                        ng-disabled="ObjectShow==true" ng-click="LoadData()">
+                        Bilgileri Getir
+                    </button>
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 margin-top-10">
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-15">
+                    <button class="btn btn-default tooltips" style="margin-top:2px;"
+                    tooltip="Dün" tooltip-placement="bottom"
+                     ng-click="getFilters('yesterday')">
+                    Dün
+                </button>   
+                    <button class="btn btn-default tooltips" style="margin-top:2px;"
+                    tooltip="Bugün" tooltip-placement="bottom"
+                     ng-click="getFilters('today')">
+                    Bugün
+                </button>   
+                <button class="btn btn-default tooltips" style="margin-top:2px;"
+                tooltip="Bu Hafta" tooltip-placement="bottom"
+                 ng-click="getFilters('lastWeek')">
+                Geçen Hafta
+            </button>
+                <button class="btn btn-default tooltips" style="margin-top:2px;"
+                    tooltip="Bu Hafta" tooltip-placement="bottom"
+                     ng-click="getFilters('thisWeek')">
+                    Bu Hafta
+                </button>
+                <button class="btn btn-default tooltips" style="margin-top:2px;"
+                    tooltip="Bu Ay" tooltip-placement="bottom"
+                     ng-click="getFilters('thisMonth')">
+                    Bu Ay
+                </button>
+                <button class="btn btn-default tooltips" style="margin-top:2px;"
+                tooltip="Geçen Ay" tooltip-placement="bottom"
+                 ng-click="getFilters('lastMonth')">
+                Geçen Ay
+                 </button>
+                <button class="btn btn-default tooltips" style="margin-top:2px;"
+                    tooltip="Son 3 Ay" tooltip-placement="bottom"
+                     ng-click="getFilters('last3Months')">
+                    Son 3 Ay
+                </button>
+                <button class="btn btn-default tooltips" style="margin-top:2px;"
+                    tooltip="Son 6 Ay" tooltip-placement="bottom"
+                     ng-click="getFilters('last6Months')">
+                    Son 6 Ay
+                </button>
+                <button class="btn btn-default tooltips" style="margin-top:2px;"
+                    tooltip="Bu Yıl" tooltip-placement="bottom"
+                    ng-click="getFilters('thisYear')">
+                    Bu Yıl
+                </button>
+                </div>
+
+
+            </div>
+            <div print-remove class="col-lg-1 col-md-1 col-sm-6 col-xs-6 margin-top-5 pull-right visible-lg">
+                <a class="btn btn-wide btn-red btn-scroll btn-scroll-top ti-back-left pull-right" ng-click="Back()">
+                    <span translate="main.BACK">Back</span>
+                </a>
+            </div>
+            <div class="col-md-1 margin-top-5 pull-right visible-md">
+                <a class="btn btn-red ti-back-left pull-right" ng-click="Back()"></a>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-10">
+               
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 responsive" ng-hide="isWaiting==true">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 visible-md visible-sm visible-xs">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 margin-top-10">
+            </div>
+            <div print-remove class="col-lg-2 col-md-2 col-sm-6 col-xs-6 margin-top-10 ">
+                <div print-remove class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <span class="text-bold" translate="main.STARTDATE">Başlangıç Tarihi :</span> <span
+                        class="text-bold">*</span><br />
+                    <label><input id="Date" type="text" class="form-control " ng-model="ReportParameters.StartDate"
+                            readonly ng-click="FromDate()" required></label>
+                </div>&nbsp;&nbsp;
+                <div print-remove class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <span class="text-bold" translate="main.ENDDATE">Bitiş Tarihi :</span> <span
+                        class="text-bold">*</span><br />
+                    <label><input id="Date" type="text" class="form-control" ng-model="ReportParameters.EndDate"
+                            readonly ng-click="ToDate()" required></label>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 margin-top-10">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-15">
+                    <button class="btn btn-default tooltips" style="margin-top:2px;"
+                        tooltip="{{'main.REPORT' | translate}}" tooltip-placement="bottom"
+                         ng-click="LoadData()">
+                        Bilgileri Getir
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 margin-top-10 visible-md visible-sm visible-xs">
+
+             
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-15">
+                    <button class="btn btn-default tooltips" style="margin-top:2px;"
+                    tooltip="Dün" tooltip-placement="bottom"
+                     ng-click="getFilters('yesterday')">
+                    Dün
+                </button>   
+                    <button class="btn btn-default tooltips" style="margin-top:2px;"
+                    tooltip="Bugün" tooltip-placement="bottom"
+                     ng-click="getFilters('today')">
+                    Bugün
+                </button>   
+                <button class="btn btn-default tooltips" style="margin-top:2px;"
+                tooltip="Bu Hafta" tooltip-placement="bottom"
+                 ng-click="getFilters('lastWeek')">
+                Geçen Hafta
+            </button>
+                <button class="btn btn-default tooltips" style="margin-top:2px;"
+                    tooltip="Bu Hafta" tooltip-placement="bottom"
+                     ng-click="getFilters('thisWeek')">
+                    Bu Hafta
+                </button>
+                <button class="btn btn-default tooltips" style="margin-top:2px;"
+                    tooltip="Bu Ay" tooltip-placement="bottom"
+                     ng-click="getFilters('thisMonth')">
+                    Bu Ay
+                </button>
+                <button class="btn btn-default tooltips" style="margin-top:2px;"
+                tooltip="Geçen Ay" tooltip-placement="bottom"
+                 ng-click="getFilters('lastMonth')">
+                Geçen Ay
+                 </button>
+                <button class="btn btn-default tooltips" style="margin-top:2px;"
+                    tooltip="Son 3 Ay" tooltip-placement="bottom"
+                     ng-click="getFilters('last3Months')">
+                    Son 3 Ay
+                </button>
+                <button class="btn btn-default tooltips" style="margin-top:2px;"
+                    tooltip="Son 6 Ay" tooltip-placement="bottom"
+                     ng-click="getFilters('last6Months')">
+                    Son 6 Ay
+                </button>
+                <button class="btn btn-default tooltips" style="margin-top:2px;"
+                    tooltip="Bu Yıl" tooltip-placement="bottom"
+                    ng-click="getFilters('thisYear')">
+                    Bu Yıl
+                </button>
+                </div>
+            </div>
+            <div print-remove class="col-lg-1 col-md-1 col-sm-6 col-xs-6 margin-top-5 pull-right visible-lg">
+                <a class="btn btn-wide btn-red btn-scroll btn-scroll-top ti-back-left pull-right" ng-click="Back()">
+                    <span translate="main.BACK">Back</span>
+                </a>
+            </div>
+            <div class="col-md-1 margin-top-5 pull-right visible-md">
+                <a class="btn btn-red ti-back-left pull-right" ng-click="Back()"></a>
+            </div>
+        </div>
+    
+    <div id="report" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-15 table-responsive"ng-hide="isWaiting==true">
+    </div>
+    <span translate="main.ORDERSOURCE">Order Source</span>&nbsp;
+    <select ng-model="orderTypeFilter" ng-change="getFilters()">
+        <option value="all">Tümü</option>
+        <option value="Restoran">Restoran</option>
+        <option value="Paket">Paket</option>
+    </select>
+        <div id="sales" dx-pivot-grid="pivotGridOptions"></div>
+    </div>
+</div>

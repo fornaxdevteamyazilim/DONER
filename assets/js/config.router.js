@@ -2097,6 +2097,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 ncyBreadcrumb: {
                     label: 'trends'
                 }
+            }).state('app.reports.giroreports.trendsperiodiccosts', {
+                url: '/trendsperiodiccosts',
+                templateUrl: "assets/views/reports/giroreports/trendsperiodiccosts.html",
+                resolve: loadSequence('underscore', 'xeditable', 'config-xeditable', 'ngTable', 'trendsperiodiccostsCtrl', 'dateCtrl', 'jqueryui', 'jquery-nestable-plugin', 'angularBootstrapNavTree'),
+                title: 'Trend Raporu',
+                authenticate: true,
+                ncyBreadcrumb: {
+                    label: 'trendsperiodiccosts'
+                }
             }).state('app.reports.giroreports.accountbalancereport', {
                 url: '/accountbalancereport',
                 templateUrl: "assets/views/reports/giroreports/accountbalancereport.html",
@@ -2167,6 +2176,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 authenticate: true,
                 ncyBreadcrumb: {
                     label: 'productsalesstatistics'
+                }
+            }).state('app.reports.productsalesreports.productsalesstatisticspieces', {
+                url: '/productsalesstatisticspieces',
+                templateUrl: "assets/views/reports/productsalesreports/productsalesstatisticspieces.html",
+                resolve: loadSequence('underscore', 'xeditable', 'config-xeditable', 'ngTable', 'productsalesstatisticspiecesCtrl', 'dateCtrl', 'pivottable', 'jqueryui', 'selecttagCtrl', 'jquery-nestable-plugin', 'ng-nestable', 'angularBootstrapNavTree'),
+                title: 'Urun Satis (Adet) Raporu',
+                authenticate: true,
+                ncyBreadcrumb: {
+                    label: 'productsalesstatisticspieces'
                 }
             }).state('app.reports.productsalesreports.productgroupstrikerate', {
                 url: '/productgroupstrikerate',
