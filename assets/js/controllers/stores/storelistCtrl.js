@@ -1,6 +1,6 @@
 ﻿'use strict';
 app.controller('storelistCtrl', storelistCtrl);
-function storelistCtrl($scope, $filter, $window, $stateParams, $rootScope, $location, $translate, userService, ngnotifyService, $element, NG_SETTING, $http, $q) {
+function storelistCtrl($scope, $filter, $window, $stateParams, $rootScope, $location, $translate, userService,$modal, ngnotifyService, $element, NG_SETTING, $http, $q) {
     $rootScope.uService.EnterController("storelistCtrl");
     $scope.Time = ngnotifyService.ServerTime();
     if (userService.userIsInRole("Admin") || userService.userIsInRole("CCMANAGER") || userService.userIsInRole("LC") || userService.userIsInRole("AREAMANAGER") || userService.userIsInRole("ACCOUNTING") || userService.userIsInRole("PH") || userService.userIsInRole("PHAdmin") || userService.userIsInRole("OperationDepartment") || userService.userIsInRole("FinanceDepartment")) {
@@ -73,7 +73,36 @@ function storelistCtrl($scope, $filter, $window, $stateParams, $rootScope, $loca
             { caption: $translate.instant('STORE.isActiveValue'), dataField: "isActiveValue", dataType: "string" },
             { caption: $translate.instant('STORE.isECREnabled'), dataField: "isECREnabled", dataType: "string" },
 
+            {             
+                caption: $translate.instant('unmappedorders.Commands'),
+                //dataField: "Store",
+                type: "buttons",
+                buttons: ['edit', 'delete',{
+                    text: "Tags",
+                    icon: "tags",
+                    hint: "Tags edit",
+                    // visible: function (e) {
+                    //     return !e.row.isEditing && e.row.data.AggregatorOrderStateID == 1;//!e.row.isEditing && !isChief(e.row.data.Position);
+                    // },
+                    onClick: function (e) {
 
+                        var modalInstance = $modal.open({
+                            templateUrl: 'assets/views/Tags/ObjectTagEditModalContent.html',
+                            controller: 'TagModalCtrl',
+                            size: '',
+                            backdrop: '',
+                            resolve: {
+                                ObjectID: function () {
+                                    return e.row.data.id;
+                                }
+                            }
+                        });               
+                        
+                    
+                },
+            }
+                ]
+            }
             
           
           

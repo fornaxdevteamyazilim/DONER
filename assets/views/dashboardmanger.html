@@ -78,7 +78,6 @@
         <img class="center" style="width:250px; height:200px;" src="assets/images/loader.gif" />
     </span>
 </div>
-
 <div class="content-block" ng-controller="VisitsCtrl">
     <div class="row">
         <div class="column" ng-repeat="ordertype in OrdersOrderType">
@@ -125,5 +124,88 @@
             </div>
         </div>
 
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-controller="VisitsCtrl"  style="top: 5px;">
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 panel panel-white no-radius">
+            <div class="panel-heading border-bottom">
+                <h4 class="panel-title text-bold">{{'main.THEORIC' | translate}} ({{InventoryCost.FromDateTXT}} / {{InventoryCost.ToDateTXT}})</h4>
+            </div>
+            <div class="panel-body">
+                <div class="text-center">
+                    <span class="mini-pie"> <canvas class="tc-chart" tc-chartjs-doughnut chart-options="options" chart-data="InventoryCostIdealData" chart-legend="chart3" width="100"></canvas> <span> % {{InventoryCost.Ideal *100 |number:2 }}</span> </span>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="clearfix padding-5 space5">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center no-padding">
+                        <div class="border-right border-dark">
+                            <label class="text-bold block text-extra-larget tooltips" tooltip="{{'main.IDEALCOSTS' | translate}}"  tooltip-placement="top"> {{InventoryCost.Ideal *100 |number:2 }} %</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center no-padding">
+                        <div class="border-right border-dark">
+                            <label class="text-bold block text-extra-large tooltips" tooltip="{{'main.THEORICINVANTORIES' | translate}}" tooltip-placement="top">{{InventoryCost.FoodCost | number: 2 }} {{:: 'main.CURRENCY_SYMBOL' | translate}}</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center no-padding">
+                        <label class="text-bold block text-extra-large tooltips" tooltip="{{'main.GRANDTOTALS' | translate}}"  tooltip-placement="top">{{InventoryCost.SalesTotal | number: 2 }} {{:: 'main.CURRENCY_SYMBOL' | translate}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 panel panel-white no-radius">
+            <div class="panel-heading border-bottom">
+                <h4 class="panel-title text-bold">{{'main.THEORICTODAY' | translate}}  ({{InventoryCost.ToDateTXT}})</h4>
+            </div>
+            <div class="panel-body">
+                <div class="text-center">
+                    <span class="mini-pie"> <canvas class="tc-chart" tc-chartjs-doughnut chart-options="options" chart-data="InventoryCostRealData" chart-legend="chart3" width="100"></canvas> <span> % {{InventoryCost.IdealToday *100 |number:2 }}</span> </span>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="clearfix padding-5 space5">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center no-padding">
+                        <div class="border-right border-dark">
+                            <label class="text-bold block text-extra-large tooltips" tooltip="{{'main.ACTUALCALCULATEREMAINDERLIST' | translate}}" tooltip-placement="top"> {{InventoryCost.IdealToday *100 |number:2 }} %</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center no-padding">
+                        <div class="border-right border-dark">
+                            <label class="text-bold block text-extra-large tooltips" tooltip="{{'main.ACTUALINVANTORIES' | translate}}" tooltip-placement="top"> {{InventoryCost.FoodCostToday | number: 2 }} {{:: 'main.CURRENCY_SYMBOL' | translate}}</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center no-padding">
+                        <label class="text-bold block text-extra-large tooltips" tooltip="{{'main.GRANDTOTALS' | translate}}" tooltip-placement="top">{{InventoryCost.SalesTotalToday | number: 2 }} {{:: 'main.CURRENCY_SYMBOL' | translate}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 panel panel-white no-radius">
+            <div class="panel-heading border-bottom">
+                <h4 class="panel-title text-bold">Atık Maliyet Tablosu ({{InventoryCost.FromDateTXT}} / {{InventoryCost.ToDateTXT}})</h4>
+            </div>
+            <div class="panel-body">
+                <div class="text-center">
+                    <span class="mini-pie"> <canvas class="tc-chart" tc-chartjs-doughnut chart-options="options" chart-data="InventoryCostWasteData" chart-legend="chart3" width="100"></canvas> <span> % {{InventoryCost.Waste *100 |number:2 }}</span> </span>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="clearfix padding-5 space5">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center no-padding">
+                        <div class="border-right border-dark">
+                            <label class="text-bold block text-extra-large tooltips" tooltip="Atık Maliyet" tooltip-placement="top"> {{InventoryCost.Waste *100 |number:2 }} %</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center no-padding">
+                        <div class="border-right border-dark">
+                            <label class="text-bold block text-extra-large tooltips" tooltip="Atık Maliyet Malzeme Toplamı" tooltip-placement="top"> {{InventoryCost.WasteFoodCost | number: 2 }} TL</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center no-padding">
+                        <label class="text-bold block text-extra-large tooltips" tooltip="Toplam Satışlar" tooltip-placement="top">{{InventoryCost.SalesTotal | number: 2 }} TL</label>
+                    </div>
+                </div>
+            </div>
+        </div>-->
     </div>
 </div>

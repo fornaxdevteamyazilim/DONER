@@ -1,11 +1,34 @@
-<!--<style>
-        [class*="col-"] {
-        background-color: #eee;
-        background-color: rgba(86,61,124,.15);
-        border: 1px solid #ddd;
-        border: 1px solid rgba(86,61,124,.2);
+<style>
+.logo-center {
+    text-align: center; /* Logoyu ortalar */
+    padding: 10px;
+}
+
+/* Masaüstü için logo ayarları */
+.logo-img {
+    width: auto; /* Masaüstü için genişlik */
+    height: auto; /* Oranı koruyarak yüksekliği otomatik ayarla */
+    max-width: 100%; /* Logonun container'ı aşmamasını sağlar */
+}
+
+
+@media (max-width: 1024px) and (min-width: 992px) {
+    .logo-img {
+        width: auto; /* Tablet ve daha küçük cihazlar için logo genişliği */
     }
-</style>-->
+}
+
+@media (max-width: 767px) and (min-width: 991px) {
+    .logo-img {
+        width: 120px; /* Telefonlar için logo genişliği */
+    }
+}
+@media (max-width: 300px) and (min-width: 766px) {
+    .logo-img {
+        width: 90px; /* Telefonlar için logo genişliği */
+    }
+}
+</style>
 <!-- start: LOGIN -->
 <!-- toaster directive -->
 <toaster-container
@@ -14,7 +37,7 @@
 <div class="row">
     <div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
         <div class="logo center">
-            <img ng-src="assets/images/glogo.png" />
+            <img class="logo-img" ng-src="assets/images/glogo.png" />
         </div>
         <!-- <div class="logo center visible-sm visible-xs">
             <img style="    width: 139%;

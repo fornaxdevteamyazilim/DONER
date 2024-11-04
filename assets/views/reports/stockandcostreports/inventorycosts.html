@@ -111,8 +111,8 @@
                         <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="pull-right">{{'main.IDEALTODAY' | translate}}(%)</span> </th>
                         <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="pull-right">{{'main.FOODCOSTTODAY' | translate}}(%)</span> </th>
                         <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="pull-right">{{'main.SALESTOTALTODAY' | translate}}{{:: 'main.CURRENCY_SYMBOL' | translate}}</span> </th>
-                        <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="pull-right">{{'main.IDEAL' | translate}}(%)</span> </th>
-                        <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="pull-right">{{'main.FOODCOST' | translate}}{{:: 'main.CURRENCY_SYMBOL' | translate}}</span> </th>
+                        <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="pull-right">Aylık {{'main.IDEAL' | translate}}(%)</span> </th>
+                        <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="pull-right">Aylık {{'main.FOODCOST' | translate}}{{:: 'main.CURRENCY_SYMBOL' | translate}}</span> </th>
                         <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="pull-right">{{'main.REAL' | translate}}(%)</span> </th>
                         <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="pull-right">{{'main.REALFOODCOST' | translate}}{{:: 'main.CURRENCY_SYMBOL' | translate}}</span></th>
                         <!--<th class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="pull-right">{{'main.WASTE' | translate}}(%)</span></th>
@@ -129,7 +129,7 @@
                             {{ ShowObject('stores','id',item.StoreID,'name') }}
                         </td>
                         <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                            <span class="pull-right">{{item.IdealToday |number:2}}</span>
+                            <span class="pull-right">%{{(item.Ideal)*100 |number:2}}</span>
                         </td>
                         <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
                             <span class="pull-right">{{item.FoodCostToday |number:2}}</span>

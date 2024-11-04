@@ -50,6 +50,16 @@ function trendsperiodiccostsCtrl($scope, $filter, $modal, $http, $q, userService
             $rootScope.ReportParameters.EndDate = $filter('date')(data, 'yyyy-MM-dd');
         })
     };
+    if (userService.userAuthorizated()) {
+        Restangular.all('report').getList(
+       {
+           search: "number='013'"
+       }).then(function (result) {
+           $scope.VeiwHeader = result[0];
+       }, function (response) {
+           toaster.pop('error', $translate.instant('Server.ServerError'), response.data.ExceptionMessage);
+       });
+    }
     $scope.StoreType = "-1";
     $scope.Back = function () {
         $window.history.back();
@@ -63,10 +73,11 @@ function trendsperiodiccostsCtrl($scope, $filter, $modal, $http, $q, userService
     $scope.Back = function () {
         $window.history.back();
     };
-    if (userService.userIsInRole("Admin") || userService.userIsInRole("CCMANAGER") || userService.userIsInRole("LC") || userService.userIsInRole("AREAMANAGER") || userService.userIsInRole("ACCOUNTING") || userService.userIsInRole("PH") || userService.userIsInRole("MarketingDepartment") || userService.userIsInRole("PHAdmin") || userService.userIsInRole("OperationDepartment") || userService.userIsInRole("FinanceDepartment")) {
+    if ($rootScope.user.userstores && $rootScope.user.userstores.length > 1) {
+        $scope.selectStore = true;
         $scope.StoreID = '';
-        $scope.ShowStores = true;
-    } else {
+    }
+    else {
         $scope.StoreID = $rootScope.user.StoreID;
     }
     $scope.SetStoreID = function (FromValue) {

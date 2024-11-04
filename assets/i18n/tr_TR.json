@@ -2934,10 +2934,12 @@
         "LOYALTYREPORTS": "Sadakat",
         "WEBUSERS": "Web Kullanıcıları",
         "WEBREPORTS": "Web",
+        "OPERATIONS": "Operasyonlar",
         "PunchCardStoreCompare": "PunchCard Store Compare",
         "MONTHLYSALESVSBUDGET": "Aylık Satışlar Vs Bütçe",
         "WEEKLYSALESCOMPARE": "Haftalık Satış Karşılaştırması",
-        "DRIVERSTRANSACTIONS": "Kuriye Taşıma İstatistikleri Raporu"
+        "DRIVERSTRANSACTIONS": "Kuriye Taşıma İstatistikleri Raporu",
+        "SALESREPORT": "Satış Raporu"
       },
       "addresses": {
         "MAIN": "Adresler",
@@ -3942,7 +3944,8 @@
     "Region": "Bölge",
     "Rank": "#",
     "regionRank": "Bölge #",
-    "dailyTarget": "Günlük Hedef"
+    "dailyTarget": "Günlük Hedef",
+    "StoreFilterType":"Restoran Filtre Tipi"
   },
   "SignalR": {
     "ConnectionOk": "ROPNG sunucu bağlantısı kuruldu.",
