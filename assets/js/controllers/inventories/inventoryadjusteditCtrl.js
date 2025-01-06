@@ -25,6 +25,8 @@ function inventoryadjusteditCtrl($scope, $log, $modal, $filter, SweetAlert, Rest
         $scope.edit = $translate.instant('main.EDIT');
         $scope.trUnit = $translate.instant('main.UNIT');
         $scope.trName = $translate.instant('main.NAME');
+        $scope.note = $translate.instant('main.NOTE');
+
     };
     $scope.translate();
     var deregistration = $scope.$on('$translateChangeSuccess', function (event, data) {
@@ -38,6 +40,9 @@ function inventoryadjusteditCtrl($scope, $log, $modal, $filter, SweetAlert, Rest
         })
     else {
         $scope.item = {};
+    }
+    $scope.EditCountDisabled = function () {
+        return $stateParams.id != 'new';
     }
     $scope.SaveData = function () {
         if ($scope.item.restangularized && $scope.item.id) {
@@ -93,7 +98,7 @@ function inventoryadjusteditCtrl($scope, $log, $modal, $filter, SweetAlert, Rest
                 pageNo: 1,
                 pageSize: 1000,
                 sort: 'id',
-                //search: "StoreID='" + $rootScope.user.StoreID + "'"
+                search: "StoreID='" + $rootScope.user.StoreID + "'"
             }).then(function (result) {
                 $scope.repositories = result;
                 $scope.item.RepositoryID = result[0].id;

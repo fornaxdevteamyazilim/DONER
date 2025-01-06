@@ -120,7 +120,29 @@ function turnoverbydaysreportCtrl($scope, $filter, $modal, $log, Restangular, Sw
                     }
                 },
                 { caption: $translate.instant('turnoverbydaysreport.AmountWithVAT'), dataField: "AmountWithVAT", dataType: "number", summaryType: "sum", format: { type: "fixedPoint", precision: 2 }, area: "data" },
-
+                {caption: $translate.instant('fieldselector.AC_StoreIndex'), dataField: "AC_StoreIndex", area: "column" },           
+                {caption: $translate.instant('fieldselector.Amount'), dataField: "Amount", area: "column" },           
+                {caption: $translate.instant('fieldselector.Carrier'), dataField: "Carrier", area: "column" },           
+                {caption: $translate.instant('fieldselector.Day'), dataField: "Day", area: "column" },           
+                {caption: $translate.instant('fieldselector.GrossAmount'), dataField: "GrossAmount", area: "column" },                           
+                {caption: $translate.instant('fieldselector.Hour'), dataField: "Hour", area: "column" },           
+                {caption: $translate.instant('fieldselector.MonthName'), dataField: "MonthName", area: "column" },           
+                {caption: $translate.instant('fieldselector.MonthNumber'), dataField: "MonthNumber", area: "column" },           
+                {caption: $translate.instant('fieldselector.OperationDate'), dataField: "OperationDate", area: "column" },           
+                {caption: $translate.instant('fieldselector.OrderSource'), dataField: "OrderSource", area: "column" }, 
+                {caption: $translate.instant('fieldselector.OrderType'), dataField: "OrderType", area: "column" },           
+                {caption: $translate.instant('fieldselector.PaymenType'), dataField: "PaymenType", area: "column" },           
+                {caption: $translate.instant('fieldselector.ROPStoreID'), dataField: "ROPStoreID", area: "column" },
+                {caption: $translate.instant('fieldselector.RegionManager'), dataField: "RegionManager", area: "column" },           
+                {caption: $translate.instant('fieldselector.StoreID'), dataField: "StoreID", area: "column" },           
+                {caption: $translate.instant('fieldselector.StoreType'), dataField: "StoreType", area: "column" },  
+                
+                {caption: $translate.instant('fieldselector.VAT'), dataField: "VAT", area: "column" },           
+                {caption: $translate.instant('fieldselector.Week'), dataField: "Week", area: "column" },           
+                {caption: $translate.instant('fieldselector.WeekDayName'), dataField: "WeekDayName", area: "column" },
+                {caption: $translate.instant('fieldselector.WeekDayNumber'), dataField: "WeekDayNumber", area: "column" },           
+                {caption: $translate.instant('fieldselector.Year'), dataField: "Year", area: "column" },           
+                     
             ],
             store: DevExpress.data.AspNet.createStore({
                 key: "id",

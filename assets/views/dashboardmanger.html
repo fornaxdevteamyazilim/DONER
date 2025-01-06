@@ -1,65 +1,113 @@
 ﻿<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-        color: #323237;
+    /* styles.css */
+    /* styles.css */
+
+
+    .header {
+        /* text-align: center; */
+        background-color: #ff6b6b;
+        color: white;
+        padding: 20px 10px;
     }
 
-    td,
-    th {
-        border: 3px solid #dddddd;
-        text-align: left;
-        padding: 5px;
-        font-size: 11px;
-        width: 1px;
+    .header h1 {
+        margin: 0;
+        font-size: 1.8rem;
+    }
+
+    .header p {
+        margin: 5px 0 0;
+        font-size: 1rem;
+    }
+
+    /* Genel Bilgiler */
+    .stats {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        padding: 20px;
+
+    }
+
+
+    /* Mutfak Süreçleri */
+    .kitchen-process {
+        padding: 20px;
+        font-size: 12px;
+    }
+
+    .kitchen-process h2 {
         text-align: center;
-        font-weight: bold;
+        margin-bottom: 20px;
+        color: #555;
+        font-size: 15px;
     }
 
-    tr:nth-child(even) {
-        background-color: #ffffff;
+    .process-bar {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    * {
-        box-sizing: border-box;
+    .step {
+        text-align: center;
+        width: 120px;
     }
 
-    body {
-        font-family: Arial, Helvetica, sans-serif;
+    .progress {
+        background-color: #ddd;
+        border-radius: 10px;
+        height: 10px;
+        margin: 6px 0;
+        overflow: hidden;
+        position: relative;
     }
 
-    /* Float four columns side by side */
-    .column {
-        float: left;
-        width: 16%;
-        padding: 0 5px;
-        margin-top: 10px;
+    .progress-bar {
+        height: 10px;
+        background-color: #ff6b6b;
+        width: 0;
+    }
+
+    .panelheader {
+        height: 150px;
+        width: 250px;
+        border-radius: 10px;
+        /* padding: 29px; */
+        font-size: 17px;
+        background-color: #2c3543;
 
     }
 
-    /* Remove extra left and right margins, due to padding */
-    .row {
-        margin: 0 -5px;
+    .panelheaderright {
+        height: 140px;
+        width: 235px;
+        border-radius: 10px;
+        padding: 29px;
+        font-size: 17px;
+        background-color: #2c3543;
+        border-style: ridge;
     }
 
-    /* Clear floats after the columns */
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
+
+    .img {
+        height: 65px;
+        width: 73px;
+        margin-left: -17px;
     }
 
-    /* Responsive columns */
-    @media screen and (max-width: 600px) {
-        .column {
-            width: 100%;
-            display: block;
-            margin-bottom: 20px;
-        }
+    .panel-header {
+        text-align: center;
+        margin-top: -61px;
+        margin-left: 47px;
     }
 
-    /* Style the counter cards */
+    .text {
+        color: #dfdfeb;
+
+    }
+
     .card {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         padding: 8px;
@@ -67,145 +115,413 @@
         background-color: #f1f1f1;
         border-radius: 11px;
     }
+
+    /* Responsive Tasarım */
+    @media (max-width: 768px) {
+        .stats {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-card {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .process-bar {
+            flex-direction: column;
+        }
+
+        .step {
+            width: 100%;
+            max-width: 300px;
+        }
+    }
+
+
+
+    .right-bar {
+        position: fixed;
+        top: 64px;
+        right: 0;
+        background-color: #2c3543;
+        width: 300px;
+        overflow: hidden;
+        z-index: 99;
+        height: 100%;
+        border-left: 1px solid #ddd;
+    }
+
+    .mainTitle {
+        font-size: 15px;
+        text-align: center;
+        color: #dfdfeb;
+    }
+
+    .right-bar .right-bar-inner {
+        padding: 4px 20px;
+        text-align: center;
+        border-style: ridge;
+        border-color: indianred;
+    }
+
+    .dark-skin .wrapper .border-light {
+        border-color: rgba(255, 255, 255, 0.12) !important;
+    }
+
+    .box-body {
+        padding: 1.5rem;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        border-radius: 10px;
+    }
+
+    .h12 {
+        margin-right: 165px;
+        font-size: 15px;
+        color: #dfdfeb;
+    }
+
+    .storess {
+        color: red !important;
+        margin-bottom: 20px !important;
+        float: right;
+    }
+
+    /* Right bar ana tasarım */
+
+
+    /* Scroll ekleme */
+    .slimScrollDiv {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+    }
+
+    #sidebarRight {
+        overflow-y: auto;
+        /* Dikey scroll */
+        height: 100%;
+        padding: 15px;
+        /* İçerik boşluğu */
+        box-sizing: border-box;
+    }
+
+    /* Scrollbar özelleştirme */
+    #sidebarRight::-webkit-scrollbar {
+        width: 1px;
+    }
+
+    #sidebarRight::-webkit-scrollbar-thumb {
+        background: #888;
+        /* Kaydırma çubuğu rengi */
+        border-radius: 4px;
+    }
+
+    #sidebarRight::-webkit-scrollbar-thumb:hover {
+        background: #555;
+        /* Hover rengi */
+    }
+
+    #sidebarRight::-webkit-scrollbar-track {
+        background: #f0f0f0;
+        /* Scroll alanı arka plan rengi */
+    }
+
+
+
+    .step {
+        margin-bottom: 15px;
+    }
+
+    .mini-pies {
+        height: 150px;
+        position: static;
+        width: 100px;
+        display: inline-block;
+        margin-left: 7px;
+    }
+
+    .values {
+        margin-left: 19px;
+        font-size: 13px;
+    }
 </style>
-<section class="padding-top-15 padding-bottom-15" ng-init="app.layout.isSidebarClosed=true" ng-controller="VisitsCtrl">
-</section>
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center" ng-if="ShowSpinnerObject == true">
-    <span class="margin-bottom-10 visible-lg">
-        <img src="assets/images/loader.gif" />
-    </span>
-    <span class="margin-bottom-10 visible-md visible-sm visible-xs">
-        <img class="center" style="width:250px; height:200px;" src="assets/images/loader.gif" />
-    </span>
-</div>
-<div class="content-block" ng-controller="VisitsCtrl">
-    <div class="row">
-        <div class="column" ng-repeat="ordertype in OrdersOrderType">
-            <div class="card">
-                <h4>{{ordertype.OrderType}}: {{ordertype.OrdersCount}}</h4>
-                <div class="panel-body center" style="color: black;">
-                    TC &nbsp;:&nbsp;<strong class="text-dark"
-                        ng-if="user.Store.MemberID == 106851154380">{{ordertype.OrdersAmount | number:2}} ₺</strong>
-                    <strong class="text-dark" ng-if="user.Store.MemberID != 106851154380">{{ordertype.OrdersAmount |
-                        number:2}} ₺</strong>
-                    <br />
-                    AC &nbsp;:&nbsp;<strong class="text-dark"> {{ordertype.OrdersAverage | number:2}} ₺</strong>
+<div ng-init="app.layout.isSidebarClosed=true" ng-controller="VisitsCtrl">
+    <div class="dashboard">
+        <!-- Başlık -->
+        <!-- Genel Bilgiler -->
+        <section class="stats">
+            <div class="panelheader col-lg-2 col-md-2 col-sm-12 col-xs-12 pull-left visible-lg visible-md">
+                <div>
+                    <span class="mini-pies col-lg-6 col-md-6 col-sm-6 col-xs-6 pull-left"> <canvas class="tc-chart"
+                            tc-chartjs-doughnut chart-options="options" chart-data="InventoryCostIdealData"
+                            chart-legend="chart3" width="100"></canvas></span>
+                    <div class="values col-lg-6 col-md-6 col-sm-6 col-xs-6 pull-right">
+                        <!--<strong class="text-dark" ng-if="user.Store.MemberID == 106851154380">₺ {{OrderTotalAmount * 100 / 108 | number:2}}</strong>-->
+                        <label class="text-bold block text-extra-larget tooltips"
+                            tooltip="{{'main.IDEALCOSTS' | translate}}" tooltip-placement="top"> {{InventoryCost.Ideal
+                            *100 |number:2 }} %</label>
+                        <label class="text-bold block text-extra-large tooltips"
+                            tooltip="{{'main.THEORICINVANTORIES' | translate}}"
+                            tooltip-placement="top">{{InventoryCost.FoodCost | number: 2 }} {{:: 'main.CURRENCY_SYMBOL'
+                            | translate}}</label>
+
+
+                        <label class="text-bold block text-extra-large tooltips"
+                            tooltip="{{'main.GRANDTOTALS' | translate}}"
+                            tooltip-placement="top">{{InventoryCost.SalesTotal | number: 2 }} {{::
+                            'main.CURRENCY_SYMBOL' | translate}}</label>
+
+
+                    </div>
                 </div>
-                <h3
-                    ng-class="{'fa fa-caret-up text-green':(ordertype.OrdersCount*100) / OrderTotalCount > 40 ,'fa fa-caret-down text-red':(ordertype.OrdersCount*100) / OrderTotalCount < 40}"> % </span>&nbsp;&nbsp;<span
-                    class="value text-large"
-                    style="font-size: 30px;">
-                    {{(ordertype.OrdersCount*100)
-                    / OrderTotalCount |number:2}}</h3>
+
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <h4 class="panel-title text-bold" translate="Kaynak istatistiği" style="color: black;"></h4>
-        <div class="column" ng-repeat="statsByOrderSource in statsByOrderSource">
-            <div class="card">
-                <h4>  {{statsByOrderSource.OrderSource}}: {{statsByOrderSource.OrdersCount}}</h4>
-                <div class="panel-body center" style="color: black;">
-                    TC &nbsp;:&nbsp;<strong class="text-dark"
-                        ng-if="user.Store.MemberID == 106851154380">{{statsByOrderSource.OrdersAmount | number:2}}
-                        ₺</strong>
-                    <strong class="text-dark"
-                        ng-if="user.Store.MemberID != 106851154380">{{statsByOrderSource.OrdersAmount | number:2}}
-                        ₺</strong>
-                    <br />
-                    AC &nbsp;:&nbsp;<strong class="text-dark"> {{statsByOrderSource.OrdersAverage | number:2}}
-                        ₺</strong>
+            <div class="panelheader col-lg-2 col-md-2 col-sm-12 col-xs-12 pull-left visible-lg visible-md"
+                style="margin-left: 10px;">
+                <img class="img" src="assets/images/totalamount.png" alt="">
+                <div class="panel-header">
+
+
+                    <div class="sparkline">
+                        <span jq-sparkline ng-model="earnings" type="bar" height="30px" bar-color="#5CB85C"></span>
+                    </div>
+                    <p>{{'main.TOTALAMOUNT' | translate}}</p>
+                    <div class="values">
+                        <!--<strong class="text-dark" ng-if="user.Store.MemberID == 106851154380">₺ {{OrderTotalAmount * 100 / 108 | number:2}}</strong>-->
+                        <strong class="text" ng-if="user.Store.MemberID == 106851154380"> {{OrderTotalAmount |
+                            number:2}}₺</strong>
+                        <strong class="text" ng-if="user.Store.MemberID != 106851154380"> {{OrderTotalAmount |
+                            number:2}}₺</strong>
+                        <p class="text-small no-margin" ng-if="user.Store.MemberID == 106851154380">
+                            {{:: totalnetamount }}
+                        </p>
+
+                    </div>
+
                 </div>
-                <h3
-                ng-class="{'fa fa-caret-up text-green':(statsByOrderSource.OrdersCount*100) / OrdersCount > 40 ,'fa fa-caret-down text-red':(statsByOrderSource.OrdersCount*100) / OrdersCount < 40}"></i>&nbsp;&nbsp;<span
-                class="percentage" style="font-size: 15px;">
-                    {{(statsByOrderSource.OrdersCount*100) / OrdersCount
-                            |number:2}}</h3>
             </div>
-        </div>
+            <!-- <div class="panelheader col-lg-2 col-md-2 col-sm-12 col-xs-12 pull-left visible-lg visible-md"
+                style="margin-left: 10px;">
+                <img class="img" src="assets/images/ordertotals.png" alt="">
+                <div class="panel-header">
+
+
+                    <div class="sparkline">
+                        <span jq-sparkline ng-model="referrals" type="bar" height="30px" bar-color="#46B8DA"></span>
+                    </div>
+                    <p>{{'main.AVERAGE' | translate}}</p>
+                    <div class="values">
+                        <strong class="text"> {{OrderTotalAmount / OrderTotalCount | number:2}}₺</strong>
+
+                    </div>
+
+                </div>
+            </div> -->
+
+        </section>
+        <!-- <section class="kitchen-process">
+                        <h2> {{'main.STOREPERFORMANCEDATA' | translate}}</h2>
+                        <div class="process-bar">
+                            <div class="step">
+                                <span> {{'main.ORDERCOUNT' | translate}}</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 40%;"></div>
+                                </div>
+                                <p> {{storePerformanceData.OrdersCount}}</p>
+                            </div>
+                            <div class="step">
+                                <span>{{'main.TRANSFERREDDURATION' | translate}}</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 60%;"></div>
+                                </div>
+                                <p>{{storePerformanceData.TransferredDuration}}</p>
+                            </div>
+                            <div class="step">
+                                <span> {{'main.AWAITINGAUTHDURATION' | translate}}</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 40%;"></div>
+                                </div>
+                                <p> {{storePerformanceData.AwaitingAuthDuration}}</p>
+                            </div>
+                            <div class="step">
+                                <span> {{'main.BUILDINGDURATION' | translate}}</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 40%;"></div>
+                                </div>
+                                <p> {{storePerformanceData.BuildingDuration}}</p>
+                            </div>
+                        </div>
+                        <h2> mutfak süreçleri</h2>
+                        <div class="process-bar">
+                            <div class="step">
+                                <span> {{'main.PREPARINGDURATION' | translate}}</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 40%;"></div>
+                                </div>
+                                <p> {{storePerformanceData.PeparingDuration}}</p>
+                            </div>
+                            <div class="step">
+                                <span>{{'main.PREPAREDDURATION' | translate}}</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 60%;"></div>
+                                </div>
+                                <p>{{storePerformanceData.PeparedDuration}}</p>
+                            </div>
+                            <div class="step">
+                                <span> {{'main.WAITINGPERIOD' | translate}}</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 40%;"></div>
+                                </div>
+                                <p> {{storePerformanceData.WaitingPeriod}}</p>
+                            </div>
+                            <div class="step">
+                                <span> {{'main.OUTDURATION' | translate}}</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 40%;"></div>
+                                </div>
+                                <p> {{storePerformanceData.OutDuration}}</p>
+                            </div>
+
+                        </div>
+                        <h2> Teslimat Süreçleri</h2>
+                        <div class="process-bar">
+                            <div class="step">
+                                <span> {{'main.DELIVERYPERIOD' | translate}}</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 40%;"></div>
+                                </div>
+                                <p> {{storePerformanceData.DeliveryPeriod}}</p>
+                            </div>
+                            <div class="step">
+                                <span>{{'main.BELOW30' | translate}}</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 60%;"></div>
+                                </div>
+                                <p>{{storePerformanceData.Below30}}</p>
+                            </div>
+                            <div class="step">
+                                <span> {{'main.BELOW30' | translate}}%</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 40%;"></div>
+                                </div>
+                                <p> {{storePerformanceData.Below30Percent |number :2}}</p>
+                            </div>
+                            <div class="step">
+                                <span> {{'main.BEYOND30' | translate}}</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 40%;"></div>
+                                </div>
+                                <p> {{storePerformanceData.Beyond30}}</p>
+                            </div>
+                            <div class="step">
+                                <span> {{'main.BEYOND30' | translate}}%</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 40%;"></div>
+                                </div>
+                                <p> {{storePerformanceData.Beyond30Percent |number :2}}</p>
+                            </div>
+                            <div class="step">
+                                <span> {{'main.BEYOND45' | translate}}</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 40%;"></div>
+                                </div>
+                                <p> {{storePerformanceData.Beyond45}}</p>
+                            </div>
+                            <div class="step">
+                                <span> {{'main.BEYOND45' | translate}}%</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 40%;"></div>
+                                </div>
+                                <p> {{storePerformanceData.Beyond45Percent |number :2}}</p>
+                            </div>
+
+                        </div>
+                    </section> -->
 
     </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-controller="VisitsCtrl"  style="top: 5px;">
-        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 panel panel-white no-radius">
-            <div class="panel-heading border-bottom">
-                <h4 class="panel-title text-bold">{{'main.THEORIC' | translate}} ({{InventoryCost.FromDateTXT}} / {{InventoryCost.ToDateTXT}})</h4>
-            </div>
-            <div class="panel-body">
-                <div class="text-center">
-                    <span class="mini-pie"> <canvas class="tc-chart" tc-chartjs-doughnut chart-options="options" chart-data="InventoryCostIdealData" chart-legend="chart3" width="100"></canvas> <span> % {{InventoryCost.Ideal *100 |number:2 }}</span> </span>
+
+    <div class="right-bar">
+        <div class="slimScrollDiv">
+            <div id="sidebarRight">
+                <div class="right-bar-inner">
+                    <h1 class="mainTitle " translate-values="{ appName: app.name }" ng-if="!selectedStoreName">{{
+                        mainTitle }} {{user.Store.name}}</h1>
+                    <h1 class="mainTitle" translate-values="{ appName: app.name }" ng-if="selectedStoreName">{{
+                        mainTitle }} {{selectedStoreName}}</h1>
+                </div>
+                <div class="right-bar-inners">
+                    <section class="stats">
+                        <div class="panelheaderright ">
+                            <img class="img" src="assets/images/ordertotals.png" alt="">
+                            <div class="panel-header">
+
+
+                                <div class="sparkline">
+                                    <span jq-sparkline ng-model="saless" type="bar" height="30px"
+                                        bar-color="#D43F3A"></span>
+                                </div>
+                                <p>{{'main.TOTALORDERS' | translate}}</p>
+                                <div class="values">
+                                    <strong class="text">{{OrderTotalCount}}</strong>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="panelheaderright " style="margin-left: 10px;">
+                            <img class="img" src="assets/images/totalamount.png" alt="">
+                            <div class="panel-header">
+
+
+                                <div class="sparkline">
+                                    <span jq-sparkline ng-model="earnings" type="bar" height="30px"
+                                        bar-color="#5CB85C"></span>
+                                </div>
+                                <p>{{'main.TOTALAMOUNT' | translate}}</p>
+                                <div class="values">
+                                    <!--<strong class="text-dark" ng-if="user.Store.MemberID == 106851154380">₺ {{OrderTotalAmount * 100 / 108 | number:2}}</strong>-->
+                                    <strong class="text" ng-if="user.Store.MemberID == 106851154380"> {{OrderTotalAmount
+                                        |
+                                        number:2}}₺</strong>
+                                    <strong class="text" ng-if="user.Store.MemberID != 106851154380"> {{OrderTotalAmount
+                                        |
+                                        number:2}}₺</strong>
+                                    <p class="text-small no-margin" ng-if="user.Store.MemberID == 106851154380">
+                                        {{:: totalnetamount }}
+                                    </p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="panelheaderright " style="margin-left: 10px;">
+                            <img class="img" src="assets/images/ordertotals.png" alt="">
+                            <div class="panel-header">
+
+
+                                <div class="sparkline">
+                                    <span jq-sparkline ng-model="referrals" type="bar" height="30px"
+                                        bar-color="#46B8DA"></span>
+                                </div>
+                                <p>{{'main.AVERAGE' | translate}}</p>
+                                <div class="values">
+                                    <strong class="text"> {{OrderTotalAmount / OrderTotalCount | number:2}}₺</strong>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </section>
+
                 </div>
             </div>
-            <div class="panel-footer">
-                <div class="clearfix padding-5 space5">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center no-padding">
-                        <div class="border-right border-dark">
-                            <label class="text-bold block text-extra-larget tooltips" tooltip="{{'main.IDEALCOSTS' | translate}}"  tooltip-placement="top"> {{InventoryCost.Ideal *100 |number:2 }} %</label>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center no-padding">
-                        <div class="border-right border-dark">
-                            <label class="text-bold block text-extra-large tooltips" tooltip="{{'main.THEORICINVANTORIES' | translate}}" tooltip-placement="top">{{InventoryCost.FoodCost | number: 2 }} {{:: 'main.CURRENCY_SYMBOL' | translate}}</label>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center no-padding">
-                        <label class="text-bold block text-extra-large tooltips" tooltip="{{'main.GRANDTOTALS' | translate}}"  tooltip-placement="top">{{InventoryCost.SalesTotal | number: 2 }} {{:: 'main.CURRENCY_SYMBOL' | translate}}</label>
-                    </div>
-                </div>
-            </div>
+
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 panel panel-white no-radius">
-            <div class="panel-heading border-bottom">
-                <h4 class="panel-title text-bold">{{'main.THEORICTODAY' | translate}}  ({{InventoryCost.ToDateTXT}})</h4>
-            </div>
-            <div class="panel-body">
-                <div class="text-center">
-                    <span class="mini-pie"> <canvas class="tc-chart" tc-chartjs-doughnut chart-options="options" chart-data="InventoryCostRealData" chart-legend="chart3" width="100"></canvas> <span> % {{InventoryCost.IdealToday *100 |number:2 }}</span> </span>
-                </div>
-            </div>
-            <div class="panel-footer">
-                <div class="clearfix padding-5 space5">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center no-padding">
-                        <div class="border-right border-dark">
-                            <label class="text-bold block text-extra-large tooltips" tooltip="{{'main.ACTUALCALCULATEREMAINDERLIST' | translate}}" tooltip-placement="top"> {{InventoryCost.IdealToday *100 |number:2 }} %</label>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center no-padding">
-                        <div class="border-right border-dark">
-                            <label class="text-bold block text-extra-large tooltips" tooltip="{{'main.ACTUALINVANTORIES' | translate}}" tooltip-placement="top"> {{InventoryCost.FoodCostToday | number: 2 }} {{:: 'main.CURRENCY_SYMBOL' | translate}}</label>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center no-padding">
-                        <label class="text-bold block text-extra-large tooltips" tooltip="{{'main.GRANDTOTALS' | translate}}" tooltip-placement="top">{{InventoryCost.SalesTotalToday | number: 2 }} {{:: 'main.CURRENCY_SYMBOL' | translate}}</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 panel panel-white no-radius">
-            <div class="panel-heading border-bottom">
-                <h4 class="panel-title text-bold">Atık Maliyet Tablosu ({{InventoryCost.FromDateTXT}} / {{InventoryCost.ToDateTXT}})</h4>
-            </div>
-            <div class="panel-body">
-                <div class="text-center">
-                    <span class="mini-pie"> <canvas class="tc-chart" tc-chartjs-doughnut chart-options="options" chart-data="InventoryCostWasteData" chart-legend="chart3" width="100"></canvas> <span> % {{InventoryCost.Waste *100 |number:2 }}</span> </span>
-                </div>
-            </div>
-            <div class="panel-footer">
-                <div class="clearfix padding-5 space5">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center no-padding">
-                        <div class="border-right border-dark">
-                            <label class="text-bold block text-extra-large tooltips" tooltip="Atık Maliyet" tooltip-placement="top"> {{InventoryCost.Waste *100 |number:2 }} %</label>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center no-padding">
-                        <div class="border-right border-dark">
-                            <label class="text-bold block text-extra-large tooltips" tooltip="Atık Maliyet Malzeme Toplamı" tooltip-placement="top"> {{InventoryCost.WasteFoodCost | number: 2 }} TL</label>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center no-padding">
-                        <label class="text-bold block text-extra-large tooltips" tooltip="Toplam Satışlar" tooltip-placement="top">{{InventoryCost.SalesTotal | number: 2 }} TL</label>
-                    </div>
-                </div>
-            </div>
-        </div>-->
+
+
     </div>
+
 </div>

@@ -5167,5 +5167,31 @@
     "Amount": "Amount",
     "OrderSource": "Order Source",
     "OperationDate": "Operation Date"
-  }
+
+},
+"fieldselector": {
+"AC_StoreIndex": "AC_StoreIndex",
+  "Amount": "Amount", 
+  "Carrier": "Carrier",
+  "Day": "Day",
+  "GrossAmount": "Gross Amount",
+  "Hour": "Hour",
+  "MonthName": "Month Name", 
+  "MonthNumber": "Month Number",
+  "OperationDate": "Operation Date",
+  "OrderSource": "Order Source",
+  "OrderType": "Order Type",
+  "PaymenType": "Paymen Type", 
+  "ROPStoreID": "ROP Store ID",
+  "RegionManager": "Region Manager",
+  "Store": "Store",
+  "StoreID": "Store ID",
+  "StoreType": "Store Type", 
+  "VAT": "VAT",
+  "Week": "Week",
+  "WeekDayName": "Week Day Name",
+  "WeekDayNumber": "Week Day Number",
+  "Year": "Year",
+  "id": "id"
+}
 }

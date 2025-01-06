@@ -107,6 +107,7 @@ function trendsCtrl($scope, Restangular, toaster, $interval, $http, NG_SETTING, 
             enabled: true,
             type: "localStorage",
             storageKey: "dx-trendsGrid"
+
         },
         columns: [
             { dataField: "Store", caption: $translate.instant('trends.Store'), visibleIndex: 0, fixed: true, dataType: "string", sortIndex: 0, sortOrder: "asc",fixed: true },
@@ -114,6 +115,8 @@ function trendsCtrl($scope, Restangular, toaster, $interval, $http, NG_SETTING, 
             { dataField: "StoreFilterType ", caption: $translate.instant('trends.StoreFilterType '), visible: false, dataType: "string",fixed: true },
             { dataField: "SalesRank", caption: $translate.instant('trends.Rank'), format: { type: "fixedPoint", precision: 0 },visible: false },
             { dataField: "RegionalSalesRank", caption: $translate.instant('trends.regionRank'), format: { type: "fixedPoint", precision: 0 },visible: false },
+            { dataField: "TheoriticalCostActualMonth", caption: "Maliyet Ay", format: { type: "percent", precision: 2 },visible: false },
+            { dataField: "TheoriticalCostToday", caption: "Maliyet Gün", format: { type: "percent", precision: 2 },visible: false },
             {
                 caption: $translate.instant('trends.today'), name: "Today",
                 columns: [
@@ -169,6 +172,8 @@ function trendsCtrl($scope, Restangular, toaster, $interval, $http, NG_SETTING, 
         ],
         summary: {
             totalItems: [{ column: "Store", summaryType: "count", displayFormat: "{0}" },
+            { column: "TheoriticalCostActualMonth",  summaryType: "avg", valueFormat: { type: "percent", precision: 2 }, displayFormat: "{0}" },
+            { column: "TheoriticalCostToday", summaryType: "avg", valueFormat: { type: "percent", precision: 2 }, displayFormat: "{0}" },
             { column: "TodayIncome", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 0 }, displayFormat: "{0}" },
             { column: "TodayTC", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 0 }, displayFormat: "{0}" },
             { column: "TodayAC", summaryType: "avg", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}" },
@@ -192,6 +197,8 @@ function trendsCtrl($scope, Restangular, toaster, $interval, $http, NG_SETTING, 
             ],
             groupItems: [
                 { column: "Store", summaryType: "count", displayFormat: "{0}" },
+                { column: "TheoriticalCostActualMonth",  summaryType: "avg", valueFormat: { type: "percent", precision: 2 }, displayFormat: "{0}", alignByColumn: true },
+                { column: "TheoriticalCostToday", summaryType: "avg", valueFormat: { type: "percent", precision: 2 }, displayFormat: "{0}", alignByColumn: true },
                 { column: "TodayIncome", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 0 }, displayFormat: "{0}", alignByColumn: true },
                 { column: "TodayTC", summaryType: "sum", valueFormat: { type: "fixedPoint", precision: 0 }, displayFormat: "{0}", alignByColumn: true },
                 { column: "TodayAC", summaryType: "avg", valueFormat: { type: "fixedPoint", precision: 2 }, displayFormat: "{0}", alignByColumn: true },

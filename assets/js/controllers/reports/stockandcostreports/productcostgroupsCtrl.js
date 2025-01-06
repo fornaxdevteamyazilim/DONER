@@ -11,7 +11,7 @@ function productcostgroupsCtrl($scope, $log, $modal, $filter, SweetAlert, Restan
         $scope.StoreID = $rootScope.user.StoreID;
     }
 
-    $scope.SetStoreID = function (FromValue) {
+    $scope.GetSoreID = function (FromValue) {
         $scope.StoreID = FromValue;
     };
 
